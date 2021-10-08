@@ -17,6 +17,11 @@ def errorsInSkyLark():
     if request.method == 'GET':
         return render_template('errorsInSkyLark.html')
 
+@app.route("/errors", methods=['GET','POST'])
+def errors():
+    if request.method == 'GET':
+        return render_template('errors.html', title_simulator = "רוכב שמיים")
+
 print("itay")
 
 if __name__ == "__main__":
