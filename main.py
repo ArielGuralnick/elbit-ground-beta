@@ -1,28 +1,32 @@
+import flask
 import pandas as pd
-from flask import Flask,render_template,request
+from flask import Flask,render_template,request, redirect
 
 app = Flask(__name__)
 
-@app.route("/home")
+@app.route("/")
 def home():
     return render_template("home.html")
 
 @app.route("/skyLark", methods=['GET','POST'])
 def skyLark():
     if request.method == 'GET':
-        return render_template('skyLark.html', title_simulator = "רוכב שמיים")
-
-@app.route("/skyLark/errorsInSkyLark", methods=['GET','POST'])
-def errorsInSkyLark():
-    if request.method == 'GET':
-        return render_template('errorsInSkyLark.html')
+        return render_template('skyLark.html', title_simulator = "מאמן רוכב שמיים")
 
 @app.route("/errors", methods=['GET','POST'])
 def errors():
     if request.method == 'GET':
-        return render_template('errors.html', title_simulator = "רוכב שמיים")
+        return render_template('errors.html')
 
-print("itay")
+@app.route("/mars", methods=['GET','POST'])
+def mars():
+    if request.method == 'GET':
+        return render_template('mars.html', title_simulator = "מאמן מרס")
+
+@app.route("/moreshet", methods=['GET','POST'])
+def moreshet():
+    if request.method == 'GET':
+        return render_template('moreshet.html', title_simulator = "מאמן מורשת")
 
 if __name__ == "__main__":
     app.run(debug=True)

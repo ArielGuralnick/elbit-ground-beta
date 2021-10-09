@@ -1,36 +1,61 @@
 {% extends 'layout.html' %}
 {% block content %}
-<section class="colored-section">
-  <table class="table table-striped table-bordered table-hover">
-    <thead>
-      <tr>
-        <th scope="col">#</th>
-        <th scope="col">First</th>
-        <th scope="col">Last</th>
-        <th scope="col">Handle</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <th scope="row">1</th>
-        <td>Mark</td>
-        <td>Otto</td>
-        <td>@mdo</td>
-      </tr>
-      <tr>
-        <th scope="row">2</th>
-        <td>Jacob</td>
-        <td>Thornton</td>
-        <td>@fat</td>
-      </tr>
-      <tr>
-        <th scope="row">3</th>
-        <td colspan="2">Larry the Bird</td>
-        <td>@twitter</td>
-      </tr>
-    </tbody>
-  </table>
-</section>
+<html dir="rtl" lang="he">
+  <section class="tableErrors">
+    <table class="table table-striped table-bordered table-hover">
+      <thead>
+        <tr>
+          <th scope="col">מס"ד</th>
+          <th scope="col">תאריך</th>
+          <th scope="col">שעה</th>
+          <th scope="col">עיתוי התקלה</th>
+          <th scope="col">מסגרת מתאמנת</th>
+          <th scope="col">עמדה</th>
+          <th scope="col">פעולה מקדימה</th>
+          <th scope="col">סוג התקלה</th>
+          <th scope="col">הסבר מורחב במידת הצורך</th>
+          <th scope="col">תפעול התקלה</th>
+          <th scope="col">מחשב</th>
+          <th scope="col">מצב</th>
+          <th scope="col">שם המטפל</th>
+          <th scope="col">זמן השבתה</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <th scope="row">1</th>
+          <td><input type="date" name="begin" 
+            placeholder="dd-mm-yyyy" value=""
+            min="1997-01-01" max="2030-12-31"></td>
+          <td><input type="text" name="fname" /></td>
+          <td><input type="text" name="fname" /></td>
+          <td><input type="text" name="fname" /></td>
+          <td><input type="text" name="fname" /></td>
+          <td><input type="text" name="fname" /></td>
+          <td><input type="text" name="fname" /></td>
+          <td><input type="text" name="fname" /></td>
+          <td><input type="text" name="fname" /></td>
+          <td><input type="text" name="fname" /></td>
+          <td><input type="text" name="fname" /></td>
+          <td><input type="text" name="fname" /></td>
+          <td><input type="text" name="fname" /></td>
+        </tr>
+        <tr>
+          <th scope="row">2</th>
+          <td>Jacob</td>
+          <td>Thornton</td>
+          <td>@fat</td>
+        </tr>
+        <tr>
+          <th scope="row">3</th>
+          <td colspan="2">Larry the Bird</td>
+          <td>@twitter</td>
+        </tr>
+      </tbody>
+    </table>
+  </section>
+</html>
+
 {% endblock %}
 
 

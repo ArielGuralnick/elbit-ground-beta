@@ -1,6 +1,8 @@
 #title{
     background-color: rgb(217, 220, 223);
     font-family: 'Ubuntu', sans-serif;
+    padding-bottom: 1%;
+  
 }
 
 #photos{
@@ -17,12 +19,15 @@ h3{
 
 /* style of bla bla bla bla bla sentence */
 .second-paragraph{
+    border-bottom: 3px solid var(--black);
+    border-top: 3px solid var(--black);
     padding-top: 1%;
     background-color: rgb(242, 245, 248);
-    font-family: 'Ubuntu', sans-serif;
+    font-family: 'Montserrat', sans-serif;
     text-align: center;
     padding-bottom: 1%;
-    color:rgb(12, 14, 19)
+    color:rgb(39, 51, 82)
+
 }
 
 
@@ -42,6 +47,8 @@ p{
 
 h1{
     text-align: center;
+    display: inline-block;
+    padding-left: 11%;
   
 }
 
@@ -65,7 +72,6 @@ h1{
 }
 
 .box {
-    border-radius: 5px;
     box-shadow: 0px 30px 40px -20px var(--grayishBlue);
     padding: 20px;
     margin: 40px;  
@@ -193,6 +199,7 @@ img {
 
 
 .carousel-item {
+    border-top: 3px solid var(--black);
     height: 65vh;
     min-height: 340px;
     background: no-repeat center center scroll;
@@ -200,6 +207,7 @@ img {
     -moz-background-size: cover;
     -o-background-size: cover;
     background-size: cover
+    
     
   }
 
@@ -213,4 +221,12 @@ img {
     font-family: 'Ubuntu', sans-serif;
     text-align: center;
     padding-bottom: 50px;
+    border-top: 3px solid var(--black);
+}
+
+/*for the inputs in errors*/
+input[type="text"] {
+    width: 100%; 
+    background: transparent;
+    border: none;
 }
