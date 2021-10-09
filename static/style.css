@@ -230,3 +230,8 @@ input[type="text"] {
     background: transparent;
     border: none;
 }
+
+
+#insertError{
+    margin: 3%;
+}
