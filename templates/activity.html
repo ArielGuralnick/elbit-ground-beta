@@ -1,0 +1,85 @@
+{% extends "layout.html" %}
+{% block content %}
+<html dir="rtl" lang="he">
+
+<section id="insertActivity">
+    <form action="" method="post">
+        <div class="row">
+            <div class="col form-group">
+                <label for="">מאמן</label>
+                <select class="form-control" id="" name="position_upload">
+                  <option>עמדות פרט</option>
+                  <option>משימה 1</option>
+                  <option>משימה 2</option>
+                  <option>משימה 3</option>
+                  <option>משימה 4</option>
+                </select>
+                <br>
+            </div>
+            <div class="col form-group">
+                <label for="">מספר אימון</label>
+                <select class="form-control" id="" name="number_training">
+                  <option>אימון 1</option>
+                  <option>אימון 2</option>
+                  <option>אימון 3</option>
+                  <option>אימון 4</option>
+                </select>
+                <br>
+            </div>
+            <div class="col form-group">
+                <label for="" class="labelSettings">תאריך פעילות</label>
+                <input type="date" name="date_upload" class="form-control" required>
+                <br>
+            </div>
+            <div class="col form-group">
+                <label for="">פעילות עבור</label>
+                <select class="form-control" id="" name="group_training">
+                  <option>קורס מדריכות</option>
+                  <option>הכשרת פרט</option>
+                  <option>הכשרת צוות</option>
+                  <option>ש.כ. סדיר</option>
+                  <option>מילואים</option>
+                  <option>מדריכות</option>
+                  <option>קק"צ</option>
+                  <option>אלביט</option>
+                  <option>צה"ל</option>
+                </select>
+                <br>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col form-group">
+                <label for="">שם המעלה</label>
+                <input type="text" name="name_updater"class="form-control" placeholder="שם" required>
+                <br>
+            </div>
+            <div class="col form-group">
+                <label for="" class="labelSettings">שעת התחלה</label>
+                <input type="text" placeholder="00:00" name="time_upload" required class="form-control" required>
+                <br>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col form-group">
+                <label for="">שם המורידה</label>
+                <input type="text" name="name_downloader"class="form-control" placeholder="שם" required>
+                <br>
+            </div>
+            <div class="col form-group">
+                <label for="" class="labelSettings">שעת סיום</label>
+                <input type="text" placeholder="00:00" name="time_download" required class="form-control" required>
+                <br>
+            </div>
+        </div>
+        <div style="text-align: center;">
+            <form method="POST">
+              <button type="sumbit" class="btn btn-outline-success">שלח</button>
+            </form>
+            <input type="reset" class="btn btn-outline-danger" value="אתחול">
+            <p></p>
+        </div>
+    </form>
+</section>
+      
+</html>
+{% endblock %}

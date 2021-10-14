@@ -24,6 +24,22 @@
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,400;1,300&display=swap" rel="stylesheet">
 </head>
 
+<!-- showing all kinds of messages in all HTML pages -->
+{% with messages = get_flashed_messages(with_categories = True) %}
+  {% if messages %}
+    {% for category, message in messages %}
+    <!-- we take category = 'danger' from botstrap which responalbe to showing messages in beatiful way.
+    m1-2 mb-1 are classes in botstrap-->
+        <div class="alert alert-{{ category }}">
+          <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+          <strong>{{ message }}</strong>
+        </div>
+    {% endfor %}
+  {% endif %}
+{%  endwith %}
+
 {% block content %}
 {% endblock %}
 

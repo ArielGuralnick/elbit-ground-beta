@@ -231,14 +231,15 @@ input[type="text"] {
     border: none;
 }
 
-/* errors.html */
-#insertError{
+/* errors.html , Activity.html */
+#insertError, #insertActivity{
     margin: 3%;
 }
 
 .form-control{
     border-radius: 30px;
     text-align: center;
+    box-shadow:10px 10px 15px 4px rgba(82, 78, 116, 0.06);
     transition: width 0.4s ease-in-out;
 }
 
