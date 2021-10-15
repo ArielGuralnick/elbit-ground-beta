@@ -1,6 +1,7 @@
 import csv
+import PyPDF2
 import pandas as pd
-from flask import Flask,render_template,request, redirect, flash,url_for
+from flask import Flask,render_template,request, redirect, flash,url_for, make_response
 
 app = Flask(__name__)
 
@@ -15,6 +16,29 @@ def home():
 def skyLark():
     if request.method == 'GET':
         return render_template('skyLark.html', title_simulator = "מאמן רוכב שמיים")
+    
+@app.route("/literature", methods=['GET'])
+def literature():
+    if request.method == 'GET':
+        return render_template('literature.html')
+
+@app.route("/safrot_mafil", methods=['GET', 'POST'])
+def safrot_mafil():
+    if request.method == 'GET':
+
+        # creating a pdf file object
+#        pdfFileObj = open('example.pdf', 'rb')
+        # creating a pdf reader object
+#        pdfReader = PyPDF2.PdfFileReader(pdfFileObj)
+        # printing number of pages in pdf file
+#        print(pdfReader.numPages)
+        # creating a page object
+#        pageObj = pdfReader.getPage(0)
+        # extracting text from page
+#        print(pageObj.extractText())
+        # closing the pdf file object
+#        pdfFileObj.close()                   
+        return render_template('safrot_mafil.html')
 
 @app.route("/activity", methods=['GET','POST'])
 def activity():
