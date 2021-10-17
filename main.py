@@ -1,7 +1,8 @@
 import csv
+import subprocess
 import PyPDF2
 import pandas as pd
-from flask import Flask,render_template,request, redirect, flash,url_for, make_response
+from flask import Flask,render_template,request, redirect, flash,url_for, send_file
 
 app = Flask(__name__)
 
@@ -22,24 +23,11 @@ def literature():
     if request.method == 'GET':
         return render_template('literature.html')
 
-@app.route("/safrot_mafil", methods=['GET', 'POST'])
-def safrot_mafil():
-    if request.method == 'GET':
-
-        # creating a pdf file object
-#        pdfFileObj = open('example.pdf', 'rb')
-        # creating a pdf reader object
-#        pdfReader = PyPDF2.PdfFileReader(pdfFileObj)
-        # printing number of pages in pdf file
-#        print(pdfReader.numPages)
-        # creating a page object
-#        pageObj = pdfReader.getPage(0)
-        # extracting text from page
-#        print(pageObj.extractText())
-        # closing the pdf file object
-#        pdfFileObj.close()                   
-        return render_template('safrot_mafil.html')
-
+@app.route('/show/static-pdf/')
+def show_static_pdf():
+    static_file =  open('elbit-ground-beta/safrot_mafil.pdf', 'rb')
+    return send_file(static_file, attachment_filename='safrot_mafil.pdf')
+       
 @app.route("/activity", methods=['GET','POST'])
 def activity():
     if request.method == 'GET':
@@ -56,7 +44,7 @@ def activity():
         time_download = request.form.get('time_download')
 
         field_content = ['סוג מאמן', 'מספר אימון', 'תאריך העלאה', 'פעילות עבור','שם המעלה', 'שעת התחלה', 'שם המורידה', 'שעת סיום']
-        with open('data_activity.csv', 'a', encoding='UTF8',newline='') as file:
+        with open('elbit-ground-beta/data_activity.csv', 'a', encoding='UTF8',newline='') as file:
             writer = csv.DictWriter(file, fieldnames=field_content)
 #            writer.writeheader()
             writer.writerow({'סוג מאמן': position_upload, 'מספר אימון' : number_training, 'תאריך העלאה' : date_upload,
@@ -85,7 +73,7 @@ def error():
         downtime = request.form.get('downtime')
 
         field_content = ['תאריך', 'שעה', 'שם מזהה', 'עיתוי התקלה', 'עמדה', 'סוג התקלה', 'הסבר','תפעול התקלה', 'מחשב', 'טופל/לא טופל', 'זמן השבתה']
-        with open('dataa.csv', 'a', encoding='UTF8',newline='') as file:
+        with open('elbit-ground-beta/dataa.csv', 'a', encoding='UTF8',newline='') as file:
             writer = csv.DictWriter(file, fieldnames=field_content)
 #            writer.writeheader()
             writer.writerow({'תאריך' : date_error, 'שעה' : time_error, 'שם מזהה':name_identifier, 'עיתוי התקלה': timing_fault, 'עמדה' : position, 'סוג התקלה' : type_of_fault,

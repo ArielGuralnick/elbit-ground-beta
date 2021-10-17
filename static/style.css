@@ -48,7 +48,7 @@ p{
 h1{
     text-align: center;
     display: inline-block;
-    padding-left: 11%;
+    padding-left: 19%;
   
 }
 
@@ -224,12 +224,6 @@ img {
     border-top: 3px solid var(--black);
 }
 
-/*for the inputs in errors*/
-input[type="text"] {
-    width: 100%; 
-    background: transparent;
-    border: none;
-}
 
 /* errors.html , Activity.html */
 #insertError, #insertActivity{
