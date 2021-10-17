@@ -23,11 +23,16 @@ def literature():
     if request.method == 'GET':
         return render_template('literature.html')
 
-@app.route('/show/static-pdf/')
+@app.route('/skyLark/literature/show/static-pdf/')
 def show_static_pdf():
     static_file =  open('elbit-ground-beta/safrot_mafil.pdf', 'rb')
     return send_file(static_file, attachment_filename='safrot_mafil.pdf')
-       
+
+@app.route('/skyLark/show/dataa-csv/')
+def show_dataa_csv():
+    static_file =  open('elbit-ground-beta/dataa.csv', 'rb')
+    return send_file(static_file, attachment_filename='dataa.csv')
+
 @app.route("/activity", methods=['GET','POST'])
 def activity():
     if request.method == 'GET':
@@ -81,6 +86,15 @@ def error():
              'מחשב' : computer, 'טופל/לא טופל' : situation, 'זמן השבתה' : downtime})
             flash(f'התקלה נקלטה בהצלחה!', category="success")
         return redirect(url_for('skyLark'))
+
+
+
+
+
+
+
+
+
 
 @app.route("/mars", methods=['GET','POST'])
 def mars():

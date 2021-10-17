@@ -1,7 +1,7 @@
 #title{
     background-color: rgb(217, 220, 223);
-    font-family: 'Ubuntu', sans-serif;
     padding-bottom: 1%;
+    font-family: 'Varela Round', sans-serif;
   
 }
 
@@ -223,7 +223,6 @@ img {
     padding-bottom: 50px;
     border-top: 3px solid var(--black);
 }
-
 
 /* errors.html , Activity.html */
 #insertError, #insertActivity{

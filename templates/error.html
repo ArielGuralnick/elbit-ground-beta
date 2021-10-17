@@ -1,125 +1,130 @@
 {% extends 'layout.html' %}
 {% block content %}
-<html dir="rtl" lang="he">
-<!-- Month -->
-<section class="month">
-
+<html>
+<section id="title">
+  <div>
+    <a href="/">
+      <img class="Logo" src="static/images/logo.png" alt="logo-img">
+    </a>
+    <h1>דיווח על תקלה</h1>
+  </div>
 </section>
 
-<section id="insertError">
-  <form action="" method="post">
-    <div class="row">
-      <div class="col form-group">
-        <label for="" class="labelSettings">תאריך</label>
-        <input type="date" name="date_error" class="form-control" required>
-        <br>
+<body style="background-color: rgb(211, 218, 218);">
+  <section id="insertError" dir="rtl" lang="he">
+    <form action="" method="post">
+      <div class="row">
+        <div class="col form-group">
+          <label for="" class="labelSettings">תאריך</label>
+          <input type="date" name="date_error" class="form-control" required>
+          <br>
+        </div>
+        <div class="col form-group">
+          <label for="" class="labelSettings">שעה</label>
+          <input type="text" placeholder="00:00" name="time_error" class="form-control" required>
+          <br>
+        </div>
       </div>
-      <div class="col form-group">
-        <label for="" class="labelSettings">שעה</label>
-        <input type="text" placeholder="00:00" name="time_error" class="form-control" required>
-        <br>
+      <div class="row">
+        <div class="col form-group">
+          <label for="">שם המזהה</label>
+          <input type="text" name="name_identifier"class="form-control" required placeholder="שם">
+          <br>
+        </div>
+        <div class="col form-group">
+          <label for="">עיתוי התקלה</label>
+          <select class="form-control" id="exampleFormControlSelect1" name="timing_fault">
+            <option>אימון</option>
+            <option>לא אימון</option>
+          </select>
+          <br>
+        </div>
+        <div class="col form-group">
+          <label for="">עמדה</label>
+          <select class="form-control" id="exampleFormControlSelect1" name="position">
+            <option>פרט 1</option>
+            <option>פרט 2</option>
+            <option>פרט 3</option>
+            <option>פרט 4</option>
+            <option>פרט 5</option>
+            <option>פרט 6</option>
+            <option>פרט 7</option>
+            <option>פרט 8</option>
+            <option>פרט 9</option>
+            <option>כל הפרט</option>
+            <option>מדריכה ראשית</option>
+            <option>משימה 1</option>
+            <option>משימה 2</option>
+            <option>משימה 3</option>
+            <option>משימה 4</option>
+          </select>
+          <br>
+        </div>
       </div>
-    </div>
-    <div class="row">
-      <div class="col form-group">
-        <label for="">שם המזהה</label>
-        <input type="text" name="name_identifier"class="form-control" required placeholder="שם">
-        <br>
+      <div class="row">
+        <div class="col form-group">
+          <label for="">סוג תקלה</label>
+          <select class="form-control" id="exampleFormControlSelect1" name="type_of_fault">
+            <option>רזולוציה</option>
+            <option>מקודד חוזי</option>
+            <option>ריצודי לל"ק</option>
+            <option>BE1 לא נפתח ב LOGGER</option>
+            <option>בלהה</option>
+            <option>בלהההה</option>
+          </select>
+          <br>
+        </div>
+        <div class="col form-group">
+          <label for="">הסבר מורחב במידת הצורך</label>
+          <textarea class="form-control" name= "explanation" id="exampleFormControlTextarea1" rows="2" placeholder="אנא הסבר"></textarea>
+          <br>
+        </div>
+        <div class="col form-group">
+          <label for="">תפעול התקלה</label>
+          <textarea class="form-control" name = "fault_operation" id="exampleFormControlTextarea1" rows="2" placeholder="אנא הסבר" required></textarea>
+          <br>
+        </div>
       </div>
-      <div class="col form-group">
-        <label for="">עיתוי התקלה</label>
-        <select class="form-control" id="exampleFormControlSelect1" name="timing_fault">
-          <option>אימון</option>
-          <option>לא אימון</option>
-        </select>
-        <br>
+      <div class="row">
+        <div class="col form-group">
+          <label for="">באיזה מחשב</label>
+          <select class="form-control" name="computer" id="exampleFormControlSelect1">
+            <option>IGS</option>
+            <option>STU</option>
+            <option>IOS</option>
+            <option>LOGGER</option>
+            <option>BE</option>
+            <option>INST</option>
+            <option>מקודד חוזי</option>
+            <option>מגש</option>
+            <option>אחר</option>
+          </select>
+          <br>
+        </div>
+        <div class="col form-group">
+          <label for="">טופל \ לא טופל</label>
+          <select class="form-control" name = "situation" id="exampleFormControlSelect1">
+            <option>V</option>
+            <option>X</option>
+          </select>
+          <br>
+        </div>
+        <div class="col form-group">
+          <label for="">זמן השבתה</label>
+          <input type="text" class="form-control" name= "downtime" placeholder="00:00">
+          <br>
+        </div>
       </div>
-      <div class="col form-group">
-        <label for="">עמדה</label>
-        <select class="form-control" id="exampleFormControlSelect1" name="position">
-          <option>פרט 1</option>
-          <option>פרט 2</option>
-          <option>פרט 3</option>
-          <option>פרט 4</option>
-          <option>פרט 5</option>
-          <option>פרט 6</option>
-          <option>פרט 7</option>
-          <option>פרט 8</option>
-          <option>פרט 9</option>
-          <option>כל הפרט</option>
-          <option>מדריכה ראשית</option>
-          <option>משימה 1</option>
-          <option>משימה 2</option>
-          <option>משימה 3</option>
-          <option>משימה 4</option>
-        </select>
-        <br>
+      <div style="text-align: center;">
+        <form method="POST">
+          <button type="sumbit" class="btn btn-outline-success">שלח</button>
+        </form>
+        <input type="reset" class="btn btn-outline-danger" value="אתחול">
+        <p></p>
       </div>
-    </div>
-    <div class="row">
-      <div class="col form-group">
-        <label for="">סוג תקלה</label>
-        <select class="form-control" id="exampleFormControlSelect1" name="type_of_fault">
-          <option>רזולוציה</option>
-          <option>מקודד חוזי</option>
-          <option>ריצודי לל"ק</option>
-          <option>BE1 לא נפתח ב LOGGER</option>
-          <option>בלהה</option>
-          <option>בלהההה</option>
-        </select>
-        <br>
-      </div>
-      <div class="col form-group">
-        <label for="">הסבר מורחב במידת הצורך</label>
-        <textarea class="form-control" name= "explanation" id="exampleFormControlTextarea1" rows="2" placeholder="אנא הסבר"></textarea>
-        <br>
-      </div>
-      <div class="col form-group">
-        <label for="">תפעול התקלה</label>
-        <textarea class="form-control" name = "fault_operation" id="exampleFormControlTextarea1" rows="2" placeholder="אנא הסבר" required></textarea>
-        <br>
-      </div>
-    </div>
-    <div class="row">
-      <div class="col form-group">
-        <label for="">באיזה מחשב</label>
-        <select class="form-control" name="computer" id="exampleFormControlSelect1">
-          <option>IGS</option>
-          <option>STU</option>
-          <option>IOS</option>
-          <option>LOGGER</option>
-          <option>BE</option>
-          <option>INST</option>
-          <option>מקודד חוזי</option>
-          <option>מגש</option>
-          <option>אחר</option>
-        </select>
-        <br>
-      </div>
-      <div class="col form-group">
-        <label for="">טופל \ לא טופל</label>
-        <select class="form-control" name = "situation" id="exampleFormControlSelect1">
-          <option>V</option>
-          <option>X</option>
-        </select>
-        <br>
-      </div>
-      <div class="col form-group">
-        <label for="">זמן השבתה</label>
-        <input type="text" class="form-control" name= "downtime" placeholder="00:00">
-        <br>
-      </div>
-    </div>
-    <div style="text-align: center;">
-      <form method="POST">
-        <button type="sumbit" class="btn btn-outline-success">שלח</button>
-      </form>
-      <input type="reset" class="btn btn-outline-danger" value="אתחול">
-      <p></p>
-    </div>
-  </form>
-</section>
-
+    </form>
+  </section>
+</body>
 
 </html>
 {% endblock %}
