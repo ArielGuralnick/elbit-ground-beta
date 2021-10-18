@@ -32,9 +32,7 @@
     <!-- we take category = 'danger' from botstrap which responalbe to showing messages in beatiful way.
     m1-2 mb-1 are classes in botstrap-->
         <div class="alert alert-{{ category }}">
-          <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-          </button>
+          <button type="button" class="btn-close" aria-label="Close" data-dismiss="alert" style="position: absolute; right: 1%;"></button>
           <strong>{{ message }}</strong>
         </div>
     {% endfor %}

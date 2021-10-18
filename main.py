@@ -1,13 +1,11 @@
 import csv
-import subprocess
-import PyPDF2
 import pandas as pd
 from flask import Flask,render_template,request, redirect, flash,url_for, send_file
 
 app = Flask(__name__)
 
-app.config['SECRET_KEY'] = '\xe0\\\x17\xb3\xca_\x82\x94\xf4\xa8w/;\x17&\xbbr\xf4;\xb6\x8f@\xcd\x7f'
 # for safety - we go to terminal, import os, then - os.urandom(12).hex(), and copy the result and paste here.
+app.config['SECRET_KEY'] = '\xe0\\\x17\xb3\xca_\x82\x94\xf4\xa8w/;\x17&\xbbr\xf4;\xb6\x8f@\xcd\x7f'
 
 @app.route("/", methods=['GET','POST'])
 def home():
@@ -30,8 +28,21 @@ def show_static_pdf():
 
 @app.route('/skyLark/show/dataa-csv/')
 def show_dataa_csv():
+    df = pd.read_csv('elbit-ground-beta/dataa.csv', usecols= ['עמדה','סוג התקלה','הסבר','זמן השבתה'], encoding="utf-8")
+    print(df)
     static_file =  open('elbit-ground-beta/dataa.csv', 'rb')
     return send_file(static_file, attachment_filename='dataa.csv')
+
+@app.route("/skyLark/solutions/", methods=['GET','POST'])
+def solutions():
+    excel_file = 'elbit-ground-beta/ariel.xlsx'
+    df = pd.read_excel(excel_file)
+    return df.to_html()
+
+@app.route("/feedback", methods=['GET','POST'])
+def feedback():
+    if request.method == 'GET':
+        return render_template('feedback.html', title_simulator = "מאמן רוכב שמיים")
 
 @app.route("/activity", methods=['GET','POST'])
 def activity():
@@ -49,7 +60,11 @@ def activity():
         time_download = request.form.get('time_download')
 
         field_content = ['סוג מאמן', 'מספר אימון', 'תאריך העלאה', 'פעילות עבור','שם המעלה', 'שעת התחלה', 'שם המורידה', 'שעת סיום']
-        with open('elbit-ground-beta/data_activity.csv', 'a', encoding='UTF8',newline='') as file:
+#        cities = pd.DataFrame([{'סוג מאמן': position_upload, 'מספר אימון' : number_training, 'תאריך העלאה' : date_upload,'פעילות עבור' : group_training, 'שם המעלה' : name_updater,'שעת התחלה' : time_upload, 'שם המורידה' : name_downloader, 'שעת סיום' : time_download}], columns=field_content)
+#        cities.to_csv('elbit-ground-beta/cities.csv', index=False, na_rep='N/A' encoding='utf-8')
+#        df = pd.read_csv('elbit-ground-beta/cities.csv')
+
+        with open('elbit-ground-beta/data_activity.csv', 'a', encoding='UTF-8',newline='') as file:
             writer = csv.DictWriter(file, fieldnames=field_content)
 #            writer.writeheader()
             writer.writerow({'סוג מאמן': position_upload, 'מספר אימון' : number_training, 'תאריך העלאה' : date_upload,
@@ -78,7 +93,13 @@ def error():
         downtime = request.form.get('downtime')
 
         field_content = ['תאריך', 'שעה', 'שם מזהה', 'עיתוי התקלה', 'עמדה', 'סוג התקלה', 'הסבר','תפעול התקלה', 'מחשב', 'טופל/לא טופל', 'זמן השבתה']
-        with open('elbit-ground-beta/dataa.csv', 'a', encoding='UTF8',newline='') as file:
+        cities = pd.DataFrame([{'תאריך' : date_error, 'שעה' : time_error, 'שם מזהה':name_identifier, 'עיתוי התקלה': timing_fault, 'עמדה' : position, 'סוג התקלה' : type_of_fault,
+             'הסבר' : explanation, 'תפעול התקלה' : fault_operation,
+             'מחשב' : computer, 'טופל/לא טופל' : situation, 'זמן השבתה' : downtime}], columns=field_content)
+        cities.to_csv('elbit-ground-beta/cities.csv', index=False, na_rep='N/A', encoding='utf-8')
+        df = pd.read_csv('elbit-ground-beta/cities.csv')
+        
+        with open('elbit-ground-beta/dataa.csv', 'a', encoding='utf-8-sig',newline='') as file:
             writer = csv.DictWriter(file, fieldnames=field_content)
 #            writer.writeheader()
             writer.writerow({'תאריך' : date_error, 'שעה' : time_error, 'שם מזהה':name_identifier, 'עיתוי התקלה': timing_fault, 'עמדה' : position, 'סוג התקלה' : type_of_fault,

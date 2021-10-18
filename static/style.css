@@ -48,7 +48,7 @@ p{
 h1{
     text-align: center;
     display: inline-block;
-    padding-left: 19%;
+    padding-left: 17%;
   
 }
 
@@ -199,7 +199,7 @@ img {
 
 
 .carousel-item {
-    border-top: 3px solid var(--black);
+    border-top: 1px solid var(--black);
     height: 65vh;
     min-height: 340px;
     background: no-repeat center center scroll;
@@ -225,7 +225,7 @@ img {
 }
 
 /* errors.html , Activity.html */
-#insertError, #insertActivity{
+#insertError, #insertActivity, #insertFeedback{
     margin: 3%;
 }
 
@@ -242,4 +242,37 @@ img {
     text-align: center;
     color: rgb(17, 18, 19);
     padding-bottom: 2%;
+}
+
+
+/*  
+ * Rating styles
+ */
+.rating{
+    margin: 0 auto 1em;
+    font-size: 24px;
+    overflow:hidden;
+}
+
+.rating a,.rating label {
+	float:right;
+	color: #aaa;
+	text-decoration: none;
+	-webkit-transition: color .4s;
+	-moz-transition: color .4s;
+	-o-transition: color .4s;
+	transition: color .4s;
+}
+
+.rating label:hover ~ label,
+.rating input:focus ~ label,
+.rating label:hover, .rating a:hover, .rating a:hover ~ a, .rating a:focus, .rating a:focus ~ a		{
+	color: orange;
+	cursor: pointer;
+	}
+.rating2 {
+	direction: rtl;
+}
+.rating2 a {
+	float:none
 }
