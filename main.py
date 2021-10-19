@@ -1,4 +1,4 @@
-import csv
+
 import pandas as pd
 from flask import Flask,render_template,request, redirect, flash,url_for, send_file
 
@@ -26,12 +26,12 @@ def show_static_pdf():
     static_file =  open('elbit-ground-beta/safrot_mafil.pdf', 'rb')
     return send_file(static_file, attachment_filename='safrot_mafil.pdf')
 
-@app.route('/skyLark/show/dataa-csv/')
-def show_dataa_csv():
-    df = pd.read_csv('elbit-ground-beta/dataa.csv', usecols= ['עמדה','סוג התקלה','הסבר','זמן השבתה'], encoding="utf-8")
-    print(df)
-    static_file =  open('elbit-ground-beta/dataa.csv', 'rb')
-    return send_file(static_file, attachment_filename='dataa.csv')
+@app.route('/skyLark/show/data_errors-csv/')
+def show_data_errors_csv():
+#    df = pd.read_csv('elbit-ground-beta/data_errors.csv', usecols= ['עמדה','סוג התקלה','הסבר','זמן השבתה'], encoding="utf-8-sig")
+#    print(df)
+    static_file =  open('elbit-ground-beta/data_errors.csv', 'rb')
+    return send_file(static_file, attachment_filename='data_errors.csv')
 
 @app.route("/skyLark/solutions/", methods=['GET','POST'])
 def solutions():
@@ -43,11 +43,25 @@ def solutions():
 def feedback():
     if request.method == 'GET':
         return render_template('feedback.html', title_simulator = "מאמן רוכב שמיים")
+    elif request.method == 'POST':
+        question_1 = request.form.get('question_1')
+        question_2 = request.form.get('question_2')
+        question_3 = request.form.get('question_3')
+        question_4 = request.form.get('question_4')
+        question_5 = request.form.get('question_5')
+
+        field_content = ['אנא דרג את איכות האימון','לפי דעתך עד כמה המאמן מתאר את המציאות','עד כמה אתה מרגיש בנוח בתפעול המאמן','עד כמה אתה מת עכשיו להיות בתאילנד','עד כמה אתה מת לאכול עכשיו פיצה']
+        feedback_information = pd.DataFrame([{'אנא דרג את איכות האימון' : question_1, 'לפי דעתך עד כמה המאמן מתאר את המציאות' : question_2, 'עד כמה אתה מרגיש בנוח בתפעול המאמן' : question_3, 'עד כמה אתה מת עכשיו להיות בתאילנד' : question_4, 'עד כמה אתה מת לאכול עכשיו פיצה' : question_5}])
+        with open('elbit-ground-beta/feedback.csv', 'a', newline='') as file:
+            feedback_information.to_csv(file, index=False, na_rep='N/A',header=file.tell()==0, encoding='utf-8-sig')
+            flash(f'המשוב נקלט בהצלחה! תודה!', category="success")
+        return redirect(url_for('skyLark'))
 
 @app.route("/activity", methods=['GET','POST'])
 def activity():
     if request.method == 'GET':
         return render_template('activity.html')
+    
     
     elif request.method == 'POST':
         position_upload = request.form.get('position_upload')
