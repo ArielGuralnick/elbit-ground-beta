@@ -60,18 +60,14 @@ def activity():
         time_download = request.form.get('time_download')
 
         field_content = ['סוג מאמן', 'מספר אימון', 'תאריך העלאה', 'פעילות עבור','שם המעלה', 'שעת התחלה', 'שם המורידה', 'שעת סיום']
-#        cities = pd.DataFrame([{'סוג מאמן': position_upload, 'מספר אימון' : number_training, 'תאריך העלאה' : date_upload,'פעילות עבור' : group_training, 'שם המעלה' : name_updater,'שעת התחלה' : time_upload, 'שם המורידה' : name_downloader, 'שעת סיום' : time_download}], columns=field_content)
-#        cities.to_csv('elbit-ground-beta/cities.csv', index=False, na_rep='N/A' encoding='utf-8')
-#        df = pd.read_csv('elbit-ground-beta/cities.csv')
-
-        with open('elbit-ground-beta/data_activity.csv', 'a', encoding='UTF-8',newline='') as file:
-            writer = csv.DictWriter(file, fieldnames=field_content)
-#            writer.writeheader()
-            writer.writerow({'סוג מאמן': position_upload, 'מספר אימון' : number_training, 'תאריך העלאה' : date_upload,
-             'פעילות עבור' : group_training, 'שם המעלה' : name_updater,
-             'שעת התחלה' : time_upload, 'שם המורידה' : name_downloader, 'שעת סיום' : time_download})
+        data_activity = pd.DataFrame([{'סוג מאמן': position_upload, 'מספר אימון' : number_training, 'תאריך העלאה' : date_upload,
+        'פעילות עבור' : group_training, 'שם המעלה' : name_updater,'שעת התחלה' : time_upload,
+        'שם המורידה' : name_downloader, 'שעת סיום' : time_download}], columns=field_content)
+        with open('elbit-ground-beta/data_activity.csv', 'a', newline='') as file:
+            data_activity.to_csv(file, index=False, na_rep='N/A',header=file.tell()==0, encoding='utf-8-sig')
             flash(f'תיעוד האימון נקלט בהצלחה!', category="success")
         return redirect(url_for('skyLark'))
+
 
 
 @app.route("/error", methods=['GET','POST'])
@@ -93,23 +89,13 @@ def error():
         downtime = request.form.get('downtime')
 
         field_content = ['תאריך', 'שעה', 'שם מזהה', 'עיתוי התקלה', 'עמדה', 'סוג התקלה', 'הסבר','תפעול התקלה', 'מחשב', 'טופל/לא טופל', 'זמן השבתה']
-        cities = pd.DataFrame([{'תאריך' : date_error, 'שעה' : time_error, 'שם מזהה':name_identifier, 'עיתוי התקלה': timing_fault, 'עמדה' : position, 'סוג התקלה' : type_of_fault,
-             'הסבר' : explanation, 'תפעול התקלה' : fault_operation,
-             'מחשב' : computer, 'טופל/לא טופל' : situation, 'זמן השבתה' : downtime}], columns=field_content)
-        cities.to_csv('elbit-ground-beta/cities.csv', index=False, na_rep='N/A', encoding='utf-8')
-        df = pd.read_csv('elbit-ground-beta/cities.csv')
-        
-        with open('elbit-ground-beta/dataa.csv', 'a', encoding='utf-8-sig',newline='') as file:
-            writer = csv.DictWriter(file, fieldnames=field_content)
-#            writer.writeheader()
-            writer.writerow({'תאריך' : date_error, 'שעה' : time_error, 'שם מזהה':name_identifier, 'עיתוי התקלה': timing_fault, 'עמדה' : position, 'סוג התקלה' : type_of_fault,
-             'הסבר' : explanation, 'תפעול התקלה' : fault_operation,
-             'מחשב' : computer, 'טופל/לא טופל' : situation, 'זמן השבתה' : downtime})
+        data_errors = pd.DataFrame([{'תאריך' : date_error, 'שעה' : time_error, 'שם מזהה':name_identifier,
+        'עיתוי התקלה': timing_fault, 'עמדה' : position, 'סוג התקלה' : type_of_fault,'הסבר' : explanation,
+        'תפעול התקלה' : fault_operation,'מחשב' : computer, 'טופל/לא טופל' : situation, 'זמן השבתה' : downtime}], columns=field_content)
+        with open('elbit-ground-beta/data_errors.csv', 'a', newline='') as file:
+            data_errors.to_csv(file, index=False, na_rep='N/A',header=file.tell()==0, encoding='utf-8-sig')
             flash(f'התקלה נקלטה בהצלחה!', category="success")
         return redirect(url_for('skyLark'))
-
-
-
 
 
 
