@@ -1,4 +1,4 @@
-
+from io import BytesIO
 import pandas as pd
 from flask import Flask,render_template,request, redirect, flash,url_for, send_file
 
@@ -11,33 +11,52 @@ app.config['SECRET_KEY'] = '\xe0\\\x17\xb3\xca_\x82\x94\xf4\xa8w/;\x17&\xbbr\xf4
 def home():
     return render_template("home.html")
 
-@app.route("/skyLark", methods=['GET','POST'])
-def skyLark():
+@app.route("/user", methods=['GET'])
+def user():
     if request.method == 'GET':
-        return render_template('skyLark.html', title_simulator = "מאמן רוכב שמיים")
-    
+        return render_template('user.html', title_simulator = "מאמן רוכב שמיים")
+
+@app.route("/skyLark_instructor", methods=['GET','POST'])
+def skyLark_instructor():
+    if request.method == 'GET':
+        return render_template('skyLark_instructor.html', title_simulator = "מאמן רוכב שמיים")
+
+@app.route("/skyLark_technician", methods=['GET','POST'])
+def skyLark_technician():
+    if request.method == 'GET':
+        return render_template('skyLark_technician.html')
+
 @app.route("/literature", methods=['GET'])
 def literature():
     if request.method == 'GET':
         return render_template('literature.html')
 
-@app.route('/skyLark/literature/show/static-pdf/')
-def show_static_pdf():
-    static_file =  open('elbit-ground-beta/safrot_mafil.pdf', 'rb')
-    return send_file(static_file, attachment_filename='safrot_mafil.pdf')
+@app.route('/user/show-static-pdf-safrot_mafil')
+def show_static_pdf_safrot_mafil():
+    if request.method == 'GET':
+        static_file =  open('elbit-ground-beta/safrot_mafil.pdf', 'rb')
+        return send_file(static_file, attachment_filename='safrot_mafil.pdf')
 
-@app.route('/skyLark/show/data_errors-csv/')
-def show_data_errors_csv():
-#    df = pd.read_csv('elbit-ground-beta/data_errors.csv', usecols= ['עמדה','סוג התקלה','הסבר','זמן השבתה'], encoding="utf-8-sig")
-#    print(df)
-    static_file =  open('elbit-ground-beta/data_errors.csv', 'rb')
-    return send_file(static_file, attachment_filename='data_errors.csv')
+@app.route('/user/skyLark_instructor/show-static-pdf-solutions')
+def show_static_pdf_solutions():
+    if request.method == 'GET':
+        static_file =  open('elbit-ground-beta/solutions.pdf', 'rb')
+        return send_file(static_file, attachment_filename='solutions.pdf')
 
-@app.route("/skyLark/solutions/", methods=['GET','POST'])
-def solutions():
-    excel_file = 'elbit-ground-beta/ariel.xlsx'
-    df = pd.read_excel(excel_file)
-    return df.to_html()
+@app.route('/show_data_errors', methods=['GET','POST'])
+def show_data_errors():
+    if request.method == 'GET':
+        data_errors = pd.read_csv('elbit-ground-beta/data_errors.csv', encoding="unicode_escape")
+        dphtml = r'<meta charset="utf-8">' + '\n' + r'<link rel="stylesheet" href="static/style.css">' + '\n' + r'<link rel="stylesheet" href="static/css/bootstrap.css">' + '\n'
+        dphtml += data_errors.to_html(border=0)
+        with open('elbit-ground-beta/templates/show_data_errors.html','w') as f:
+            f.write(dphtml)
+            f.close()
+        return render_template('show_data_errors.html', data=dphtml)
+    
+#        data_errors = pd.read_csv('elbit-ground-beta/data_errors.csv', encoding="ISO-8859-8")
+#        data_errors.to_html("elbit-ground-beta/templates/show_data_errors.html", classes="table table-hover", na_rep='NaN', border="0")
+#        return render_template('show_data_errors.html')
 
 @app.route("/feedback", methods=['GET','POST'])
 def feedback():
@@ -55,7 +74,7 @@ def feedback():
         with open('elbit-ground-beta/feedback.csv', 'a', newline='') as file:
             feedback_information.to_csv(file, index=False, na_rep='N/A',header=file.tell()==0, encoding='utf-8-sig')
             flash(f'המשוב נקלט בהצלחה! תודה!', category="success")
-        return redirect(url_for('skyLark'))
+        return redirect(url_for('skyLark_instructor'))
 
 @app.route("/activity", methods=['GET','POST'])
 def activity():
@@ -78,16 +97,16 @@ def activity():
         'פעילות עבור' : group_training, 'שם המעלה' : name_updater,'שעת התחלה' : time_upload,
         'שם המורידה' : name_downloader, 'שעת סיום' : time_download}], columns=field_content)
         with open('elbit-ground-beta/data_activity.csv', 'a', newline='') as file:
-            data_activity.to_csv(file, index=False, na_rep='N/A',header=file.tell()==0, encoding='utf-8-sig')
+            data_activity.to_csv(file, index=False, na_rep='N/A',header=file.tell()==0, encoding = "utf-8-sig")
             flash(f'תיעוד האימון נקלט בהצלחה!', category="success")
-        return redirect(url_for('skyLark'))
+        return redirect(url_for('skyLark_instructor'))
 
 
 
-@app.route("/error", methods=['GET','POST'])
-def error():
+@app.route("/insert_error", methods=['GET','POST'])
+def insert_error():
     if request.method == 'GET':
-        return render_template('error.html')
+        return render_template('insert_error.html')
 
     elif request.method == 'POST':
         date_error = request.form.get('date_error')
@@ -109,9 +128,13 @@ def error():
         with open('elbit-ground-beta/data_errors.csv', 'a', newline='') as file:
             data_errors.to_csv(file, index=False, na_rep='N/A',header=file.tell()==0, encoding='utf-8-sig')
             flash(f'התקלה נקלטה בהצלחה!', category="success")
-        return redirect(url_for('skyLark'))
+        return redirect(url_for('skyLark_instructor'))
 
 
+@app.route("/warehouse_inventory", methods=['GET','POST'])
+def warehouse_inventory():
+    if request.method == 'GET':
+        return render_template('warehouse_inventory.html')
 
 
 

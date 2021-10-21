@@ -1,0 +1,60 @@
+{% extends 'layout.html' %}
+{% block content %}
+<html>
+<section id="title" style="background-color: rgb(244, 248, 248); border-bottom: 3px solid var(--black);" >
+  <div>
+    <a href="/">
+      <img class="Logo" src="static/images/logo.png" alt="logo-img">
+    </a>
+    <h1>מלאי מחסן רוכב שמים</h1>
+  </div>
+</section>
+
+<body style="background-color: rgb(211, 218, 218);">
+    <section id="warehouse_inventory" dir="rtl" lang="he">
+        <form action="" method="post">
+            <table class="table table-hover">
+                <thead>
+                  <tr>
+                    <th scope="col">מס"ד</th>
+                    <th scope="col">סוג הפריט</th>
+                    <th scope="col">דגם</th>
+                    <th scope="col">כמות במלאי</th>
+                    <th scope="col">נדרש להשלים/לרגוש</th>
+                    <th scope="col">הערות</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <th scope="row">1</th>
+                    <td>מסך 19 אינצ'</td>
+                    <td>dell/hp</td>
+                    <td>4</td>
+                    <td></td>
+                    <td></td>
+                  </tr>
+                  <tr>
+                    <th scope="row">2</th>
+                    <td>מחשב Z220</td>
+                    <td></td>
+                    <td>2</td>
+                    <td></td>
+                    <td></td>
+                  </tr>
+                  <tr>
+                    <th scope="row">3</th>
+                    <td>מחשב Z620</td>
+                    <td>hp z620</td>
+                    <td>2</td>
+                    <td></td>
+                    <td></td>
+                  </tr>
+                </tbody>
+              </table>
+        </form>
+    </section>
+</body>
+
+
+</html>
+{% endblock %}
