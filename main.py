@@ -36,6 +36,11 @@ def literature():
     if request.method == 'GET':
         return render_template('literature.html')
 
+@app.route("/order_training", methods=['GET'])
+def order_training():
+    if request.method == 'GET':
+        return render_template('order_training.html')
+
 @app.route('/user/skyLark_mafil/show-static-pdf-safrot_mafil')
 def show_static_pdf_safrot_mafil():
     if request.method == 'GET':
@@ -158,6 +163,9 @@ def warehouse_inventory():
 #        item_type = request.form.get('th3_3')
 #        item_type = request.form.get('th3_4')
 #        item_type = request.form.get('th3_5')
+
+
+
 
 @app.route("/mars", methods=['GET','POST'])
 def mars():

@@ -1,0 +1,42 @@
+{% extends 'layout.html' %}
+{% block content %}
+<html>
+<section id="title" style="background-color: rgb(244, 248, 248); border-bottom: 3px solid var(--black);" >
+  <div>
+    <a href="/">
+      <img class="Logo" src="static/images/logo.png" alt="logo-img">
+    </a>
+    <h1>הזמנת שעות אימון</h1>
+  </div>
+</section>
+<body style="background-color: rgb(211, 218, 218); ">
+    <section id="order_training" dir="rtl" lang="he">
+      <form action="" method="post">
+        <div class="row">
+          <div class="col form-group">
+            <label for="" class="labelSettings">תאריך ושעת התחלה</label>
+            <input type="datetime-local" name="date_start" class="form-control" min="09:00" max="21:00" required>
+            <br>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col form-group">
+            <label for="" class="labelSettings">תאריך ושעת סיום</label>
+            <input type="datetime-local" name="date_end" class="form-control" min="09:00" max="21:00" required>
+            <br>
+          </div>
+        </div>
+
+        <div style="text-align: center;">
+          <form method="POST">
+            <button type="sumbit" class="btn btn-outline-success">שלח</button>
+          </form>
+          <input type="reset" class="btn btn-outline-danger" value="אתחול">
+          <p></p>
+        </div>
+      </form>
+    </section>
+</body>
+
+</html>
+{% endblock %}

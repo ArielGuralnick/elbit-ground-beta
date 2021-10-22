@@ -225,7 +225,8 @@ img {
 }
 
 /* errors.html , Activity.html */
-#insertError, #insertActivity, #insertFeedback, #warehouse_inventory{
+#insertError, #insertActivity, #insertFeedback,
+#warehouse_inventory, #order_training{
     margin: 3%;
 }
 

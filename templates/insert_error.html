@@ -16,12 +16,12 @@
       <div class="row">
         <div class="col form-group">
           <label for="" class="labelSettings">תאריך</label>
-          <input type="date" name="date_error" class="form-control" required>
+          <input type="date" name="date_error" class="form-control" min="2021-01-01" required>
           <br>
         </div>
         <div class="col form-group">
           <label for="" class="labelSettings">שעה</label>
-          <input type="text" placeholder="00:00" name="time_error" class="form-control" required>
+          <input type="time" name="time_error" class="form-control" required>
           <br>
         </div>
       </div>
@@ -111,7 +111,7 @@
         </div>
         <div class="col form-group">
           <label for="">זמן השבתה</label>
-          <input type="text" class="form-control" name= "downtime" placeholder="00:00">
+          <input type="time" class="form-control" name= "downtime" >
           <br>
         </div>
       </div>
