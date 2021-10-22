@@ -14,7 +14,7 @@ def home():
 @app.route("/user", methods=['GET'])
 def user():
     if request.method == 'GET':
-        return render_template('user.html', title_simulator = "מאמן רוכב שמיים")
+        return render_template('user.html', title_simulator = "מאמן רוכב שמיים", second_paragraph = "אֵין כָּאֵל יְשֻׁרוּן רֹכֵב שָׁמַיִם בְּעֶזְרֶךָ וּבְגַאֲוָתוֹ שְׁחָקִים")
 
 @app.route("/skyLark_instructor", methods=['GET','POST'])
 def skyLark_instructor():
@@ -26,12 +26,17 @@ def skyLark_technician():
     if request.method == 'GET':
         return render_template('skyLark_technician.html')
 
+@app.route("/skyLark_mafil", methods=['GET','POST'])
+def skyLark_mafil():
+    if request.method == 'GET':
+        return render_template('skyLark_mafil.html')
+
 @app.route("/literature", methods=['GET'])
 def literature():
     if request.method == 'GET':
         return render_template('literature.html')
 
-@app.route('/user/show-static-pdf-safrot_mafil')
+@app.route('/user/skyLark_mafil/show-static-pdf-safrot_mafil')
 def show_static_pdf_safrot_mafil():
     if request.method == 'GET':
         static_file =  open('elbit-ground-beta/safrot_mafil.pdf', 'rb')
@@ -45,8 +50,9 @@ def show_static_pdf_solutions():
 
 @app.route('/show_data_errors', methods=['GET','POST'])
 def show_data_errors():
-    if request.method == 'GET':
-        data_errors = pd.read_csv('elbit-ground-beta/data_errors.csv', encoding="unicode_escape")
+    if request.method == 'GET':       
+        important_columns = ['עמדה', 'סוג התקלה', 'הסבר', 'זמן השבתה']
+        data_errors = pd.read_csv('elbit-ground-beta/data_errors.csv', encoding = 'utf-8')
         dphtml = r'<meta charset="utf-8">' + '\n' + r'<link rel="stylesheet" href="static/style.css">' + '\n' + r'<link rel="stylesheet" href="static/css/bootstrap.css">' + '\n'
         dphtml += data_errors.to_html(border=0)
         with open('elbit-ground-beta/templates/show_data_errors.html','w') as f:
@@ -68,9 +74,9 @@ def feedback():
         question_3 = request.form.get('question_3')
         question_4 = request.form.get('question_4')
         question_5 = request.form.get('question_5')
-
+        print(question_1, question_2,question_3,question_4,question_5)
         field_content = ['אנא דרג את איכות האימון','לפי דעתך עד כמה המאמן מתאר את המציאות','עד כמה אתה מרגיש בנוח בתפעול המאמן','עד כמה אתה מת עכשיו להיות בתאילנד','עד כמה אתה מת לאכול עכשיו פיצה']
-        feedback_information = pd.DataFrame([{'אנא דרג את איכות האימון' : question_1, 'לפי דעתך עד כמה המאמן מתאר את המציאות' : question_2, 'עד כמה אתה מרגיש בנוח בתפעול המאמן' : question_3, 'עד כמה אתה מת עכשיו להיות בתאילנד' : question_4, 'עד כמה אתה מת לאכול עכשיו פיצה' : question_5}])
+        feedback_information = pd.DataFrame([{'אנא דרג את איכות האימון' : question_1, 'לפי דעתך עד כמה המאמן מתאר את המציאות' : question_2, 'עד כמה אתה מרגיש בנוח בתפעול המאמן' : question_3, 'עד כמה אתה מת עכשיו להיות בתאילנד' : question_4, 'עד כמה אתה מת לאכול עכשיו פיצה' : question_5}], columns=field_content)
         with open('elbit-ground-beta/feedback.csv', 'a', newline='') as file:
             feedback_information.to_csv(file, index=False, na_rep='N/A',header=file.tell()==0, encoding='utf-8-sig')
             flash(f'המשוב נקלט בהצלחה! תודה!', category="success")
@@ -136,19 +142,32 @@ def warehouse_inventory():
     if request.method == 'GET':
         return render_template('warehouse_inventory.html')
 
-
-
-
+#    if request.method == 'POST':
+#        item_type = request.form.get('th1_1')
+#        item_type = request.form.get('th1_2')
+#        item_type = request.form.get('th1_3')
+#        item_type = request.form.get('th1_4')
+#        item_type = request.form.get('th1_5')
+#        item_type = request.form.get('th2_1')
+#        item_type = request.form.get('th2_2')
+#        item_type = request.form.get('th2_3')
+#        item_type = request.form.get('th2_4')
+#        item_type = request.form.get('th2_5')
+#        item_type = request.form.get('th3_1')
+#        item_type = request.form.get('th3_2')
+#        item_type = request.form.get('th3_3')
+#        item_type = request.form.get('th3_4')
+#        item_type = request.form.get('th3_5')
 
 @app.route("/mars", methods=['GET','POST'])
 def mars():
     if request.method == 'GET':
-        return render_template('mars.html', title_simulator = "מאמן מרס")
+        return render_template('user.html', title_simulator = "מאמן מרס", second_paragraph = "מרס מרס מרס מרס מרס מרס")
 
 @app.route("/moreshet", methods=['GET','POST'])
 def moreshet():
     if request.method == 'GET':
-        return render_template('moreshet.html', title_simulator = "מאמן מורשת")
+        return render_template('user.html', title_simulator = "מאמן מורשת", second_paragraph = "מורשת מורשת מורשת מורשת מורשת")
 
 if __name__ == "__main__":
     app.run(debug=True)

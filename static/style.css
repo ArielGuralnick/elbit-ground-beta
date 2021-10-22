@@ -254,7 +254,7 @@ img {
     overflow:hidden;
 }
 
-.rating a,.rating label {
+.rating input{
 	float:right;
 	color: #aaa;
 	text-decoration: none;
@@ -264,15 +264,20 @@ img {
 	transition: color .4s;
 }
 
-.rating label:hover ~ label,
-.rating input:focus ~ label,
-.rating label:hover, .rating a:hover, .rating a:hover ~ a, .rating a:focus, .rating a:focus ~ a		{
+input[type="button"]
+{
+    background: rgba(0, 0, 0, 0);
+    border: none;
+    outline: none;
+}
+
+.rating input:focus ~ label, .rating input:hover, .rating input:hover ~ input, .rating input:focus, .rating input:focus ~ input{
 	color: orange;
 	cursor: pointer;
 	}
 .rating2 {
 	direction: rtl;
 }
-.rating2 a {
+.rating2 input {
 	float:none
 }
