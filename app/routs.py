@@ -1,8 +1,6 @@
-from io import BytesIO
+from app import app # importing app variable from app package
 import pandas as pd
-from flask import Flask,render_template,request, redirect, flash,url_for, send_file
-
-app = Flask(__name__)
+from flask import render_template,request, redirect, flash,url_for, send_file
 
 # for safety - we go to terminal, import os, then - os.urandom(12).hex(), and copy the result and paste here.
 app.config['SECRET_KEY'] = '\xe0\\\x17\xb3\xca_\x82\x94\xf4\xa8w/;\x17&\xbbr\xf4;\xb6\x8f@\xcd\x7f'
@@ -44,20 +42,20 @@ def order_training():
 @app.route('/user/skyLark_mafil/show-static-pdf-safrot_mafil')
 def show_static_pdf_safrot_mafil():
     if request.method == 'GET':
-        static_file =  open('elbit-ground-beta/safrot_mafil.pdf', 'rb')
+        static_file =  open('elbit-ground-beta/app/safrot_mafil.pdf', 'rb')
         return send_file(static_file, attachment_filename='safrot_mafil.pdf')
 
 @app.route('/user/skyLark_instructor/show-static-pdf-solutions')
 def show_static_pdf_solutions():
     if request.method == 'GET':
-        static_file =  open('elbit-ground-beta/solutions.pdf', 'rb')
+        static_file =  open('elbit-ground-beta/app/solutions.pdf', 'rb')
         return send_file(static_file, attachment_filename='solutions.pdf')
 
 @app.route('/show_data_errors', methods=['GET','POST'])
 def show_data_errors():
     if request.method == 'GET':       
         important_columns = ['עמדה', 'סוג התקלה', 'הסבר', 'זמן השבתה']
-        data_errors = pd.read_csv('elbit-ground-beta/data_errors.csv', encoding = 'utf-8')
+        data_errors = pd.read_csv('elbit-ground-beta/app/data_errors.csv', encoding = 'utf-8')
         dphtml = r'<meta charset="utf-8">' + '\n' + r'<link rel="stylesheet" href="static/style.css">' + '\n' + r'<link rel="stylesheet" href="static/css/bootstrap.css">' + '\n'
         dphtml += data_errors.to_html(border=0)
         with open('elbit-ground-beta/templates/show_data_errors.html','w') as f:
@@ -82,7 +80,7 @@ def feedback():
         print(question_1, question_2,question_3,question_4,question_5)
         field_content = ['אנא דרג את איכות האימון','לפי דעתך עד כמה המאמן מתאר את המציאות','עד כמה אתה מרגיש בנוח בתפעול המאמן','עד כמה אתה מת עכשיו להיות בתאילנד','עד כמה אתה מת לאכול עכשיו פיצה']
         feedback_information = pd.DataFrame([{'אנא דרג את איכות האימון' : question_1, 'לפי דעתך עד כמה המאמן מתאר את המציאות' : question_2, 'עד כמה אתה מרגיש בנוח בתפעול המאמן' : question_3, 'עד כמה אתה מת עכשיו להיות בתאילנד' : question_4, 'עד כמה אתה מת לאכול עכשיו פיצה' : question_5}], columns=field_content)
-        with open('elbit-ground-beta/feedback.csv', 'a', newline='') as file:
+        with open('elbit-ground-beta/app/feedback.csv', 'a', newline='') as file:
             feedback_information.to_csv(file, index=False, na_rep='N/A',header=file.tell()==0, encoding='utf-8-sig')
             flash(f'המשוב נקלט בהצלחה! תודה!', category="success")
         return redirect(url_for('skyLark_instructor'))
@@ -107,7 +105,7 @@ def activity():
         data_activity = pd.DataFrame([{'סוג מאמן': position_upload, 'מספר אימון' : number_training, 'תאריך העלאה' : date_upload,
         'פעילות עבור' : group_training, 'שם המעלה' : name_updater,'שעת התחלה' : time_upload,
         'שם המורידה' : name_downloader, 'שעת סיום' : time_download}], columns=field_content)
-        with open('elbit-ground-beta/data_activity.csv', 'a', newline='') as file:
+        with open('elbit-ground-beta/app/data_activity.csv', 'a', newline='') as file:
             data_activity.to_csv(file, index=False, na_rep='N/A',header=file.tell()==0, encoding = "utf-8-sig")
             flash(f'תיעוד האימון נקלט בהצלחה!', category="success")
         return redirect(url_for('skyLark_instructor'))
@@ -136,7 +134,7 @@ def insert_error():
         data_errors = pd.DataFrame([{'תאריך' : date_error, 'שעה' : time_error, 'שם מזהה':name_identifier,
         'עיתוי התקלה': timing_fault, 'עמדה' : position, 'סוג התקלה' : type_of_fault,'הסבר' : explanation,
         'תפעול התקלה' : fault_operation,'מחשב' : computer, 'טופל/לא טופל' : situation, 'זמן השבתה' : downtime}], columns=field_content)
-        with open('elbit-ground-beta/data_errors.csv', 'a', newline='') as file:
+        with open('elbit-ground-beta/app/data_errors.csv', 'a', newline='') as file:
             data_errors.to_csv(file, index=False, na_rep='N/A',header=file.tell()==0, encoding='utf-8-sig')
             flash(f'התקלה נקלטה בהצלחה!', category="success")
         return redirect(url_for('skyLark_instructor'))
@@ -176,6 +174,3 @@ def mars():
 def moreshet():
     if request.method == 'GET':
         return render_template('user.html', title_simulator = "מאמן מורשת", second_paragraph = "מורשת מורשת מורשת מורשת מורשת")
-
-if __name__ == "__main__":
-    app.run(debug=True)
