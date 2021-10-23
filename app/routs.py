@@ -2,9 +2,7 @@ from app import app # importing app variable from app package
 import pandas as pd
 from flask import render_template,request, redirect, flash,url_for, send_file
 
-# for safety - we go to terminal, import os, then - os.urandom(12).hex(), and copy the result and paste here.
-app.config['SECRET_KEY'] = '\xe0\\\x17\xb3\xca_\x82\x94\xf4\xa8w/;\x17&\xbbr\xf4;\xb6\x8f@\xcd\x7f'
-
+    
 @app.route("/", methods=['GET','POST'])
 def home():
     return render_template("home.html")
@@ -45,6 +43,12 @@ def show_static_pdf_safrot_mafil():
         static_file =  open('elbit-ground-beta/app/safrot_mafil.pdf', 'rb')
         return send_file(static_file, attachment_filename='safrot_mafil.pdf')
 
+@app.route('/user/skyLark_mafil/show-static-pdf-safrot_simulator')
+def show_static_pdf_safrot_simulator():
+    if request.method == 'GET':
+        static_file =  open('elbit-ground-beta/app/safrot_simulator.pdf', 'rb')
+        return send_file(static_file, attachment_filename='safrot_simulator.pdf')
+
 @app.route('/user/skyLark_instructor/show-static-pdf-solutions')
 def show_static_pdf_solutions():
     if request.method == 'GET':
@@ -55,13 +59,13 @@ def show_static_pdf_solutions():
 def show_data_errors():
     if request.method == 'GET':       
         important_columns = ['עמדה', 'סוג התקלה', 'הסבר', 'זמן השבתה']
-        data_errors = pd.read_csv('elbit-ground-beta/app/data_errors.csv', encoding = 'utf-8')
-        dphtml = r'<meta charset="utf-8">' + '\n' + r'<link rel="stylesheet" href="static/style.css">' + '\n' + r'<link rel="stylesheet" href="static/css/bootstrap.css">' + '\n'
+        data_errors = pd.read_csv('elbit-ground-beta/app/data_errors.csv')
+        dphtml = r'<meta charset="utf-8-sig">' + '\n' + r'<link rel="stylesheet" href="static/style.css">' + '\n' + r'<link rel="stylesheet" href="static/css/bootstrap.css">' + '\n'
         dphtml += data_errors.to_html(border=0)
-        with open('elbit-ground-beta/templates/show_data_errors.html','w') as f:
+        with open('elbit-ground-beta/app/templates/show_data_errors.html','w', encoding='utf-8-sig') as f:
             f.write(dphtml)
             f.close()
-        return render_template('show_data_errors.html', data=dphtml)
+        return render_template('show_data_errors.html')
     
 #        data_errors = pd.read_csv('elbit-ground-beta/data_errors.csv', encoding="ISO-8859-8")
 #        data_errors.to_html("elbit-ground-beta/templates/show_data_errors.html", classes="table table-hover", na_rep='NaN', border="0")
