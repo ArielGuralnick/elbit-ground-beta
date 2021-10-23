@@ -226,7 +226,7 @@ img {
 
 /* errors.html , Activity.html */
 #insertError, #insertActivity, #insertFeedback,
-#warehouse_inventory, #order_training{
+#warehouse_inventory, #order_training, #show_data_errors{
     margin: 3%;
 }
 
