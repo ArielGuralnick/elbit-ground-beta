@@ -13,44 +13,46 @@
 <body style="background-color: rgb(211, 218, 218);">
     <section id="warehouse_inventory" dir="rtl" lang="he">
         <form action="" method="post">
+          <div class="table-responsive">
             <table class="table table-hover">
-                <thead>
-                  <tr>
-                    <th scope="col">מס"ד</th>
-                    <th scope="col">סוג הפריט</th>
-                    <th scope="col">דגם</th>
-                    <th scope="col">כמות במלאי</th>
-                    <th scope="col">נדרש להשלים/לרכוש</th>
-                    <th scope="col">הערות</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr style="background: transparent;border: none; outline-width: 0;">
-                    <th scope="row">1</th>
-                    <td><input type="text" value="מסך 19 אינצ'" class="form-control" name='th1_1'></td>
-                    <td><input type="text" value="dell/hp" class="form-control" name='th1_2'></td>
-                    <td><input type="number" value="4" class="form-control" name='th1_3'></td>
-                    <td><input type="text" value="" class="form-control" name='th1_4'></td>
-                    <td><input type="text" value="" class="form-control" name='th1_5'></td>
-                  </tr>
-                  <tr>
-                    <th scope="row">2</th>
-                    <td><input type="text" value="מחשב Z220" class="form-control" name='th2_1'></td>
-                    <td><input type="text" value="" class="form-control" name='th2_2'></td>
-                    <td><input type="number" value="2" class="form-control" name='th2_3'></td>
-                    <td><input type="text" value="" class="form-control" name='th2_4'></td>
-                    <td><input type="text" value="" class="form-control" name='th2_5'></td>
-                  </tr>
-                  <tr>
-                    <th scope="row">3</th>
-                    <td><input type="text" value="מחשב Z620" class="form-control" name='th3_1'></td>
-                    <td><input type="text" value="hp z620" class="form-control" name='th3_2'></td>
-                    <td><input type="number" value="2" class="form-control" name='th3_3'></td>
-                    <td><input type="text" value="" class="form-control" name='th3_4'></td>
-                    <td><input type="text" value="" class="form-control" name='th3_5'></td>
-                  </tr>
-                </tbody>
-              </table>
+              <thead>
+                <tr>
+                  <th scope="col">מס"ד</th>
+                  <th scope="col">סוג הפריט</th>
+                  <th scope="col">דגם</th>
+                  <th scope="col">כמות במלאי</th>
+                  <th scope="col">נדרש להשלים/לרכוש</th>
+                  <th scope="col">הערות</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr style="background: transparent;border: none; outline-width: 0;">
+                  <th scope="row">1</th>
+                  <td contenteditable='true'><input type="text" value="מסך 19 אינצ'" class="form-control" name='th1_1'></td>
+                  <td contenteditable='true'><input type="text" value="dell/hp" class="form-control" name='th1_2'></td>
+                  <td contenteditable='true'><input type="number" value="4" class="form-control" name='th1_3'></td>
+                  <td contenteditable='true'><input type="text" value="" class="form-control" name='th1_4'></td>
+                  <td contenteditable='true'><input type="text" value="" class="form-control" name='th1_5'></td>
+                </tr>
+                <tr>
+                  <th scope="row">2</th>
+                  <td contenteditable='true'><input type="text" value="מחשב Z220" class="form-control" name='th2_1'></td>
+                  <td contenteditable='true'><input type="text" value="" class="form-control" name='th2_2'></td>
+                  <td contenteditable='true'><input type="number" value="2" class="form-control" name='th2_3'></td>
+                  <td contenteditable='true'><input type="text" value="" class="form-control" name='th2_4'></td>
+                  <td contenteditable='true'><input type="text" value="" class="form-control" name='th2_5'></td>
+                </tr>
+                <tr>
+                  <th scope="row">3</th>
+                  <td contenteditable='true'><input type="text" value="מחשב Z620" class="form-control" name='th3_1'></td>
+                  <td contenteditable='true'><input type="text" value="hp z620" class="form-control" name='th3_2'></td>
+                  <td contenteditable='true'><input type="number" value="2" class="form-control" name='th3_3'></td>
+                  <td contenteditable='true'><input type="text" value="" class="form-control" name='th3_4'></td>
+                  <td contenteditable='true'><input type="text" value="" class="form-control" name='th3_5'></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
               <div style="text-align: center;">
                 <form method="POST">
                   <button type="sumbit" class="btn btn-outline-success">עדכן</button>

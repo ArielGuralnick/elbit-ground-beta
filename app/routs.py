@@ -1,181 +1,106 @@
 from app import app # importing app variable from app package
-import pandas as pd
-from flask import render_template,request, redirect, flash,url_for, send_file
+from flask import render_template,request
 
-    
+from src.handlers.user_Handler import user_Handler
+from src.handlers.skyLark_instructor_Handler import skyLark_instructor_Handler
+from src.handlers.skyLark_technician_Handler import skyLark_technician_Handler
+from src.handlers.skyLark_mafil_Handler import skyLark_mafil_Handler
+from src.handlers.literature_Handler import literature_Handler
+from src.handlers.order_training_Handler import order_training_Handler
+from src.handlers.show_static_pdf_safrot_mafil_Handler import show_static_pdf_safrot_mafil_Handler
+from src.handlers.show_static_pdf_safrot_simulator_Handler import show_static_pdf_safrot_simulator_Handler
+from src.handlers.show_static_pdf_solutions_Handler import show_static_pdf_solutions_Handler
+from src.handlers.show_data_errors_technician_Handler import show_data_errors_technician_Handler
+from src.handlers.show_data_errors_mafil_Handler import show_data_errors_mafil_Handler
+from src.handlers.show_data_activity_Handler import show_data_activity_Handler
+from src.handlers.feedback_Handler import feedback_Handler
+from src.handlers.activity_Handler import activity_Handler
+from src.handlers.insert_error_Handler import insert_error_Handler
+from src.handlers.warehouse_inventory_Handler import warehouse_inventory_Handler
+from src.handlers.mars_Handler import mars_Handler
+from src.handlers.moreshet_Handler import moreshet_Handler
+
+
 @app.route("/", methods=['GET','POST'])
 def home():
     return render_template("home.html")
 
 @app.route("/user", methods=['GET'])
-def user():
-    if request.method == 'GET':
-        return render_template('user.html', title_simulator = "מאמן רוכב שמיים", second_paragraph = "אֵין כָּאֵל יְשֻׁרוּן רֹכֵב שָׁמַיִם בְּעֶזְרֶךָ וּבְגַאֲוָתוֹ שְׁחָקִים")
+async def user():
+    return await user_Handler(request)
 
 @app.route("/skyLark_instructor", methods=['GET','POST'])
-def skyLark_instructor():
-    if request.method == 'GET':
-        return render_template('skyLark_instructor.html', title_simulator = "מאמן רוכב שמיים")
+async def skyLark_instructor():
+    return await skyLark_instructor_Handler(request)
 
 @app.route("/skyLark_technician", methods=['GET','POST'])
-def skyLark_technician():
-    if request.method == 'GET':
-        return render_template('skyLark_technician.html')
+async def skyLark_technician():
+    return await skyLark_technician_Handler(request)
 
 @app.route("/skyLark_mafil", methods=['GET','POST'])
-def skyLark_mafil():
-    if request.method == 'GET':
-        return render_template('skyLark_mafil.html')
+async def skyLark_mafil():
+    return await skyLark_mafil_Handler(request)
 
 @app.route("/literature", methods=['GET'])
-def literature():
-    if request.method == 'GET':
-        return render_template('literature.html')
+async def literature():
+    return await literature_Handler(request)
 
 @app.route("/order_training", methods=['GET'])
-def order_training():
-    if request.method == 'GET':
-        return render_template('order_training.html')
+async def order_training():
+    return await order_training_Handler(request)
 
 @app.route('/user/skyLark_mafil/show-static-pdf-safrot_mafil')
-def show_static_pdf_safrot_mafil():
-    if request.method == 'GET':
-        static_file =  open('elbit-ground-beta/app/safrot_mafil.pdf', 'rb')
-        return send_file(static_file, attachment_filename='safrot_mafil.pdf')
+async def show_static_pdf_safrot_mafil():
+    return await show_static_pdf_safrot_mafil_Handler(request)
+
 
 @app.route('/user/skyLark_mafil/show-static-pdf-safrot_simulator')
-def show_static_pdf_safrot_simulator():
-    if request.method == 'GET':
-        static_file =  open('elbit-ground-beta/app/safrot_simulator.pdf', 'rb')
-        return send_file(static_file, attachment_filename='safrot_simulator.pdf')
+async def show_static_pdf_safrot_simulator():
+    return await show_static_pdf_safrot_simulator_Handler(request)
+
+@app.route('/show_data_errors_mafil')
+async def show_data_errors_mafil():
+    return await show_data_errors_mafil_Handler(request)
+
 
 @app.route('/user/skyLark_instructor/show-static-pdf-solutions')
-def show_static_pdf_solutions():
-    if request.method == 'GET':
-        static_file =  open('elbit-ground-beta/app/solutions.pdf', 'rb')
-        return send_file(static_file, attachment_filename='solutions.pdf')
+async def show_static_pdf_solutions():
+    return await show_static_pdf_solutions_Handler(request)
 
-@app.route('/show_data_errors', methods=['GET','POST'])
-def show_data_errors():
-    if request.method == 'GET':       
-        important_columns = ['עמדה', 'סוג התקלה', 'הסבר', 'זמן השבתה']
-        data_errors = pd.read_csv('elbit-ground-beta/app/data_errors.csv')
-        dphtml = (r"{% extends 'layout.html' %}" + '\n' + r"{% block content %}" + '\n' +
-        r'<section id="title" style="background-color: rgb(244, 248, 248); border-bottom: 3px solid var(--black);" >' +
-        '\n' + '<div>' + '\n' + '<a href="/">' + '\n' + '<img class="Logo" src="static/images/logo.png" alt="logo-img">' +
-        '\n' + '</a>' + '\n' + '<h1>דוח תקלות לטכנאי</h1>' + '\n' + '</div>' + '\n' + '</section>' + '\n' +
-        '<body style="background-color: rgb(211, 218, 218);">' + '\n' + '<section id="show_data_errors" dir="rtl" lang="he">' +
-        '\n' + '<form action="" method="post">' + '\n')        
-        dphtml += data_errors.to_html(classes = "table table-hover", border=0, columns=important_columns)
-        with open('elbit-ground-beta/app/templates/show_data_errors.html','w', encoding='utf-8-sig') as f:
-            f.writelines([dphtml,r"</form>",r"</section>",r"</body>" ,r"{% endblock %}"])
-            f.close()
-        return render_template('show_data_errors.html')
+
+@app.route('/show_data_errors_technician', methods=['GET','POST'])
+async def show_data_errors_technician():
+    return await show_data_errors_technician_Handler(request)
+
+
+@app.route('/show_data_activity', methods=['GET','POST'])
+async def show_data_activity():
+    return await show_data_activity_Handler(request)
     
 @app.route("/feedback", methods=['GET','POST'])
-def feedback():
-    if request.method == 'GET':
-        return render_template('feedback.html', title_simulator = "מאמן רוכב שמיים")
-    elif request.method == 'POST':
-        question_1 = request.form.get('question_1')
-        question_2 = request.form.get('question_2')
-        question_3 = request.form.get('question_3')
-        question_4 = request.form.get('question_4')
-        question_5 = request.form.get('question_5')
-        print(question_1, question_2,question_3,question_4,question_5)
-        field_content = ['אנא דרג את איכות האימון','לפי דעתך עד כמה המאמן מתאר את המציאות','עד כמה אתה מרגיש בנוח בתפעול המאמן','עד כמה אתה מת עכשיו להיות בתאילנד','עד כמה אתה מת לאכול עכשיו פיצה']
-        feedback_information = pd.DataFrame([{'אנא דרג את איכות האימון' : question_1, 'לפי דעתך עד כמה המאמן מתאר את המציאות' : question_2, 'עד כמה אתה מרגיש בנוח בתפעול המאמן' : question_3, 'עד כמה אתה מת עכשיו להיות בתאילנד' : question_4, 'עד כמה אתה מת לאכול עכשיו פיצה' : question_5}], columns=field_content)
-        with open('elbit-ground-beta/app/feedback.csv', 'a', newline='', encoding='utf-8-sig') as file:
-            feedback_information.to_csv(file, index=False, na_rep='N/A',header=file.tell()==0, encoding='utf-8-sig')
-            flash(f'המשוב נקלט בהצלחה! תודה!', category="success")
-        return redirect(url_for('skyLark_instructor'))
+async def feedback():
+    return await feedback_Handler(request)
+   
 
 @app.route("/activity", methods=['GET','POST'])
-def activity():
-    if request.method == 'GET':
-        return render_template('activity.html')
-    
-    
-    elif request.method == 'POST':
-        position_upload = request.form.get('position_upload')
-        number_training = request.form.get('number_training')
-        date_upload = request.form.get('date_upload')
-        group_training = request.form.get('group_training')
-        name_updater = request.form.get('name_updater')
-        time_upload = request.form.get('time_upload')
-        name_downloader = request.form.get('name_downloader')
-        time_download = request.form.get('time_download')
-
-        field_content = ['סוג מאמן', 'מספר אימון', 'תאריך העלאה', 'פעילות עבור','שם המעלה', 'שעת התחלה', 'שם המורידה', 'שעת סיום']
-        data_activity = pd.DataFrame([{'סוג מאמן': position_upload, 'מספר אימון' : number_training, 'תאריך העלאה' : date_upload,
-        'פעילות עבור' : group_training, 'שם המעלה' : name_updater,'שעת התחלה' : time_upload,
-        'שם המורידה' : name_downloader, 'שעת סיום' : time_download}], columns=field_content)
-        with open('elbit-ground-beta/app/data_activity.csv', 'a', newline='', encoding='utf-8-sig') as file:
-            data_activity.to_csv(file, index=False, na_rep='N/A',header=file.tell()==0, encoding = "utf-8-sig")
-            flash(f'תיעוד האימון נקלט בהצלחה!', category="success")
-        return redirect(url_for('skyLark_instructor'))
-
+async def activity():
+    return await activity_Handler(request)
 
 
 @app.route("/insert_error", methods=['GET','POST'])
-def insert_error():
-    if request.method == 'GET':
-        return render_template('insert_error.html')
-
-    elif request.method == 'POST':
-        date_error = request.form.get('date_error')
-        time_error = request.form.get('time_error')
-        name_identifier = request.form.get('name_identifier')
-        timing_fault = request.form.get('timing_fault')
-        position = request.form.get('position')
-        type_of_fault = request.form.get('type_of_fault')
-        explanation = request.form.get('explanation')
-        fault_operation = request.form.get('fault_operation')
-        computer = request.form.get('computer')
-        situation = request.form.get('situation')
-        downtime = request.form.get('downtime')
-
-        field_content = ['תאריך', 'שעה', 'שם מזהה', 'עיתוי התקלה', 'עמדה', 'סוג התקלה', 'הסבר','תפעול התקלה', 'מחשב', 'טופל/לא טופל', 'זמן השבתה']
-        data_errors = pd.DataFrame([{'תאריך' : date_error, 'שעה' : time_error, 'שם מזהה':name_identifier,
-        'עיתוי התקלה': timing_fault, 'עמדה' : position, 'סוג התקלה' : type_of_fault,'הסבר' : explanation,
-        'תפעול התקלה' : fault_operation,'מחשב' : computer, 'טופל/לא טופל' : situation, 'זמן השבתה' : downtime}], columns=field_content)
-        with open('elbit-ground-beta/app/data_errors.csv', 'a', newline='', encoding='utf-8-sig') as file:
-            data_errors.to_csv(file, index=False, na_rep='N/A',header=file.tell()==0, encoding='utf-8-sig')
-            flash(f'התקלה נקלטה בהצלחה!', category="success")
-        return redirect(url_for('skyLark_instructor'))
+async def insert_error():
+    return await insert_error_Handler(request)
 
 
 @app.route("/warehouse_inventory", methods=['GET','POST'])
-def warehouse_inventory():
-    if request.method == 'GET':
-        return render_template('warehouse_inventory.html')
-
-#    if request.method == 'POST':
-#        item_type = request.form.get('th1_1')
-#        item_type = request.form.get('th1_2')
-#        item_type = request.form.get('th1_3')
-#        item_type = request.form.get('th1_4')
-#        item_type = request.form.get('th1_5')
-#        item_type = request.form.get('th2_1')
-#        item_type = request.form.get('th2_2')
-#        item_type = request.form.get('th2_3')
-#        item_type = request.form.get('th2_4')
-#        item_type = request.form.get('th2_5')
-#        item_type = request.form.get('th3_1')
-#        item_type = request.form.get('th3_2')
-#        item_type = request.form.get('th3_3')
-#        item_type = request.form.get('th3_4')
-#        item_type = request.form.get('th3_5')
-
-
+async def warehouse_inventory():
+    return await warehouse_inventory_Handler(request)
 
 
 @app.route("/mars", methods=['GET','POST'])
-def mars():
-    if request.method == 'GET':
-        return render_template('user.html', title_simulator = "מאמן מרס", second_paragraph = "מרס מרס מרס מרס מרס מרס")
+async def mars():
+    return await mars_Handler(request)
 
 @app.route("/moreshet", methods=['GET','POST'])
-def moreshet():
-    if request.method == 'GET':
-        return render_template('user.html', title_simulator = "מאמן מורשת", second_paragraph = "מורשת מורשת מורשת מורשת מורשת")
+async def moreshet():
+    return await moreshet_Handler(request)

@@ -1,0 +1,59 @@
+﻿{% extends 'layout.html' %}
+{% block content %}
+<section id="title" style="background-color: rgb(244, 248, 248); border-bottom: 3px solid var(--black);" >
+<div>
+<a href="/">
+<img class="Logo" src="static/images/logo.png" alt="logo-img">
+</a>
+<h1>דוח פעילות מתקן </h1>
+</div>
+</section>
+<body style="background-color: rgb(211, 218, 218);">
+<section id="show_data_activity" dir="rtl" lang="he">
+<form action="" method="post">
+<div class="col-md-3 form-group">
+                <label for="">סוג מאמן</label>
+                <select class="form-control" id="exampleFormControlSelect1" name="position_upload">
+                    <option>אנא בחר מאמן</option>
+                    <option>עמדות פרט</option>
+                    <option>משימה 1</option>
+                    <option>משימה 2</option>
+                    <option>משימה 3</option>
+                    <option>משימה 4</option>
+                </select>
+                <br>
+                <form method="POST">
+                    <button type="sumbit" class="btn btn-outline-success">חפש</button>
+                </form>
+                </div><table border="0" class="dataframe table table-hover">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>סוג מאמן</th>
+      <th>מספר אימון</th>
+      <th>תאריך העלאה</th>
+      <th>פעילות עבור</th>
+      <th>שם המעלה</th>
+      <th>שעת התחלה</th>
+      <th>שם המורידה</th>
+      <th>שעת סיום</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>3</th>
+      <td>משימה 2</td>
+      <td>אימון 3</td>
+      <td>2021-10-25</td>
+      <td>הכשרת צוות</td>
+      <td>דנה</td>
+      <td>14:10</td>
+      <td>דנה</td>
+      <td>16:10</td>
+    </tr>
+  </tbody>
+</table>
+</form>
+</section>
+</body>
+{% endblock %}
