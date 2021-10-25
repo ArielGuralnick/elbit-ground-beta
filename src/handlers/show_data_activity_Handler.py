@@ -10,8 +10,10 @@ async def show_data_activity_Handler(request):
         '\n' + '</a>' + '\n' + '<h1>דוח פעילות מתקן </h1>' + '\n' + '</div>' + '\n' + '</section>' + '\n' +
         '<body style="background-color: rgb(211, 218, 218);">' + '\n' + '<section id="show_data_activity" dir="rtl" lang="he">' +
         '\n' + '<form action="" method="post">' + '\n' +
-        r'''<div class="col-md-3 form-group">
-                <label for="">סוג מאמן</label>
+        r'''
+            <div class="container">
+            <div class="row">
+            <div class="col-sm form-group">
                 <select class="form-control" id="exampleFormControlSelect1" name="position_upload">
                     <option>אנא בחר מאמן</option>
                     <option>עמדות פרט</option>
@@ -20,10 +22,13 @@ async def show_data_activity_Handler(request):
                     <option>משימה 3</option>
                     <option>משימה 4</option>
                 </select>
-                <br>
+            </div>
+                <div class="col-sm">
                 <form method="POST">
                     <button type="sumbit" class="btn btn-outline-success">חפש</button>
                 </form>
+                </div>
+                </div>
                 </div>''')        
         dphtml += data_activity.to_html(classes = "table table-hover", border=0)
         with open('elbit-ground-beta/app/templates/show_data_activity.html','w', encoding='utf-8-sig') as f:
@@ -43,8 +48,10 @@ async def show_data_activity_Handler(request):
         '\n' + '</a>' + '\n' + '<h1>דוח פעילות מתקן </h1>' + '\n' + '</div>' + '\n' + '</section>' + '\n' +
         '<body style="background-color: rgb(211, 218, 218);">' + '\n' + '<section id="show_data_activity" dir="rtl" lang="he">' +
         '\n' + '<form action="" method="post">' + '\n' + 
-        r'''<div class="col-md-3 form-group">
-                <label for="">סוג מאמן</label>
+        r'''
+            <div class="container">
+            <div class="row">
+            <div class="col-sm form-group">
                 <select class="form-control" id="exampleFormControlSelect1" name="position_upload">
                     <option>אנא בחר מאמן</option>
                     <option>עמדות פרט</option>
@@ -53,10 +60,13 @@ async def show_data_activity_Handler(request):
                     <option>משימה 3</option>
                     <option>משימה 4</option>
                 </select>
-                <br>
+            </div>
+                <div class="col-sm">
                 <form method="POST">
                     <button type="sumbit" class="btn btn-outline-success">חפש</button>
                 </form>
+                </div>
+                </div>
                 </div>''')        
         dphtml += specific_position.to_html(classes = "table table-hover", border=0)
         with open('elbit-ground-beta/app/templates/show_data_activity.html','w', encoding='utf-8-sig') as f:
