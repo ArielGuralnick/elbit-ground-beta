@@ -17,6 +17,8 @@ from src.handlers.feedback_Handler import feedback_Handler
 from src.handlers.activity_Handler import activity_Handler
 from src.handlers.insert_error_Handler import insert_error_Handler
 from src.handlers.warehouse_inventory_Handler import warehouse_inventory_Handler
+from src.handlers.maintenance_technician_mafil_Handler import maintenance_technician_mafil_Handler
+
 from src.handlers.mars_Handler import mars_Handler
 from src.handlers.moreshet_Handler import moreshet_Handler
 
@@ -96,6 +98,10 @@ async def insert_error():
 async def warehouse_inventory():
     return await warehouse_inventory_Handler(request)
 
+
+@app.route("/maintenance_technician_mafil", methods=['GET','POST'])
+async def maintenance_technician_mafil():
+    return await maintenance_technician_mafil_Handler(request)
 
 @app.route("/mars", methods=['GET','POST'])
 async def mars():
