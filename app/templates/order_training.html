@@ -12,17 +12,33 @@
 <body style="background-color: rgb(211, 218, 218); ">
     <section id="order_training" dir="rtl" lang="he">
       <form action="" method="post">
-        <div class="row">
-          <div class="col form-group">
-            <label for="" class="labelSettings">תאריך ושעת התחלה</label>
-            <input type="datetime-local" name="date_start" class="form-control" min="09:00" max="21:00" required>
-            <br>
-          </div>
+        <div class="col form-group">
+          <label for="">בחר סוג מאמן</label>
+          <select class="form-control" name="type_simulator">
+            <option>אנא בחר מאמן</option>
+            <option>רוכב שמיים</option>
+            <option>מרס</option>
+            <option>מורשת</option>
+            <option>רעם</option>
+          </select>
+          <br>
         </div>
         <div class="row">
+          <label class="labelSettings form-group">שים לב: בעת בחירה של מספר תאריכים השעות שישלחו הם השעות שהוכנסו</label>
           <div class="col form-group">
-            <label for="" class="labelSettings">תאריך ושעת סיום</label>
-            <input type="datetime-local" name="date_end" class="form-control" min="09:00" max="21:00" required>
+            <label for="" class="labelSettings">תאריך התחלה</label>
+            <input type="date" name="date_start" class="form-control">
+            <label for="" class="labelSettings">שעת התחלה</label>
+            <input type="time" name="time_start" class="form-control" min="08:00" max="21:00" value="08:00">
+            <span class="validity"></span>
+            <br>
+          </div>
+          <div class="col form-group">
+            <label for="" class="labelSettings">תאריך סיום</label>
+            <input type="date" name="date_end" class="form-control">
+            <label for="" class="labelSettings">שעת סיום</label>
+            <input type="time" name="time_end" class="form-control" min="08:00" max="21:00" value="21:00">
+            <span class="validity"></span>
             <br>
           </div>
         </div>

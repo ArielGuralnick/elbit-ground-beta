@@ -49,7 +49,7 @@ async def skyLark_mafil():
 async def literature():
     return await literature_Handler(request)
 
-@app.route("/order_training", methods=['GET'])
+@app.route("/order_training", methods=['GET','POST'])
 async def order_training():
     return await order_training_Handler(request)
 
