@@ -30,9 +30,11 @@ async def show_data_activity_Handler(request):
                 </div>
                 </div>
                 </div>''')        
-        dphtml += data_activity.to_html(classes = "table table-hover", border=0)
+        dphtml += data_activity.to_html(table_id="show_activity", classes = "table table-hover", border=0)
         with open('elbit-ground-beta/app/templates/show_data_activity.html','w', encoding='utf-8-sig') as f:
-            f.writelines([dphtml + '\n' + r"</form>" + '\n' + r"</section>" + '\n' + r"</body>" + '\n' + r"{% endblock %}"])
+            f.writelines([dphtml + '\n' + r"</form>" + '\n' + r"</section>" + '\n' + 
+            r'<script type="text/javascript">' + '\n' + r"$('#show_activity').DataTable();" + 
+            '\n' + r"</script>" + r"</body>" + '\n' + r"{% endblock %}"])
             f.close()
         return render_template('show_data_activity.html')
 
@@ -67,10 +69,13 @@ async def show_data_activity_Handler(request):
                 </form>
                 </div>
                 </div>
-                </div>''')        
-        dphtml += specific_position.to_html(classes = "table table-hover", border=0)
+                </div>''')
+        dphtml += specific_position.to_html(table_id="show_activity", classes = "table table-hover", border=0)
         with open('elbit-ground-beta/app/templates/show_data_activity.html','w', encoding='utf-8-sig') as f:
-            f.writelines([dphtml + '\n' + r"</form>" + '\n' + r"</section>" + '\n' + r"</body>" + '\n' + r"{% endblock %}"])
+            f.writelines([dphtml + '\n' + r"</form>" + '\n' + r"</section>" + '\n' + 
+            r'<script type="text/javascript">' + '\n' + r"$('#show_activity').DataTable();" + 
+            '\n' + r"</script>" + r"</body>" + '\n' + r"{% endblock %}"])
             f.close()
         return render_template('show_data_activity.html')
+
 
