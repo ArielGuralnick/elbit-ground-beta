@@ -7,9 +7,9 @@ from src.handlers.skyLark_technician_Handler import skyLark_technician_Handler
 from src.handlers.skyLark_mafil_Handler import skyLark_mafil_Handler
 from src.handlers.literature_Handler import literature_Handler
 from src.handlers.order_training_Handler import order_training_Handler
-from src.handlers.show_static_pdf_safrot_mafil_Handler import show_static_pdf_safrot_mafil_Handler
-from src.handlers.show_static_pdf_safrot_simulator_Handler import show_static_pdf_safrot_simulator_Handler
-from src.handlers.show_static_pdf_solutions_Handler import show_static_pdf_solutions_Handler
+from src.handlers.pdf_safrot_mafil_Handler import pdf_safrot_mafil_Handler
+from src.handlers.pdf_safrot_simulator_Handler import pdf_safrot_simulator_Handler
+from src.handlers.pdf_solutions_Handler import pdf_solutions_Handler
 from src.handlers.show_data_errors_technician_Handler import show_data_errors_technician_Handler
 from src.handlers.show_data_errors_mafil_Handler import show_data_errors_mafil_Handler
 from src.handlers.show_data_activity_Handler import show_data_activity_Handler
@@ -20,6 +20,8 @@ from src.handlers.warehouse_inventory_Handler import warehouse_inventory_Handler
 from src.handlers.show_maintenance_technician_mafil_Handler import show_maintenance_technician_mafil_Handler
 from src.handlers.insert_maintenance_tecnician_mafil_Handler import insert_maintenance_technician_mafil_Handler
 
+from src.handlers.manager_Handler import manager_Handler
+from src.handlers.show_training_days_Handler import show_training_days_Handler
 
 from src.handlers.mars_Handler import mars_Handler
 from src.handlers.moreshet_Handler import moreshet_Handler
@@ -53,23 +55,23 @@ async def literature():
 async def order_training():
     return await order_training_Handler(request)
 
-@app.route('/user/skyLark_mafil/show-static-pdf-safrot_mafil')
-async def show_static_pdf_safrot_mafil():
-    return await show_static_pdf_safrot_mafil_Handler(request)
+@app.route('/user/skyLark_mafil/pdf-safrot_mafil')
+async def pdf_safrot_mafil():
+    return await pdf_safrot_mafil_Handler(request)
 
 
-@app.route('/user/skyLark_mafil/show-static-pdf-safrot_simulator')
-async def show_static_pdf_safrot_simulator():
-    return await show_static_pdf_safrot_simulator_Handler(request)
+@app.route('/user/skyLark_mafil/pdf-safrot_simulator')
+async def pdf_safrot_simulator():
+    return await pdf_safrot_simulator_Handler(request)
 
 @app.route('/show_data_errors_mafil')
 async def show_data_errors_mafil():
     return await show_data_errors_mafil_Handler(request)
 
 
-@app.route('/user/skyLark_instructor/show-static-pdf-solutions')
-async def show_static_pdf_solutions():
-    return await show_static_pdf_solutions_Handler(request)
+@app.route('/user/skyLark_instructor/pdf-solutions')
+async def pdf_solutions():
+    return await pdf_solutions_Handler(request)
 
 
 @app.route('/show_data_errors_technician', methods=['GET','POST'])
@@ -108,6 +110,15 @@ async def show_maintenance_technician_mafil():
 @app.route("/insert_maintenance_technician_mafil", methods=['GET','POST'])
 async def insert_maintenance_technician_mafil():
     return await insert_maintenance_technician_mafil_Handler(request)
+
+
+@app.route("/manager", methods=['GET','POST'])
+async def manager():
+    return await manager_Handler(request)
+
+@app.route("/show_training_days", methods=['GET','POST'])
+async def show_training_days():
+    return await show_training_days_Handler(request)    
 
 @app.route("/mars", methods=['GET','POST'])
 async def mars():

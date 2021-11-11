@@ -1,0 +1,31 @@
+<section id="title">
+    <div>
+      <a href="/">
+        <img class="Logo" src="static/images/logo.png" alt="logo-img">
+      </a>
+      <h1>{{ title_simulator }}</h1>
+    </div>
+  </section>  
+  <div class="second-paragraph">
+    <h2>{{ second_paragraph }} </h2>
+  </div>
+
+  {% extends "layout.html" %}
+  {% block content %}
+  <section id="optionsInManager">
+    <div class="row1-container">
+      <div class="box blue">
+        <a href="/show_training_days" class="btn btn-outline-secondary blueInButoon"><h3>דוח הזמנת ימי אימון</h3></a>
+        <p></p>
+        <img src="static/images/flaticon/order-now.png" alt="order-now">
+      </div>
+  
+      <div class="box green">
+        <a href="" class="btn btn-outline-secondary greenInButoon "><h3>כלום</h3></a>
+        <p></p>
+        <img src="static/images/flaticon/emergency.png" alt="emergency">
+      </div>
+    </div>
+  </section>
+
+  {% endblock %}
