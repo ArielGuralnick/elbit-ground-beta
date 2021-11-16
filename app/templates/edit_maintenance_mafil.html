@@ -1,0 +1,32 @@
+﻿{% extends 'layout.html' %}
+{% block content %}
+<section id="title" style="background-color: rgb(244, 248, 248); border-bottom: 3px solid var(--black);" >
+<div>
+<a href="/">
+<img class="Logo" src="static/images/logo.png" alt="logo-img">
+</a>
+<h1>עריכת פער</h1>
+</div>
+</section>
+<body style="background-color: rgb(211, 218, 218);">
+<section id="show_data_errors" dir="rtl" lang="he">
+<form action="" method="post">
+
+<br>
+<div class="col-md-3 form-group">
+          <label for="">בחר פער לעריכה</label>
+          <select class="form-control" name="type_of_fault">
+            <option>אנא בחר פער</option>
+            <option>מקלדת שבורה</option>
+            <option>מגש תקוע בפרט 7</option>
+          </select>
+          <br>
+          <form method="POST">
+          <button type="sumbit" class="btn btn-outline-success">חפש</button>
+          </form>
+          
+</div>
+</form>
+</section>
+</body>
+{% endblock %}

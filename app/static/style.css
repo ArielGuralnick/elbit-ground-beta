@@ -262,7 +262,7 @@ img {
     overflow:hidden;
 }
 
-.rating input{
+.rating label{
 	float:right;
 	color: #aaa;
 	text-decoration: none;
@@ -272,22 +272,27 @@ img {
 	transition: color .4s;
 }
 
-input[type="button"]
+label
 {
     background: rgba(0, 0, 0, 0);
     border: none;
     outline: none;
 }
 
-.rating input:focus ~ label, .rating input:hover, .rating input:hover ~ input, .rating input:focus, .rating input:focus ~ input{
+.rating label:focus ~ label, .rating label:hover, .rating label:hover ~ label, .rating label:focus, .rating label:focus ~ label{
 	color: orange;
 	cursor: pointer;
 	}
 .rating2 {
 	direction: rtl;
 }
-.rating2 input {
+.rating2 label {
 	float:none
+}
+
+input[type=radio]
+{
+    visibility: hidden;
 }
 
 input:invalid+span:after {

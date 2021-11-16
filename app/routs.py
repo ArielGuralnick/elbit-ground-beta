@@ -13,15 +13,19 @@ from src.handlers.pdf_solutions_Handler import pdf_solutions_Handler
 from src.handlers.show_data_errors_technician_Handler import show_data_errors_technician_Handler
 from src.handlers.show_data_errors_mafil_Handler import show_data_errors_mafil_Handler
 from src.handlers.show_data_activity_Handler import show_data_activity_Handler
-from src.handlers.feedback_Handler import feedback_Handler
+from src.handlers.skyLark_feedback_Handler import skyLark_feedback_Handler
 from src.handlers.activity_Handler import activity_Handler
 from src.handlers.insert_error_Handler import insert_error_Handler
 from src.handlers.warehouse_inventory_Handler import warehouse_inventory_Handler
 from src.handlers.show_maintenance_technician_mafil_Handler import show_maintenance_technician_mafil_Handler
 from src.handlers.insert_maintenance_tecnician_mafil_Handler import insert_maintenance_technician_mafil_Handler
+from src.handlers.edit_maintenance_tecnician_mafil_Handler import edit_maintenance_technician_mafil_Handler
+from src.handlers.training_package_Handler import training_package_Handler
+
 
 from src.handlers.manager_Handler import manager_Handler
 from src.handlers.show_training_days_Handler import show_training_days_Handler
+from src.handlers.manager_feedbacks_Handler import manager_feedbacks_Handler
 
 from src.handlers.mars_Handler import mars_Handler
 from src.handlers.moreshet_Handler import moreshet_Handler
@@ -83,9 +87,9 @@ async def show_data_errors_technician():
 async def show_data_activity():
     return await show_data_activity_Handler(request)
     
-@app.route("/feedback", methods=['GET','POST'])
-async def feedback():
-    return await feedback_Handler(request)
+@app.route("/skyLark_feedback", methods=['GET','POST'])
+async def skyLark_feedback():
+    return await skyLark_feedback_Handler(request)
    
 
 @app.route("/activity", methods=['GET','POST'])
@@ -103,6 +107,8 @@ async def warehouse_inventory():
     return await warehouse_inventory_Handler(request)
 
 
+# הפערים בין המפעיל לטכנאי
+
 @app.route("/show_maintenance_technician_mafil", methods=['GET','POST'])
 async def show_maintenance_technician_mafil():
     return await show_maintenance_technician_mafil_Handler(request)
@@ -111,6 +117,19 @@ async def show_maintenance_technician_mafil():
 async def insert_maintenance_technician_mafil():
     return await insert_maintenance_technician_mafil_Handler(request)
 
+@app.route("/edit_maintenance_technician_mafil", methods=['GET','POST'])
+async def edit_maintenance_technician_mafil():
+    return await edit_maintenance_technician_mafil_Handler(request)
+
+
+
+
+@app.route("/training_package", methods=['GET','POST'])
+async def training_package():
+    return await training_package_Handler(request)
+
+
+# הדפים של המנהל
 
 @app.route("/manager", methods=['GET','POST'])
 async def manager():
@@ -119,6 +138,13 @@ async def manager():
 @app.route("/show_training_days", methods=['GET','POST'])
 async def show_training_days():
     return await show_training_days_Handler(request)    
+
+@app.route("/manager_feedbacks", methods=['GET','POST'])
+async def manager_feedbacks():
+    return await manager_feedbacks_Handler(request)    
+
+
+# שאר המאמנים
 
 @app.route("/mars", methods=['GET','POST'])
 async def mars():

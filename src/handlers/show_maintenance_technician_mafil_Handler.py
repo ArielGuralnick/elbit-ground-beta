@@ -17,8 +17,10 @@ async def show_maintenance_technician_mafil_Handler(request):
             f.writelines([dphtml + '\n' + r'<br>' + '\n' + 
             r'''<div style="text-align: center;">
              <form method="POST">
-              <button type="sumbit" class="btn btn-outline-success">הוספה</button>
-              <button type="sumbit" class="btn btn-outline-danger">עריכה</button>
+              <button type="sumbit" class="btn btn-outline-success" name="options" value="option1">הוספה</button>
+             </form>
+             <form method="POST">
+              <button type="sumbit" class="btn btn-outline-danger" name="options" value="option2">עריכה</button>
              </form>
             </div>
             ''' + '\n' + r"</form>" + '\n' + r"</section>" + '\n' + r"</body>" + '\n' + r"{% endblock %}"])
@@ -53,5 +55,8 @@ async def show_maintenance_technician_mafil_Handler(request):
 
 
     elif request.method == 'POST':
-        return redirect(url_for('insert_maintenance_technician_mafil'))
+        if request.form.get("options") == 'option1':
+            return redirect(url_for('insert_maintenance_technician_mafil'))
+        elif request.form.get("options") == 'option2':
+            return redirect(url_for('edit_maintenance_technician_mafil'))
         

@@ -1,0 +1,77 @@
+<section id="title">
+    <div>
+      <a href="/">
+        <img class="Logo" src="static/images/logo.png" alt="logo-img">
+      </a>
+      <h1>{{ title_simulator }}</h1>
+    </div>
+  </section>  
+  <div class="second-paragraph">
+    <h2>{{ second_paragraph }} </h2>
+  </div>
+
+  {% extends "layout.html" %}
+  {% block content %}
+  <section id="simulators">
+    <div class="row1-container">
+      <div class="box cyan">
+        <a href="/mars" class="btn btn-outline-secondary cyanInButoon"><h3>מר"ס</h3></a>
+        <p>על עדי מזרחי</p>
+        <img src="static/images/flaticon/antenna.png" alt="antena">
+      </div>
+  
+      <div class="box red">
+        <a href="/moreshet" class="btn btn-outline-secondary redInButoon "><h3>מורשת</h3></a>
+        <p>של יערה לוין</p>
+        <img src="static/images/flaticon/binocular.png" alt="bincocular">
+      </div>
+  
+      <div class="box pink">
+        <a href="/user" class="btn btn-outline-secondary pinkInButoon "><h3>רוכב שמיים</h3></a>
+        <p>המאמן הכי טוב שיש</p>
+        <img src="static/images/flaticon/drone.png" alt="drone">
+      </div>
+    </div>
+  
+    <div class="row2-container">
+      <div class="box orange">
+        <a href="" class="btn btn-outline-secondary orangeInButoon "><h3>נהיגה</h3></a>
+        <p>אין על נהיגה</p>
+        <img src="static/images/flaticon/tank.png" alt="tank">
+      </div>
+  
+      <div class="box black">
+        <a href="" class="btn btn-outline-secondary blackInButoon "><h3>רעם</h3></a>
+        <p>מתי ושי התותחים</p>
+        <img src="static/images/flaticon/working.png" alt="working">
+      </div>
+  
+      <div class="box blue">
+        <a href="" class="btn btn-outline-secondary blueInButoon "><h3>פיקוד העורף</h3></a>
+        <p>פיקוד העורף ברמלה?</p>
+        <img src="static/images/flaticon/building.png" alt="building">
+      </div>
+    </div>
+  
+    <div class="row3-container">
+      <div class="box green">
+        <a href="" class="btn btn-outline-secondary greenInButoon "><h3>צוות</h3></a>
+        <p>מאמן צוות אחלה</p>
+        <img src="static/images/flaticon/tank.png" alt="tank">
+      </div>
+  
+      <div class="box grayishBlue">
+        <a href="" class="btn btn-outline-secondary grayishBlueInButoon "><h3>מיני רע"ם</h3></a>
+        <p>המאמן של קרנדיש</p>
+        <img src="static/images/flaticon/work.png" alt="work">
+      </div>
+  
+      <div class="box varyDarkBlue">
+        <a href="" class="btn btn-outline-secondary varyDarkBlueInButoon "><h3>שדר חם</h3></a>
+        <p>אחלה שניאור</p>
+        <img src="static/images/flaticon/missle.png" alt="missle">
+      </div>
+    </div>
+  </section>
+
+  {% endblock %}

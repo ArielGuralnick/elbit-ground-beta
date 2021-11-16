@@ -26,7 +26,12 @@
             </div>
                 <div class="col-sm">
                 <form method="POST">
-                    <button type="sumbit" class="btn btn-outline-success">חפש</button>
+                    <button type="sumbit" name="options" value="option1" class="btn btn-outline-success">חפש</button>
+                </form>
+                </div>
+                <div class='col-md-3 form-group'>
+                <form method="POST">
+                    <button type="sumbit" name="options" value="option2" class="btn btn-outline-secondary">פתיחת דוח באקסל</button>
                 </form>
                 </div>
                 </div>
@@ -69,7 +74,7 @@
     </tr>
   </tbody>
 </table>
-</form>
+<br></form>
 </section>
 <script type="text/javascript">
 $('#show_activity').DataTable();
