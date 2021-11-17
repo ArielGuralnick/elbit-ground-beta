@@ -13,21 +13,22 @@
   {% extends "layout.html" %}
   {% block content %}
   <section id="simulators">
+    <form method="POST">
     <div class="row1-container">
       <div class="box cyan">
-        <a href="/mars" class="btn btn-outline-secondary cyanInButoon"><h3>מר"ס</h3></a>
+        <button type="sumbit" name="options" value="option_mars" class="btn btn-outline-secondary cyanInButoon"><h3>מר"ס</h3></button>
         <p>על עדי מזרחי</p>
         <img src="static/images/flaticon/antenna.png" alt="antena">
       </div>
   
       <div class="box red">
-        <a href="/moreshet" class="btn btn-outline-secondary redInButoon "><h3>מורשת</h3></a>
+        <button type="sumbit" name="options" value="option_moreshet" class="btn btn-outline-secondary redInButoon "><h3>מורשת</h3></button>
         <p>של יערה לוין</p>
         <img src="static/images/flaticon/binocular.png" alt="bincocular">
       </div>
   
       <div class="box pink">
-        <a href="/user" class="btn btn-outline-secondary pinkInButoon "><h3>רוכב שמיים</h3></a>
+        <button type="sumbit" name="options" value="option_skyLark" class="btn btn-outline-secondary pinkInButoon "><h3>רוכב שמיים</h3></button>
         <p>המאמן הכי טוב שיש</p>
         <img src="static/images/flaticon/drone.png" alt="drone">
       </div>
@@ -72,6 +73,7 @@
         <img src="static/images/flaticon/missle.png" alt="missle">
       </div>
     </div>
+    </form>
   </section>
 
   {% endblock %}

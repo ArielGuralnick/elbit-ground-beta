@@ -37,7 +37,7 @@ async def show_data_activity_Handler(request):
                 </div>''')        
         dphtml += data_activity.to_html(table_id="show_activity", classes = "table table-hover", border=0)
         with open('elbit-ground-beta/app/templates/show_data_activity.html','w', encoding='utf-8-sig') as f:
-            f.writelines([dphtml + '\n' + r'<br>' +
+            f.writelines([dphtml + '\n' + r'<br>' + '\n' +
             r"</form>" + '\n' + r"</section>" + '\n' + 
             r'<script type="text/javascript">' + '\n' + r"$('#show_activity').DataTable();" + 
             '\n' + r"</script>" + r"</body>" + '\n' + r"{% endblock %}"])
@@ -90,6 +90,7 @@ async def show_data_activity_Handler(request):
                 '\n' + r"</script>" + r"</body>" + '\n' + r"{% endblock %}"])
                 f.close()
             return render_template('show_data_activity.html')
+            
         elif request.form.get('options') == 'option2':
             return send_file('db/data_activity.csv',
             mimetype='text/csv',attachment_filename='דוח פעילות רוכש.csv',
