@@ -13,18 +13,35 @@
 <form action="" method="post">
 
 <br>
-<div class="col-md-3 form-group">
-          <label for="">בחר פער לעריכה</label>
-          <select class="form-control" name="type_of_fault">
-            <option>אנא בחר פער</option>
-            <option>מקלדת שבורה</option>
-            <option>מגש תקוע בפרט 7</option>
-          </select>
-          <br>
-          <form method="POST">
-          <button type="sumbit" class="btn btn-outline-success">חפש</button>
-          </form>
-          
+
+      <div class="container">
+      <div class="row">
+      <div class="col-md-3 form-group">
+      <label for="">בחר פער לעריכה</label>
+      <select class="form-control" name="disparity">
+        {% for i in data %}
+          <option>{{ i }}</option>
+        {% endfor %}
+      </select>
+      </div>
+      <div class="col-md-3 form-group">
+      <label for="">טופל \ לא טופל</label>
+      <select class="form-control" name="status">
+        <option>V</option>
+        <option>X</option>
+      </select>
+      </div>
+      </div>
+      </div>
+      <div class="container">
+      <div class="row col form-group" style="text-align: center;">
+      <form method="POST">
+        <button type="sumbit" name="options" value="option_edit" class="btn btn-outline-success">עדכן</button>
+        <button type="sumbit" name="options" value="option_delet" class="btn btn-outline-danger">מחיקה</button>
+      </form>
+      </div>
+      </div>
+      
 </div>
 </form>
 </section>
