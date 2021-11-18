@@ -1,25 +1,25 @@
 from flask import render_template, flash, redirect, url_for
 import pandas as pd
 
-async def edit_maintenance_technician_mafil_Handler(request):
+async def edit_data_errors_mafil_Handler(request):
     if request.method == 'GET':       
-      data = pd.read_csv('elbit-ground-beta/app/db/maintenance.csv')
-      disparity = data["מה הפער"]
+      data = pd.read_csv('elbit-ground-beta/app/db/data_errors.csv')
+      error = data["תפעול התקלה"]
       
       dphtml = (r"{% extends 'layout.html' %}" + '\n' + r"{% block content %}" + '\n' +
       r'<section id="title" style="background-color: rgb(244, 248, 248); border-bottom: 3px solid var(--black);" >' +
       '\n' + '<div>' + '\n' + '<a href="/">' + '\n' + '<img class="Logo" src="static/images/logo.png" alt="logo-img">' +
-      '\n' + '</a>' + '\n' + '<h1>עריכת פער</h1>' + '\n' + '</div>' + '\n' + '</section>' + '\n' +
+      '\n' + '</a>' + '\n' + '<h1>עריכת תקלה</h1>' + '\n' + '</div>' + '\n' + '</section>' + '\n' +
       '<body style="background-color: rgb(211, 218, 218);">' + '\n' + '<section id="show_data_errors" dir="rtl" lang="he">' +
       '\n' + '<form action="" method="post">' + '\n')       
-      with open('elbit-ground-beta/app/templates/edit_maintenance_mafil.html','w', encoding='utf-8-sig') as f:
+      with open('elbit-ground-beta/app/templates/edit_data_errors_mafil.html','w', encoding='utf-8-sig') as f:
         f.writelines([dphtml + '\n' + r'<br>' + '\n' +
       r'''
       <div class="container">
       <div class="row">
       <div class="col-md-3 form-group">
-      <label for="">בחר פער לעריכה</label>
-      <select class="form-control" name="disparity">
+      <label for="">בחר תקלה לעריכה</label>
+      <select class="form-control" name="error">
         {% for i in data %}
           <option>{{ i }}</option>
         {% endfor %}
@@ -44,7 +44,7 @@ async def edit_maintenance_technician_mafil_Handler(request):
       </div>
       '''+ '\n' + r"</div>" + '\n' + r"</form>" + '\n' + r"</section>" + '\n' + r"</body>" + '\n' + r"{% endblock %}"])
         f.close()
-      return render_template('edit_maintenance_mafil.html', data = disparity)
+      return render_template('edit_maintenance_mafil.html', data = error)
   
     elif request.method == 'POST':
       if request.form.get('options') == 'option_edit':
@@ -69,4 +69,3 @@ async def edit_maintenance_technician_mafil_Handler(request):
             data.to_csv(file, index=False, na_rep='N/A',header=file.tell()==0, encoding='utf-8-sig')
             flash(f'הפער נמחק בהצלחה!', category="success")
         return redirect(url_for('show_maintenance_technician_mafil'))
-        

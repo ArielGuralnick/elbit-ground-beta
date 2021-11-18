@@ -12,6 +12,7 @@ from src.handlers.pdf_safrot_simulator_Handler import pdf_safrot_simulator_Handl
 from src.handlers.pdf_solutions_Handler import pdf_solutions_Handler
 from src.handlers.show_data_errors_technician_Handler import show_data_errors_technician_Handler
 from src.handlers.show_data_errors_mafil_Handler import show_data_errors_mafil_Handler
+from src.handlers.edit_data_errors_mafil_Handler import edit_data_errors_mafil_Handler
 from src.handlers.show_data_activity_Handler import show_data_activity_Handler
 from src.handlers.skyLark_feedback_Handler import skyLark_feedback_Handler
 from src.handlers.activity_Handler import activity_Handler
@@ -68,9 +69,16 @@ async def pdf_safrot_mafil():
 async def pdf_safrot_simulator():
     return await pdf_safrot_simulator_Handler(request)
 
-@app.route('/show_data_errors_mafil')
+
+# צפייה ועריכה תקלות למפעיל
+@app.route('/show_data_errors_mafil', methods=['POST', 'GET'])
 async def show_data_errors_mafil():
     return await show_data_errors_mafil_Handler(request)
+
+@app.route('/edit_data_errors_mafil', methods=['POST', 'GET'])
+async def edit_data_errors_mafil():
+    return await edit_data_errors_mafil_Handler(request)
+
 
 
 @app.route('/user/skyLark_instructor/pdf-solutions')

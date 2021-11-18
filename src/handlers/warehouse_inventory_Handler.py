@@ -1,24 +1,81 @@
-from flask import render_template
+from flask import render_template, flash, redirect, url_for
 import pandas as pd
+
+
 async def warehouse_inventory_Handler(request):
+
     if request.method == 'GET':
-        return render_template('warehouse_inventory.html')  
+        data = pd.read_csv('elbit-ground-beta/app/db/warehouse_inventory.csv')
+        dphtml = (r"{% extends 'layout.html' %}" + '\n' + r"{% block content %}" + '\n' +
+        r'<section id="title" style="background-color: rgb(244, 248, 248); border-bottom: 3px solid var(--black);" >' +
+        '\n' + '<div>' + '\n' + '<a href="/">' + '\n' + '<img class="Logo" src="static/images/logo.png" alt="logo-img">' +
+        '\n' + '</a>' + '\n' + '<h1>מלאי מחסן רוכש</h1>' + '\n' + '</div>' + '\n' + '</section>' + '\n' +
+        '<body style="background-color: rgb(211, 218, 218);">' + '\n' + '<section id="show_data_errors" dir="rtl" lang="he">' +
+        '\n' + '<form action="" method="post">' + '\n')
+        dphtml += data.to_html(classes = "table table-hover", border=0, index=False)
+        with open('elbit-ground-beta/app/templates/warehouse_inventory.html','w', encoding='utf-8-sig') as f:
+            f.writelines([dphtml + '\n' + r'<br>' + '\n' + r'</form>' + '\n' + r'</section>' + '\n' + 
+            r'''<section id="insertError" dir="rtl" lang="he">
+<form action="" method="post">
+<div class = "row">
+<div class="col form-group">
+    <label class="labelSettings">סוג הפריט</label>
+    <input type="text" name="type_of_item" class="form-control">
+    <br>
+</div>
+<div class="col form-group">
+    <label class="labelSettings">דגם</label>
+    <input type="text" name="model" class="form-control">
+    <br>
+</div>
+<div class="col form-group">
+    <label class="labelSettings">כמות במלאי</label>
+    <input type="number" name="quantity" min="1">
+    <br>
+</div>
+<div class="col form-group">
+    <label >נדרש להשלים \ לרכוש</label>
+    <select class="form-control" name = "needs_to_complete">
+        <option>לא</option>
+        <option>כן</option>
+    </select>
+    <br>
+</div>
+<div class="col form-group">
+    <label class="labelSettings">הערות</label>
+    <input type="text" name="remarks" class="form-control">
+    <br>
+</div>
+</div>
+</form>
+</section>
+
+<div class="container">
+<div class="row col form-group" style="text-align: center;">
+<form method="POST">
+    <button type="sumbit" class="btn btn-outline-success" name="options" value="option_add">הוספת פריט</button>
+    <button type="sumbit" class="btn btn-outline-danger" name="options" value="option_edit">עריכת פריט</button>
+</form>
+</div>
+</div>''' + '\n' + r"</body>" + '\n' + r"{% endblock %}"])
+            f.close()
+        return render_template('warehouse_inventory.html')
+
     elif request.method == 'POST':
-        item_type = request.form.get('th1_1')
-        item_type = request.form.get('th1_2')
-        item_type = request.form.get('th1_3')
-        item_type = request.form.get('th1_4')
-        item_type = request.form.get('th1_5')
-        item_type = request.form.get('th2_1')
-        item_type = request.form.get('th2_2')
-        item_type = request.form.get('th2_3')
-        item_type = request.form.get('th2_4')
-        item_type = request.form.get('th2_5')
-        item_type = request.form.get('th3_1')
-        item_type = request.form.get('th3_2')
-        item_type = request.form.get('th3_3')
-        item_type = request.form.get('th3_4')
-        item_type = request.form.get('th3_5')
-    
-        field_content = ['סוג הפריט', 'דגם', 'כמות במלאי', 'נדרש להשלים/לרכוש', 'הערות']
-#        data_warehouse_inventory = pd.DataFrame([{'הערות': , 'נדרש להשלים/לרכוש' : , 'כמות במלאי' : , 'דגם' : , 'סוג הפריט' : }])
+#        if request.form.get("options") == 'option_add':
+            type_of_item = request.form.get("type_of_item")
+            model = request.form.get('model')
+            quantity = request.form.get('quantity')
+            needs_to_complete = request.form.get('needs_to_complete')
+            remarks = request.form.get('remarks')
+        
+            field_content = ['סוג הפריט','דגם','כמות במלאי','נדרש להשלים \ לרכוש','הערות']
+            data = pd.DataFrame([{'סוג הפריט' : type_of_item, 'דגם' : model, 'כמות במלאי':quantity, 'נדרש להשלים \ לרכוש': needs_to_complete, 'הערות': remarks}], columns=field_content)
+            with open('elbit-ground-beta/app/db/warehouse_inventory.csv', 'a', newline='', encoding='utf-8-sig') as file:
+                data.to_csv(file, index=False, na_rep='N/A',header=file.tell()==0, encoding='utf-8-sig')
+                flash(f'הפריט התווסף למלאי !', category="success")
+            return redirect(url_for('warehouse_inventory'))
+
+#        elif request.form.get("options") == 'option_edit':
+#            return redirect(url_for('edit_maintenance_technician_mafil'))
+        
