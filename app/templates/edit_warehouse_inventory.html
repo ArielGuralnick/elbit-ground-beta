@@ -5,7 +5,7 @@
 <a href="/">
 <img class="Logo" src="static/images/logo.png" alt="logo-img">
 </a>
-<h1>עריכת פער</h1>
+<h1>עריכה מחסן רוכב שמיים</h1>
 </div>
 </section>
 <body style="background-color: rgb(211, 218, 218);">
@@ -15,20 +15,33 @@
 
 <div class="container">
 <div class="row">
-<div class="col-md-3 form-group">
-<label for="">בחר פער לעריכה</label>
-<select class="form-control" name="disparity">
+<div class="col form-group">
+<label for="">בחר פריט לעריכה</label>
+<select class="form-control" name="type_of_item">
   {% for i in data %}
     <option>{{ i }}</option>
   {% endfor %}
 </select>
 </div>
-<div class="col-md-3 form-group">
-  <label for="">טופל \ לא טופל</label>
-  <select class="form-control" name="status">
-    <option>V</option>
-    <option>X</option>
-  </select>
+<div class="col form-group">
+    <label>כמות במלאי</label>
+    <input type="number" class="form-control" name="quantity">
+    <br>
+</div>
+<div class="col form-group">
+    <label >נדרש להשלים \ לרכוש</label>
+    <select class="form-control" name = "needs_to_complete">
+        <option>לא</option>
+        <option>כן</option>
+    </select>
+    <br>
+</div>
+</div>
+<div class="row">
+<div class="col form-group">
+    <label">הערות</label>
+    <input type="text" name="remarks" class="form-control">
+    <br>
 </div>
 </div>
 </div>

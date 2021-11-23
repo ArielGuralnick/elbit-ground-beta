@@ -4,7 +4,6 @@ import pandas as pd
 async def show_data_errors_mafil_Handler(request):
     if request.method == 'GET':       
         data_errors = pd.read_csv('elbit-ground-beta/app/db/data_errors.csv')
-        print(data_errors)
         dphtml = (r"{% extends 'layout.html' %}" + '\n' + r"{% block content %}" + '\n' +
         r'<section id="title" style="background-color: rgb(244, 248, 248); border-bottom: 3px solid var(--black);" >' +
         '\n' + '<div>' + '\n' + '<a href="/">' + '\n' + '<img class="Logo" src="static/images/logo.png" alt="logo-img">' +

@@ -1,4 +1,5 @@
-from flask import render_template, flash, redirect, url_for
+from flask import render_template, flash, redirect, url_for, send_file
+from flask.wrappers import Request
 import pandas as pd
 
 
@@ -11,59 +12,60 @@ async def warehouse_inventory_Handler(request):
         '\n' + '<div>' + '\n' + '<a href="/">' + '\n' + '<img class="Logo" src="static/images/logo.png" alt="logo-img">' +
         '\n' + '</a>' + '\n' + '<h1>מלאי מחסן רוכש</h1>' + '\n' + '</div>' + '\n' + '</section>' + '\n' +
         '<body style="background-color: rgb(211, 218, 218);">' + '\n' + '<section id="show_data_errors" dir="rtl" lang="he">' +
-        '\n' + '<form action="" method="post">' + '\n')
+        '\n')
         dphtml += data.to_html(classes = "table table-hover", border=0, index=False)
         with open('elbit-ground-beta/app/templates/warehouse_inventory.html','w', encoding='utf-8-sig') as f:
-            f.writelines([dphtml + '\n' + r'<br>' + '\n' + r'</form>' + '\n' + r'</section>' + '\n' + 
+            f.writelines([dphtml + '\n' + r'<br>'  + '\n' + r'</section>' + '\n' + 
             r'''<section id="insertError" dir="rtl" lang="he">
 <form action="" method="post">
-<div class = "row">
-<div class="col form-group">
-    <label class="labelSettings">סוג הפריט</label>
-    <input type="text" name="type_of_item" class="form-control">
-    <br>
-</div>
-<div class="col form-group">
-    <label class="labelSettings">דגם</label>
-    <input type="text" name="model" class="form-control">
-    <br>
-</div>
-<div class="col form-group">
-    <label class="labelSettings">כמות במלאי</label>
-    <input type="number" name="quantity" min="1">
-    <br>
-</div>
-<div class="col form-group">
-    <label >נדרש להשלים \ לרכוש</label>
-    <select class="form-control" name = "needs_to_complete">
-        <option>לא</option>
-        <option>כן</option>
-    </select>
-    <br>
-</div>
-<div class="col form-group">
-    <label class="labelSettings">הערות</label>
-    <input type="text" name="remarks" class="form-control">
-    <br>
-</div>
-</div>
+    <div class = "row">
+        <div class="col form-group">
+            <label>סוג הפריט</label>
+            <input type="text" name="type_of_item" class="form-control">
+            <br>
+        </div>
+        <div class="col form-group">
+            <label>דגם</label>
+            <input type="text" name="model" class="form-control">
+            <br>
+        </div>
+        <div class="col form-group">
+            <label>כמות במלאי</label>
+            <input type="number" name="quantity"  class="form-control" min="0">
+            <br>
+        </div>
+        <div class="col form-group">
+            <label >נדרש להשלים \ לרכוש</label>
+            <select class="form-control" name = "needs_to_complete">
+                <option>לא</option>
+                <option>כן</option>
+            </select>
+            <br>
+        </div>
+        <div class="col form-group">
+            <label">הערות</label>
+            <input type="text" name="remarks" class="form-control">
+            <br>
+        </div>
+    </div>
 </form>
 </section>
 
 <div class="container">
-<div class="row col form-group" style="text-align: center;">
-<form method="POST">
-    <button type="sumbit" class="btn btn-outline-success" name="options" value="option_add">הוספת פריט</button>
-    <button type="sumbit" class="btn btn-outline-danger" name="options" value="option_edit">עריכת פריט</button>
-</form>
-</div>
+    <div class="row col form-group" style="text-align: center;">
+        <form method="POST">
+            <button type="sumbit" class="btn btn-outline-success" name="options" value="option_add">הוספת פריט</button>
+            <button type="sumbit" class="btn btn-outline-danger" name="options" value="option_edit">עריכת פריט</button>
+            <button type="sumbit" class="btn btn-outline-secondary" name="options" value="option_open_csv">פתיחת דוח באקסל</button>
+        </form>
+    </div>
 </div>''' + '\n' + r"</body>" + '\n' + r"{% endblock %}"])
             f.close()
         return render_template('warehouse_inventory.html')
 
     elif request.method == 'POST':
-#        if request.form.get("options") == 'option_add':
-            type_of_item = request.form.get("type_of_item")
+        if request.form.get("options") == 'option_add':
+            type_of_item = request.form.get('type_of_item')
             model = request.form.get('model')
             quantity = request.form.get('quantity')
             needs_to_complete = request.form.get('needs_to_complete')
@@ -72,10 +74,15 @@ async def warehouse_inventory_Handler(request):
             field_content = ['סוג הפריט','דגם','כמות במלאי','נדרש להשלים \ לרכוש','הערות']
             data = pd.DataFrame([{'סוג הפריט' : type_of_item, 'דגם' : model, 'כמות במלאי':quantity, 'נדרש להשלים \ לרכוש': needs_to_complete, 'הערות': remarks}], columns=field_content)
             with open('elbit-ground-beta/app/db/warehouse_inventory.csv', 'a', newline='', encoding='utf-8-sig') as file:
-                data.to_csv(file, index=False, na_rep='N/A',header=file.tell()==0, encoding='utf-8-sig')
-                flash(f'הפריט התווסף למלאי !', category="success")
+                data.to_csv(file, index=False, na_rep='null',header=file.tell()==0, encoding='utf-8-sig')
+                flash(f'!הפריט התווסף למלאי', category="success")
             return redirect(url_for('warehouse_inventory'))
 
-#        elif request.form.get("options") == 'option_edit':
-#            return redirect(url_for('edit_maintenance_technician_mafil'))
+        elif request.form.get("options") == 'option_edit':
+            return redirect(url_for('edit_warehouse_inventory'))
+        
+        elif request.form.get("options") == 'option_open_csv':
+            return send_file('db/warehouse_inventory.csv',
+            mimetype='text/csv',attachment_filename='מחסן רוכ"ש.csv',
+            as_attachment=True)
         

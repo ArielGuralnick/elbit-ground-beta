@@ -22,6 +22,6 @@ async def insert_error_Handler(request):
         'עיתוי התקלה': timing_fault, 'עמדה' : position, 'סוג התקלה' : type_of_fault,'הסבר' : explanation,
         'תפעול התקלה' : fault_operation,'מחשב' : computer, 'טופל/לא טופל' : situation, 'זמן השבתה' : downtime}], columns=field_content)
         with open('elbit-ground-beta/app/db/data_errors.csv', 'a', newline='', encoding='utf-8-sig') as file:
-            data_errors.to_csv(file, index=False, na_rep='N/A',header=file.tell()==0, encoding='utf-8-sig')
-            flash(f'התקלה נקלטה בהצלחה!', category="success")
+            data_errors.to_csv(file, index=False, na_rep='null',header=file.tell()==0, encoding='utf-8-sig')
+            flash(f'!התקלה נקלטה בהצלחה', category="success")
         return redirect(url_for('skyLark_instructor'))

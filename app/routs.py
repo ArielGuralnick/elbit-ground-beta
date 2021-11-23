@@ -13,11 +13,14 @@ from src.handlers.pdf_solutions_Handler import pdf_solutions_Handler
 from src.handlers.show_data_errors_technician_Handler import show_data_errors_technician_Handler
 from src.handlers.show_data_errors_mafil_Handler import show_data_errors_mafil_Handler
 from src.handlers.edit_data_errors_mafil_Handler import edit_data_errors_mafil_Handler
+from src.handlers.work_plan_mafil_Handler import work_plan_mafil_Handler
+from src.handlers.edit_work_plan_mafil_Handler import edit_work_plan_mafil_Handler
 from src.handlers.show_data_activity_Handler import show_data_activity_Handler
 from src.handlers.skyLark_feedback_Handler import skyLark_feedback_Handler
 from src.handlers.activity_Handler import activity_Handler
 from src.handlers.insert_error_Handler import insert_error_Handler
 from src.handlers.warehouse_inventory_Handler import warehouse_inventory_Handler
+from src.handlers.edit_warehouse_inventory_Handler import edit_warehouse_inventory_Handler
 from src.handlers.show_maintenance_technician_mafil_Handler import show_maintenance_technician_mafil_Handler
 from src.handlers.insert_maintenance_tecnician_mafil_Handler import insert_maintenance_technician_mafil_Handler
 from src.handlers.edit_maintenance_tecnician_mafil_Handler import edit_maintenance_technician_mafil_Handler
@@ -80,6 +83,15 @@ async def edit_data_errors_mafil():
     return await edit_data_errors_mafil_Handler(request)
 
 
+# תוכנית עבודה שנתית למפעיל
+@app.route('/work_plan_mafil', methods=['POST', 'GET'])
+async def work_plan_mafil():
+    return await work_plan_mafil_Handler(request)
+
+@app.route('/edit_work_plan_mafil', methods=['POST', 'GET'])
+async def edit_work_plan_mafil():
+    return await edit_work_plan_mafil_Handler(request)
+
 
 @app.route('/user/skyLark_instructor/pdf-solutions')
 async def pdf_solutions():
@@ -109,6 +121,13 @@ async def activity():
 async def insert_error():
     return await insert_error_Handler(request)
 
+
+
+# צפייה ועריכה מחסן רוכש
+
+@app.route("/edit_warehouse_inventory", methods=['GET','POST'])
+async def edit_warehouse_inventory():
+    return await edit_warehouse_inventory_Handler(request)
 
 @app.route("/warehouse_inventory", methods=['GET','POST'])
 async def warehouse_inventory():

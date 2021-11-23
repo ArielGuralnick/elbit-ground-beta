@@ -38,6 +38,6 @@ async def order_training_Handler(request):
         'תאריך סיום':date_end ,'שעת סיום':time_end}], columns=field_content)
         with open('elbit-ground-beta/app/db/order_training.csv', 'a', newline='', encoding='utf-8-sig') as file:
             data.to_csv(file, index=False, na_rep='N/A',header=file.tell()==0, encoding='utf-8-sig')
-            flash(f'הבקשה נקלטה בהצלחה', category="success")
+            flash(f'!הבקשה נקלטה בהצלחה', category="success")
         return redirect(url_for('order_training'))
 
