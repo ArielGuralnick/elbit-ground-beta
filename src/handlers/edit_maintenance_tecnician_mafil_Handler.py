@@ -65,6 +65,6 @@ async def edit_maintenance_technician_mafil_Handler(request):
       
         with open('elbit-ground-beta/app/db/maintenance.csv', 'w', newline='', encoding='utf-8-sig') as file:
             data.to_csv(file, index=False, na_rep='N/A',header=file.tell()==0, encoding='utf-8-sig')
-            flash(f'!הפער נמחק בהצלחה', category="success")
+            flash(f'הפער נמחק בהצלחה!', category="success")
         return redirect(url_for('show_maintenance_technician_mafil'))
         

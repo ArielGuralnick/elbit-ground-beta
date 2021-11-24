@@ -14,17 +14,18 @@ async def show_maintenance_technician_mafil_Handler(request):
         '\n' + '<form action="" method="post">' + '\n')
         dphtml += data.to_html(classes = "table table-hover", border=0, index=False)
         with open('elbit-ground-beta/app/templates/show_maintenance_technician_mafil.html','w', encoding='utf-8-sig') as f:
-            f.writelines([dphtml + '\n' + r'<br>' + '\n' + 
+            f.writelines([dphtml + '\n' + r'<br>' + '\n' + r"</form>" + '\n' + r"</section>" + '\n' +
             r'''
-            <div class="container">
-            <div class="row col form-group" style="text-align: center;">
-            <form method="POST">
-                <button type="sumbit" class="btn btn-outline-success" name="options" value="option1">הוספה</button>
-                <button type="sumbit" class="btn btn-outline-danger" name="options" value="option2">עריכה</button>
-            </form>
-            </div>
-            </div>
-            ''' + '\n' + r"</form>" + '\n' + r"</section>" + '\n' + r"</body>" + '\n' + r"{% endblock %}"])
+<div class="container">
+<div class="row col form-group" style="text-align: center;">
+    <form method="POST">
+        <button type="sumbit" class="btn btn-outline-success" name="options" value="option1">הוספת פער</button>
+        <button type="sumbit" class="btn btn-outline-danger" name="options" value="option2">עריכת שורה</button>
+    </form>
+</div>
+</div>
+</body>
+{% endblock %}'''])
             f.close()
         return render_template('show_maintenance_technician_mafil.html')
 

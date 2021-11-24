@@ -43,7 +43,7 @@ async def warehouse_inventory_Handler(request):
             <br>
         </div>
         <div class="col form-group">
-            <label">הערות</label>
+            <label>הערות</label>
             <input type="text" name="remarks" class="form-control">
             <br>
         </div>
@@ -66,6 +66,7 @@ async def warehouse_inventory_Handler(request):
     elif request.method == 'POST':
         if request.form.get("options") == 'option_add':
             type_of_item = request.form.get('type_of_item')
+            print(type_of_item)
             model = request.form.get('model')
             quantity = request.form.get('quantity')
             needs_to_complete = request.form.get('needs_to_complete')
