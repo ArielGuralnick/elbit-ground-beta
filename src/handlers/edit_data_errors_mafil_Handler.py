@@ -5,7 +5,7 @@ from pandas.core.indexes.base import Index
 async def edit_data_errors_mafil_Handler(request):
     if request.method == 'GET':       
       data = pd.read_csv('elbit-ground-beta/app/db/data_errors.csv')
-      error = data.index      
+      error = data.index
       
       dphtml = (r'''
 {% extends 'layout.html' %}
@@ -77,9 +77,7 @@ async def edit_data_errors_mafil_Handler(request):
   </select>
 </div>
 </div>
-</div>
-</form>
-</section>
+
 <div class="container">
   <div class="row col form-group" style="text-align: center;">
     <form method="POST">
@@ -88,6 +86,9 @@ async def edit_data_errors_mafil_Handler(request):
     </form>
   </div>
 </div>
+</div>
+</form>
+</section>
 </body>
 {% endblock %}'''])
         f.close()
