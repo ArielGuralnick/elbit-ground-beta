@@ -2,37 +2,37 @@ from app import app # importing app variable from app package
 from flask import render_template,request
 
 from src.handlers.user_Handler import user_Handler
-from src.handlers.skyLark_instructor_Handler import skyLark_instructor_Handler
-from src.handlers.skyLark_technician_Handler import skyLark_technician_Handler
-from src.handlers.skyLark_mafil_Handler import skyLark_mafil_Handler
-from src.handlers.literature_Handler import literature_Handler
-from src.handlers.order_training_Handler import order_training_Handler
-from src.handlers.pdf_safrot_mafil_Handler import pdf_safrot_mafil_Handler
-from src.handlers.pdf_safrot_simulator_Handler import pdf_safrot_simulator_Handler
-from src.handlers.pdf_solutions_Handler import pdf_solutions_Handler
-from src.handlers.show_data_errors_technician_Handler import show_data_errors_technician_Handler
-from src.handlers.show_data_errors_mafil_Handler import show_data_errors_mafil_Handler
-from src.handlers.edit_data_errors_mafil_Handler import edit_data_errors_mafil_Handler
-from src.handlers.work_plan_mafil_Handler import work_plan_mafil_Handler
-from src.handlers.edit_work_plan_mafil_Handler import edit_work_plan_mafil_Handler
-from src.handlers.show_data_activity_Handler import show_data_activity_Handler
-from src.handlers.skyLark_feedback_Handler import skyLark_feedback_Handler
-from src.handlers.activity_Handler import activity_Handler
-from src.handlers.insert_error_Handler import insert_error_Handler
-from src.handlers.warehouse_inventory_Handler import warehouse_inventory_Handler
-from src.handlers.edit_warehouse_inventory_Handler import edit_warehouse_inventory_Handler
-from src.handlers.show_maintenance_technician_mafil_Handler import show_maintenance_technician_mafil_Handler
-from src.handlers.insert_maintenance_tecnician_mafil_Handler import insert_maintenance_technician_mafil_Handler
-from src.handlers.edit_maintenance_tecnician_mafil_Handler import edit_maintenance_technician_mafil_Handler
-from src.handlers.training_package_Handler import training_package_Handler
+from src.handlers.skyLark.skyLark_instructor_Handler import skyLark_instructor_Handler
+from src.handlers.skyLark.skyLark_technician_Handler import skyLark_technician_Handler
+from src.handlers.skyLark.skyLark_mafil_Handler import skyLark_mafil_Handler
+from src.handlers.skyLark.literature_Handler import literature_Handler
+from src.handlers.skyLark.order_training_Handler import order_training_Handler
+from src.handlers.skyLark.pdf.pdf_safrot_mafil_Handler import pdf_safrot_mafil_Handler
+from src.handlers.skyLark.pdf.pdf_safrot_simulator_Handler import pdf_safrot_simulator_Handler
+from src.handlers.skyLark.pdf.pdf_solutions_Handler import pdf_solutions_Handler
+from src.handlers.skyLark.show.show_data_errors_technician_Handler import show_data_errors_technician_Handler
+from src.handlers.skyLark.show.show_data_errors_mafil_Handler import show_data_errors_mafil_Handler
+from src.handlers.skyLark.edit.edit_data_errors_mafil_Handler import edit_data_errors_mafil_Handler
+from src.handlers.skyLark.work_plan_mafil_Handler import work_plan_mafil_Handler
+from src.handlers.skyLark.edit.edit_work_plan_mafil_Handler import edit_work_plan_mafil_Handler
+from src.handlers.skyLark.show.show_data_activity_Handler import show_data_activity_Handler
+from src.handlers.skyLark.skyLark_feedback_Handler import skyLark_feedback_Handler
+from src.handlers.skyLark.activity_Handler import activity_Handler
+from src.handlers.skyLark.insert_error_Handler import insert_error_Handler
+from src.handlers.skyLark.warehouse_inventory_Handler import warehouse_inventory_Handler
+from src.handlers.skyLark.edit.edit_warehouse_inventory_Handler import edit_warehouse_inventory_Handler
+from src.handlers.skyLark.show.show_maintenance_technician_mafil_Handler import show_maintenance_technician_mafil_Handler
+from src.handlers.skyLark.insert_maintenance_tecnician_mafil_Handler import insert_maintenance_technician_mafil_Handler
+from src.handlers.skyLark.edit.edit_maintenance_tecnician_mafil_Handler import edit_maintenance_technician_mafil_Handler
+from src.handlers.skyLark.training_package_Handler import training_package_Handler
 
 
-from src.handlers.manager_Handler import manager_Handler
-from src.handlers.show_training_days_Handler import show_training_days_Handler
-from src.handlers.manager_feedbacks_Handler import manager_feedbacks_Handler
+from src.handlers.manager.manager_Handler import manager_Handler
+from src.handlers.manager.edit.show_training_days_Handler import show_training_days_Handler
+from src.handlers.manager.manager_feedbacks_Handler import manager_feedbacks_Handler
 
-from src.handlers.mars_Handler import mars_Handler
-from src.handlers.moreshet_Handler import moreshet_Handler
+from src.handlers.mars.mars_Handler import mars_Handler
+from src.handlers.moreshet.moreshet_Handler import moreshet_Handler
 
 
 @app.route("/", methods=['GET','POST'])
