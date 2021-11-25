@@ -1,17 +1,15 @@
-﻿{% extends 'layout.html' %}
+﻿
+{% extends 'layout.html' %}
 {% block content %}
 <section id="title" style="background-color: rgb(244, 248, 248); border-bottom: 3px solid var(--black);" >
 <div>
-<a href="/">
-<img class="Logo" src="static/images/logo.png" alt="logo-img">
-</a>
-<h1>עריכת תקלה</h1>
+  <a href="/"><img class="Logo" src="static/images/logo.png" alt="logo-img"></a>
+  <h1>עריכת תקלה</h1>
 </div>
 </section>
 <body style="background-color: rgb(211, 218, 218);">
 <section id="show_data_errors" dir="rtl" lang="he">
 <form action="" method="post">
-
 
 <div class="col form-group">
 <label>למחיקת שורה יש דבר לבחור רק מספר תקלה</label>
@@ -69,7 +67,9 @@
   </select>
 </div>
 </div>
-
+</div>
+</form>
+</section>
 <div class="container">
   <div class="row col form-group" style="text-align: center;">
     <form method="POST">
@@ -78,8 +78,5 @@
     </form>
   </div>
 </div>
-</div>
-</form>
-</section>
 </body>
 {% endblock %}

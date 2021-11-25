@@ -6,12 +6,18 @@ async def edit_warehouse_inventory_Handler(request):
       data = pd.read_csv('elbit-ground-beta/app/db/warehouse_inventory.csv')
       type_of_item = data["סוג הפריט"]
       
-      dphtml = (r"{% extends 'layout.html' %}" + '\n' + r"{% block content %}" + '\n' +
-      r'<section id="title" style="background-color: rgb(244, 248, 248); border-bottom: 3px solid var(--black);" >' +
-      '\n' + '<div>' + '\n' + '<a href="/">' + '\n' + '<img class="Logo" src="static/images/logo.png" alt="logo-img">' +
-      '\n' + '</a>' + '\n' + '<h1>עריכה מחסן רוכב שמיים</h1>' + '\n' + '</div>' + '\n' + '</section>' + '\n' +
-      '<body style="background-color: rgb(211, 218, 218);">' + '\n' + '<section id="show_data_errors" dir="rtl" lang="he">' +
-      '\n' + '<form action="" method="post">' + '\n')       
+      dphtml = (r'''
+{% extends 'layout.html' %}
+{% block content %}
+<section id="title" style="background-color: rgb(244, 248, 248); border-bottom: 3px solid var(--black);" >
+<div>
+  <a href="/"><img class="Logo" src="static/images/logo.png" alt="logo-img"></a>
+  <h1>עריכת מחסן רוכב שמיים</h1>
+</div>
+</section>
+<body style="background-color: rgb(211, 218, 218);">
+<section id="show_data_errors" dir="rtl" lang="he">
+<form action="" method="post">''')       
       with open('elbit-ground-beta/app/templates/edit_warehouse_inventory.html','w', encoding='utf-8-sig') as f:
         f.writelines([dphtml + '\n' + r'''
 <div class="container">

@@ -1,17 +1,15 @@
-﻿{% extends 'layout.html' %}
+﻿
+{% extends 'layout.html' %}
 {% block content %}
 <section id="title" style="background-color: rgb(244, 248, 248); border-bottom: 3px solid var(--black);" >
 <div>
-<a href="/">
-<img class="Logo" src="static/images/logo.png" alt="logo-img">
-</a>
-<h1>דוח סיכום ימי אימון</h1>
+  <a href="/"><img class="Logo" src="static/images/logo.png" alt="logo-img"></a>
+  <h1>דוח סיכום ימי אימון</h1>
 </div>
 </section>
 <body style="background-color: rgb(211, 218, 218);">
 <section id="show_data_errors" dir="rtl" lang="he">
-<form action="" method="post">
-<table border="0" class="dataframe table table-hover" id="show_activity">
+<form action="" method="post"><table border="0" class="dataframe table table-hover" id="show_activity">
   <thead>
     <tr style="text-align: right;">
       <th></th>
@@ -163,15 +161,13 @@
 </table>
 <br>
 
-        <div class='col-md-3 form-group'>
-        <form method="POST">
-        <button type="sumbit" name="options" value="option3" class="btn btn-outline-secondary">פתיחת דוח באקסל</button>
-        </form>
-        </div>
-        </form>
+<div class='col-md-3 form-group'>
+  <button type="sumbit" name="options" value="option3" class="btn btn-outline-secondary">פתיחת דוח באקסל</button>
+</div>
+</form>
 </section>
 <script type="text/javascript">
-$('#show_activity').DataTable();
+  $('#show_activity').DataTable();
 </script>
 </body>
 {% endblock %}

@@ -4,37 +4,43 @@ import pandas as pd
 async def show_data_activity_Handler(request):
     if request.method == 'GET':       
         data_activity = pd.read_csv('elbit-ground-beta/app/db/data_activity.csv')
-        dphtml = (r"{% extends 'layout.html' %}" + '\n' + r"{% block content %}" + '\n' +
-        r'<section id="title" style="background-color: rgb(244, 248, 248); border-bottom: 3px solid var(--black);" >' +
-        '\n' + '<div>' + '\n' + '<a href="/">' + '\n' + '<img class="Logo" src="static/images/logo.png" alt="logo-img">' +
-        '\n' + '</a>' + '\n' + '<h1>דוח פעילות מתקן </h1>' + '\n' + '</div>' + '\n' + '</section>' + '\n' +
-        '<body style="background-color: rgb(211, 218, 218);">' + '\n' + '<section id="show_data_activity" dir="rtl" lang="he">' +
-        '\n' + '<form action="" method="post">' + '\n' +
-        r'''
-            <div class="container">
-            <div class="row">
-            <div class="col-sm form-group">
-                <select class="form-control" id="exampleFormControlSelect1" name="position_upload">
-                    <option>אנא בחר מאמן</option>
-                    <option>עמדות פרט</option>
-                    <option>משימה 1</option>
-                    <option>משימה 2</option>
-                    <option>משימה 3</option>
-                    <option>משימה 4</option>
-                </select>
-            </div>
-                <div class="col-sm">
-                <form method="POST">
-                    <button type="sumbit" name="options" value="option1" class="btn btn-outline-success">חפש</button>
-                </form>
-                </div>
-                <div class='col-md-3 form-group'>
-                <form method="POST">
-                    <button type="sumbit" name="options" value="option2" class="btn btn-outline-secondary">פתיחת דוח באקסל</button>
-                </form>
-                </div>
-                </div>
-                </div>''')        
+        
+        dphtml = (r'''
+{% extends 'layout.html' %}
+{% block content %}
+<section id="title" style="background-color: rgb(244, 248, 248); border-bottom: 3px solid var(--black);" >
+<div>
+  <a href="/"><img class="Logo" src="static/images/logo.png" alt="logo-img"></a>
+  <h1>דוח פעילות מתקן</h1>
+</div>
+</section>
+<body style="background-color: rgb(211, 218, 218);">
+<section id="show_data_errors" dir="rtl" lang="he">
+<form action="" method="post">
+<div class="container">
+<div class="row">
+    <div class="col-sm form-group">
+        <select class="form-control" id="exampleFormControlSelect1" name="position_upload">
+            <option>אנא בחר מאמן</option>
+            <option>עמדות פרט</option>
+            <option>משימה 1</option>
+            <option>משימה 2</option>
+            <option>משימה 3</option>
+            <option>משימה 4</option>
+        </select>
+    </div>
+    <div class="col-sm">
+    <form method="POST">
+        <button type="sumbit" name="options" value="option1" class="btn btn-outline-success">חפש</button>
+    </form>
+    </div>
+    <div class='col-md-3 form-group'>
+    <form method="POST">
+        <button type="sumbit" name="options" value="option2" class="btn btn-outline-secondary">פתיחת דוח באקסל</button>
+    </form>
+    </div>
+</div>
+</div>''')        
         dphtml += data_activity.to_html(table_id="show_activity", classes = "table table-hover", border=0)
         with open('elbit-ground-beta/app/templates/show_data_activity.html','w', encoding='utf-8-sig') as f:
             f.writelines([dphtml + '\n' + r'<br>' + '\n' +
@@ -51,37 +57,42 @@ async def show_data_activity_Handler(request):
             position_upload = request.form.get('position_upload')
             specific_position = data_activity.loc[data_activity['סוג מאמן'] == position_upload]
     
-            dphtml = (r"{% extends 'layout.html' %}" + '\n' + r"{% block content %}" + '\n' +
-            r'<section id="title" style="background-color: rgb(244, 248, 248); border-bottom: 3px solid var(--black);" >' +
-            '\n' + '<div>' + '\n' + '<a href="/">' + '\n' + '<img class="Logo" src="static/images/logo.png" alt="logo-img">' +
-            '\n' + '</a>' + '\n' + '<h1>דוח פעילות מתקן </h1>' + '\n' + '</div>' + '\n' + '</section>' + '\n' +
-            '<body style="background-color: rgb(211, 218, 218);">' + '\n' + '<section id="show_data_activity" dir="rtl" lang="he">' +
-            '\n' + '<form action="" method="post">' + '\n' + 
-            r'''
-            <div class="container">
-            <div class="row">
-            <div class="col-sm form-group">
-                <select class="form-control" id="exampleFormControlSelect1" name="position_upload">
-                    <option>אנא בחר מאמן</option>
-                    <option>עמדות פרט</option>
-                    <option>משימה 1</option>
-                    <option>משימה 2</option>
-                    <option>משימה 3</option>
-                    <option>משימה 4</option>
-                </select>
-            </div>
-                <div class="col-sm">
-                <form method="POST">
-                    <button type="sumbit" name="options" value="option1" class="btn btn-outline-success">חפש</button>
-                </form>
-                </div>
-                <div class='col-md-3 form-group'>
-                <form method="POST">
-                    <button type="sumbit" name="options" value="option2" class="btn btn-outline-secondary">פתיחת דוח באקסל</button>
-                </form>
-                </div>
-                </div>
-                </div>''') 
+            dphtml = (r'''
+{% extends 'layout.html' %}
+{% block content %}
+<section id="title" style="background-color: rgb(244, 248, 248); border-bottom: 3px solid var(--black);" >
+<div>
+  <a href="/"><img class="Logo" src="static/images/logo.png" alt="logo-img"></a>
+  <h1>דוח פעילות מתקן</h1>
+</div>
+</section>
+<body style="background-color: rgb(211, 218, 218);">
+<section id="show_data_errors" dir="rtl" lang="he">
+<form action="" method="post">
+<div class="container">
+<div class="row">
+    <div class="col-sm form-group">
+        <select class="form-control" id="exampleFormControlSelect1" name="position_upload">
+            <option>אנא בחר מאמן</option>
+            <option>עמדות פרט</option>
+            <option>משימה 1</option>
+            <option>משימה 2</option>
+            <option>משימה 3</option>
+            <option>משימה 4</option>
+        </select>
+    </div>
+    <div class="col-sm">
+    <form method="POST">
+        <button type="sumbit" name="options" value="option1" class="btn btn-outline-success">חפש</button>
+    </form>
+    </div>
+    <div class='col-md-3 form-group'>
+    <form method="POST">
+        <button type="sumbit" name="options" value="option2" class="btn btn-outline-secondary">פתיחת דוח באקסל</button>
+    </form>
+    </div>
+</div>
+</div>''')  
             dphtml += specific_position.to_html(table_id="show_activity", classes = "table table-hover", border=0)
             with open('elbit-ground-beta/app/templates/show_data_activity.html','w', encoding='utf-8-sig') as f:
                 f.writelines([dphtml + '\n' + r'<br>' +
