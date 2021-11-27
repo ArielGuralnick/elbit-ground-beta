@@ -19,20 +19,7 @@ async def order_training_Handler(request):
         time_start = request.form.get('time_start')
         date_end = request.form.get('date_end')
         time_end = request.form.get('time_end')
-        
-#        if type_simulator == 'רוכב שמיים':
-#            if pd.between_time(time_start,time_end) > 09:00:
-#                counter_long_skylark = counter_long_skylark + 1
-#        elif type_simulator == 'מרס':
-#            if pd.between_time(time_start,time_end) > 09:00:
-#                counter_long_mars = counter_long_mars + 1
-#        elif type_simulator == 'מורשת':
-#            if pd.between_time(time_start,time_end) > 09:00:
-#                counter_long_moreshet = counter_long_moreshet + 1
-#        elif type_simulator == 'רעם':
-#            if pd.between_time(time_start,time_end) > 09:00:
-#                counter_long_raam = counter_long_raam + 1
-
+       
         field_content = ['סוג מאמן', 'תאריך התחלה', 'שעת התחלה', 'תאריך סיום', 'שעת סיום']
         data = pd.DataFrame([{'סוג מאמן': type_simulator, 'תאריך התחלה': date_start, 'שעת התחלה':time_start,
         'תאריך סיום':date_end ,'שעת סיום':time_end}], columns=field_content)

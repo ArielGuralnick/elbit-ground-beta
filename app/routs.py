@@ -1,7 +1,7 @@
 from app import app # importing app variable from app package
 from flask import render_template,request
 
-from src.handlers.skyLark.skyLark_user_Handler import skyLark_user_Handler
+from src.handlers.skyLark.skyLark_Handler import skyLark_Handler
 from src.handlers.skyLark.skyLark_instructor_Handler import skyLark_instructor_Handler
 from src.handlers.skyLark.skyLark_technician_Handler import skyLark_technician_Handler
 from src.handlers.skyLark.skyLark_mafil_Handler import skyLark_mafil_Handler
@@ -32,6 +32,8 @@ from src.handlers.manager.show.show_training_days_Handler import show_training_d
 from src.handlers.manager.manager_feedbacks_Handler import manager_feedbacks_Handler
 
 from src.handlers.mars.mars_Handler import mars_Handler
+from src.handlers.mars.mars_technician_Handler import mars_technician_Handler
+from src.handlers.mars.insert.mars_feedback_Handler import mars_feedback_Handler
 from src.handlers.mars.insert.mars_insert_activity_Handler import mars_insert_activity_Handler
 from src.handlers.mars.insert.mars_insert_error_Handler import mars_insert_error_Handler
 from src.handlers.moreshet.moreshet_Handler import moreshet_Handler
@@ -41,15 +43,15 @@ from src.handlers.moreshet.moreshet_Handler import moreshet_Handler
 def home():
     return render_template("home.html")
 
-@app.route("/skyLark_user", methods=['GET'])
-async def skyLark_user():
-    return await skyLark_user_Handler(request)
+@app.route("/skyLark", methods=['GET'])
+async def skyLark():
+    return await skyLark_Handler(request)
 
 @app.route("/skyLark_instructor", methods=['GET','POST'])
 async def skyLark_instructor():
     return await skyLark_instructor_Handler(request)
 
-@app.route("/skyLark_technician", methods=['GET','POST'])
+@app.route("/technician", methods=['GET','POST'])
 async def skyLark_technician():
     return await skyLark_technician_Handler(request)
 
@@ -178,6 +180,14 @@ async def manager_feedbacks():
 async def mars():
     return await mars_Handler(request)
 
+@app.route("/mars_technician", methods=['GET','POST'])
+async def mars_technician():
+    return await mars_technician_Handler(request)
+
+@app.route("/mars_feedback", methods=['GET','POST'])
+async def mars_feedback():
+    return await mars_feedback_Handler(request)
+
 @app.route("/mars_insert_activity", methods=['GET','POST'])
 async def mars_insert_activity():
     return await mars_insert_activity_Handler(request)
@@ -190,6 +200,6 @@ async def mars_insert_error():
 
 
 # מאמן מורשת
-
+@app.route("/moreshet", methods=['GET','POST'])
 async def moreshet():
     return await moreshet_Handler(request)

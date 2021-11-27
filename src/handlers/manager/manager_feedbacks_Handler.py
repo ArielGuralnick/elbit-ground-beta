@@ -6,12 +6,12 @@ async def manager_feedbacks_Handler(request):
         return render_template('manager/manager_feedbacks.html', title_simulator = "משובי מתאמנים", second_paragraph = "אנא בחר מאמן לצפייה במשובי המתאמנים")
     elif request.method == 'POST':
         if request.form.get('options') == 'option_skyLark':
-            return send_file('db/manager/feedback.csv',
+            return send_file('db/skyLark/feedback.csv',
             mimetype='text/csv',attachment_filename='משוב רוכש.csv',
             as_attachment=True)
 
         elif request.form.get('options') == 'option_mars':
-            return send_file('db/manager/feedback_mars.csv',
+            return send_file('db/mars/feedback.csv',
             mimetype='text/csv',attachment_filename='משוב מרס.csv',
             as_attachment=True)
 
