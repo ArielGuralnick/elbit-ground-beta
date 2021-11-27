@@ -3,7 +3,7 @@ import pandas as pd
 
 async def show_data_errors_mafil_Handler(request):
     if request.method == 'GET':       
-        data_errors = pd.read_csv('elbit-ground-beta/app/db/data_errors.csv')
+        data_errors = pd.read_csv('elbit-ground-beta/app/db/skyLark/data_errors.csv')
         dphtml = (r'''
 {% extends 'layout.html' %}
 {% block content %}
@@ -17,7 +17,7 @@ async def show_data_errors_mafil_Handler(request):
 <section id="show_data_errors" dir="rtl" lang="he">
 <form action="" method="post">''')        
         dphtml += data_errors.to_html(table_id="show_data_errors_mafil", classes = "table table-hover", border=0)
-        with open('elbit-ground-beta/app/templates/show_data_errors_mafil.html','w', encoding='utf-8-sig') as f:
+        with open('elbit-ground-beta/app/templates/skyLark/show/show_data_errors_mafil.html','w', encoding='utf-8-sig') as f:
             f.writelines([dphtml + '\n' + r'<br>'  + '\n' + r"</form>",r"</section>",
             r'''
 <div class="container">
@@ -35,7 +35,7 @@ $('#show_data_errors_mafil').DataTable();
 </body>
 {% endblock %}'''])
             f.close()
-        return render_template('show_data_errors_mafil.html')
+        return render_template('skyLark/show/show_data_errors_mafil.html')
 
     elif request.method == 'POST':
         if request.form.get("options") == 'option1':
@@ -43,6 +43,6 @@ $('#show_data_errors_mafil').DataTable();
         elif request.form.get("options") == 'option2':
             return redirect(url_for('edit_data_errors_mafil'))
         elif request.form.get("options") == 'option3':
-            return send_file('db/data_errors.csv',
+            return send_file('db/skyLark/data_errors.csv',
             mimetype='text/csv',attachment_filename='דוח תקלות.csv',
             as_attachment=True)

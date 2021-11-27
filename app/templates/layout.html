@@ -35,9 +35,9 @@
 {% with messages = get_flashed_messages(with_categories = True) %}
   {% if messages %}
     {% for category, message in messages %}
-    <!-- we take category = 'danger' from botstrap which responalbe to showing messages in beatiful way.
+    <!-- we take category = 'danger' from bootstrap which responalbe to showing messages in beatiful way.
     m1-2 mb-1 are classes in botstrap-->
-        <div class="alert alert-{{ category }}">
+        <div class="alert alert-{{ category }}" style="text-align: center;">
           <button type="button" class="btn-close" aria-label="Close" data-dismiss="alert" style="position: absolute; right: 1%;"></button>
           <strong>{{ message }}</strong>
         </div>

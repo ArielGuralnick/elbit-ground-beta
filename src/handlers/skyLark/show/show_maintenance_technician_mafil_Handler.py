@@ -5,7 +5,7 @@ import pandas as pd
 async def show_maintenance_technician_mafil_Handler(request):
 
     if request.method == 'GET':
-        data = pd.read_csv('elbit-ground-beta/app/db/maintenance.csv')
+        data = pd.read_csv('elbit-ground-beta/app/db/skyLark/maintenance.csv')
         dphtml = (r'''
 {% extends 'layout.html' %}
 {% block content %}
@@ -19,7 +19,7 @@ async def show_maintenance_technician_mafil_Handler(request):
 <section id="show_data_errors" dir="rtl" lang="he">
 <form action="" method="post">''')
         dphtml += data.to_html(classes = "table table-hover", border=0, index=False)
-        with open('elbit-ground-beta/app/templates/show_maintenance_technician_mafil.html','w', encoding='utf-8-sig') as f:
+        with open('elbit-ground-beta/app/templates/skyLark/show/show_maintenance_technician_mafil.html','w', encoding='utf-8-sig') as f:
             f.writelines([dphtml + '\n' + r'<br>' + '\n' + r"</form>" + '\n' + r"</section>" + '\n' +
             r'''
 <div class="container">
@@ -33,7 +33,7 @@ async def show_maintenance_technician_mafil_Handler(request):
 </body>
 {% endblock %}'''])
             f.close()
-        return render_template('show_maintenance_technician_mafil.html')
+        return render_template('skyLark/show/show_maintenance_technician_mafil.html')
 
     elif request.method == 'POST':
         if request.form.get("options") == 'option1':

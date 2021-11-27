@@ -3,7 +3,7 @@ from flask import render_template,send_file
 
 async def training_package_Handler(request):
     if request.method == 'GET':
-        return render_template('training_package.html')
+        return render_template('skyLark/training_package.html')
     if request.method == 'POST':
         if request.form.get('options') == 'option_meholel_advanced':
             return send_file('meholel_advanced.pptx',

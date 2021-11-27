@@ -3,7 +3,7 @@ import pandas as pd
 
 async def show_data_activity_Handler(request):
     if request.method == 'GET':       
-        data_activity = pd.read_csv('elbit-ground-beta/app/db/data_activity.csv')
+        data_activity = pd.read_csv('elbit-ground-beta/app/db/skyLark/data_activity.csv')
         
         dphtml = (r'''
 {% extends 'layout.html' %}
@@ -42,18 +42,18 @@ async def show_data_activity_Handler(request):
 </div>
 </div>''')        
         dphtml += data_activity.to_html(table_id="show_activity", classes = "table table-hover", border=0)
-        with open('elbit-ground-beta/app/templates/show_data_activity.html','w', encoding='utf-8-sig') as f:
+        with open('elbit-ground-beta/app/templates/skyLark/show/show_data_activity.html','w', encoding='utf-8-sig') as f:
             f.writelines([dphtml + '\n' + r'<br>' + '\n' +
             r"</form>" + '\n' + r"</section>" + '\n' + 
             r'<script type="text/javascript">' + '\n' + r"$('#show_activity').DataTable();" + 
             '\n' + r"</script>" + r"</body>" + '\n' + r"{% endblock %}"])
             f.close()
-        return render_template('show_data_activity.html')
+        return render_template('skyLark/show/show_data_activity.html')
 
 
     if request.method == 'POST':
         if request.form.get('options') == 'option1':
-            data_activity = pd.read_csv('elbit-ground-beta/app/db/data_activity.csv')
+            data_activity = pd.read_csv('elbit-ground-beta/app/db/skyLark/data_activity.csv')
             position_upload = request.form.get('position_upload')
             specific_position = data_activity.loc[data_activity['סוג מאמן'] == position_upload]
     
@@ -94,16 +94,16 @@ async def show_data_activity_Handler(request):
 </div>
 </div>''')  
             dphtml += specific_position.to_html(table_id="show_activity", classes = "table table-hover", border=0)
-            with open('elbit-ground-beta/app/templates/show_data_activity.html','w', encoding='utf-8-sig') as f:
+            with open('elbit-ground-beta/app/templates/skyLark/show/show_data_activity.html','w', encoding='utf-8-sig') as f:
                 f.writelines([dphtml + '\n' + r'<br>' +
                 r"</form>" + '\n' + r"</section>" + '\n' + 
                 r'<script type="text/javascript">' + '\n' + r"$('#show_activity').DataTable();" + 
                 '\n' + r"</script>" + r"</body>" + '\n' + r"{% endblock %}"])
                 f.close()
-            return render_template('show_data_activity.html')
+            return render_template('skyLark/show/show_data_activity.html')
             
         elif request.form.get('options') == 'option2':
-            return send_file('db/data_activity.csv',
+            return send_file('db/skyLark/data_activity.csv',
             mimetype='text/csv',attachment_filename='דוח פעילות רוכש.csv',
             as_attachment=True)
 

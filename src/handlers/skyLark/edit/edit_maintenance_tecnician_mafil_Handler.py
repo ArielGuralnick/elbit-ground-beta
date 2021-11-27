@@ -3,7 +3,7 @@ import pandas as pd
 
 async def edit_maintenance_technician_mafil_Handler(request):
     if request.method == 'GET':       
-      data = pd.read_csv('elbit-ground-beta/app/db/maintenance.csv')
+      data = pd.read_csv('elbit-ground-beta/app/db/skyLark/maintenance.csv')
       disparity = data["מה הפער"]
 
       dphtml = (r'''
@@ -18,7 +18,7 @@ async def edit_maintenance_technician_mafil_Handler(request):
 <body style="background-color: rgb(211, 218, 218);">
 <section id="show_data_errors" dir="rtl" lang="he">
 <form action="" method="post">''')       
-      with open('elbit-ground-beta/app/templates/edit_maintenance_mafil.html','w', encoding='utf-8-sig') as f:
+      with open('elbit-ground-beta/app/templates/skyLark/edit/edit_maintenance_mafil.html','w', encoding='utf-8-sig') as f:
         f.writelines([dphtml + '\n' + r'''
 <div class="container">
 <div class="row">
@@ -48,16 +48,16 @@ async def edit_maintenance_technician_mafil_Handler(request):
 </div>
 </div>'''+ '\n' + r"</div>" + '\n' + r"</form>" + '\n' + r"</section>" + '\n' + r"</body>" + '\n' + r"{% endblock %}"])
         f.close()
-      return render_template('edit_maintenance_mafil.html', data = disparity)
+      return render_template('skyLark/edit/edit_maintenance_mafil.html', data = disparity)
   
     elif request.method == 'POST':
       if request.form.get('options') == 'option_edit':
         disparity = request.form.get('disparity')
         status = request.form.get('status')
-        data = pd.read_csv('elbit-ground-beta/app/db/maintenance.csv')
+        data = pd.read_csv('elbit-ground-beta/app/db/skyLark/maintenance.csv')
         row_to_edit = data.index[data['מה הפער'] == disparity]
         data.loc[row_to_edit, 'טופל / לא טופל'] = status
-        with open('elbit-ground-beta/app/db/maintenance.csv', 'w', newline='', encoding='utf-8-sig') as file:
+        with open('elbit-ground-beta/app/db/skyLark/maintenance.csv', 'w', newline='', encoding='utf-8-sig') as file:
             data.to_csv(file, index=False, na_rep='N/A',header=file.tell()==0, encoding='utf-8-sig')
             flash(f'!הפער עודכן בהצלחה', category="success")
         return redirect(url_for('show_maintenance_technician_mafil'))
@@ -65,11 +65,11 @@ async def edit_maintenance_technician_mafil_Handler(request):
       
       if request.form.get('options') == 'option_delet':
         disparity = request.form.get('disparity')
-        data = pd.read_csv('elbit-ground-beta/app/db/maintenance.csv')
+        data = pd.read_csv('elbit-ground-beta/app/db/skyLark/maintenance.csv')
         row_to_delet = data.index[data['מה הפער'] == disparity]
         data.drop(row_to_delet, inplace=True, axis=0)
       
-        with open('elbit-ground-beta/app/db/maintenance.csv', 'w', newline='', encoding='utf-8-sig') as file:
+        with open('elbit-ground-beta/app/db/skyLark/maintenance.csv', 'w', newline='', encoding='utf-8-sig') as file:
             data.to_csv(file, index=False, na_rep='N/A',header=file.tell()==0, encoding='utf-8-sig')
             flash(f'הפער נמחק בהצלחה!', category="success")
         return redirect(url_for('show_maintenance_technician_mafil'))

@@ -1,0 +1,104 @@
+{% extends 'layout.html' %}
+{% block content %}
+<html>
+<section id="title" style="background-color: rgb(244, 248, 248); border-bottom: 3px solid var(--black);" >
+  <div>
+    <a href="/">
+      <img class="Logo" src="static/images/logo.png" alt="logo-img">
+    </a>
+    <h1>דיווח על תקלה</h1>
+  </div>
+</section>
+
+<body style="background-color: rgb(211, 218, 218); ">
+  <section id="insertError" dir="rtl" lang="he">
+    <form action="" method="post">
+      <div class="row">
+        <div class="col form-group">
+          <label for="" class="labelSettings">תאריך</label>
+          <input type="date" name="date_error" class="form-control" min="2021-01-01" required>
+          <br>
+        </div>
+        <div class="col form-group">
+          <label for="" class="labelSettings">שעה</label>
+          <input type="time" name="time_error" class="form-control" required>
+          <br>
+        </div>
+        <div class="col form-group">
+            <label for="">שם המזהה</label>
+            <input type="text" name="name_identifier"class="form-control" required placeholder="שם">
+            <br>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col form-group">
+            <label for="">מספר מחולל</label>
+            <select class="form-control" id="" name="num_of_meholel">
+              <option>מחולל מס' 1</option>
+              <option>מחולל מס' 2</option>
+              <option>מחולל מס' 3</option>
+              <option>מחולל מס' 4</option>
+            </select>
+            <br>
+        </div>
+        <div class="col form-group">
+            <label for="">סוג התקלה</label>
+            <select class="form-control" name="type_of_fault">
+              <option>תקלה כלשהי שיש אצל עדי</option>
+              <option>תקלה כלשהי שיש אצל עדי</option>
+              <option>תקלה כלשהי שיש אצל עדי</option>
+              <option>תקלה כלשהי שיש אצל עדי</option>
+              <option>תקלה כלשהי שיש אצל עדי</option>
+              <option>תקלה כלשהי שיש אצל עדי</option>
+            </select>
+            <br>
+        </div>
+        <div class="col form-group">
+            <label for="">תפעול התקלה</label>
+            <textarea class="form-control" name = "fault_operation" id="exampleFormControlTextarea1" rows="2" placeholder="אנא הסבר" required></textarea>
+            <br>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col form-group">
+          <label for="">סוג עמדה</label>
+          <select class="form-control" name="type_of_position">
+            <option>מבצעית</option>
+            <option>מדריך</option>
+            <option>כל הכיתה</option>    
+          </select>
+          <br>
+        </div>
+        <div class="col form-group">
+            <label for="">באיזה מחשב</label>
+            <select class="form-control" name="computer" id="exampleFormControlSelect1">
+              <option>IGS</option>
+              <option>STU</option>
+              <option>IOS</option>
+              <option>LOGGER</option>
+              <option>BE</option>
+              <option>INST</option>
+              <option>אחר</option>
+            </select>
+            <br>
+        </div>
+        <div class="col form-group">
+            <label for="">זמן השבתה</label>
+            <input type="time" class="form-control" name= "downtime" >
+            <br>
+        </div>
+      </div>
+      
+      <div style="text-align: center;">
+        <form method="POST">
+          <button type="sumbit" class="btn btn-outline-success">שלח</button>
+        </form>
+        <input type="reset" class="btn btn-outline-danger" value="אתחול">
+        <p></p>
+      </div>
+    </form>
+  </section>
+</body>
+
+</html>
+{% endblock %}

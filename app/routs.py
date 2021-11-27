@@ -1,37 +1,39 @@
 from app import app # importing app variable from app package
 from flask import render_template,request
 
-from src.handlers.user_Handler import user_Handler
+from src.handlers.skyLark.skyLark_user_Handler import skyLark_user_Handler
 from src.handlers.skyLark.skyLark_instructor_Handler import skyLark_instructor_Handler
 from src.handlers.skyLark.skyLark_technician_Handler import skyLark_technician_Handler
 from src.handlers.skyLark.skyLark_mafil_Handler import skyLark_mafil_Handler
 from src.handlers.skyLark.literature_Handler import literature_Handler
-from src.handlers.skyLark.order_training_Handler import order_training_Handler
+from src.handlers.skyLark.insert.order_training_Handler import order_training_Handler
 from src.handlers.skyLark.pdf.pdf_safrot_mafil_Handler import pdf_safrot_mafil_Handler
 from src.handlers.skyLark.pdf.pdf_safrot_simulator_Handler import pdf_safrot_simulator_Handler
 from src.handlers.skyLark.pdf.pdf_solutions_Handler import pdf_solutions_Handler
 from src.handlers.skyLark.show.show_data_errors_technician_Handler import show_data_errors_technician_Handler
 from src.handlers.skyLark.show.show_data_errors_mafil_Handler import show_data_errors_mafil_Handler
 from src.handlers.skyLark.edit.edit_data_errors_mafil_Handler import edit_data_errors_mafil_Handler
-from src.handlers.skyLark.work_plan_mafil_Handler import work_plan_mafil_Handler
+from src.handlers.skyLark.show.show_work_plan_mafil_Handler import show_work_plan_mafil_Handler
 from src.handlers.skyLark.edit.edit_work_plan_mafil_Handler import edit_work_plan_mafil_Handler
 from src.handlers.skyLark.show.show_data_activity_Handler import show_data_activity_Handler
-from src.handlers.skyLark.skyLark_feedback_Handler import skyLark_feedback_Handler
-from src.handlers.skyLark.activity_Handler import activity_Handler
-from src.handlers.skyLark.insert_error_Handler import insert_error_Handler
-from src.handlers.skyLark.warehouse_inventory_Handler import warehouse_inventory_Handler
+from src.handlers.skyLark.insert.skyLark_feedback_Handler import skyLark_feedback_Handler
+from src.handlers.skyLark.insert.insert_activity_Handler import insert_activity_Handler
+from src.handlers.skyLark.insert.insert_error_Handler import insert_error_Handler
+from src.handlers.skyLark.show.show_warehouse_inventory_Handler import show_warehouse_inventory_Handler
 from src.handlers.skyLark.edit.edit_warehouse_inventory_Handler import edit_warehouse_inventory_Handler
 from src.handlers.skyLark.show.show_maintenance_technician_mafil_Handler import show_maintenance_technician_mafil_Handler
-from src.handlers.skyLark.insert_maintenance_tecnician_mafil_Handler import insert_maintenance_technician_mafil_Handler
+from src.handlers.skyLark.insert.insert_maintenance_tecnician_mafil_Handler import insert_maintenance_technician_mafil_Handler
 from src.handlers.skyLark.edit.edit_maintenance_tecnician_mafil_Handler import edit_maintenance_technician_mafil_Handler
 from src.handlers.skyLark.training_package_Handler import training_package_Handler
 
 
 from src.handlers.manager.manager_Handler import manager_Handler
-from src.handlers.manager.edit.show_training_days_Handler import show_training_days_Handler
+from src.handlers.manager.show.show_training_days_Handler import show_training_days_Handler
 from src.handlers.manager.manager_feedbacks_Handler import manager_feedbacks_Handler
 
 from src.handlers.mars.mars_Handler import mars_Handler
+from src.handlers.mars.insert.mars_insert_activity_Handler import mars_insert_activity_Handler
+from src.handlers.mars.insert.mars_insert_error_Handler import mars_insert_error_Handler
 from src.handlers.moreshet.moreshet_Handler import moreshet_Handler
 
 
@@ -39,9 +41,9 @@ from src.handlers.moreshet.moreshet_Handler import moreshet_Handler
 def home():
     return render_template("home.html")
 
-@app.route("/user", methods=['GET'])
-async def user():
-    return await user_Handler(request)
+@app.route("/skyLark_user", methods=['GET'])
+async def skyLark_user():
+    return await skyLark_user_Handler(request)
 
 @app.route("/skyLark_instructor", methods=['GET','POST'])
 async def skyLark_instructor():
@@ -58,6 +60,10 @@ async def skyLark_mafil():
 @app.route("/literature", methods=['GET'])
 async def literature():
     return await literature_Handler(request)
+
+@app.route("/training_package", methods=['GET'])
+async def training_package():
+    return await training_package_Handler(request)
 
 @app.route("/order_training", methods=['GET','POST'])
 async def order_training():
@@ -84,9 +90,9 @@ async def edit_data_errors_mafil():
 
 
 # תוכנית עבודה שנתית למפעיל
-@app.route('/work_plan_mafil', methods=['POST', 'GET'])
-async def work_plan_mafil():
-    return await work_plan_mafil_Handler(request)
+@app.route('/show_work_plan_mafil', methods=['POST', 'GET'])
+async def show_work_plan_mafil():
+    return await show_work_plan_mafil_Handler(request)
 
 @app.route('/edit_work_plan_mafil', methods=['POST', 'GET'])
 async def edit_work_plan_mafil():
@@ -112,9 +118,9 @@ async def skyLark_feedback():
     return await skyLark_feedback_Handler(request)
    
 
-@app.route("/activity", methods=['GET','POST'])
-async def activity():
-    return await activity_Handler(request)
+@app.route("/insert_activity", methods=['GET','POST'])
+async def insert_activity():
+    return await insert_activity_Handler(request)
 
 
 @app.route("/insert_error", methods=['GET','POST'])
@@ -129,9 +135,9 @@ async def insert_error():
 async def edit_warehouse_inventory():
     return await edit_warehouse_inventory_Handler(request)
 
-@app.route("/warehouse_inventory", methods=['GET','POST'])
-async def warehouse_inventory():
-    return await warehouse_inventory_Handler(request)
+@app.route("/show_warehouse_inventory", methods=['GET','POST'])
+async def show_warehouse_inventory():
+    return await show_warehouse_inventory_Handler(request)
 
 
 # הפערים בין המפעיל לטכנאי
@@ -150,13 +156,7 @@ async def edit_maintenance_technician_mafil():
 
 
 
-
-@app.route("/training_package", methods=['GET','POST'])
-async def training_package():
-    return await training_package_Handler(request)
-
-
-# הדפים של המנהל
+# הדפים של רעות ואייל
 
 @app.route("/manager", methods=['GET','POST'])
 async def manager():
@@ -171,12 +171,25 @@ async def manager_feedbacks():
     return await manager_feedbacks_Handler(request)    
 
 
-# שאר המאמנים
+
+# מאמן מרס
 
 @app.route("/mars", methods=['GET','POST'])
 async def mars():
     return await mars_Handler(request)
 
-@app.route("/moreshet", methods=['GET','POST'])
+@app.route("/mars_insert_activity", methods=['GET','POST'])
+async def mars_insert_activity():
+    return await mars_insert_activity_Handler(request)
+
+@app.route("/mars_insert_error", methods=['GET','POST'])
+async def mars_insert_error():
+    return await mars_insert_error_Handler(request)
+
+
+
+
+# מאמן מורשת
+
 async def moreshet():
     return await moreshet_Handler(request)

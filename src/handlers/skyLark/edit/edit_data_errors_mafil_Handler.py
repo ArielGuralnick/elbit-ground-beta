@@ -4,7 +4,7 @@ from pandas.core.indexes.base import Index
 
 async def edit_data_errors_mafil_Handler(request):
     if request.method == 'GET':       
-      data = pd.read_csv('elbit-ground-beta/app/db/data_errors.csv')
+      data = pd.read_csv('elbit-ground-beta/app/db/skyLark/data_errors.csv')
       error = data.index
       
       dphtml = (r'''
@@ -19,7 +19,7 @@ async def edit_data_errors_mafil_Handler(request):
 <body style="background-color: rgb(211, 218, 218);">
 <section id="show_data_errors" dir="rtl" lang="he">
 <form action="" method="post">''')       
-      with open('elbit-ground-beta/app/templates/edit_data_errors_mafil.html','w', encoding='utf-8-sig') as f:
+      with open('elbit-ground-beta/app/templates/skyLark/edit/edit_data_errors_mafil.html','w', encoding='utf-8-sig') as f:
         f.writelines([dphtml + '\n' + r'''
 <div class="col form-group">
 <label>למחיקת שורה יש דבר לבחור רק מספר תקלה</label>
@@ -92,7 +92,7 @@ async def edit_data_errors_mafil_Handler(request):
 </body>
 {% endblock %}'''])
         f.close()
-      return render_template('edit_data_errors_mafil.html', data = error)
+      return render_template('skyLark/edit/edit_data_errors_mafil.html', data = error)
   
     elif request.method == 'POST':
       if request.form.get('options') == 'option_edit':
@@ -105,7 +105,7 @@ async def edit_data_errors_mafil_Handler(request):
         data = pd.read_csv('elbit-ground-beta/app/db/data_errors.csv')
         row_to_edit = data.index[error]
         data.loc[row_to_edit,['סוג התקלה','הסבר','תפעול התקלה','מחשב','טופל/לא טופל']] = [type_of_fault,explanation,fault_operation,computer,situation]
-        with open('elbit-ground-beta/app/db/data_errors.csv', 'w', newline='', encoding='utf-8-sig') as file:
+        with open('elbit-ground-beta/app/db/skyLark/data_errors.csv', 'w', newline='', encoding='utf-8-sig') as file:
             data.to_csv(file, index=False, na_rep='N/A',header=file.tell()==0, encoding='utf-8-sig')
             flash(f'!התקלה עודכנה בהצלחה', category="success")
         return redirect(url_for('show_data_errors_mafil'))
@@ -113,11 +113,11 @@ async def edit_data_errors_mafil_Handler(request):
       
       if request.form.get('options') == 'option_delet':
         error = int(request.form.get('error'))
-        data = pd.read_csv('elbit-ground-beta/app/db/data_errors.csv')
+        data = pd.read_csv('elbit-ground-beta/app/db/skyLark/data_errors.csv')
         row_to_delet = data.index[error]
         data.drop(row_to_delet, inplace=True, axis=0)
       
-        with open('elbit-ground-beta/app/db/data_errors.csv', 'w', newline='', encoding='utf-8-sig') as file:
+        with open('elbit-ground-beta/app/db/skyLark/data_errors.csv', 'w', newline='', encoding='utf-8-sig') as file:
             data.to_csv(file, index=False, na_rep='N/A',header=file.tell()==0, encoding='utf-8-sig')
             flash(f'!התקלה נמחקה בהצלחה', category="success")
         return redirect(url_for('show_data_errors_mafil'))
