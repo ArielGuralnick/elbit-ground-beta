@@ -6,7 +6,7 @@ from src.handlers.skyLark.skyLark_instructor_Handler import skyLark_instructor_H
 from src.handlers.skyLark.skyLark_technician_Handler import skyLark_technician_Handler
 from src.handlers.skyLark.skyLark_mafil_Handler import skyLark_mafil_Handler
 from src.handlers.skyLark.literature_Handler import literature_Handler
-from src.handlers.skyLark.insert.order_training_Handler import order_training_Handler
+from src.handlers.order_training_Handler import order_training_Handler
 from src.handlers.skyLark.pdf.pdf_safrot_mafil_Handler import pdf_safrot_mafil_Handler
 from src.handlers.skyLark.pdf.pdf_safrot_simulator_Handler import pdf_safrot_simulator_Handler
 from src.handlers.skyLark.pdf.pdf_solutions_Handler import pdf_solutions_Handler
@@ -22,7 +22,6 @@ from src.handlers.skyLark.insert.insert_error_Handler import insert_error_Handle
 from src.handlers.skyLark.show.show_warehouse_inventory_Handler import show_warehouse_inventory_Handler
 from src.handlers.skyLark.edit.edit_warehouse_inventory_Handler import edit_warehouse_inventory_Handler
 from src.handlers.skyLark.show.show_maintenance_technician_mafil_Handler import show_maintenance_technician_mafil_Handler
-from src.handlers.skyLark.insert.insert_maintenance_tecnician_mafil_Handler import insert_maintenance_technician_mafil_Handler
 from src.handlers.skyLark.edit.edit_maintenance_tecnician_mafil_Handler import edit_maintenance_technician_mafil_Handler
 from src.handlers.skyLark.training_package_Handler import training_package_Handler
 
@@ -34,6 +33,10 @@ from src.handlers.manager.manager_feedbacks_Handler import manager_feedbacks_Han
 from src.handlers.mars.mars_Handler import mars_Handler
 from src.handlers.mars.mars_technician_Handler import mars_technician_Handler
 from src.handlers.mars.insert.mars_feedback_Handler import mars_feedback_Handler
+from src.handlers.mars.show.mars_show_maintenance_technician_mafil_Handler import mars_show_maintenance_technician_mafil_Handler
+from src.handlers.mars.edit.mars_edit_maintenance_technician_mafil_Handler import mars_edit_maintenance_technician_mafil_Handler
+from src.handlers.mars.show.mars_show_warehouse_inventory_Handler import mars_show_warehouse_inventory_Handler
+from src.handlers.mars.edit.mars_edit_warehouse_inventory_Handler import mars_edit_warehouse_inventory_Handler
 from src.handlers.mars.insert.mars_insert_activity_Handler import mars_insert_activity_Handler
 from src.handlers.mars.insert.mars_insert_error_Handler import mars_insert_error_Handler
 from src.handlers.moreshet.moreshet_Handler import moreshet_Handler
@@ -148,10 +151,6 @@ async def show_warehouse_inventory():
 async def show_maintenance_technician_mafil():
     return await show_maintenance_technician_mafil_Handler(request)
 
-@app.route("/insert_maintenance_technician_mafil", methods=['GET','POST'])
-async def insert_maintenance_technician_mafil():
-    return await insert_maintenance_technician_mafil_Handler(request)
-
 @app.route("/edit_maintenance_technician_mafil", methods=['GET','POST'])
 async def edit_maintenance_technician_mafil():
     return await edit_maintenance_technician_mafil_Handler(request)
@@ -174,6 +173,9 @@ async def manager_feedbacks():
 
 
 
+
+
+
 # מאמן מרס
 
 @app.route("/mars", methods=['GET','POST'])
@@ -187,6 +189,30 @@ async def mars_technician():
 @app.route("/mars_feedback", methods=['GET','POST'])
 async def mars_feedback():
     return await mars_feedback_Handler(request)
+
+
+# הפערים בין המפעיל לטכנאי
+
+@app.route("/mars_show_maintenance_technician_mafil", methods=['GET','POST'])
+async def mars_show_maintenance_technician_mafil():
+    return await mars_show_maintenance_technician_mafil_Handler(request)
+
+@app.route("/mars_edit_maintenance_technician_mafil", methods=['GET','POST'])
+async def mars_edit_maintenance_technician_mafil():
+    return await mars_edit_maintenance_technician_mafil_Handler(request)
+
+
+# עריכה וצפייה מחסן מרס
+
+@app.route("/mars_edit_warehouse_inventory", methods=['GET','POST'])
+async def mars_edit_warehouse_inventory():
+    return await mars_edit_warehouse_inventory_Handler(request)
+
+@app.route("/mars_show_warehouse_inventory", methods=['GET','POST'])
+async def mars_show_warehouse_inventory():
+    return await mars_show_warehouse_inventory_Handler(request)
+
+
 
 @app.route("/mars_insert_activity", methods=['GET','POST'])
 async def mars_insert_activity():

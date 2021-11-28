@@ -2,10 +2,10 @@ from flask import render_template, redirect, url_for,flash
 import pandas as pd
 
 
-async def show_maintenance_technician_mafil_Handler(request):
+async def mars_show_maintenance_technician_mafil_Handler(request):
 
     if request.method == 'GET':
-        data = pd.read_csv('elbit-ground-beta/app/db/skyLark/maintenance.csv')
+        data = pd.read_csv('elbit-ground-beta/app/db/mars/maintenance.csv')
         dphtml = (r'''
 {% extends 'layout.html' %}
 {% block content %}
@@ -18,7 +18,7 @@ async def show_maintenance_technician_mafil_Handler(request):
 <body style="background-color: rgb(211, 218, 218);">
 <section id="show_data_errors" dir="rtl" lang="he">''')
         dphtml += data.to_html(classes = "table table-hover", border=0, index=False)
-        with open('elbit-ground-beta/app/templates/skyLark/show/show_maintenance_technician_mafil.html','w', encoding='utf-8-sig') as f:
+        with open('elbit-ground-beta/app/templates/mars/show/mars_show_maintenance_technician_mafil.html','w', encoding='utf-8-sig') as f:
             f.writelines([dphtml + '\n' + r'<br>' + '\n' + r"</form>" + '\n' + r"</section>" + '\n' +
             r'''<section id="insertError" dir="rtl" lang="he">
     <form action="" method="post">
@@ -55,7 +55,7 @@ async def show_maintenance_technician_mafil_Handler(request):
 </body>
 {% endblock %}'''])
             f.close()
-        return render_template('skyLark/show/show_maintenance_technician_mafil.html')
+        return render_template('mars/show/mars_show_maintenance_technician_mafil.html')
 
     elif request.method == 'POST':
         if request.form.get("options") == 'option_add':
@@ -68,12 +68,10 @@ async def show_maintenance_technician_mafil_Handler(request):
             else:
                 field_content = ['תאריך','מה הפער','טופל / לא טופל']
                 data_errors = pd.DataFrame([{'תאריך' : date_upload, 'מה הפער' : disparity, 'טופל / לא טופל':status}], columns=field_content)
-                with open('elbit-ground-beta/app/db/skyLark/maintenance.csv', 'a', newline='', encoding='utf-8-sig') as file:
+                with open('elbit-ground-beta/app/db/mars/maintenance.csv', 'a', newline='', encoding='utf-8-sig') as file:
                     data_errors.to_csv(file, index=False, na_rep='N/A',header=file.tell()==0, encoding='utf-8-sig')
                     flash(f'!תיעוד הפער בהצלחה', category="success")
-            return redirect(url_for('show_maintenance_technician_mafil'))
+            return redirect(url_for('mars_show_maintenance_technician_mafil'))
 
         elif request.form.get("options") == 'option_edit':
-            return redirect(url_for('edit_maintenance_technician_mafil'))
-
-        
+            return redirect(url_for('mars_edit_maintenance_technician_mafil'))

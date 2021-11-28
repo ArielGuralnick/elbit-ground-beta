@@ -21,7 +21,7 @@ async def show_data_errors_mafil_Handler(request):
             f.writelines([dphtml + '\n' + r'<br>'  + '\n' + r"</form>",r"</section>",
             r'''
 <div class="container">
-<div class="row col form-group" style="text-align: center;">
+<div class="col form-group" style="text-align: center;">
     <form method="POST">
         <button type="sumbit" class="btn btn-outline-success" name="options" value="option1">הוספת תקלה</button>
         <button type="sumbit" class="btn btn-outline-danger" name="options" value="option2">עריכה</button>

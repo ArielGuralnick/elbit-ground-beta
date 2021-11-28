@@ -56,7 +56,7 @@ async def show_work_plan_mafil_Handler(request):
 </section>
 
 <div class="container">
-    <div class="row col form-group" style="text-align: center;">
+    <div class="col form-group" style="text-align: center;">
         <button type="sumbit" class="btn btn-outline-success" name="options" value="option_add">הוספת שורה</button>
         <button type="sumbit" class="btn btn-outline-danger" name="options" value="option_edit">עריכת שורה</button>
     </div>

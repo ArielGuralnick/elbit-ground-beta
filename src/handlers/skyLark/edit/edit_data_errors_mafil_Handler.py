@@ -79,7 +79,7 @@ async def edit_data_errors_mafil_Handler(request):
 </div>
 
 <div class="container">
-  <div class="row col form-group" style="text-align: center;">
+  <div class="col form-group" style="text-align: center;">
     <form method="POST">
       <button type="sumbit" name="options" value="option_edit" class="btn btn-outline-success">עדכן</button>
       <button type="sumbit" name="options" value="option_delet" class="btn btn-outline-danger">מחיקת שורה</button>

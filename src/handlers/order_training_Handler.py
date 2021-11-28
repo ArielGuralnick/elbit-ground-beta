@@ -9,7 +9,7 @@ async def order_training_Handler(request):
     counter_long_raam = 0
 
     if request.method == 'GET':
-        return render_template('skyLark/insert/order_training.html')
+        return render_template('order_training.html')
     
 
     elif request.method=='POST':

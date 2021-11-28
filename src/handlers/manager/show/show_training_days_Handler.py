@@ -33,7 +33,7 @@ async def show_training_days_Handler(request):
 </body>
 {% endblock %}'''])
           f.close()
-      return render_template('show_training_days.html')
+      return render_template('manager/show/show_training_days.html')
 
     if request.method == 'POST':   
       return send_file('db/manager/order_training.csv',
