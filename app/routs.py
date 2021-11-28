@@ -33,13 +33,21 @@ from src.handlers.manager.manager_feedbacks_Handler import manager_feedbacks_Han
 from src.handlers.mars.mars_Handler import mars_Handler
 from src.handlers.mars.mars_technician_Handler import mars_technician_Handler
 from src.handlers.mars.insert.mars_feedback_Handler import mars_feedback_Handler
+from src.handlers.mars.show.mars_show_data_errors_technician_Handler import mars_show_data_errors_technician_Handler
 from src.handlers.mars.show.mars_show_maintenance_technician_mafil_Handler import mars_show_maintenance_technician_mafil_Handler
 from src.handlers.mars.edit.mars_edit_maintenance_technician_mafil_Handler import mars_edit_maintenance_technician_mafil_Handler
 from src.handlers.mars.show.mars_show_warehouse_inventory_Handler import mars_show_warehouse_inventory_Handler
 from src.handlers.mars.edit.mars_edit_warehouse_inventory_Handler import mars_edit_warehouse_inventory_Handler
 from src.handlers.mars.insert.mars_insert_activity_Handler import mars_insert_activity_Handler
 from src.handlers.mars.insert.mars_insert_error_Handler import mars_insert_error_Handler
+from src.handlers.mars.show.mars_show_data_activity_Handler import mars_show_data_activity_Handler
+from src.handlers.mars.show.mars_show_data_errors_mafil_Handler import mars_show_data_errors_mafil_Handler
+from src.handlers.mars.edit.mars_edit_data_errors_mafil_Handler import mars_edit_data_errors_mafil_Handler
+
+
+
 from src.handlers.moreshet.moreshet_Handler import moreshet_Handler
+
 
 
 @app.route("/", methods=['GET','POST'])
@@ -190,6 +198,10 @@ async def mars_technician():
 async def mars_feedback():
     return await mars_feedback_Handler(request)
 
+@app.route("/mars_show_data_errors_technician", methods=['GET','POST'])
+async def mars_show_data_errors_technician():
+    return await mars_show_data_errors_technician_Handler(request)
+
 
 # הפערים בין המפעיל לטכנאי
 
@@ -221,6 +233,19 @@ async def mars_insert_activity():
 @app.route("/mars_insert_error", methods=['GET','POST'])
 async def mars_insert_error():
     return await mars_insert_error_Handler(request)
+
+@app.route("/mars_show_data_activity", methods=['GET','POST'])
+async def mars_show_data_activity():
+    return await mars_show_data_activity_Handler(request)
+
+@app.route("/mars_show_data_errors_mafil", methods=['GET','POST'])
+async def mars_show_data_errors_mafil():
+    return await mars_show_data_errors_mafil_Handler(request)
+
+@app.route("/mars_edit_data_errors_mafil", methods=['GET','POST'])
+async def mars_edit_data_errors_mafil():
+    return await mars_edit_data_errors_mafil_Handler(request)
+
 
 
 
