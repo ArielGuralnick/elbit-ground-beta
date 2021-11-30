@@ -1,0 +1,105 @@
+{% extends "layout.html" %}
+{% block content %}
+<html>
+<section id="title" style="background-color: rgb(244, 248, 248); border-bottom: 3px solid var(--black);">
+  <div>
+    <a href="/">
+      <img class="Logo" src="static/images/logo.png" alt="logo-img">
+    </a>
+    <h1>הכנסת שעות פעילות המאמן</h1>
+  </div>
+</section>
+
+<body style="background-color: rgb(211, 218, 218);">
+    <section id="insertActivity" dir="rtl" lang="he">
+        <form action="" method="post">
+            <div class="row">
+                <div class="col form-group">
+                    <label for="" class="labelSettings">תאריך פעילות</label>
+                    <input type="date" name="date_upload" class="form-control" required>
+                    <br>
+                </div>
+                <div class="col form-group">
+                    <label for="">סוג אימון</label>
+                    <select class="form-control" id="" name="type_of_training">
+                      <option>אימון הכוונות</option>
+                      <option>אימון ארטילריה</option>
+                      <option>אימון קשקבל</option>
+                      <option>אימון גבינת ברי</option>
+                      <option>אימון גבינת גאודה כמהין</option>
+                      <option>אימון גבינת עיזים פיקנטי</option>
+                    </select>
+                    <br>
+                </div>
+                <div class="col form-group">
+                  <label for="">מספר תא</label>
+                  <select class="form-control" id="" name="num_of_cell">
+                    <option>תא מס' 1</option>
+                    <option>תא מס' 2</option>
+                    <option>תא מס' 3</option>
+                    <option>תא מס' 4</option>
+                    <option>תא מס' 5</option>
+                  </select>
+                  <br>
+              </div>
+            </div>
+            <div class="row">    
+                <div class="col form-group">
+                    <label for="" class="labelSettings">שעת התחלה</label>
+                    <input type="time" name="time_upload" required class="form-control" required>
+                    <br>
+                </div>
+                <div class="col form-group">
+                    <label for="" class="labelSettings">שעת סיום</label>
+                    <input type="time" name="time_download" required class="form-control" required>
+                    <br>
+                </div>
+                <div class="col form-group">
+                    <label for="">שם המעלה</label>
+                    <input type="text" name="name_updater"class="form-control" placeholder="שם" required>
+                    <br>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col form-group">
+                    <label for="">מספר עמדות</label>
+                    <select class="form-control" id="" name="num_of_position">
+                      <option>1</option>
+                      <option>2</option>
+                      <option>3</option>
+                      <option>4</option>
+                    </select>
+                    <br>
+                </div>
+                <div class="col form-group">
+                    <label for="">מספר מתאמנות</label>
+                    <select class="form-control" id="" name="num_of_practicing">
+                      <option>1</option>
+                      <option>2</option>
+                      <option>3</option>
+                      <option>4</option>
+                      <option>5</option>
+                      <option>6</option>
+                      <option>7</option>
+                      <option>8</option>
+                      <option>9</option>
+                      <option>10</option>
+                      <option>11</option>
+                      <option>12</option>
+                    </select>
+                    <br>
+                </div>
+            </div>
+            <div style="text-align: center;">
+                <form method="POST">
+                  <button type="sumbit" class="btn btn-outline-success">שלח</button>
+                </form>
+                <input type="reset" class="btn btn-outline-danger" value="אתחול">
+                <p></p>
+            </div>
+        </form>
+    </section>
+</body>
+      
+</html>
+{% endblock %}

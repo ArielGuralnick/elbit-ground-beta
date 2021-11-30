@@ -9,7 +9,7 @@ async def skyLark_feedback_Handler(request):
     answer_4 = None
     answer_5 = None
     if request.method == 'GET':
-        return render_template('feedback.html', title_simulator = "מאמן רוכב שמיים")
+        return render_template('feedback.html', title_simulator = "משוב מאמן רוכב שמיים")
     elif request.method == 'POST':
         if request.form.get("question1") == 'ques1-5':
             answer_1 = "5"

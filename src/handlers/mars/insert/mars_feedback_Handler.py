@@ -9,7 +9,7 @@ async def mars_feedback_Handler(request):
     answer_4 = None
     answer_5 = None
     if request.method == 'GET':
-        return render_template('feedback.html', title_simulator = "מאמן מרס")
+        return render_template('feedback.html', title_simulator = "משוב מאמן מרס")
     elif request.method == 'POST':
         if request.form.get("question1") == 'ques1-5':
             answer_1 = "5"

@@ -20,12 +20,14 @@ async def mars_show_data_activity_Handler(request):
 <div class="container">
 <div class="row">
     <div class="col form-group">
-        <label for="">מספר מחולל</label>
-        <select class="form-control" id="" name="num_of_meholel">
-            <option>מחולל מס' 1</option>
-            <option>מחולל מס' 2</option>
-            <option>מחולל מס' 3</option>
-            <option>מחולל מס' 4</option>
+        <label for="">סוג אימון</label>
+        <select class="form-control" id="" name="type_of_training">
+            <option>אימון הכוונות</option>
+            <option>אימון ארטילריה</option>
+            <option>אימון קשקבל</option>
+            <option>אימון גבינת ברי</option>
+            <option>אימון גבינת גאודה כמהין</option>
+            <option>אימון גבינת עיזים פיקנטי</option>
         </select>
         <br>
     </div>
@@ -54,8 +56,8 @@ async def mars_show_data_activity_Handler(request):
     if request.method == 'POST':
         if request.form.get('options') == 'option1':
             data_activity = pd.read_csv('elbit-ground-beta/app/db/mars/data_activity.csv')
-            num_of_meholel = request.form.get('num_of_meholel')
-            specific_num_of_meholel = data_activity.loc[data_activity['מספר מחולל'] == num_of_meholel]
+            type_of_training = request.form.get('type_of_training')
+            specific_type_of_training = data_activity.loc[data_activity['סוג אימון'] == type_of_training]
     
             dphtml = (r'''
 {% extends 'layout.html' %}
@@ -72,12 +74,14 @@ async def mars_show_data_activity_Handler(request):
 <div class="container">
 <div class="row">
     <div class="col form-group">
-        <label for="">מספר מחולל</label>
-        <select class="form-control" id="" name="num_of_meholel">
-            <option>מחולל מס' 1</option>
-            <option>מחולל מס' 2</option>
-            <option>מחולל מס' 3</option>
-            <option>מחולל מס' 4</option>
+        <label for="">סוג אימון</label>
+        <select class="form-control" id="" name="type_of_training">
+            <option>אימון הכוונות</option>
+            <option>אימון ארטילריה</option>
+            <option>אימון קשקבל</option>
+            <option>אימון גבינת ברי</option>
+            <option>אימון גבינת גאודה כמהין</option>
+            <option>אימון גבינת עיזים פיקנטי</option>
         </select>
         <br>
     </div>
@@ -93,7 +97,7 @@ async def mars_show_data_activity_Handler(request):
     </div>
 </div>
 </div>''')  
-            dphtml += specific_num_of_meholel.to_html(table_id="show_activity", classes = "table table-hover", border=0)
+            dphtml += specific_type_of_training.to_html(table_id="show_activity", classes = "table table-hover", border=0)
             with open('elbit-ground-beta/app/templates/mars/show/mars_show_data_activity.html','w', encoding='utf-8-sig') as f:
                 f.writelines([dphtml + '\n' + r'<br>' +
                 r"</form>" + '\n' + r"</section>" + '\n' + 

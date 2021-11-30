@@ -1,0 +1,46 @@
+﻿
+{% extends 'layout.html' %}
+{% block content %}
+<section id="title" style="background-color: rgb(244, 248, 248); border-bottom: 3px solid var(--black);" >
+<div>
+  <a href="/"><img class="Logo" src="static/images/logo.png" alt="logo-img"></a>
+  <h1>עריכת תוכנית שנתית</h1>
+</div>
+</section>
+<body style="background-color: rgb(211, 218, 218);">
+<section id="show_data_errors" dir="rtl" lang="he">
+<form action="" method="post">
+
+<div class="container">
+<div class="row">
+<div class="col-md-3 form-group">
+<label for="">בחר הישג נדרש לעריכה</label>
+<select class="form-control" name="achievements">
+  {% for i in data %}
+    <option>{{ i }}</option>
+  {% endfor %}
+</select>
+</div>
+<div class="col-md-3 form-group">
+  <label for="">סטטוס ביצוע</label>
+  <select class="form-control" name="status">
+    <option>לא בוצע</option>
+    <option>בהרצה</option>
+    <option>בוצע</option>
+  </select>
+</div>
+</div>
+</div>
+<div class="container">
+<div class="col form-group" style="text-align: center;">
+  <form method="POST">
+    <button type="sumbit" name="options" value="option_edit" class="btn btn-outline-success">עדכן</button>
+    <button type="sumbit" name="options" value="option_delet" class="btn btn-outline-danger">מחיקה</button>
+  </form>
+</div>
+</div>
+</div>
+</form>
+</section>
+</body>
+{% endblock %}

@@ -43,11 +43,22 @@ from src.handlers.mars.insert.mars_insert_error_Handler import mars_insert_error
 from src.handlers.mars.show.mars_show_data_activity_Handler import mars_show_data_activity_Handler
 from src.handlers.mars.show.mars_show_data_errors_mafil_Handler import mars_show_data_errors_mafil_Handler
 from src.handlers.mars.edit.mars_edit_data_errors_mafil_Handler import mars_edit_data_errors_mafil_Handler
+from src.handlers.mars.show.mars_show_work_plan_mafil_Handler import mars_show_work_plan_mafil_Handler
+from src.handlers.mars.edit.mars_edit_work_plan_mafil_Handler import mars_edit_work_plan_mafil_Handler
+
 
 
 
 from src.handlers.moreshet.moreshet_Handler import moreshet_Handler
-
+from src.handlers.moreshet.insert.moreshet_feedback_Handler import moreshet_feedback_Handler
+from src.handlers.moreshet.show.moreshet_show_maintenance_technician_mafil_Handler import moreshet_show_maintenance_technician_mafil_Handler
+from src.handlers.moreshet.edit.moreshet_edit_maintenance_technician_mafil_Handler import moreshet_edit_maintenance_technician_mafil_Handler
+from src.handlers.moreshet.show.moreshet_show_warehouse_inventory_Handler import moreshet_show_warehouse_inventory_Handler
+from src.handlers.moreshet.edit.moreshet_edit_warehouse_inventory_Handler import moreshet_edit_warehouse_inventory_Handler
+from src.handlers.moreshet.insert.moreshet_insert_error_Handler import moreshet_insert_error_Handler
+from src.handlers.moreshet.insert.moreshet_insert_activity_Handler import moreshet_insert_activity_Handler
+from src.handlers.moreshet.show.moreshet_show_work_plan_mafil_Handler import moreshet_show_work_plan_mafil_Handler
+from src.handlers.moreshet.edit.moreshet_edit_work_plan_mafil_Handler import moreshet_edit_work_plan_mafil_Handler
 
 
 @app.route("/", methods=['GET','POST'])
@@ -62,7 +73,7 @@ async def skyLark():
 async def skyLark_instructor():
     return await skyLark_instructor_Handler(request)
 
-@app.route("/technician", methods=['GET','POST'])
+@app.route("/skyLark_technician", methods=['GET','POST'])
 async def skyLark_technician():
     return await skyLark_technician_Handler(request)
 
@@ -225,6 +236,7 @@ async def mars_show_warehouse_inventory():
     return await mars_show_warehouse_inventory_Handler(request)
 
 
+# הכנסת תקלה ופעילות
 
 @app.route("/mars_insert_activity", methods=['GET','POST'])
 async def mars_insert_activity():
@@ -233,6 +245,8 @@ async def mars_insert_activity():
 @app.route("/mars_insert_error", methods=['GET','POST'])
 async def mars_insert_error():
     return await mars_insert_error_Handler(request)
+
+
 
 @app.route("/mars_show_data_activity", methods=['GET','POST'])
 async def mars_show_data_activity():
@@ -247,10 +261,70 @@ async def mars_edit_data_errors_mafil():
     return await mars_edit_data_errors_mafil_Handler(request)
 
 
+# צפיה ועריכה תוכנית שנתית מרס
+
+@app.route("/mars_show_work_plan_mafil", methods=['GET','POST'])
+async def mars_show_work_plan_mafil():
+    return await mars_show_work_plan_mafil_Handler(request)
+
+@app.route("/mars_edit_work_plan_mafil", methods=['GET','POST'])
+async def mars_edit_work_plan_mafil():
+    return await mars_edit_work_plan_mafil_Handler(request)
+
+
 
 
 
 # מאמן מורשת
+
 @app.route("/moreshet", methods=['GET','POST'])
 async def moreshet():
     return await moreshet_Handler(request)
+
+@app.route("/moreshet_feedback", methods=['GET','POST'])
+async def moreshet_feedback():
+    return await moreshet_feedback_Handler(request)
+
+# הפערים בין המפעיל לטכנאי
+
+@app.route("/moreshet_show_maintenance_technician_mafil", methods=['GET','POST'])
+async def moreshet_show_maintenance_technician_mafil():
+    return await moreshet_show_maintenance_technician_mafil_Handler(request)
+
+@app.route("/moreshet_edit_maintenance_technician_mafil", methods=['GET','POST'])
+async def moreshet_edit_maintenance_technician_mafil():
+    return await moreshet_edit_maintenance_technician_mafil_Handler(request)
+
+
+# עריכה וצפייה מחסן מורשת 
+
+@app.route("/moreshet_edit_warehouse_inventory", methods=['GET','POST'])
+async def moreshet_edit_warehouse_inventory():
+    return await moreshet_edit_warehouse_inventory_Handler(request)
+
+@app.route("/moreshet_show_warehouse_inventory", methods=['GET','POST'])
+async def moreshet_show_warehouse_inventory():
+    return await moreshet_show_warehouse_inventory_Handler(request)
+
+
+# הכנסה תקלה ופעילות
+
+@app.route("/moreshet_insert_error", methods=['GET','POST'])
+async def moreshet_insert_error():
+    return await moreshet_insert_error_Handler(request)
+
+@app.route("/moreshet_insert_activity", methods=['GET','POST'])
+async def moreshet_insert_activity():
+    return await moreshet_insert_activity_Handler(request)
+
+
+# צפייה ועריכה תוכנית שנתית מורשת
+
+@app.route("/moreshet_show_work_plan_mafil", methods=['GET','POST'])
+async def moreshet_show_work_plan_mafil():
+    return await moreshet_show_work_plan_mafil_Handler(request)
+
+@app.route("/moreshet_edit_work_plan_mafil", methods=['GET','POST'])
+async def moreshet_edit_work_plan_mafil():
+    return await moreshet_edit_work_plan_mafil_Handler(request)
+

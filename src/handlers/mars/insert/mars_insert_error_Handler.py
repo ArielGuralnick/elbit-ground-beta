@@ -15,11 +15,14 @@ async def mars_insert_error_Handler(request):
         type_of_position = request.form.get('type_of_position')
         computer = request.form.get('computer')
         downtime = request.form.get('downtime')
+        situation = request.form.get('situation')
+        remarks = request.form.get('remarks')
 
-        field_content = ['תאריך העלאה','שעת העלאה','שם המזהה','מספר מחולל','סוג התקלה','תפעול התקלה','סוג עמדה','באיזה מחשב','זמן השבתה']
+
+        field_content = ['תאריך העלאה','שעת העלאה','שם המזהה','מספר מחולל','סוג התקלה','תפעול התקלה','סוג עמדה','באיזה מחשב','זמן השבתה','טופל \ לא טופל','הערות']
         data_activity = pd.DataFrame([{'תאריך העלאה': date_error, 'שעת העלאה' : time_error, 'שם המזהה' : name_identifier,
         'מספר מחולל' : num_of_meholel, 'סוג התקלה' : type_of_fault,'תפעול התקלה' : fault_operation,
-        'סוג עמדה' : type_of_position, 'באיזה מחשב' : computer, 'זמן השבתה': downtime}], columns=field_content)
+        'סוג עמדה' : type_of_position, 'באיזה מחשב' : computer, 'זמן השבתה': downtime, 'טופל \ לא טופל': situation, 'הערות': remarks}], columns=field_content)
         with open('elbit-ground-beta/app/db/mars/data_errors.csv', 'a', newline='', encoding='utf-8-sig') as file:
             data_activity.to_csv(file, index=False, na_rep='N/A',header=file.tell()==0, encoding = "utf-8-sig")
             flash(f'!התקלה נקלטה בהצלחה', category="success")

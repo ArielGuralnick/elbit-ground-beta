@@ -16,6 +16,6 @@ async def manager_feedbacks_Handler(request):
             as_attachment=True)
 
         elif request.form.get('options') == 'option_moreshet':
-            return send_file('db/manager/feedback_moreshet.csv',
+            return send_file('db/moreshet/feedback.csv',
             mimetype='text/csv',attachment_filename='משוב מורשת.csv',
             as_attachment=True)
