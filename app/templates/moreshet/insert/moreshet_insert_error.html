@@ -45,56 +45,63 @@
         <div class="col form-group">
             <label for="">סוג התקלה</label>
             <select class="form-control" name="type_of_fault">
-              <option>מחולל:</option>
-              <option>תקלה כלשהי שיש אצל עדי</option>
-              <option>'הרצת תרגיל' מואפר</option>
-              <option>מחולל זירה תקוע/לא מגיב</option>
-              <option>ישויות לא התפקדו לעמדת ייצוג</option>
-              <option>'מיפוי סד"כ' מואפר</option>
-              <option>"איקסים צהובים"/ישויות נמחקו מהדו-מימד (BE1 קרס)</option>
-              <option>"שרת הנתונים לא עובד נא להדליקו"</option>
-              <option>"שרת המשאבים לא עובד נא להדליקו"</option>
-              <option>"הפצת תרגיל רשת נכשלה"</option>
-              <option>תרגיל קרס/ נסגר (simengine קרס)</option>
-              <option>NICE SENDER/RECIVER נאלץ להסגר/ לא עולה </option>
-              <option>TVEIW:</option>
-              <option>TVIEW לא נטען</option>
-              <option>TVIEW קרס/נסגר (עם עליית שגיאה)</option>
-              <option>TVIEW תקוע- אמצעי לא זז</option>
-              <option>לא רואים ישויות ב TVIEW</option>
-              <option>תקלת HASP בtview</option>
-              <option>תקלת TVIEWBARAK.EXE</option>
-              <option>חומרה:</option>
-              <option>מחשב תקוע</option>
-              <option>תצוגת מסך שחורה</option>
-              <option>מקלדת לא עובדת</option>
-              <option>עכבר לא פעיל</option>
-              <option>מחשב לא עולה (תקוע בהתחלה על HP וכד)</option>
-              <option> גויסטיק PTT לא עובד</option>
-              <option>עמדות :</option>
-              <option>"תקלת תקשורת יחצ"ג"</option>
-              <option>תקלת תקשורת "קופסת אל/מיטל/אלקטקרוניקה"</option>
-              <option>נץ נפתח עם שגיאה ונסגר לאחר יציאה מהתקלה</option>
-              <option>נץ לא קופץ לאזימוט נכון</option>
-              <option>נץ לא משויך לעמדה</option>
-              <option>לא ניתן לקפוץ לנק' באפליקציה מכ"ם</option>
-              <option>פונקצית לזירה לא עובדת</option>
-              <option>נץ לא עולה -חלון שחור שורות רצות -אין רשת </option>
-              <option>שיגאת MMI - לפרט בהערות מה התקלה בעקבות השגיאה </option>
-              <option>אפליקציות לא עולות בעמדה (רשיון)</option>
-              <option>אין גילויים במכ"ם /מכ"ם לא עובד תקין </option>
-              <option>משואה:</option>
-              <option>פונקציות עריכה במשואה לא פעילות</option>
-              <option>איתורים לא מתעדכנים בשאר הכיתה</option>
-              <option>הגעת למס' ישויות מקסימלי במשואה</option>
-              <option>קשר:</option>
-              <option>רעש חשמלי בקשר</option>
-              <option>אין שמע/דיבור</option>
-              <option>"שורות אדומות"-קשר מנותק </option>
-              <option>כללי:</option>
-              <option>מסכי מיתוג לא עובדים (משבצת ורודה בפארגון)</option>
-              <option>תקלת רשיונות</option>
-              <option>אחר</option>
+              <optgroup label="אנא בחר מהרשימת תקלות - ">
+                <optgroup label="מחולל :">
+                  <option>"הרצת תרגיל" מואפר</option>
+                  <option>מחולל זירה תקוע/לא מגיב</option>
+                  <option>ישויות לא התפקדו לעמדת ייצוג</option>
+                  <option>"מיפוי סד"כ" מואפר</option>
+                  <option>"איקסים צהובים"/ישויות נמחקו מהדו-מימד (BE1 קרס)</option>
+                  <option>"שרת הנתונים לא עובד נא להדליקו"</option>
+                  <option>"שרת המשאבים לא עובד נא להדליקו"</option>
+                  <option>"הפצת תרגיל רשת נכשלה"</option>
+                  <option>תרגיל קרס/ נסגר (simengine קרס)</option>
+                  <option>NICE SENDER/RECIVER נאלץ להסגר/ לא עולה </option>
+                </optgroup>
+                <optgroup label="TVEIW :">
+                  <option>TVIEW לא נטען</option>
+                  <option>TVIEW קרס/נסגר (עם עליית שגיאה)</option>
+                  <option>TVIEW תקוע- אמצעי לא זז</option>
+                  <option>לא רואים ישויות ב TVIEW</option>
+                  <option>תקלת HASP בtview</option>
+                  <option>תקלת TVIEWBARAK.EXE</option>
+                </optgroup>
+                <optgroup label="חומרה :">
+                  <option>מחשב תקוע</option>
+                  <option>תצוגת מסך שחורה</option>
+                  <option>מקלדת לא עובדת</option>
+                  <option>עכבר לא פעיל</option>
+                  <option>מחשב לא עולה (תקוע בהתחלה על HP וכד)</option>
+                  <option> גויסטיק PTT לא עובד</option>
+                </optgroup>
+                <optgroup label="עמדות :">
+                  <option>"תקלת תקשורת יחצ"ג"</option>
+                  <option>תקלת תקשורת "קופסת אל/מיטל/אלקטקרוניקה"</option>
+                  <option>נץ נפתח עם שגיאה ונסגר לאחר יציאה מהתקלה</option>
+                  <option>נץ לא קופץ לאזימוט נכון</option>
+                  <option>נץ לא משויך לעמדה</option>
+                  <option>לא ניתן לקפוץ לנק' באפליקציה מכ"ם</option>
+                  <option>פונקצית לזירה לא עובדת</option>
+                  <option>נץ לא עולה -חלון שחור שורות רצות -אין רשת </option>
+                  <option>שיגאת MMI - לפרט בהערות מה התקלה בעקבות השגיאה </option>
+                  <option>אפליקציות לא עולות בעמדה (רשיון)</option>
+                  <option>אין גילויים במכ"ם /מכ"ם לא עובד תקין </option>
+                  <option>משואה:</option>
+                  <option>פונקציות עריכה במשואה לא פעילות</option>
+                  <option>איתורים לא מתעדכנים בשאר הכיתה</option>
+                  <option>הגעת למס' ישויות מקסימלי במשואה</option>
+                </optgroup>
+                <optgroup label="קשר :">
+                  <option>רעש חשמלי בקשר</option>
+                  <option>אין שמע/דיבור</option>
+                  <option>"שורות אדומות"-קשר מנותק </option>
+                </optgroup>
+                <optgroup label="כללי :">
+                  <option>מסכי מיתוג לא עובדים (משבצת ורודה בפארגון)</option>
+                  <option>תקלת רשיונות</option>
+                </optgroup>
+                <option>אחר</option>
+              </optgroup>
             </select>
             <br>
         </div>
@@ -175,8 +182,11 @@
           <br>
         </div>
         <div class="col form-group">
-          <label for="">הערות</label>
-          <input type="text" class="form-control" name= "remarks" placeholder="הערות">
+          <label for="">עיתוי התקלה</label>
+          <select class="form-control" name="timing_fault">
+            <option>אימון</option>
+            <option>לא אימון</option>
+          </select>
           <br>
         </div>
       </div>

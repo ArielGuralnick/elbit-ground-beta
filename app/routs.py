@@ -57,8 +57,29 @@ from src.handlers.moreshet.show.moreshet_show_warehouse_inventory_Handler import
 from src.handlers.moreshet.edit.moreshet_edit_warehouse_inventory_Handler import moreshet_edit_warehouse_inventory_Handler
 from src.handlers.moreshet.insert.moreshet_insert_error_Handler import moreshet_insert_error_Handler
 from src.handlers.moreshet.insert.moreshet_insert_activity_Handler import moreshet_insert_activity_Handler
+from src.handlers.moreshet.show.moreshet_show_data_activity_Handler import moreshet_show_data_activity_Handler
 from src.handlers.moreshet.show.moreshet_show_work_plan_mafil_Handler import moreshet_show_work_plan_mafil_Handler
 from src.handlers.moreshet.edit.moreshet_edit_work_plan_mafil_Handler import moreshet_edit_work_plan_mafil_Handler
+from src.handlers.moreshet.show.moreshet_show_data_errors_technician_Handler import moreshet_show_data_errors_technician_Handler
+from src.handlers.moreshet.show.moreshet_show_data_errors_mafil_Handler import moreshet_show_data_errors_mafil_Handler
+from src.handlers.moreshet.edit.moreshet_edit_data_errors_mafil_Handler import moreshet_edit_data_errors_mafil_Handler
+
+
+
+from src.handlers.driving.driving_Handler import driving_Handler
+from src.handlers.driving.insert.driving_feedback_Handler import driving_feedback_Handler
+from src.handlers.driving.show.driving_show_maintenance_technician_mafil_Handler import driving_show_maintenance_technician_mafil_Handler
+from src.handlers.driving.edit.driving_edit_maintenance_technician_mafil_Handler import driving_edit_maintenance_technician_mafil_Handler
+from src.handlers.driving.show.driving_show_warehouse_inventory_Handler import driving_show_warehouse_inventory_Handler
+from src.handlers.driving.edit.driving_edit_warehouse_inventory_Handler import driving_edit_warehouse_inventory_Handler
+from src.handlers.driving.insert.driving_insert_error_Handler import driving_insert_error_Handler
+from src.handlers.driving.insert.driving_insert_activity_Handler import driving_insert_activity_Handler
+from src.handlers.driving.show.driving_show_data_activity_Handler import driving_show_data_activity_Handler
+from src.handlers.driving.show.driving_show_work_plan_mafil_Handler import driving_show_work_plan_mafil_Handler
+from src.handlers.driving.edit.driving_edit_work_plan_mafil_Handler import driving_edit_work_plan_mafil_Handler
+from src.handlers.driving.show.driving_show_data_errors_technician_Handler import driving_show_data_errors_technician_Handler
+from src.handlers.driving.show.driving_show_data_errors_mafil_Handler import driving_show_data_errors_mafil_Handler
+from src.handlers.driving.edit.driving_edit_data_errors_mafil_Handler import driving_edit_data_errors_mafil_Handler
 
 
 @app.route("/", methods=['GET','POST'])
@@ -209,10 +230,6 @@ async def mars_technician():
 async def mars_feedback():
     return await mars_feedback_Handler(request)
 
-@app.route("/mars_show_data_errors_technician", methods=['GET','POST'])
-async def mars_show_data_errors_technician():
-    return await mars_show_data_errors_technician_Handler(request)
-
 
 # הפערים בין המפעיל לטכנאי
 
@@ -246,11 +263,12 @@ async def mars_insert_activity():
 async def mars_insert_error():
     return await mars_insert_error_Handler(request)
 
-
-
 @app.route("/mars_show_data_activity", methods=['GET','POST'])
 async def mars_show_data_activity():
     return await mars_show_data_activity_Handler(request)
+
+
+# צפייה בתקלות טכנאי וצפייה ועריכה תקלות מפעיל
 
 @app.route("/mars_show_data_errors_mafil", methods=['GET','POST'])
 async def mars_show_data_errors_mafil():
@@ -259,6 +277,10 @@ async def mars_show_data_errors_mafil():
 @app.route("/mars_edit_data_errors_mafil", methods=['GET','POST'])
 async def mars_edit_data_errors_mafil():
     return await mars_edit_data_errors_mafil_Handler(request)
+
+@app.route("/mars_show_data_errors_technician", methods=['GET','POST'])
+async def mars_show_data_errors_technician():
+    return await mars_show_data_errors_technician_Handler(request)
 
 
 # צפיה ועריכה תוכנית שנתית מרס
@@ -284,6 +306,10 @@ async def moreshet():
 @app.route("/moreshet_feedback", methods=['GET','POST'])
 async def moreshet_feedback():
     return await moreshet_feedback_Handler(request)
+
+@app.route("/moreshet_show_data_activity", methods=['GET','POST'])
+async def moreshet_show_data_activity():
+    return await moreshet_show_data_activity_Handler(request)
 
 # הפערים בין המפעיל לטכנאי
 
@@ -328,3 +354,93 @@ async def moreshet_show_work_plan_mafil():
 async def moreshet_edit_work_plan_mafil():
     return await moreshet_edit_work_plan_mafil_Handler(request)
 
+
+# צפייה בתקלות טכנאי וצפייה ועריכה תקלות מפעיל
+
+@app.route("/moreshet_show_data_errors_mafil", methods=['GET','POST'])
+async def moreshet_show_data_errors_mafil():
+    return await moreshet_show_data_errors_mafil_Handler(request)
+
+@app.route("/moreshet_show_data_errors_technician", methods=['GET','POST'])
+async def moreshet_show_data_errors_technician():
+    return await moreshet_show_data_errors_technician_Handler(request)
+
+@app.route("/moreshet_edit_data_errors_mafil", methods=['GET','POST'])
+async def moreshet_edit_data_errors_mafil():
+    return await moreshet_edit_data_errors_mafil_Handler(request)
+
+
+
+
+
+# מאמני נהיגה
+
+@app.route("/driving", methods=['GET','POST'])
+async def driving():
+    return await driving_Handler(request)
+
+@app.route("/driving_feedback", methods=['GET','POST'])
+async def driving_feedback():
+    return await driving_feedback_Handler(request)
+
+@app.route("/driving_show_data_activity", methods=['GET','POST'])
+async def driving_show_data_activity():
+    return await driving_show_data_activity_Handler(request)
+
+# הפערים בין המפעיל לטכנאי
+
+@app.route("/driving_show_maintenance_technician_mafil", methods=['GET','POST'])
+async def driving_show_maintenance_technician_mafil():
+    return await driving_show_maintenance_technician_mafil_Handler(request)
+
+@app.route("/driving_edit_maintenance_technician_mafil", methods=['GET','POST'])
+async def driving_edit_maintenance_technician_mafil():
+    return await driving_edit_maintenance_technician_mafil_Handler(request)
+
+
+# עריכה וצפייה מחסן נהיגה 
+
+@app.route("/driving_edit_warehouse_inventory", methods=['GET','POST'])
+async def driving_edit_warehouse_inventory():
+    return await driving_edit_warehouse_inventory_Handler(request)
+
+@app.route("/driving_show_warehouse_inventory", methods=['GET','POST'])
+async def driving_show_warehouse_inventory():
+    return await driving_show_warehouse_inventory_Handler(request)
+
+
+# הכנסה תקלה ופעילות
+
+@app.route("/driving_insert_error", methods=['GET','POST'])
+async def driving_insert_error():
+    return await driving_insert_error_Handler(request)
+
+@app.route("/driving_insert_activity", methods=['GET','POST'])
+async def driving_insert_activity():
+    return await driving_insert_activity_Handler(request)
+
+
+# צפייה ועריכה תוכנית שנתית נהיגה
+
+@app.route("/driving_show_work_plan_mafil", methods=['GET','POST'])
+async def driving_show_work_plan_mafil():
+    return await driving_show_work_plan_mafil_Handler(request)
+
+@app.route("/driving_edit_work_plan_mafil", methods=['GET','POST'])
+async def driving_edit_work_plan_mafil():
+    return await driving_edit_work_plan_mafil_Handler(request)
+
+
+# צפייה בתקלות טכנאי וצפייה ועריכה תקלות מפעיל
+
+@app.route("/driving_show_data_errors_mafil", methods=['GET','POST'])
+async def driving_show_data_errors_mafil():
+    return await driving_show_data_errors_mafil_Handler(request)
+
+@app.route("/driving_show_data_errors_technician", methods=['GET','POST'])
+async def driving_show_data_errors_technician():
+    return await driving_show_data_errors_technician_Handler(request)
+
+@app.route("/driving_edit_data_errors_mafil", methods=['GET','POST'])
+async def driving_edit_data_errors_mafil():
+    return await driving_edit_data_errors_mafil_Handler(request)

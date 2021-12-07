@@ -36,12 +36,29 @@ async def edit_data_errors_mafil_Handler(request):
 <div class="col form-group">
   <label for="">סוג תקלה</label>
   <select class="form-control" name="type_of_fault">
-    <option>רזולוציה</option>
-    <option>מקודד חוזי</option>
-    <option>ריצודי לל"ק</option>
-    <option>BE1 לא נפתח ב LOGGER</option>
-    <option>בלהה</option>
-    <option>בלהההה</option>
+            <option>לא ניתן לשגר מטוס קרקע</option>
+            <option>חוזי מתוח / שטוח</option>
+            <option>טעינת תרגיל נכשלה ב INST</option>
+            <option>הפסקות חשמל</option>
+            <option>עכבר \ מקלדת לא עובד</option>
+            <option>dubgger - נופל TVIEW</option>
+            <option>dubgger - נופל SIMENGINE</option>
+            <option>מגש תקוע</option>
+            <option>תקלת בסיס נתונים - מופיע מצלמה עם חוזי שחור</option>
+            <option>אל תשלח - קרסה אפליקצייה במגש</option>
+            <option>ריצודי לל"ק</option>
+            <option>מקודד חוזי</option>
+            <option>הפצת תרגיל נכשלה במחולל זירה</option>
+            <option>מחולל זירה נתקע</option>
+            <option>לא רוכש מטוס</option>
+            <option>מיתוג IP חוזי</option>
+            <option>לל"ק מלא</option>
+            <option>תקלת רזולוציה</option>
+            <option>טעינת תרגיל נכשלה ב INST</option>
+            <option>INST קפוא</option>
+            <option>הרוחות ב IOS לא נטענות</option>
+            <option>נורת RT מהבהבת</option>
+            <option>אחר - קרא למפעיל לתיעוד</option>
   </select>
 </div>
 <div class="col form-group">

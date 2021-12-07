@@ -11,7 +11,7 @@ async def insert_error_Handler(request):
         timing_fault = request.form.get('timing_fault')
         position = request.form.get('position')
         type_of_fault = request.form.get('type_of_fault')
-        explanation = request.form.get('explanation')
+        explanation = None
         fault_operation = request.form.get('fault_operation')
         computer = request.form.get('computer')
         situation = request.form.get('situation')
