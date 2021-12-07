@@ -20,6 +20,14 @@ async def edit_warehouse_inventory_Handler(request):
 <form action="" method="post">''')       
       with open('elbit-ground-beta/app/templates/skyLark/edit/edit_warehouse_inventory.html','w', encoding='utf-8-sig') as f:
         f.writelines([dphtml + '\n' + r'''
+<div class="col form-group">
+<label>שים לב ! </label>
+<br>
+<label>למחיקת שורה יש לבחור רק מספר תקלה</label>
+<br>
+<label>בעריכת שורה יש להכניס את כל הערכים מחדש</label>
+</div>
+
 <div class="container">
 <div class="row">
 <div class="col form-group">

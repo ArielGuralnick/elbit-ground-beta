@@ -3,7 +3,7 @@ import pandas as pd
 
 async def driving_edit_warehouse_inventory_Handler(request):
     if request.method == 'GET':       
-      data = pd.read_csv('elbit-ground-beta/app/db/moreshet/warehouse_inventory.csv')
+      data = pd.read_csv('elbit-ground-beta/app/db/driving/warehouse_inventory.csv')
       type_of_item = data["סוג הפריט"]
       
       dphtml = (r'''
@@ -12,14 +12,22 @@ async def driving_edit_warehouse_inventory_Handler(request):
 <section id="title" style="background-color: rgb(244, 248, 248); border-bottom: 3px solid var(--black);" >
 <div>
   <a href="/"><img class="Logo" src="static/images/logo.png" alt="logo-img"></a>
-  <h1>עריכת מחסן מורשת</h1>
+  <h1>עריכת מחסן נהיגה</h1>
 </div>
 </section>
 <body style="background-color: rgb(211, 218, 218);">
 <section id="show_data_errors" dir="rtl" lang="he">
 <form action="" method="post">''')       
-      with open('elbit-ground-beta/app/templates/moreshet/edit/moreshet_edit_warehouse_inventory.html','w', encoding='utf-8-sig') as f:
+      with open('elbit-ground-beta/app/templates/driving/edit/driving_edit_warehouse_inventory.html','w', encoding='utf-8-sig') as f:
         f.writelines([dphtml + '\n' + r'''
+<div class="col form-group">
+<label>שים לב ! </label>
+<br>
+<label>למחיקת שורה יש לבחור רק פריט לעריכה</label>
+<br>
+<label>בעריכת שורה יש להכניס את כל הערכים מחדש</label>
+</div>
+
 <div class="container">
 <div class="row">
 <div class="col form-group">
@@ -61,7 +69,7 @@ async def driving_edit_warehouse_inventory_Handler(request):
 </div>
 </div>'''+ '\n' + r"</div>" + '\n' + r"</form>" + '\n' + r"</section>" + '\n' + r"</body>" + '\n' + r"{% endblock %}"])
         f.close()
-      return render_template('moreshet/edit/moreshet_edit_warehouse_inventory.html', data = type_of_item)
+      return render_template('driving/edit/driving_edit_warehouse_inventory.html', data = type_of_item)
   
     elif request.method == 'POST':
       if request.form.get('options') == 'option_edit':
@@ -69,22 +77,22 @@ async def driving_edit_warehouse_inventory_Handler(request):
         quantity = request.form.get('quantity')
         needs_to_complete = request.form.get('needs_to_complete')
         remarks = request.form.get('remarks')
-        data = pd.read_csv('elbit-ground-beta/app/db/moreshet/warehouse_inventory.csv')
+        data = pd.read_csv('elbit-ground-beta/app/db/driving/warehouse_inventory.csv')
         row_to_edit = data.index[data['סוג הפריט'] == type_of_item]
         data.loc[row_to_edit, ['כמות במלאי','נדרש להשלים \ לרכוש','הערות']] = [quantity, needs_to_complete, remarks]
-        with open('elbit-ground-beta/app/db/moreshet/warehouse_inventory.csv', 'w', newline='', encoding='utf-8-sig') as file:
+        with open('elbit-ground-beta/app/db/driving/warehouse_inventory.csv', 'w', newline='', encoding='utf-8-sig') as file:
             data.to_csv(file, index=False, na_rep='N/A',header=file.tell()==0, encoding='utf-8-sig')
             flash(f'!השורה עודכנה בהצלחה', category="success")
-        return redirect(url_for('moreshet_show_warehouse_inventory'))
+        return redirect(url_for('driving_show_warehouse_inventory'))
       
       
       if request.form.get('options') == 'option_delet':
         type_of_item = request.form.get('type_of_item')
-        data = pd.read_csv('elbit-ground-beta/app/db/moreshet/warehouse_inventory.csv')
+        data = pd.read_csv('elbit-ground-beta/app/db/driving/warehouse_inventory.csv')
         row_to_delet = data.index[data['סוג הפריט'] == type_of_item]
         data.drop(row_to_delet, inplace=True, axis=0)
       
-        with open('elbit-ground-beta/app/db/moreshet/warehouse_inventory.csv', 'w', newline='', encoding='utf-8-sig') as file:
+        with open('elbit-ground-beta/app/db/driving/warehouse_inventory.csv', 'w', newline='', encoding='utf-8-sig') as file:
             data.to_csv(file, index=False, na_rep='N/A',header=file.tell()==0, encoding='utf-8-sig')
             flash(f'!השורה נמחקה בהצלחה', category="success")
-        return redirect(url_for('moreshet_show_warehouse_inventory'))
+        return redirect(url_for('driving_show_warehouse_inventory'))
