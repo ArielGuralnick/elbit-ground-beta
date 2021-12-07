@@ -16,9 +16,9 @@ async def mars_show_data_errors_technician_Handler(request):
 </div>
 </section>
 <body style="background-color: rgb(211, 218, 218);">
-<section id="mars_show_data_errors" dir="rtl" lang="he">
+<section id="show_data_errors" dir="rtl" lang="he">
 <form action="" method="post">''')  
-        dphtml += data_errors.to_html(table_id="show_data_errors_technician", classes = "table table-hover", border=0, columns=important_columns)
+        dphtml += data_errors.to_html(table_id="mars_show_data_errors_technician", classes = "table table-hover", border=0, columns=important_columns)
         with open('elbit-ground-beta/app/templates/mars/show/mars_show_data_errors_technician.html','w', encoding='utf-8-sig') as f:
             f.writelines([dphtml + '\n' + r'<br>' +'\n' +
             r'''

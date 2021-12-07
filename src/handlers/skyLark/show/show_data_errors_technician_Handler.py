@@ -3,7 +3,7 @@ import pandas as pd
 
 async def show_data_errors_technician_Handler(request):
     if request.method == 'GET':       
-        important_columns = ['תאריך','עיתוי התקלה','עמדה','סוג התקלה','תפעול התקלה', 'זמן השבתה']
+        important_columns = ['תאריך','עיתוי התקלה','עמדה','סוג התקלה','תפעול התקלה','זמן השבתה']
         data_errors = pd.read_csv('elbit-ground-beta/app/db/skyLark/data_errors.csv')
         
         dphtml = (r'''

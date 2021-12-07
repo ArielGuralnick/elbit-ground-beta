@@ -1,0 +1,67 @@
+{% extends "layout.html" %}
+{% block content %}
+
+<section id="title">
+  <div>
+    <a href="/">
+      <img class="Logo" src="static/images/logo.png" alt="logo-img">
+    </a>
+    <h1 style="padding-left: 18%;">{{ title_simulator }}</h1>
+  </div>
+</section>  
+  <div class="second-paragraph">
+    <h2>{{ second_paragraph }}</h2>
+  </div>
+
+<section id="whichUser">
+    <div class="row1-container">
+      <div class="box orange">
+        <a href="/mars_show_data_activity" class="btn btn-outline-secondary orangeInButoon"><h3>דוח פעילות</h3></a>
+        <p></p>
+        <img src="static/images/flaticon/availability.png" alt="availability">
+      </div>
+  
+      <div class="box cyan">
+        <a href="/user/mars_mafil/pdf-safrot_mafil" class="btn btn-outline-secondary cyanInButoon"><h3>ספר מפעיל</h3></a>
+        <p></p>
+        <img src="static/images/flaticon/open-book.png" alt="open book">
+      </div>
+
+      <div class="box grayishBlue">
+        <a href="/user/mars_mafil/pdf-safrot_simulator" class="btn btn-outline-secondary grayishBlueInButoon"><h3>ספרות מתקן</h3></a>
+        <p></p>
+        <img src="static/images/flaticon/books.png" alt="books">
+      </div>
+    </div>
+
+    <div class="row2-container">
+      <div class="box varyDarkBlue">
+        <a href="/mars_show_data_errors_mafil" class="btn btn-outline-secondary varyDarkBlueInButoon"><h3>דוח תקלות</h3></a>
+        <p></p>
+        <img src="static/images/flaticon/system.png" alt="system">
+      </div>
+
+      <div class="box red">
+        <a href="/mars_show_maintenance_technician_mafil" class="btn btn-outline-secondary redInButoon "><h3>פערי מאמן</h3></a>
+        <p></p>
+        <img src="static/images/flaticon/warning-sign.png" alt="checklist">
+      </div>
+
+      <div class="box black">
+        <a href="/mars_training_package" class="btn btn-outline-secondary blackInButoon "><h3>מארז הדרכה</h3></a>
+        <p></p>
+        <img src="static/images/flaticon/lesson.png" alt="lesson">
+      </div>
+    </div>
+
+    <div class="row3-container">
+      <div class="box green">
+        <a href="/mars_show_work_plan_mafil" class="btn btn-outline-secondary greenInButoon"><h3>תוכנית עבודה שנתית</h3></a>
+        <p></p>
+        <img src="static/images/flaticon/planning.png" alt="planning">
+      </div>
+    </div>
+</section>
+
+
+  {% endblock %}

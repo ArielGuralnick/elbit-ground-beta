@@ -1,0 +1,39 @@
+{% extends "layout.html" %}
+{% block content %}
+
+<section id="title">
+  <div>
+    <a href="/">
+      <img class="Logo" src="static/images/logo.png" alt="logo-img">
+    </a>
+    <h1 style="padding-left: 19%;">{{title_simulator}}</h1>
+  </div>
+</section>  
+  <div class="second-paragraph">
+    <h2> {{second_paragraph}} </h2>
+  </div>
+
+
+<section id="whichUser">
+    <div class="row1-container">
+      <div class="box green">
+        <a href="/driving_show_data_errors_technician" class="btn btn-outline-secondary greenInButoon"><h3>דוח תקלות</h3></a>
+        <p></p>
+        <img src="static/images/flaticon/system.png" alt="system">
+      </div>
+  
+      <div class="box pink">
+        <a href="/driving_show_warehouse_inventory" class="btn btn-outline-secondary pinkInButoon "><h3>מלאי מחסן</h3></a>
+        <p></p>
+        <img src="static/images/flaticon/checklist.png" alt="checklist">
+      </div>
+
+      <div class="box red">
+        <a href="/driving_show_maintenance_technician_mafil" class="btn btn-outline-secondary redInButoon "><h3>פערי מאמן</h3></a>
+        <p></p>
+        <img src="static/images/flaticon/warning-sign.png" alt="checklist">
+      </div>
+    </div>
+</section>
+
+{% endblock %}

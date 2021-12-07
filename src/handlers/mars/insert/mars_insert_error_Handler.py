@@ -26,4 +26,4 @@ async def mars_insert_error_Handler(request):
         with open('elbit-ground-beta/app/db/mars/data_errors.csv', 'a', newline='', encoding='utf-8-sig') as file:
             data_activity.to_csv(file, index=False, na_rep='N/A',header=file.tell()==0, encoding = "utf-8-sig")
             flash(f'!התקלה נקלטה בהצלחה', category="success")
-        return redirect(url_for('skyLark_instructor'))
+        return redirect(url_for('mars_instructor'))

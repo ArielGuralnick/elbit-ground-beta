@@ -126,18 +126,31 @@
         </div>
         <div class="col form-group">
             <label for="">זמן השבתה</label>
-            <input type="time" class="form-control" name= "time_download" >
+            <input type="time" class="form-control" name= "time_download" required>
             <br>
         </div>
+      </div>
+      <div class="row">
         <div class="col form-group">
           <label for="">טופל \ לא טופל</label>
           <select class="form-control" name = "situation">
-            <option>V</option>
             <option>X</option>
+            <option>V</option>
           </select>
           <br>
         </div>
+        <div class="col form-group">
+          <label for="">שם המטפל</label>
+          <input type="text" name="name_treat"class="form-control" placeholder="שם">
+          <br>
+        </div>
+        <div class="col form-group">
+          <label for="" class="labelSettings">שעת טיפול</label>
+          <input type="time" name="time_treatment" class="form-control">
+          <br>
+        </div>
       </div>
+        
       
       <div style="text-align: center;">
         <form method="POST">

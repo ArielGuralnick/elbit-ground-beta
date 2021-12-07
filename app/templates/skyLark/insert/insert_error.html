@@ -93,7 +93,25 @@
         </div>
         <div class="col form-group">
           <label for="">תפעול התקלה</label>
-          <textarea class="form-control" name = "fault_operation" id="exampleFormControlTextarea1" rows="2" placeholder="אנא הסבר" required></textarea>
+          <select class="form-control" name="fault_operation">
+            <option>ריסטארט ל IOS ול - BE</option>
+            <option>שיחרור מטוס והעלאת מטוס אחר</option>
+            <option>הורדה והעלאה של מאמן</option>
+            <option>סגירת הודעת Debugger</option>
+            <option>הורדה והעלאה של ה STU</option>
+            <option>הורדה והעלאה של ה INST</option>
+            <option>הורדה והעלאה של ה IGS</option>
+            <option>הורדה והעלאה של ה IOS</option>
+            <option>הורדה והעלאה של המקודד</option>
+            <option>לחיצה על "אל תשלח"</option>
+            <option>תפעול רזולוציה דרך מחשב נייד בחדר שרתים</option>
+            <option>החלפת עכבר</option>
+            <option>החלפת מקלדת</option>
+            <option>הסתדר באמצע הגיחה</option>
+            <option>הורדה והעלאה של מתג ה Pull Up</option>
+            <option>אין תפעול - קריאה למפעיל</option>
+            <option>אין תפעול - מעבר לעמדה אחרת</option>
+          </select>
           <br>
         </div>
       </div>
@@ -123,7 +141,7 @@
         </div>
         <div class="col form-group">
           <label for="">זמן השבתה</label>
-          <input type="time" class="form-control" name= "downtime" >
+          <input type="time" class="form-control" name= "downtime" required>
           <br>
         </div>
       </div>

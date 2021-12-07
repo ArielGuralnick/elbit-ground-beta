@@ -1,0 +1,39 @@
+{% extends "layout.html" %}
+{% block content %}
+
+<section id="title">
+  <div>
+    <a href="/">
+      <img class="Logo" src="static/images/logo.png" alt="logo-img">
+    </a>
+    <h1 style="padding-left: 19%;">{{ title_simulator }}</h1>
+  </div>
+</section>  
+  <div class="second-paragraph">
+    <h2> {{second_paragraph}} </h2>
+  </div>
+
+
+<section id="whichUser">
+    <div class="row1-container">
+      <div class="box black">
+        <a href="/moreshet_mafil" class="btn btn-outline-secondary blackInButoon"><h3>הפעלה</h3></a>
+        <p></p>
+        <img src="static/images/flaticon/mafil.png" alt="open book">
+      </div>
+  
+      <div class="box green">
+        <a href="/moreshet_instructor" class="btn btn-outline-secondary greenInButoon "><h3>הדרכה</h3></a>
+        <p></p>
+        <img src="static/images/flaticon/madricha.png" alt="emergency">
+      </div>
+  
+      <div class="box orange">
+        <a href="/moreshet_technician" class="btn btn-outline-secondary orangeInButoon "><h3>אחזקה</h3></a>
+        <p></p>
+        <img src="static/images/flaticon/technician.png" alt="clock">
+      </div>
+    </div>
+</section>
+
+{% endblock %}

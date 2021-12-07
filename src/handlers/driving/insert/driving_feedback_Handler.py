@@ -9,8 +9,10 @@ async def driving_feedback_Handler(request):
     answer_4 = None
     answer_5 = None
     if request.method == 'GET':
-        return render_template('feedback.html', title_simulator = "מאמני נהיגה")
+        return render_template('driving/driving_feedback.html', title_simulator = "מאמני נהיגה")
     elif request.method == 'POST':
+        type_of_simulator = request.form.get('type_of_simulator')
+
         if request.form.get("question1") == 'ques1-5':
             answer_1 = "5"
         elif request.form.get("question1") == 'ques1-4':
@@ -65,8 +67,8 @@ async def driving_feedback_Handler(request):
             answer_5 = "2"
         elif request.form.get("question5") == 'ques5-1':
             answer_5 = "1"
-        field_content = ['אנא דרג את איכות האימון','לפי דעתך עד כמה המאמן מתאר את המציאות','עד כמה אתה מרגיש בנוח בתפעול המאמן','עד כמה אתה מת עכשיו להיות בתאילנד','עד כמה אתה מת לאכול עכשיו פיצה']
-        feedback_information = pd.DataFrame([{'אנא דרג את איכות האימון' : answer_1,
+        field_content = ['מאמן','אנא דרג את איכות האימון','לפי דעתך עד כמה המאמן מתאר את המציאות','עד כמה אתה מרגיש בנוח בתפעול המאמן','עד כמה אתה מת עכשיו להיות בתאילנד','עד כמה אתה מת לאכול עכשיו פיצה']
+        feedback_information = pd.DataFrame([{'מאמן' : type_of_simulator,'אנא דרג את איכות האימון' : answer_1,
         'לפי דעתך עד כמה המאמן מתאר את המציאות' : answer_2,
         'עד כמה אתה מרגיש בנוח בתפעול המאמן' : answer_3,
         'עד כמה אתה מת עכשיו להיות בתאילנד' : answer_4,
@@ -74,4 +76,4 @@ async def driving_feedback_Handler(request):
         with open('elbit-ground-beta/app/db/driving/feedback.csv', 'a', newline='', encoding='utf-8-sig') as file:
             feedback_information.to_csv(file, index=False, na_rep='N/A',header=file.tell()==0, encoding='utf-8-sig')
             flash(f'המשוב נקלט בהצלחה! תודה', category="success")
-        return redirect(url_for('skyLark_instructor'))
+        return redirect(url_for('driving_instructor'))

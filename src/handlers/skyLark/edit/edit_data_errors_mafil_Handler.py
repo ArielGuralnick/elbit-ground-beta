@@ -13,7 +13,7 @@ async def edit_data_errors_mafil_Handler(request):
 <section id="title" style="background-color: rgb(244, 248, 248); border-bottom: 3px solid var(--black);" >
 <div>
   <a href="/"><img class="Logo" src="static/images/logo.png" alt="logo-img"></a>
-  <h1>עריכת תקלה</h1>
+  <h1 style="padding-left: 19%;">עריכת תקלה</h1>
 </div>
 </section>
 <body style="background-color: rgb(211, 218, 218);">
@@ -22,7 +22,11 @@ async def edit_data_errors_mafil_Handler(request):
       with open('elbit-ground-beta/app/templates/skyLark/edit/edit_data_errors_mafil.html','w', encoding='utf-8-sig') as f:
         f.writelines([dphtml + '\n' + r'''
 <div class="col form-group">
-<label>למחיקת שורה יש דבר לבחור רק מספר תקלה</label>
+<label>שים לב ! </label>
+<br>
+<label>למחיקת שורה יש לבחור רק מספר תקלה</label>
+<br>
+<label>בעריכת שורה יש להכניס את כל הערכים מחדש</label>
 </div>
 <div class="row">
 <div class="col form-group">
@@ -34,47 +38,19 @@ async def edit_data_errors_mafil_Handler(request):
   </select>
 </div>
 <div class="col form-group">
-  <label for="">סוג תקלה</label>
-  <select class="form-control" name="type_of_fault">
-            <option>לא ניתן לשגר מטוס קרקע</option>
-            <option>חוזי מתוח / שטוח</option>
-            <option>טעינת תרגיל נכשלה ב INST</option>
-            <option>הפסקות חשמל</option>
-            <option>עכבר \ מקלדת לא עובד</option>
-            <option>dubgger - נופל TVIEW</option>
-            <option>dubgger - נופל SIMENGINE</option>
-            <option>מגש תקוע</option>
-            <option>תקלת בסיס נתונים - מופיע מצלמה עם חוזי שחור</option>
-            <option>אל תשלח - קרסה אפליקצייה במגש</option>
-            <option>ריצודי לל"ק</option>
-            <option>מקודד חוזי</option>
-            <option>הפצת תרגיל נכשלה במחולל זירה</option>
-            <option>מחולל זירה נתקע</option>
-            <option>לא רוכש מטוס</option>
-            <option>מיתוג IP חוזי</option>
-            <option>לל"ק מלא</option>
-            <option>תקלת רזולוציה</option>
-            <option>טעינת תרגיל נכשלה ב INST</option>
-            <option>INST קפוא</option>
-            <option>הרוחות ב IOS לא נטענות</option>
-            <option>נורת RT מהבהבת</option>
-            <option>אחר - קרא למפעיל לתיעוד</option>
-  </select>
+  <label for="">סוג התקלה</label>
+  <input type="text" name="type_of_fault"class="form-control" required placeholder="אנא הכנס תקלה">
 </div>
 <div class="col form-group">
-  <label for="">הסבר מורחב במידת הצורך</label>
-  <textarea class="form-control" name= "explanation" id="exampleFormControlTextarea1" rows="2" placeholder="אנא הסבר"></textarea>
+  <label for="">תפעול התקלה</label>
+  <input type="text" name="fault_operation"class="form-control" required placeholder="אנא הכנס תפעול">
 </div>
 </div>
 
 <div class="row">
 <div class="col form-group">
-  <label for="">תפעול התקלה</label>
-  <textarea class="form-control" name = "fault_operation" id="exampleFormControlTextarea1" rows="2" placeholder="אנא הסבר"></textarea>
-</div>
-<div class="col form-group">
   <label for="">באיזה מחשב</label>
-  <select class="form-control" name="computer" id="exampleFormControlSelect1">
+  <select class="form-control" name="computer">
     <option>IGS</option>
     <option>STU</option>
     <option>IOS</option>
@@ -88,7 +64,7 @@ async def edit_data_errors_mafil_Handler(request):
 </div>
 <div class="col form-group">
   <label for="">טופל \ לא טופל</label>
-  <select class="form-control" name = "situation" id="exampleFormControlSelect1">
+  <select class="form-control" name = "situation">
     <option>V</option>
     <option>X</option>
   </select>
@@ -115,13 +91,12 @@ async def edit_data_errors_mafil_Handler(request):
       if request.form.get('options') == 'option_edit':
         error = int(request.form.get('error'))
         type_of_fault = request.form.get('type_of_fault')
-        explanation = request.form.get('explanation')
         fault_operation = request.form.get('fault_operation')
         computer = request.form.get('computer')
         situation = request.form.get('situation')
         data = pd.read_csv('elbit-ground-beta/app/db/skyLark/data_errors.csv')
         row_to_edit = data.index[error]
-        data.loc[row_to_edit,['סוג התקלה','הסבר','תפעול התקלה','מחשב','טופל/לא טופל']] = [type_of_fault,explanation,fault_operation,computer,situation]
+        data.loc[row_to_edit,['סוג התקלה','תפעול התקלה','מחשב','טופל/לא טופל']] = [type_of_fault,fault_operation,computer,situation]
         with open('elbit-ground-beta/app/db/skyLark/data_errors.csv', 'w', newline='', encoding='utf-8-sig') as file:
             data.to_csv(file, index=False, na_rep='N/A',header=file.tell()==0, encoding='utf-8-sig')
             flash(f'!התקלה עודכנה בהצלחה', category="success")

@@ -1,0 +1,5 @@
+from flask import render_template
+
+async def mars_instructor_Handler(request):
+    if request.method == 'GET':
+        return render_template('mars/mars_instructor.html', title_simulator = "עמדת מדריכה", second_paragraph = "וְאַתָּ֣ה בֶן־אָדָ֔ם צֹפֶ֥ה נְתַתִּ֖יךָ לְבֵ֣ית יִשְׂרָאֵ֑ל")
