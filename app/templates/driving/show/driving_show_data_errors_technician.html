@@ -16,6 +16,8 @@
       <th>מאמן</th>
       <th>סוג תא</th>
       <th>תאריך</th>
+      <th>שעה</th>
+      <th>שם מזהה</th>
       <th>סוג התקלה</th>
       <th>תפעול התקלה</th>
       <th>באיזה מחשב</th>
@@ -23,6 +25,8 @@
       <th>עיתוי התקלה</th>
       <th>זמן השבתה</th>
       <th>טופל \ לא טופל</th>
+      <th>שם המטפל</th>
+      <th>שעת טיפול</th>
     </tr>
   </thead>
   <tbody>
@@ -31,19 +35,25 @@
       <td>שיזפון</td>
       <td>תא 1 סימן 4</td>
       <td>2021-12-07</td>
+      <td>11:00</td>
+      <td>רעות</td>
       <td>נלהצרא</td>
       <td>בלה בלה בלה</td>
       <td>כגעגע</td>
       <td>מערכת</td>
       <td>לא אימון</td>
       <td>00:00</td>
-      <td>V</td>
+      <td>X</td>
+      <td>מתי הטכנאי</td>
+      <td>15:16</td>
     </tr>
     <tr>
       <th>1</th>
       <td>שיזפון</td>
       <td>תא 1 סימן 4</td>
       <td>2021-12-07</td>
+      <td>12:00</td>
+      <td>שרה</td>
       <td>עגכעכגעכעקר</td>
       <td>עגכעכגעכעקר</td>
       <td>הנגכה34</td>
@@ -51,12 +61,16 @@
       <td>אימון</td>
       <td>00:01</td>
       <td>V</td>
+      <td>שמעון המפעיל אמרל</td>
+      <td>13:00</td>
     </tr>
     <tr>
       <th>2</th>
       <td>ביסל"ח</td>
       <td>תא 2 אכזרית</td>
       <td>2021-12-07</td>
+      <td>10:00</td>
+      <td>שני</td>
       <td>עגכעכגעכעקר</td>
       <td>עגכעכגעכעקר</td>
       <td>כעכגע543</td>
@@ -64,12 +78,16 @@
       <td>אימון</td>
       <td>00:05</td>
       <td>X</td>
+      <td>NaN</td>
+      <td>NaN</td>
     </tr>
     <tr>
       <th>3</th>
       <td>ביסל"ח</td>
       <td>תא 1 סימן 4</td>
       <td>2021-11-30</td>
+      <td>14:10</td>
+      <td>דנית</td>
       <td>נלהצרא</td>
       <td>עגכעכגעכעקר</td>
       <td>כעכגע543</td>
@@ -77,15 +95,22 @@
       <td>לא אימון</td>
       <td>00:00</td>
       <td>V</td>
+      <td>רן המפעיל אמרל</td>
+      <td>15:10</td>
     </tr>
   </tbody>
 </table>
 <br>
 
-<form method="POST">
-    <button type="sumbit" class="btn btn-outline-secondary">פתיחת דוח באקסל</button>
-</form>
-</div>   
+<div class="container">
+  <div class="col form-group" style="text-align: center;">
+    <form method="POST">
+        <button type="sumbit" class="btn btn-outline-success" name="options" value="option_add">הוספת תקלה לא יודע עוד לאיזה דף להפנות</button>
+        <button type="sumbit" class="btn btn-outline-danger" name="options" value="option_edit">עריכת שורה</button>
+        <button type="sumbit" class="btn btn-outline-secondary" name="options" value="option_csv">פתיחת דוח באקסל</button>
+    </form>
+  </div>
+</div>
 </form>
 </section>
 <script type="text/javascript">

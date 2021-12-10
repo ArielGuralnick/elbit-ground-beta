@@ -1,5 +1,6 @@
 from flask import render_template, flash, redirect, url_for
 import pandas as pd
+import time
 
 async def mars_edit_work_plan_mafil_Handler(request):
     if request.method == 'GET':       
@@ -40,11 +41,34 @@ async def mars_edit_work_plan_mafil_Handler(request):
 </div>
 </div>
 </div>
+
+<script>
+    function fireDeletAlert() {
+        Swal.fire({
+            position: 'center',
+            icon: 'success',
+            title: '!היעד נמחק בהצלחה',
+            showConfirmButton: false,
+            timer: 1500
+        })
+    }      
+</script>
+<script>
+    function fireSweetAlert() {
+        Swal.fire({
+            position: 'center',
+            icon: 'success',
+            title: '!היעד עודכן בהצלחה',
+            showConfirmButton: false,
+            timer: 1500
+        })
+    }      
+</script>
 <div class="container">
 <div class="col form-group" style="text-align: center;">
   <form method="POST">
-    <button type="sumbit" name="options" value="option_edit" class="btn btn-outline-success">עדכן</button>
-    <button type="sumbit" name="options" value="option_delet" class="btn btn-outline-danger">מחיקה</button>
+    <button type="sumbit" name="options" value="option_edit" class="btn btn-outline-success" onclick="fireSweetAlert()">עדכן</button>
+    <button type="sumbit" name="options" value="option_delet" class="btn btn-outline-danger" onclick="fireDeletAlert()">מחיקה</button>
   </form>
 </div>
 </div>'''+ '\n' + r"</div>" + '\n' + r"</form>" + '\n' + r"</section>" + '\n' + r"</body>" + '\n' + r"{% endblock %}"])
@@ -52,6 +76,7 @@ async def mars_edit_work_plan_mafil_Handler(request):
       return render_template('mars/edit/mars_edit_work_plan_mafil.html', data = achievements)
   
     elif request.method == 'POST':
+      time.sleep(1.5)
       if request.form.get('options') == 'option_edit':
         achievements = request.form.get('achievements')
         status = request.form.get('status')

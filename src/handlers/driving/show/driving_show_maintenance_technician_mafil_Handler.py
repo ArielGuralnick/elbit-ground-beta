@@ -5,7 +5,7 @@ import pandas as pd
 async def driving_show_maintenance_technician_mafil_Handler(request):
 
     if request.method == 'GET':
-        data = pd.read_csv('elbit-ground-beta/app/db/moreshet/maintenance.csv')
+        data = pd.read_csv('elbit-ground-beta/app/db/driving/maintenance.csv')
         dphtml = (r'''
 {% extends 'layout.html' %}
 {% block content %}
@@ -18,10 +18,47 @@ async def driving_show_maintenance_technician_mafil_Handler(request):
 <body style="background-color: rgb(211, 218, 218);">
 <section id="show_data_errors" dir="rtl" lang="he">''')
         dphtml += data.to_html(classes = "table table-hover", border=0, index=False)
-        with open('elbit-ground-beta/app/templates/moreshet/show/moreshet_show_maintenance_technician_mafil.html','w', encoding='utf-8-sig') as f:
+        with open('elbit-ground-beta/app/templates/driving/show/driving_show_maintenance_technician_mafil.html','w', encoding='utf-8-sig') as f:
             f.writelines([dphtml + '\n' + r'<br>' + '\n' + r"</form>" + '\n' + r"</section>" + '\n' +
             r'''<section id="insertError" dir="rtl" lang="he">
     <form action="" method="post">
+    <div class = "row">
+        <div class="col form-group">
+          <label for="">מאמן</label>
+          <select class="form-control" name="type_of_simulator">
+            <option>שיזפון</option>
+            <option>בהל"צ</option>
+            <option>ביסל"ח</option>
+            <option>צאלים</option>
+          </select>
+          <br>
+        </div>
+        <div class="col form-group">
+            <label for="">סוג תא</label>
+            <select class="form-control" name="type_of_cell">
+              <optgroup label="שיזפון">
+                <option>תא 1 סימן 4</option>
+                <option>תא 2 סימן 4</option>
+                <option>תא 3 סימן 4</option>
+              </optgroup>
+              <optgroup label="בהלצ">
+                <option>תא 1 פומה</option>
+                <option>תא 2 פומה</option>
+                <option>תא 2 נמרה</option>
+              </optgroup>
+              <optgroup label="ביסלח">
+                <option>תא 1 נמר</option>
+                <option>תא 2 נמר</option>
+                <option>תא 2 אכזרית</option>
+              </optgroup>
+              <optgroup label="צאלים">
+                <option>עמדה 1 סימן 4</option>
+                <option>עמדה 1 סימן 3</option>
+                <option>עמדה קבועה סימן 3</option>
+              </optgroup>
+            </select>
+        </div>
+    </div>
     <div class = "row">
         <div class="col form-group">
           <label for="" class="labelSettings">תאריך</label>
@@ -55,10 +92,12 @@ async def driving_show_maintenance_technician_mafil_Handler(request):
 </body>
 {% endblock %}'''])
             f.close()
-        return render_template('moreshet/show/moreshet_show_maintenance_technician_mafil.html')
+        return render_template('driving/show/driving_show_maintenance_technician_mafil.html')
 
     elif request.method == 'POST':
         if request.form.get("options") == 'option_add':
+            type_of_simulator = request.form.get('type_of_simulator')
+            type_of_cell = request.form.get('type_of_cell')
             date_upload = request.form.get('date_upload')
             disparity = request.form.get('disparity')
             status = request.form.get('status')
@@ -66,12 +105,12 @@ async def driving_show_maintenance_technician_mafil_Handler(request):
             if date_upload == "" or disparity == "" :
                 flash(f'!נא למלא את כל הערכים', category="danger")
             else:
-                field_content = ['תאריך','מה הפער','טופל / לא טופל']
-                data_errors = pd.DataFrame([{'תאריך' : date_upload, 'מה הפער' : disparity, 'טופל / לא טופל':status}], columns=field_content)
-                with open('elbit-ground-beta/app/db/moreshet/maintenance.csv', 'a', newline='', encoding='utf-8-sig') as file:
+                field_content = ['מאמן','סוג תא','תאריך','מה הפער','טופל / לא טופל']
+                data_errors = pd.DataFrame([{'מאמן' : type_of_simulator, 'סוג תא' : type_of_cell,'תאריך' : date_upload, 'מה הפער' : disparity, 'טופל / לא טופל':status}], columns=field_content)
+                with open('elbit-ground-beta/app/db/driving/maintenance.csv', 'a', newline='', encoding='utf-8-sig') as file:
                     data_errors.to_csv(file, index=False, na_rep='N/A',header=file.tell()==0, encoding='utf-8-sig')
-                    flash(f'!תיעוד הפער בהצלחה', category="success")
-            return redirect(url_for('moreshet_show_maintenance_technician_mafil'))
+                    flash(f'!הפער תועד בהצלחה', category="success")
+            return redirect(url_for('driving_show_maintenance_technician_mafil'))
 
         elif request.form.get("options") == 'option_edit':
-            return redirect(url_for('moreshet_edit_maintenance_technician_mafil'))
+            return redirect(url_for('driving_edit_maintenance_technician_mafil'))

@@ -7,7 +7,6 @@ async def insert_activity_Handler(request):
     if request.method == 'GET':
         return render_template('skyLark/insert/insert_activity.html')
     elif request.method == 'POST':
-        print(request.form.to_dict())
         position_upload = request.form.get('position_upload')
         number_training = request.form.get('number_training')
         date_upload = request.form.get('date_upload')
@@ -23,5 +22,5 @@ async def insert_activity_Handler(request):
         'שם המורידה' : name_downloader, 'שעת סיום' : time_download}], columns=field_content)
         with open('elbit-ground-beta/app/db/skyLark/data_activity.csv', 'a', newline='', encoding='utf-8-sig') as file:
             data_activity.to_csv(file, index=False, na_rep='N/A',header=file.tell()==0, encoding = "utf-8-sig")
-            flash(f'תיעוד האימון נקלט בהצלחה!', category="success")
+            flash(f'התיעוד נשלח בהצלחה!', category="success")
         return redirect(url_for('skyLark_instructor'))

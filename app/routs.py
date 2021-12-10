@@ -9,7 +9,7 @@ from src.handlers.skyLark.literature_Handler import literature_Handler
 from src.handlers.order_training_Handler import order_training_Handler
 from src.handlers.skyLark.pdf.pdf_safrot_mafil_Handler import pdf_safrot_mafil_Handler
 from src.handlers.skyLark.pdf.pdf_safrot_simulator_Handler import pdf_safrot_simulator_Handler
-from src.handlers.skyLark.pdf.pdf_solutions_Handler import pdf_solutions_Handler
+from src.handlers.skyLark.pdf.skyLark_pdf_solutions_Handler import skyLark_pdf_solutions_Handler
 from src.handlers.skyLark.show.show_data_errors_technician_Handler import show_data_errors_technician_Handler
 from src.handlers.skyLark.show.show_data_errors_mafil_Handler import show_data_errors_mafil_Handler
 from src.handlers.skyLark.edit.edit_data_errors_mafil_Handler import edit_data_errors_mafil_Handler
@@ -31,6 +31,7 @@ from src.handlers.manager.show.show_training_days_Handler import show_training_d
 from src.handlers.manager.manager_feedbacks_Handler import manager_feedbacks_Handler
 
 from src.handlers.mars.mars_Handler import mars_Handler
+from src.handlers.mars.pdf.mars_pdf_solutions_Handler import mars_pdf_solutions_Handler
 from src.handlers.mars.mars_instructor_Handler import mars_instructor_Handler
 from src.handlers.mars.mars_technician_Handler import mars_technician_Handler
 from src.handlers.mars.mars_mafil_Handler import mars_mafil_Handler
@@ -52,6 +53,7 @@ from src.handlers.mars.edit.mars_edit_work_plan_mafil_Handler import mars_edit_w
 
 
 from src.handlers.moreshet.moreshet_Handler import moreshet_Handler
+from src.handlers.moreshet.pdf.moreshet_pdf_solutions_Handler import moreshet_pdf_solutions_Handler
 from src.handlers.moreshet.moreshet_instructor_Handler import moreshet_instructor_Handler
 from src.handlers.moreshet.moreshet_technician_Handler import moreshet_technician_Handler
 from src.handlers.moreshet.moreshet_mafil_Handler import moreshet_mafil_Handler
@@ -72,6 +74,8 @@ from src.handlers.moreshet.edit.moreshet_edit_data_errors_mafil_Handler import m
 
 
 from src.handlers.driving.driving_Handler import driving_Handler
+from src.handlers.driving.insert.driving_order_training_Handler import driving_order_training_Handler
+from src.handlers.driving.pdf.driving_pdf_solutions_Handler import driving_pdf_solutions_Handler
 from src.handlers.driving.driving_instructor_Handler import driving_instructor_Handler
 from src.handlers.driving.driving_technician_Handler import driving_technician_Handler
 from src.handlers.driving.driving_mafil_Handler import driving_mafil_Handler
@@ -85,7 +89,27 @@ from src.handlers.driving.insert.driving_insert_activity_Handler import driving_
 from src.handlers.driving.show.driving_show_data_activity_Handler import driving_show_data_activity_Handler
 from src.handlers.driving.show.driving_show_data_errors_technician_Handler import driving_show_data_errors_technician_Handler
 from src.handlers.driving.show.driving_show_data_errors_mafil_Handler import driving_show_data_errors_mafil_Handler
-from src.handlers.driving.edit.driving_edit_data_errors_mafil_Handler import driving_edit_data_errors_mafil_Handler
+from src.handlers.driving.edit.driving_edit_data_errors_Handler import driving_edit_data_errors_Handler
+
+'''
+from src.handlers.tzevet.tzevet_Handler import tzevet_Handler
+from src.handlers.tzevet.insert.tzevet_order_training_Handler import tzevet_order_training_Handler
+from src.handlers.tzevet.pdf.tzevet_pdf_solutions_Handler import tzevet_pdf_solutions_Handler
+from src.handlers.tzevet.tzevet_instructor_Handler import tzevet_instructor_Handler
+from src.handlers.tzevet.tzevet_technician_Handler import tzevet_technician_Handler
+from src.handlers.tzevet.tzevet_mafil_Handler import tzevet_mafil_Handler
+from src.handlers.tzevet.insert.tzevet_feedback_Handler import tzevet_feedback_Handler
+from src.handlers.tzevet.show.tzevet_show_maintenance_technician_mafil_Handler import tzevet_show_maintenance_technician_mafil_Handler
+from src.handlers.tzevet.edit.tzevet_edit_maintenance_technician_mafil_Handler import tzevet_edit_maintenance_technician_mafil_Handler
+from src.handlers.tzevet.show.tzevet_show_warehouse_inventory_Handler import tzevet_show_warehouse_inventory_Handler
+from src.handlers.tzevet.edit.tzevet_edit_warehouse_inventory_Handler import tzevet_edit_warehouse_inventory_Handler
+from src.handlers.tzevet.insert.tzevet_insert_error_Handler import tzevet_insert_error_Handler
+from src.handlers.tzevet.insert.tzevet_insert_activity_Handler import tzevet_insert_activity_Handler
+from src.handlers.tzevet.show.tzevet_show_data_activity_Handler import tzevet_show_data_activity_Handler
+from src.handlers.tzevet.show.tzevet_show_data_errors_technician_Handler import tzevet_show_data_errors_technician_Handler
+from src.handlers.tzevet.show.tzevet_show_data_errors_mafil_Handler import tzevet_show_data_errors_mafil_Handler
+from src.handlers.tzevet.edit.tzevet_edit_data_errors_Handler import tzevet_edit_data_errors_Handler
+'''
 
 
 @app.route("/", methods=['GET','POST'])
@@ -158,8 +182,8 @@ async def edit_work_plan_mafil():
 
 
 @app.route('/user/skyLark_instructor/pdf-solutions')
-async def pdf_solutions():
-    return await pdf_solutions_Handler(request)
+async def skyLark_pdf_solutions():
+    return await skyLark_pdf_solutions_Handler(request)
 
 
 @app.route('/show_data_errors_technician', methods=['GET','POST'])
@@ -230,6 +254,11 @@ async def manager_feedbacks():
 
 
 # מאמן מרס
+
+# מסמכי PDF
+@app.route('/user/mars_instructor/pdf-solutions')
+async def mars_pdf_solutions():
+    return await mars_pdf_solutions_Handler(request)
 
 # ניתובים לבחירת משתמש, הדרכה, הפעלה ואחזקה
 @app.route("/mars", methods=['GET','POST'])
@@ -324,6 +353,11 @@ async def mars_edit_work_plan_mafil():
 
 # מאמן מורשת
 
+# מסמכי PDF
+@app.route('/user/moreshet_instructor/pdf-solutions')
+async def moreshet_pdf_solutions():
+    return await moreshet_pdf_solutions_Handler(request)
+
 # ניתובים לבחירת משתמש, הדרכה, הפעלה ואחזקה
 @app.route("/moreshet", methods=['GET','POST'])
 async def moreshet():
@@ -415,6 +449,16 @@ async def moreshet_edit_data_errors_mafil():
 
 # מאמני נהיגה
 
+# הזמנת ימי אימון נהיגה
+@app.route('/driving_order_training', methods=['GET','POST'])
+async def driving_order_training():
+    return await driving_order_training_Handler(request)
+
+# מסמכי PDF
+@app.route('/user/driving_instructor/pdf-solutions')
+async def driving_pdf_solutions():
+    return await driving_pdf_solutions_Handler(request)
+
 # ניתובים לבחירת משתמש, הדרכה, הפעלה ואחזקה
 @app.route("/driving", methods=['GET','POST'])
 async def driving():
@@ -487,6 +531,100 @@ async def driving_show_data_errors_mafil():
 async def driving_show_data_errors_technician():
     return await driving_show_data_errors_technician_Handler(request)
 
-@app.route("/driving_edit_data_errors_mafil", methods=['GET','POST'])
-async def driving_edit_data_errors_mafil():
-    return await driving_edit_data_errors_mafil_Handler(request)
+@app.route("/driving_edit_data_errors", methods=['GET','POST'])
+async def driving_edit_data_errors():
+    return await driving_edit_data_errors_Handler(request)
+
+
+
+'''
+
+# מאמני צוות
+
+# הזמנת ימי אימון צוות
+@app.route('/tzevet_order_training', methods=['GET','POST'])
+async def tzevet_order_training():
+    return await tzevet_order_training_Handler(request)
+
+# מסמכי PDF
+@app.route('/user/tzevet_instructor/pdf-solutions')
+async def tzevet_pdf_solutions():
+    return await tzevet_pdf_solutions_Handler(request)
+
+# ניתובים לבחירת משתמש, הדרכה, הפעלה ואחזקה
+@app.route("/tzevet", methods=['GET','POST'])
+async def tzevet():
+    return await tzevet_Handler(request)
+
+@app.route("/tzevet_instructor", methods=['GET','POST'])
+async def tzevet_instructor():
+    return await tzevet_instructor_Handler(request)
+
+@app.route("/tzevet_technician", methods=['GET','POST'])
+async def tzevet_technician():
+    return await tzevet_technician_Handler(request)
+
+@app.route("/tzevet_mafil", methods=['GET','POST'])
+async def tzevet_mafil():
+    return await tzevet_mafil_Handler(request)
+
+
+
+
+@app.route("/tzevet_feedback", methods=['GET','POST'])
+async def tzevet_feedback():
+    return await tzevet_feedback_Handler(request)
+
+@app.route("/tzevet_show_data_activity", methods=['GET','POST'])
+async def tzevet_show_data_activity():
+    return await tzevet_show_data_activity_Handler(request)
+
+# הפערים בין המפעיל לטכנאי
+
+@app.route("/tzevet_show_maintenance_technician_mafil", methods=['GET','POST'])
+async def tzevet_show_maintenance_technician_mafil():
+    return await tzevet_show_maintenance_technician_mafil_Handler(request)
+
+@app.route("/tzevet_edit_maintenance_technician_mafil", methods=['GET','POST'])
+async def tzevet_edit_maintenance_technician_mafil():
+    return await tzevet_edit_maintenance_technician_mafil_Handler(request)
+
+
+# עריכה וצפייה מחסן נהיגה 
+
+@app.route("/tzevet_edit_warehouse_inventory", methods=['GET','POST'])
+async def tzevet_edit_warehouse_inventory():
+    return await tzevet_edit_warehouse_inventory_Handler(request)
+
+@app.route("/tzevet_show_warehouse_inventory", methods=['GET','POST'])
+async def tzevet_show_warehouse_inventory():
+    return await tzevet_show_warehouse_inventory_Handler(request)
+
+
+# הכנסה תקלה ופעילות
+
+@app.route("/tzevet_insert_error", methods=['GET','POST'])
+async def tzevet_insert_error():
+    return await tzevet_insert_error_Handler(request)
+
+@app.route("/tzevet_insert_activity", methods=['GET','POST'])
+async def tzevet_insert_activity():
+    return await tzevet_insert_activity_Handler(request)
+
+
+
+# צפייה בתקלות טכנאי וצפייה ועריכה תקלות מפעיל
+
+@app.route("/tzevet_show_data_errors_mafil", methods=['GET','POST'])
+async def tzevet_show_data_errors_mafil():
+    return await tzevet_show_data_errors_mafil_Handler(request)
+
+@app.route("/tzevet_show_data_errors_technician", methods=['GET','POST'])
+async def tzevet_show_data_errors_technician():
+    return await tzevet_show_data_errors_technician_Handler(request)
+
+@app.route("/tzevet_edit_data_errors", methods=['GET','POST'])
+async def tzevet_edit_data_errors():
+    return await tzevet_edit_data_errors_Handler(request)
+
+    '''

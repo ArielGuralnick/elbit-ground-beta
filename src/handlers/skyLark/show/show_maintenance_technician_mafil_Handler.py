@@ -1,5 +1,6 @@
 from flask import render_template, redirect, url_for,flash
 import pandas as pd
+import time
 
 
 async def show_maintenance_technician_mafil_Handler(request):
@@ -44,14 +45,27 @@ async def show_maintenance_technician_mafil_Handler(request):
     </div>
 </section>
 
+<!-- Alert Message after clicking on sumbit.-->
+<script>
+  function fireSweetAlert() {
+    Swal.fire({
+              position: 'center',
+              icon: 'success',
+              title: '!הפער התווסף בהצלחה',
+              showConfirmButton: false,
+              timer: 1500
+            })
+      }      
+</script>
 <div class="container">
-<div class="col form-group" style="text-align: center;">
+  <div class="col form-group" style="text-align: center;">
     <form method="POST">
-        <button type="sumbit" class="btn btn-outline-success" name="options" value="option_add">הוספת פער</button>
+        <button type="sumbit" class="btn btn-outline-success" name="options" value="option_add" onclick="fireSweetAlert()">הוספת פער</button>
         <button type="sumbit" class="btn btn-outline-danger" name="options" value="option_edit">עריכת שורה</button>
     </form>
+  </div>
 </div>
-</div>
+
 </body>
 {% endblock %}'''])
             f.close()
@@ -66,11 +80,13 @@ async def show_maintenance_technician_mafil_Handler(request):
             if date_upload == "" or disparity == "" :
                 flash(f'!נא למלא את כל הערכים', category="danger")
             else:
+                
+                time.sleep(1.5)
                 field_content = ['תאריך','מה הפער','טופל / לא טופל']
                 data_errors = pd.DataFrame([{'תאריך' : date_upload, 'מה הפער' : disparity, 'טופל / לא טופל':status}], columns=field_content)
                 with open('elbit-ground-beta/app/db/skyLark/maintenance.csv', 'a', newline='', encoding='utf-8-sig') as file:
                     data_errors.to_csv(file, index=False, na_rep='N/A',header=file.tell()==0, encoding='utf-8-sig')
-                    flash(f'!תיעוד הפער בהצלחה', category="success")
+                    flash(f'!הפער תועד בהצלחה', category="success")
             return redirect(url_for('show_maintenance_technician_mafil'))
 
         elif request.form.get("options") == 'option_edit':

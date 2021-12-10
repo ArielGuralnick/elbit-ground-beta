@@ -1,0 +1,104 @@
+﻿
+{% extends 'layout.html' %}
+{% block content %}
+<section id="title" style="background-color: rgb(244, 248, 248); border-bottom: 3px solid var(--black);" >
+<div>
+  <a href="/"><img class="Logo" src="static/images/logo.png" alt="logo-img"></a>
+  <h1>פערי מאמן</h1>
+</div>
+</section>
+<body style="background-color: rgb(211, 218, 218);">
+<section id="show_data_errors" dir="rtl" lang="he"><table border="0" class="dataframe table table-hover">
+  <thead>
+    <tr style="text-align: right;">
+      <th>מאמן</th>
+      <th>סוג תא</th>
+      <th>תאריך</th>
+      <th>מה הפער</th>
+      <th>טופל / לא טופל</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>צאלים</td>
+      <td>עמדה 1 סימן 3</td>
+      <td>2021-12-07</td>
+      <td>חסר כבל HDMI בתא הזה</td>
+      <td>V</td>
+    </tr>
+  </tbody>
+</table>
+<br>
+</form>
+</section>
+<section id="insertError" dir="rtl" lang="he">
+    <form action="" method="post">
+    <div class = "row">
+        <div class="col form-group">
+          <label for="">מאמן</label>
+          <select class="form-control" name="type_of_simulator">
+            <option>שיזפון</option>
+            <option>בהל"צ</option>
+            <option>ביסל"ח</option>
+            <option>צאלים</option>
+          </select>
+          <br>
+        </div>
+        <div class="col form-group">
+            <label for="">סוג תא</label>
+            <select class="form-control" name="type_of_cell">
+              <optgroup label="שיזפון">
+                <option>תא 1 סימן 4</option>
+                <option>תא 2 סימן 4</option>
+                <option>תא 3 סימן 4</option>
+              </optgroup>
+              <optgroup label="בהלצ">
+                <option>תא 1 פומה</option>
+                <option>תא 2 פומה</option>
+                <option>תא 2 נמרה</option>
+              </optgroup>
+              <optgroup label="ביסלח">
+                <option>תא 1 נמר</option>
+                <option>תא 2 נמר</option>
+                <option>תא 2 אכזרית</option>
+              </optgroup>
+              <optgroup label="צאלים">
+                <option>עמדה 1 סימן 4</option>
+                <option>עמדה 1 סימן 3</option>
+                <option>עמדה קבועה סימן 3</option>
+              </optgroup>
+            </select>
+        </div>
+    </div>
+    <div class = "row">
+        <div class="col form-group">
+          <label for="" class="labelSettings">תאריך</label>
+          <input type="date" name="date_upload" class="form-control" min="2021-01-01">
+          <br>
+        </div>
+        <div class="col form-group">
+          <label for="" class="labelSettings">מה הפער</label>
+          <textarea class="form-control" name= "disparity"  rows="2" placeholder="אנא הסבר"></textarea>
+          <br>
+        </div>
+        <div class="col form-group">
+          <label for="">טופל \ לא טופל</label>
+          <select class="form-control" name = "status">
+            <option>V</option>
+            <option>X</option>
+          </select>
+          <br>
+        </div>
+    </div>
+</section>
+
+<div class="container">
+<div class="col form-group" style="text-align: center;">
+    <form method="POST">
+        <button type="sumbit" class="btn btn-outline-success" name="options" value="option_add">הוספת פער</button>
+        <button type="sumbit" class="btn btn-outline-danger" name="options" value="option_edit">עריכת שורה</button>
+    </form>
+</div>
+</div>
+</body>
+{% endblock %}

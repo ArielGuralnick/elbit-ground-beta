@@ -1,5 +1,6 @@
 from flask import render_template, flash, redirect, url_for
 import pandas as pd
+import time
 
 async def edit_warehouse_inventory_Handler(request):
     if request.method == 'GET':       
@@ -60,11 +61,34 @@ async def edit_warehouse_inventory_Handler(request):
 </div>
 </div>
 </div>
+
+<script>
+    function fireDeletAlert() {
+        Swal.fire({
+            position: 'center',
+            icon: 'success',
+            title: '!הפריט נמחק בהצלחה',
+            showConfirmButton: false,
+            timer: 1500
+        })
+    }      
+</script>
+<script>
+    function fireSweetAlert() {
+        Swal.fire({
+            position: 'center',
+            icon: 'success',
+            title: '!הפריט עודכן בהצלחה',
+            showConfirmButton: false,
+            timer: 1500
+        })
+    }      
+</script>
 <div class="container">
 <div class="col form-group" style="text-align: center;">
   <form method="POST">
-    <button type="sumbit" name="options" value="option_edit" class="btn btn-outline-success">עדכן</button>
-    <button type="sumbit" name="options" value="option_delet" class="btn btn-outline-danger">מחיקה</button>
+    <button type="sumbit" name="options" value="option_edit" class="btn btn-outline-success" onclick="fireSweetAlert()">עדכן</button>
+    <button type="sumbit" name="options" value="option_delet" class="btn btn-outline-danger" onclick="fireDeletAlert()">מחיקה</button>
   </form>
 </div>
 </div>'''+ '\n' + r"</div>" + '\n' + r"</form>" + '\n' + r"</section>" + '\n' + r"</body>" + '\n' + r"{% endblock %}"])
@@ -72,6 +96,7 @@ async def edit_warehouse_inventory_Handler(request):
       return render_template('skyLark/edit/edit_warehouse_inventory.html', data = type_of_item)
   
     elif request.method == 'POST':
+      time.sleep(1.5)
       if request.form.get('options') == 'option_edit':
         type_of_item = request.form.get('type_of_item')
         quantity = request.form.get('quantity')

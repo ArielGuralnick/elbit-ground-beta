@@ -1,9 +1,10 @@
 from flask import render_template, flash, redirect, url_for
 import pandas as pd
+import time 
 
 async def driving_edit_maintenance_technician_mafil_Handler(request):
     if request.method == 'GET':       
-      data = pd.read_csv('elbit-ground-beta/app/db/moreshet/maintenance.csv')
+      data = pd.read_csv('elbit-ground-beta/app/db/driving/maintenance.csv')
       disparity = data["מה הפער"]
 
       dphtml = (r'''
@@ -18,7 +19,7 @@ async def driving_edit_maintenance_technician_mafil_Handler(request):
 <body style="background-color: rgb(211, 218, 218);">
 <section id="show_data_errors" dir="rtl" lang="he">
 <form action="" method="post">''')       
-      with open('elbit-ground-beta/app/templates/moreshet/edit/moreshet_edit_maintenance_mafil.html','w', encoding='utf-8-sig') as f:
+      with open('elbit-ground-beta/app/templates/driving/edit/driving_edit_maintenance_mafil.html','w', encoding='utf-8-sig') as f:
         f.writelines([dphtml + '\n' + r'''
 <div class="container">
 <div class="row">
@@ -39,37 +40,61 @@ async def driving_edit_maintenance_technician_mafil_Handler(request):
 </div>
 </div>
 </div>
+
+<script>
+    function fireDeletAlert() {
+        Swal.fire({
+            position: 'center',
+            icon: 'success',
+            title: '!הפער נמחק בהצלחה',
+            showConfirmButton: false,
+            timer: 1500
+        })
+    }      
+</script>
+<script>
+    function fireSweetAlert() {
+        Swal.fire({
+            position: 'center',
+            icon: 'success',
+            title: '!הפער עודכן בהצלחה',
+            showConfirmButton: false,
+            timer: 1500
+        })
+    }      
+</script>
 <div class="container">
 <div class="col form-group" style="text-align: center;">
   <form method="POST">
-    <button type="sumbit" name="options" value="option_edit" class="btn btn-outline-success">עדכן</button>
-    <button type="sumbit" name="options" value="option_delet" class="btn btn-outline-danger">מחיקה</button>
+    <button type="sumbit" name="options" value="option_edit" class="btn btn-outline-success" onclick="fireSweetAlert()">עדכן</button>
+    <button type="sumbit" name="options" value="option_delet" class="btn btn-outline-danger" onclick="fireDeletAlert()">מחיקה</button>
   </form>
 </div>
 </div>'''+ '\n' + r"</div>" + '\n' + r"</form>" + '\n' + r"</section>" + '\n' + r"</body>" + '\n' + r"{% endblock %}"])
         f.close()
-      return render_template('moreshet/edit/moreshet_edit_maintenance_mafil.html', data = disparity)
+      return render_template('driving/edit/driving_edit_maintenance_mafil.html', data = disparity)
   
     elif request.method == 'POST':
+      time.sleep(1.5)
       if request.form.get('options') == 'option_edit':
         disparity = request.form.get('disparity')
         status = request.form.get('status')
-        data = pd.read_csv('elbit-ground-beta/app/db/moreshet/maintenance.csv')
+        data = pd.read_csv('elbit-ground-beta/app/db/driving/maintenance.csv')
         row_to_edit = data.index[data['מה הפער'] == disparity]
         data.loc[row_to_edit, 'טופל / לא טופל'] = status
-        with open('elbit-ground-beta/app/db/moreshet/maintenance.csv', 'w', newline='', encoding='utf-8-sig') as file:
+        with open('elbit-ground-beta/app/db/driving/maintenance.csv', 'w', newline='', encoding='utf-8-sig') as file:
             data.to_csv(file, index=False, na_rep='N/A',header=file.tell()==0, encoding='utf-8-sig')
             flash(f'!הפער עודכן בהצלחה', category="success")
-        return redirect(url_for('moreshet_show_maintenance_technician_mafil'))
+        return redirect(url_for('driving_show_maintenance_technician_mafil'))
       
       
       if request.form.get('options') == 'option_delet':
         disparity = request.form.get('disparity')
-        data = pd.read_csv('elbit-ground-beta/app/db/moreshet/maintenance.csv')
+        data = pd.read_csv('elbit-ground-beta/app/db/driving/maintenance.csv')
         row_to_delet = data.index[data['מה הפער'] == disparity]
         data.drop(row_to_delet, inplace=True, axis=0)
       
-        with open('elbit-ground-beta/app/db/moreshet/maintenance.csv', 'w', newline='', encoding='utf-8-sig') as file:
+        with open('elbit-ground-beta/app/db/driving/maintenance.csv', 'w', newline='', encoding='utf-8-sig') as file:
             data.to_csv(file, index=False, na_rep='N/A',header=file.tell()==0, encoding='utf-8-sig')
             flash(f'הפער נמחק בהצלחה!', category="success")
         return redirect(url_for('driving_show_maintenance_technician_mafil'))

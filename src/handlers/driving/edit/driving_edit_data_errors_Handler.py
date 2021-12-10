@@ -1,8 +1,9 @@
 from flask import render_template, flash, redirect, url_for
 import pandas as pd
 from pandas.core.indexes.base import Index
+import time
 
-async def driving_edit_data_errors_mafil_Handler(request):
+async def driving_edit_data_errors_Handler(request):
     if request.method == 'GET':       
       data = pd.read_csv('elbit-ground-beta/app/db/driving/data_errors.csv')
       error = data.index
@@ -19,7 +20,7 @@ async def driving_edit_data_errors_mafil_Handler(request):
 <body style="background-color: rgb(211, 218, 218);">
 <section id="show_data_errors" dir="rtl" lang="he">
 <form action="" method="post">''')       
-      with open('elbit-ground-beta/app/templates/driving/edit/driving_edit_data_errors_mafil.html','w', encoding='utf-8-sig') as f:
+      with open('elbit-ground-beta/app/templates/driving/edit/driving_edit_data_errors.html','w', encoding='utf-8-sig') as f:
         f.writelines([dphtml + '\n' + r'''
 <div class="col form-group">
 <label>שים לב ! </label>
@@ -63,17 +64,29 @@ async def driving_edit_data_errors_mafil_Handler(request):
   <div class="col form-group" style="text-align: center;">
     <form method="POST">
       <button type="sumbit" name="options" value="option_edit" class="btn btn-outline-success">עדכן</button>
-      <button type="sumbit" name="options" value="option_delet" class="btn btn-outline-danger">מחיקת שורה</button>
+      <button type="sumbit" name="options" value="option_delet" class="btn btn-outline-danger" onclick="fireDeletAlert()">מחיקת שורה</button>
     </form>
   </div>
 </div>
+
+<script>
+    function fireDeletAlert() {
+        Swal.fire({
+            position: 'center',
+            icon: 'success',
+            title: '!התקלה נמחקה בהצלחה',
+            showConfirmButton: false,
+            timer: 1500
+        })
+    }      
+</script>
 </div>
 </form>
 </section>
 </body>
 {% endblock %}'''])
         f.close()
-      return render_template('driving/edit/driving_edit_data_errors_mafil.html', data = error)
+      return render_template('driving/edit/driving_edit_data_errors.html', data = error)
   
     elif request.method == 'POST':
       if request.form.get('options') == 'option_edit':
@@ -92,6 +105,7 @@ async def driving_edit_data_errors_mafil_Handler(request):
       
       
       if request.form.get('options') == 'option_delet':
+        time.sleep(1.5)
         error = int(request.form.get('error'))
         data = pd.read_csv('elbit-ground-beta/app/db/driving/data_errors.csv')
         row_to_delet = data.index[error]

@@ -70,7 +70,7 @@ async def moreshet_show_maintenance_technician_mafil_Handler(request):
                 data_errors = pd.DataFrame([{'תאריך' : date_upload, 'מה הפער' : disparity, 'טופל / לא טופל':status}], columns=field_content)
                 with open('elbit-ground-beta/app/db/moreshet/maintenance.csv', 'a', newline='', encoding='utf-8-sig') as file:
                     data_errors.to_csv(file, index=False, na_rep='N/A',header=file.tell()==0, encoding='utf-8-sig')
-                    flash(f'!תיעוד הפער בהצלחה', category="success")
+                    flash(f'!הפער תועד בהצלחה', category="success")
             return redirect(url_for('moreshet_show_maintenance_technician_mafil'))
 
         elif request.form.get("options") == 'option_edit':

@@ -1,0 +1,66 @@
+﻿
+{% extends 'layout.html' %}
+{% block content %}
+<section id="title" style="background-color: rgb(244, 248, 248); border-bottom: 3px solid var(--black);" >
+<div>
+  <a href="/"><img class="Logo" src="static/images/logo.png" alt="logo-img"></a>
+  <h1>עריכת מחסן נהיגה</h1>
+</div>
+</section>
+<body style="background-color: rgb(211, 218, 218);">
+<section id="show_data_errors" dir="rtl" lang="he">
+<form action="" method="post">
+
+<div class="col form-group">
+<label>שים לב ! </label>
+<br>
+<label>למחיקת שורה יש לבחור רק פריט לעריכה</label>
+<br>
+<label>בעריכת שורה יש להכניס את כל הערכים מחדש</label>
+</div>
+
+<div class="container">
+<div class="row">
+<div class="col form-group">
+<label for="">בחר פריט לעריכה</label>
+<select class="form-control" name="type_of_item">
+  {% for i in data %}
+    <option>{{ i }}</option>
+  {% endfor %}
+</select>
+</div>
+<div class="col form-group">
+    <label>כמות במלאי</label>
+    <input type="number" class="form-control" name="quantity">
+    <br>
+</div>
+<div class="col form-group">
+    <label >נדרש להשלים \ לרכוש</label>
+    <select class="form-control" name = "needs_to_complete">
+        <option>לא</option>
+        <option>כן</option>
+    </select>
+    <br>
+</div>
+</div>
+<div class="row">
+<div class="col form-group">
+    <label">הערות</label>
+    <input type="text" name="remarks" class="form-control">
+    <br>
+</div>
+</div>
+</div>
+<div class="container">
+<div class="col form-group" style="text-align: center;">
+  <form method="POST">
+    <button type="sumbit" name="options" value="option_edit" class="btn btn-outline-success">עדכן</button>
+    <button type="sumbit" name="options" value="option_delet" class="btn btn-outline-danger">מחיקה</button>
+  </form>
+</div>
+</div>
+</div>
+</form>
+</section>
+</body>
+{% endblock %}

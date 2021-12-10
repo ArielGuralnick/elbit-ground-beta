@@ -1,6 +1,6 @@
 import pandas as pd
 from flask import render_template, flash, redirect, url_for
-
+import time
 
 async def moreshet_feedback_Handler(request):
     answer_1 = None
@@ -11,6 +11,7 @@ async def moreshet_feedback_Handler(request):
     if request.method == 'GET':
         return render_template('feedback.html', title_simulator = "מאמן מורשת")
     elif request.method == 'POST':
+        time.sleep(1.5)
         if request.form.get("question1") == 'ques1-5':
             answer_1 = "5"
         elif request.form.get("question1") == 'ques1-4':

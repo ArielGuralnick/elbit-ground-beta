@@ -15,11 +15,15 @@
         <div class="col form-group">
           <label for="">בחר סוג מאמן</label>
           <select class="form-control" name="type_simulator">
-            <option>אנא בחר מאמן</option>
-            <option>רוכב שמיים</option>
-            <option>מרס</option>
-            <option>מורשת</option>
-            <option>רעם</option>
+            <optgroup label="אנא בחר מאמן">
+              <option>רוכב שמיים</option>
+              <option>מרס</option>
+              <option>מורשת</option>
+              <option>רעם</option>
+              <option>פיקוד העורף</option>
+              <option>שדר חם</option>
+              <option>צוות</option>
+            </optgroup>
           </select>
           <br>
         </div>
@@ -44,25 +48,13 @@
 
         <div style="text-align: center;">
           <form method="POST" style="height: 500px;">
-            <button type="sumbit" class="btn btn-outline-success" onclick="fireSweetAlert()">שלח</button>
+            <button type="sumbit" class="btn btn-outline-success" >שלח</button>
           </form>
           <input type="reset" class="btn btn-outline-danger" value="אתחול">
           <p></p>
         </div>
       </form>
     </section>
-    <!-- Alert Message after clicking on sumbit.-->
-    <script>
-      function fireSweetAlert() {
-          Swal.fire({
-              icon: 'info',
-              title: 'שים לב',
-              text: 'בעת בחירה של מספר תאריכים השעות שישלחו הם השעות שהוכנסו!',
-              showConfirmButton: false,
-              timer: 4500
-            })
-      }      
-    </script>
 </body>
 
 </html>

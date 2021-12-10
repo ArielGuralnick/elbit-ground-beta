@@ -1,6 +1,6 @@
 import pandas as pd
 from flask import render_template, flash, redirect, url_for
-
+import time
 
 async def skyLark_feedback_Handler(request):
     answer_1 = None
@@ -11,6 +11,7 @@ async def skyLark_feedback_Handler(request):
     if request.method == 'GET':
         return render_template('feedback.html', title_simulator = "משוב מאמן רוכב שמיים")
     elif request.method == 'POST':
+        time.sleep(1.5)
         if request.form.get("question1") == 'ques1-5':
             answer_1 = "5"
         elif request.form.get("question1") == 'ques1-4':
@@ -73,5 +74,5 @@ async def skyLark_feedback_Handler(request):
         'עד כמה אתה מת לאכול עכשיו פיצה' : answer_5}], columns=field_content)
         with open('elbit-ground-beta/app/db/skyLark/feedback.csv', 'a', newline='', encoding='utf-8-sig') as file:
             feedback_information.to_csv(file, index=False, na_rep='N/A',header=file.tell()==0, encoding='utf-8-sig')
-            flash(f'המשוב נקלט בהצלחה! תודה', category="success")
+            flash(f'המשוב נשלח בהצלחה! תודה', category="success")
         return redirect(url_for('skyLark_instructor'))

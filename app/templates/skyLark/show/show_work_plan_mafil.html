@@ -24,7 +24,7 @@
       <td>בלה בלה</td>
       <td>בלה בלה בלה</td>
       <td>אניי</td>
-      <td>בהרצה</td>
+      <td>בוצע</td>
     </tr>
     <tr>
       <td>אריאל</td>
@@ -74,10 +74,23 @@
 
 <div class="container">
     <div class="col form-group" style="text-align: center;">
-        <button type="sumbit" class="btn btn-outline-success" name="options" value="option_add">הוספת שורה</button>
+        <button type="sumbit" class="btn btn-outline-success" name="options" value="option_add" onclick="fireSweetAlert()">הוספת שורה</button>
         <button type="sumbit" class="btn btn-outline-danger" name="options" value="option_edit">עריכת שורה</button>
     </div>
 </div>
+
+<!-- Alert Message after clicking on sumbit.-->
+<script>
+    function fireSweetAlert() {
+        Swal.fire({
+            position: 'center',
+            icon: 'success',
+            title: '!היעד התווסף בהצלחה',
+            showConfirmButton: false,
+            timer: 1500
+        })
+    }      
+</script>
 </form>
 </body>
 {% endblock %}

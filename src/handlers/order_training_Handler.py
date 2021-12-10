@@ -1,6 +1,5 @@
 from flask import render_template, flash,redirect,url_for
 import pandas as pd
-import time
 
 async def order_training_Handler(request):
     counter_long_skylark = 0
@@ -13,7 +12,6 @@ async def order_training_Handler(request):
     
 
     elif request.method=='POST':
-        time.sleep(5)
         type_simulator = request.form.get('type_simulator')
         date_start = request.form.get('date_start')
         time_start = request.form.get('time_start')

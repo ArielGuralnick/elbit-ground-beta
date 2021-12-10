@@ -20,7 +20,7 @@
     <tr>
       <td>2021-11-18</td>
       <td>מסך שבוררר</td>
-      <td>V</td>
+      <td>X</td>
     </tr>
     <tr>
       <td>2021-11-18</td>
@@ -41,6 +41,21 @@
       <td>2021-11-28</td>
       <td>מקודד חוזי תקול</td>
       <td>X</td>
+    </tr>
+    <tr>
+      <td>2021-12-07</td>
+      <td>אין אינטרנט</td>
+      <td>X</td>
+    </tr>
+    <tr>
+      <td>2021-12-23</td>
+      <td>הקרר</td>
+      <td>V</td>
+    </tr>
+    <tr>
+      <td>2021-12-09</td>
+      <td>exe</td>
+      <td>V</td>
     </tr>
   </tbody>
 </table>
@@ -71,13 +86,26 @@
     </div>
 </section>
 
+<!-- Alert Message after clicking on sumbit.-->
+<script>
+  function fireSweetAlert() {
+    Swal.fire({
+              position: 'center',
+              icon: 'success',
+              title: '!הפער התווסף בהצלחה',
+              showConfirmButton: false,
+              timer: 1500
+            })
+      }      
+</script>
 <div class="container">
-<div class="col form-group" style="text-align: center;">
+  <div class="col form-group" style="text-align: center;">
     <form method="POST">
-        <button type="sumbit" class="btn btn-outline-success" name="options" value="option_add">הוספת פער</button>
+        <button type="sumbit" class="btn btn-outline-success" name="options" value="option_add" onclick="fireSweetAlert()">הוספת פער</button>
         <button type="sumbit" class="btn btn-outline-danger" name="options" value="option_edit">עריכת שורה</button>
     </form>
+  </div>
 </div>
-</div>
+
 </body>
 {% endblock %}

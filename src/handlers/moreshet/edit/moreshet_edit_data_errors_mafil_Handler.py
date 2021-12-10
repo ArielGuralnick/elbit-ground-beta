@@ -1,6 +1,7 @@
 from flask import render_template, flash, redirect, url_for
 import pandas as pd
 from pandas.core.indexes.base import Index
+import time
 
 async def moreshet_edit_data_errors_mafil_Handler(request):
     if request.method == 'GET':       
@@ -74,11 +75,22 @@ async def moreshet_edit_data_errors_mafil_Handler(request):
 </div>
 </div>
 
+<script>
+    function fireDeletAlert() {
+        Swal.fire({
+            position: 'center',
+            icon: 'success',
+            title: '!התקלה נמחקה בהצלחה',
+            showConfirmButton: false,
+            timer: 1500
+        })
+    }      
+</script>
 <div class="container">
   <div class="col form-group" style="text-align: center;">
     <form method="POST">
       <button type="sumbit" name="options" value="option_edit" class="btn btn-outline-success">עדכן</button>
-      <button type="sumbit" name="options" value="option_delet" class="btn btn-outline-danger">מחיקת שורה</button>
+      <button type="sumbit" name="options" value="option_delet" class="btn btn-outline-danger" onclick="fireDeletAlert()">מחיקת שורה</button>
     </form>
   </div>
 </div>
@@ -109,6 +121,7 @@ async def moreshet_edit_data_errors_mafil_Handler(request):
       
       
       if request.form.get('options') == 'option_delet':
+        time.sleep(1.5)
         error = int(request.form.get('error'))
         data = pd.read_csv('elbit-ground-beta/app/db/moreshet/data_errors.csv')
         row_to_delet = data.index[error]

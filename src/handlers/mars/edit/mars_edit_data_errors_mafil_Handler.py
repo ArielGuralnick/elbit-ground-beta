@@ -1,6 +1,7 @@
 from flask import render_template, flash, redirect, url_for
 import pandas as pd
 from pandas.core.indexes.base import Index
+import time
 
 async def mars_edit_data_errors_mafil_Handler(request):
     if request.method == 'GET':       
@@ -73,11 +74,22 @@ async def mars_edit_data_errors_mafil_Handler(request):
 </div>
 </div>
 
+<script>
+    function fireDeletAlert() {
+        Swal.fire({
+            position: 'center',
+            icon: 'success',
+            title: '!התקלה נמחקה בהצלחה',
+            showConfirmButton: false,
+            timer: 1500
+        })
+    }      
+</script>
 <div class="container">
   <div class="col form-group" style="text-align: center;">
     <form method="POST">
       <button type="sumbit" name="options" value="option_edit" class="btn btn-outline-success">עדכן</button>
-      <button type="sumbit" name="options" value="option_delet" class="btn btn-outline-danger">מחיקת שורה</button>
+      <button type="sumbit" name="options" value="option_delet" class="btn btn-outline-danger" onclick="fireDeletAlert()">מחיקת שורה</button>
     </form>
   </div>
 </div>
@@ -92,7 +104,6 @@ async def mars_edit_data_errors_mafil_Handler(request):
     elif request.method == 'POST':
       if request.form.get('options') == 'option_edit':
         error = int(request.form.get('error'))
-
         type_of_fault = request.form.get('type_of_fault')
         fault_operation = request.form.get('fault_operation')
         computer = request.form.get('computer')
@@ -108,11 +119,11 @@ async def mars_edit_data_errors_mafil_Handler(request):
       
       
       if request.form.get('options') == 'option_delet':
+        time.sleep(1.5)
         error = int(request.form.get('error'))
         data = pd.read_csv('elbit-ground-beta/app/db/mars/data_errors.csv')
         row_to_delet = data.index[error]
         data.drop(row_to_delet, inplace=True, axis=0)
-      
         with open('elbit-ground-beta/app/db/mars/data_errors.csv', 'w', newline='', encoding='utf-8-sig') as file:
             data.to_csv(file, index=False, na_rep='N/A',header=file.tell()==0, encoding='utf-8-sig')
             flash(f'!התקלה נמחקה בהצלחה', category="success")

@@ -1,6 +1,6 @@
 from flask import render_template, flash, redirect, url_for
 import pandas as pd
-
+import time
 
 async def show_work_plan_mafil_Handler(request):
 
@@ -57,10 +57,23 @@ async def show_work_plan_mafil_Handler(request):
 
 <div class="container">
     <div class="col form-group" style="text-align: center;">
-        <button type="sumbit" class="btn btn-outline-success" name="options" value="option_add">הוספת שורה</button>
+        <button type="sumbit" class="btn btn-outline-success" name="options" value="option_add" onclick="fireSweetAlert()">הוספת שורה</button>
         <button type="sumbit" class="btn btn-outline-danger" name="options" value="option_edit">עריכת שורה</button>
     </div>
 </div>
+
+<!-- Alert Message after clicking on sumbit.-->
+<script>
+    function fireSweetAlert() {
+        Swal.fire({
+            position: 'center',
+            icon: 'success',
+            title: '!היעד התווסף בהצלחה',
+            showConfirmButton: false,
+            timer: 1500
+        })
+    }      
+</script>
 </form>
 </body>
 {% endblock %}'''])
@@ -69,6 +82,7 @@ async def show_work_plan_mafil_Handler(request):
 
     elif request.method == 'POST':
         if request.form.get("options") == 'option_add':
+            time.sleep(1.5)
             subject = request.form.get('subject')
             goal = request.form.get('goal')
             achievements = request.form.get('achievements')

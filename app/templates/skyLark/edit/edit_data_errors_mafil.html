@@ -29,11 +29,11 @@
 </div>
 <div class="col form-group">
   <label for="">סוג התקלה</label>
-  <input type="text" name="type_of_fault"class="form-control" required placeholder="אנא הכנס תקלה">
+  <input type="text" name="type_of_fault"class="form-control" placeholder="אנא הכנס תקלה">
 </div>
 <div class="col form-group">
   <label for="">תפעול התקלה</label>
-  <input type="text" name="fault_operation"class="form-control" required placeholder="אנא הכנס תפעול">
+  <input type="text" name="fault_operation"class="form-control" placeholder="אנא הכנס תפעול">
 </div>
 </div>
 
@@ -65,10 +65,22 @@
   <div class="col form-group" style="text-align: center;">
     <form method="POST">
       <button type="sumbit" name="options" value="option_edit" class="btn btn-outline-success">עדכן</button>
-      <button type="sumbit" name="options" value="option_delet" class="btn btn-outline-danger">מחיקת שורה</button>
+      <button type="sumbit" name="options" value="option_delet" class="btn btn-outline-danger" onclick="fireDeletAlert()">מחיקת שורה</button>
     </form>
   </div>
 </div>
+   
+<script>
+    function fireDeletAlert() {
+        Swal.fire({
+            position: 'center',
+            icon: 'success',
+            title: '!התקלה נמחקה בהצלחה',
+            showConfirmButton: false,
+            timer: 1500
+        })
+    }      
+</script>
 </div>
 </form>
 </section>
