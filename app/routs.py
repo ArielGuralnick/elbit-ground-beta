@@ -99,8 +99,8 @@ from src.handlers.tzevet.tzevet_instructor_Handler import tzevet_instructor_Hand
 from src.handlers.tzevet.tzevet_technician_Handler import tzevet_technician_Handler
 from src.handlers.tzevet.tzevet_mafil_Handler import tzevet_mafil_Handler
 from src.handlers.tzevet.insert.tzevet_feedback_Handler import tzevet_feedback_Handler
-#from src.handlers.tzevet.show.tzevet_show_maintenance_technician_mafil_Handler import tzevet_show_maintenance_technician_mafil_Handler
-#from src.handlers.tzevet.edit.tzevet_edit_maintenance_technician_mafil_Handler import tzevet_edit_maintenance_technician_mafil_Handler
+from src.handlers.tzevet.show.tzevet_show_maintenance_technician_mafil_Handler import tzevet_show_maintenance_technician_mafil_Handler
+from src.handlers.tzevet.edit.tzevet_edit_maintenance_technician_mafil_Handler import tzevet_edit_maintenance_technician_mafil_Handler
 from src.handlers.tzevet.show.tzevet_show_warehouse_inventory_Handler import tzevet_show_warehouse_inventory_Handler
 from src.handlers.tzevet.edit.tzevet_edit_warehouse_inventory_Handler import tzevet_edit_warehouse_inventory_Handler
 from src.handlers.tzevet.insert.tzevet_insert_error_Handler import tzevet_insert_error_Handler
@@ -600,13 +600,13 @@ async def tzevet_show_data_activity():
 
 # הפערים בין המפעיל לטכנאי
 
-#@app.route("/tzevet_show_maintenance_technician_mafil", methods=['GET','POST'])
-#async def tzevet_show_maintenance_technician_mafil():
-#    return await tzevet_show_maintenance_technician_mafil_Handler(request)
+@app.route("/tzevet_show_maintenance_technician_mafil", methods=['GET','POST'])
+async def tzevet_show_maintenance_technician_mafil():
+    return await tzevet_show_maintenance_technician_mafil_Handler(request)
 
-#@app.route("/tzevet_edit_maintenance_technician_mafil", methods=['GET','POST'])
-#async def tzevet_edit_maintenance_technician_mafil():
-#    return await tzevet_edit_maintenance_technician_mafil_Handler(request)
+@app.route("/tzevet_edit_maintenance_technician_mafil", methods=['GET','POST'])
+async def tzevet_edit_maintenance_technician_mafil():
+    return await tzevet_edit_maintenance_technician_mafil_Handler(request)
 
 
 # עריכה וצפייה מחסן נהיגה 

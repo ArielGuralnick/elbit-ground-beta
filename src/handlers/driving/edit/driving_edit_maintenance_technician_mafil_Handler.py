@@ -23,7 +23,17 @@ async def driving_edit_maintenance_technician_mafil_Handler(request):
         f.writelines([dphtml + '\n' + r'''
 <div class="container">
 <div class="row">
-<div class="col-md-3 form-group">
+<div class="col form-group">
+  <label for="">מאמן</label>
+  <select class="form-control" name="simulator">
+    <option>שיזפון</option>
+    <option>בהל"צ</option>
+    <option>ביסל"ח</option>
+    <option>צאלים</option>
+  </select>
+  <br>
+</div>
+<div class="col form-group">
 <label for="">בחר פער לעריכה</label>
 <select class="form-control" name="disparity">
   {% for i in data %}
@@ -31,7 +41,7 @@ async def driving_edit_maintenance_technician_mafil_Handler(request):
   {% endfor %}
 </select>
 </div>
-<div class="col-md-3 form-group">
+<div class="col form-group">
   <label for="">טופל \ לא טופל</label>
   <select class="form-control" name="status">
     <option>V</option>
@@ -77,11 +87,12 @@ async def driving_edit_maintenance_technician_mafil_Handler(request):
     elif request.method == 'POST':
       time.sleep(1.5)
       if request.form.get('options') == 'option_edit':
+        simulator = request.form.get('simulator')
         disparity = request.form.get('disparity')
         status = request.form.get('status')
         data = pd.read_csv('elbit-ground-beta/app/db/driving/maintenance.csv')
         row_to_edit = data.index[data['מה הפער'] == disparity]
-        data.loc[row_to_edit, 'טופל / לא טופל'] = status
+        data.loc[row_to_edit, ['מאמן','טופל / לא טופל']] = [simulator, status]
         with open('elbit-ground-beta/app/db/driving/maintenance.csv', 'w', newline='', encoding='utf-8-sig') as file:
             data.to_csv(file, index=False, na_rep='N/A',header=file.tell()==0, encoding='utf-8-sig')
             flash(f'!הפער עודכן בהצלחה', category="success")

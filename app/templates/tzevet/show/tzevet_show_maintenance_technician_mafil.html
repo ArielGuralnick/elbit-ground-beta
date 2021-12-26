@@ -12,7 +12,7 @@
   <thead>
     <tr style="text-align: right;">
       <th>מאמן</th>
-      <th>סוג תא</th>
+      <th>מספר מאמן</th>
       <th>תאריך</th>
       <th>מה הפער</th>
       <th>טופל / לא טופל</th>
@@ -20,17 +20,31 @@
   </thead>
   <tbody>
     <tr>
-      <td>צאלים</td>
-      <td>עמדה 1 סימן 3</td>
-      <td>2021-12-07</td>
-      <td>חסר כבל HDMI בתא הזה</td>
+      <td>שיזפון</td>
+      <td>106</td>
+      <td>2021-12-26</td>
+      <td>עכבר במעבדה</td>
       <td>V</td>
     </tr>
     <tr>
-      <td>שיזפון</td>
-      <td>תא 2 סימן 4</td>
+      <td>נייד</td>
+      <td>2</td>
       <td>2021-12-26</td>
-      <td>אני יכול לעשות</td>
+      <td>עכגרעהקרעקרעקרעקרעקרעקרעקרעקרעקרע4קע</td>
+      <td>V</td>
+    </tr>
+    <tr>
+      <td>צאלים</td>
+      <td>2</td>
+      <td>2021-12-17</td>
+      <td>חיפש מטמוטן</td>
+      <td>X</td>
+    </tr>
+    <tr>
+      <td>שיזפון</td>
+      <td>102</td>
+      <td>2021-12-07</td>
+      <td>עוד משהו שיזפון</td>
       <td>X</td>
     </tr>
   </tbody>
@@ -44,10 +58,10 @@
         <div class="col form-group">
           <label for="">מאמן</label>
           <select class="form-control" name="type_of_simulator">
+            <option>נייד</option>
             <option>שיזפון</option>
-            <option>בהל"צ</option>
-            <option>ביסל"ח</option>
             <option>צאלים</option>
+            <option>נחשונים</option>
           </select>
           <br>
         </div>
@@ -55,25 +69,30 @@
             <label for="">סוג תא</label>
             <select class="form-control" name="type_of_cell">
               <optgroup label="שיזפון">
-                <option>תא 1 סימן 4</option>
-                <option>תא 2 סימן 4</option>
-                <option>תא 3 סימן 4</option>
-              </optgroup>
-              <optgroup label="בהלצ">
-                <option>תא 1 פומה</option>
-                <option>תא 2 פומה</option>
-                <option>תא 2 נמרה</option>
-              </optgroup>
-              <optgroup label="ביסלח">
-                <option>תא 1 נמר</option>
-                <option>תא 2 נמר</option>
-                <option>תא 2 אכזרית</option>
-              </optgroup>
-              <optgroup label="צאלים">
-                <option>עמדה 1 סימן 4</option>
-                <option>עמדה 1 סימן 3</option>
-                <option>עמדה קבועה סימן 3</option>
-              </optgroup>
+                        <option>101</option>
+                        <option>102</option>
+                        <option>103</option>
+                        <option>104</option>
+                        <option>105</option>
+                        <option>106</option>
+                        <option>107</option>
+                        <option>108</option>
+                      </optgroup>
+                      <optgroup label="צאלים">
+                        <option>1</option>
+                        <option>2</option>
+                        <option>3</option>
+                      </optgroup>
+                      <optgroup label="נחשונים">
+                        <option>מאמן נחשונים</option>
+                      </optgroup>
+                      <optgroup label="ניידים">
+                        <option>1</option>
+                        <option>2</option>
+                        <option>3</option>
+                        <option>5</option>
+                        <option>6</option>
+                      </optgroup>
             </select>
         </div>
     </div>
@@ -99,10 +118,6 @@
     </div>
 </section>
 
-<script type="text/javascript">
-  $('#show_maintenance_technician_mafil').DataTable();
-</script>
-
 <div class="container">
 <div class="col form-group" style="text-align: center;">
     <form method="POST">
@@ -111,5 +126,10 @@
     </form>
 </div>
 </div>
+
+<script type="text/javascript">
+  $('#show_maintenance_technician_mafil').DataTable();
+</script>
+
 </body>
 {% endblock %}

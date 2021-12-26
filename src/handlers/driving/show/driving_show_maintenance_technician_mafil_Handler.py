@@ -17,7 +17,7 @@ async def driving_show_maintenance_technician_mafil_Handler(request):
 </section>
 <body style="background-color: rgb(211, 218, 218);">
 <section id="show_data_errors" dir="rtl" lang="he">''')
-        dphtml += data.to_html(classes = "table table-hover", border=0, index=False)
+        dphtml += data.to_html(table_id="show_maintenance_technician_mafil", classes = "table table-hover", border=0, index=False)
         with open('elbit-ground-beta/app/templates/driving/show/driving_show_maintenance_technician_mafil.html','w', encoding='utf-8-sig') as f:
             f.writelines([dphtml + '\n' + r'<br>' + '\n' + r"</form>" + '\n' + r"</section>" + '\n' +
             r'''<section id="insertError" dir="rtl" lang="he">
@@ -80,6 +80,10 @@ async def driving_show_maintenance_technician_mafil_Handler(request):
         </div>
     </div>
 </section>
+
+<script type="text/javascript">
+  $('#show_maintenance_technician_mafil').DataTable();
+</script>
 
 <div class="container">
 <div class="col form-group" style="text-align: center;">

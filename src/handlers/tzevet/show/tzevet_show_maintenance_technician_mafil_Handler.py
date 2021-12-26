@@ -5,7 +5,7 @@ import pandas as pd
 async def tzevet_show_maintenance_technician_mafil_Handler(request):
 
     if request.method == 'GET':
-        data = pd.read_csv('elbit-ground-beta/app/db/driving/maintenance.csv')
+        data = pd.read_csv('elbit-ground-beta/app/db/tzevet/maintenance.csv')
         dphtml = (r'''
 {% extends 'layout.html' %}
 {% block content %}
@@ -17,8 +17,8 @@ async def tzevet_show_maintenance_technician_mafil_Handler(request):
 </section>
 <body style="background-color: rgb(211, 218, 218);">
 <section id="show_data_errors" dir="rtl" lang="he">''')
-        dphtml += data.to_html(classes = "table table-hover", border=0, index=False)
-        with open('elbit-ground-beta/app/templates/driving/show/driving_show_maintenance_technician_mafil.html','w', encoding='utf-8-sig') as f:
+        dphtml += data.to_html(table_id="show_maintenance_technician_mafil", classes = "table table-hover", border=0, index=False)
+        with open('elbit-ground-beta/app/templates/tzevet/show/tzevet_show_maintenance_technician_mafil.html','w', encoding='utf-8-sig') as f:
             f.writelines([dphtml + '\n' + r'<br>' + '\n' + r"</form>" + '\n' + r"</section>" + '\n' +
             r'''<section id="insertError" dir="rtl" lang="he">
     <form action="" method="post">
@@ -94,6 +94,11 @@ async def tzevet_show_maintenance_technician_mafil_Handler(request):
     </form>
 </div>
 </div>
+
+<script type="text/javascript">
+  $('#show_maintenance_technician_mafil').DataTable();
+</script>
+
 </body>
 {% endblock %}'''])
             f.close()
