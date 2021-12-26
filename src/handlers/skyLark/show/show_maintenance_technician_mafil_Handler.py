@@ -2,7 +2,6 @@ from flask import render_template, redirect, url_for,flash
 import pandas as pd
 import time
 
-
 async def show_maintenance_technician_mafil_Handler(request):
 
     if request.method == 'GET':
@@ -80,7 +79,7 @@ async def show_maintenance_technician_mafil_Handler(request):
             if date_upload == "" or disparity == "" :
                 flash(f'!נא למלא את כל הערכים', category="danger")
             else:
-                
+                       
                 time.sleep(1.5)
                 field_content = ['תאריך','מה הפער','טופל / לא טופל']
                 data_errors = pd.DataFrame([{'תאריך' : date_upload, 'מה הפער' : disparity, 'טופל / לא טופל':status}], columns=field_content)

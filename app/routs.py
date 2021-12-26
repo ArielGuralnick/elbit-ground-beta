@@ -27,7 +27,7 @@ from src.handlers.skyLark.training_package_Handler import training_package_Handl
 
 
 from src.handlers.manager.manager_Handler import manager_Handler
-from src.handlers.manager.show.show_training_days_Handler import show_training_days_Handler
+from src.handlers.manager.manager_choose_training_simulator_Handler import manager_choose_training_simulator_Handler
 from src.handlers.manager.manager_feedbacks_Handler import manager_feedbacks_Handler
 
 from src.handlers.mars.mars_Handler import mars_Handler
@@ -91,16 +91,16 @@ from src.handlers.driving.show.driving_show_data_errors_technician_Handler impor
 from src.handlers.driving.show.driving_show_data_errors_mafil_Handler import driving_show_data_errors_mafil_Handler
 from src.handlers.driving.edit.driving_edit_data_errors_Handler import driving_edit_data_errors_Handler
 
-'''
+
 from src.handlers.tzevet.tzevet_Handler import tzevet_Handler
 from src.handlers.tzevet.insert.tzevet_order_training_Handler import tzevet_order_training_Handler
-from src.handlers.tzevet.pdf.tzevet_pdf_solutions_Handler import tzevet_pdf_solutions_Handler
+#from src.handlers.tzevet.pdf.tzevet_pdf_solutions_Handler import tzevet_pdf_solutions_Handler
 from src.handlers.tzevet.tzevet_instructor_Handler import tzevet_instructor_Handler
 from src.handlers.tzevet.tzevet_technician_Handler import tzevet_technician_Handler
 from src.handlers.tzevet.tzevet_mafil_Handler import tzevet_mafil_Handler
 from src.handlers.tzevet.insert.tzevet_feedback_Handler import tzevet_feedback_Handler
-from src.handlers.tzevet.show.tzevet_show_maintenance_technician_mafil_Handler import tzevet_show_maintenance_technician_mafil_Handler
-from src.handlers.tzevet.edit.tzevet_edit_maintenance_technician_mafil_Handler import tzevet_edit_maintenance_technician_mafil_Handler
+#from src.handlers.tzevet.show.tzevet_show_maintenance_technician_mafil_Handler import tzevet_show_maintenance_technician_mafil_Handler
+#from src.handlers.tzevet.edit.tzevet_edit_maintenance_technician_mafil_Handler import tzevet_edit_maintenance_technician_mafil_Handler
 from src.handlers.tzevet.show.tzevet_show_warehouse_inventory_Handler import tzevet_show_warehouse_inventory_Handler
 from src.handlers.tzevet.edit.tzevet_edit_warehouse_inventory_Handler import tzevet_edit_warehouse_inventory_Handler
 from src.handlers.tzevet.insert.tzevet_insert_error_Handler import tzevet_insert_error_Handler
@@ -109,7 +109,7 @@ from src.handlers.tzevet.show.tzevet_show_data_activity_Handler import tzevet_sh
 from src.handlers.tzevet.show.tzevet_show_data_errors_technician_Handler import tzevet_show_data_errors_technician_Handler
 from src.handlers.tzevet.show.tzevet_show_data_errors_mafil_Handler import tzevet_show_data_errors_mafil_Handler
 from src.handlers.tzevet.edit.tzevet_edit_data_errors_Handler import tzevet_edit_data_errors_Handler
-'''
+
 
 
 @app.route("/", methods=['GET','POST'])
@@ -240,9 +240,9 @@ async def edit_maintenance_technician_mafil():
 async def manager():
     return await manager_Handler(request)
 
-@app.route("/show_training_days", methods=['GET','POST'])
-async def show_training_days():
-    return await show_training_days_Handler(request)    
+@app.route("/manager_choose_training_simulator", methods=['GET','POST'])
+async def manager_choose_training_simulator():
+    return await manager_choose_training_simulator_Handler(request) 
 
 @app.route("/manager_feedbacks", methods=['GET','POST'])
 async def manager_feedbacks():
@@ -330,6 +330,12 @@ async def mars_show_data_errors_mafil():
 
 @app.route("/mars_edit_data_errors_mafil", methods=['GET','POST'])
 async def mars_edit_data_errors_mafil():
+
+#    customHTML = {}
+#    customHTML["coputerPart"] = r'''
+#    <div>'''
+#    marsSimulator = Simulator("mars", "מרס")
+
     return await mars_edit_data_errors_mafil_Handler(request)
 
 @app.route("/mars_show_data_errors_technician", methods=['GET','POST'])
@@ -537,7 +543,20 @@ async def driving_edit_data_errors():
 
 
 
-'''
+# Nir
+
+from src.newHandlers.pages.home_simulator_page import home_simulator_page
+from src.newHandlers.getSimulatorByName import getSimulatorByName
+
+@app.route("/home_simulator_page", methods=['GET', 'POST'])
+async def home_simulator_page():
+    simulatorName = request.args.get('name', default = "", type = str)
+    simulator = getSimulatorByName(simulatorName)
+    return await home_simulator_page(request, simulator)
+
+
+
+
 
 # מאמני צוות
 
@@ -547,9 +566,9 @@ async def tzevet_order_training():
     return await tzevet_order_training_Handler(request)
 
 # מסמכי PDF
-@app.route('/user/tzevet_instructor/pdf-solutions')
-async def tzevet_pdf_solutions():
-    return await tzevet_pdf_solutions_Handler(request)
+#@app.route('/user/tzevet_instructor/pdf-solutions')
+#async def tzevet_pdf_solutions():
+#    return await tzevet_pdf_solutions_Handler(request)
 
 # ניתובים לבחירת משתמש, הדרכה, הפעלה ואחזקה
 @app.route("/tzevet", methods=['GET','POST'])
@@ -581,13 +600,13 @@ async def tzevet_show_data_activity():
 
 # הפערים בין המפעיל לטכנאי
 
-@app.route("/tzevet_show_maintenance_technician_mafil", methods=['GET','POST'])
-async def tzevet_show_maintenance_technician_mafil():
-    return await tzevet_show_maintenance_technician_mafil_Handler(request)
+#@app.route("/tzevet_show_maintenance_technician_mafil", methods=['GET','POST'])
+#async def tzevet_show_maintenance_technician_mafil():
+#    return await tzevet_show_maintenance_technician_mafil_Handler(request)
 
-@app.route("/tzevet_edit_maintenance_technician_mafil", methods=['GET','POST'])
-async def tzevet_edit_maintenance_technician_mafil():
-    return await tzevet_edit_maintenance_technician_mafil_Handler(request)
+#@app.route("/tzevet_edit_maintenance_technician_mafil", methods=['GET','POST'])
+#async def tzevet_edit_maintenance_technician_mafil():
+#    return await tzevet_edit_maintenance_technician_mafil_Handler(request)
 
 
 # עריכה וצפייה מחסן נהיגה 
@@ -627,4 +646,3 @@ async def tzevet_show_data_errors_technician():
 async def tzevet_edit_data_errors():
     return await tzevet_edit_data_errors_Handler(request)
 
-    '''

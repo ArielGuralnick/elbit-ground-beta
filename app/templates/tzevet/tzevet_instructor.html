@@ -1,0 +1,61 @@
+{% extends "layout.html" %}
+{% block content %}
+
+<section id="title">
+  <div>
+    <a href="/">
+      <img class="Logo" src="static/images/logo.png" alt="logo-img">
+    </a>
+    <h1 style="padding-left: 18%;">{{ title_simulator }}</h1>
+  </div>
+</section>  
+  <div class="second-paragraph">
+    <h2>{{ second_paragraph }}</h2>
+  </div>
+  
+  
+<section id="optionsInSimuator">
+  <div class="row1-container">
+    <div class="box blue">
+      <a href="/tzevet_literature" class="btn btn-outline-secondary blueInButoon"><h3>ספרות מאמן</h3></a>
+      <p></p>
+      <img src="static/images/flaticon/open-book.png" alt="open book">
+    </div>
+
+    <div class="box green">
+      <a href="/tzevet_insert_error" class="btn btn-outline-secondary greenInButoon "><h3>דיווח תקלה</h3></a>
+      <p></p>
+      <img src="static/images/flaticon/emergency.png" alt="emergency">
+    </div>
+
+    <div class="box orange">
+      <a href="/tzevet_insert_activity" class="btn btn-outline-secondary orangeInButoon "><h3>פתיחת אימון</h3></a>
+      <p></p>
+      <img src="static/images/flaticon/clock.png" alt="clock">
+    </div>
+  </div>
+
+  <div class="row2-container">
+    <div class="box pink">
+      <a href='/user/tzevet_instructor/pdf-solutions' class="btn btn-outline-secondary pinkInButoon "><h3>פתרון תקלות</h3></a>
+      <p></p>
+      <img src="static/images/flaticon/idea.png" alt="idea">
+    </div>
+
+    <div class="box grayishBlue">
+      <a href="/tzevet_feedback" class="btn btn-outline-secondary grayishBlueInButoon "><h3>משובים</h3></a>
+      <p></p>
+      <img src="static/images/flaticon/feedback.png" alt="feedback">
+    </div>
+
+    <div class="box black">
+      <a href='/tzevet_order_training' class="btn btn-outline-secondary blackInButoon "><h3>ימי אימון</h3></a>
+      <p></p>
+      <img src="static/images/flaticon/order-now.png" alt="order-now">
+    </div>
+  </div>
+</section>
+  
+{% endblock %}
+
+

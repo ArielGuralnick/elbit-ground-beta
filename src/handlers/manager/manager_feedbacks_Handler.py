@@ -24,3 +24,8 @@ async def manager_feedbacks_Handler(request):
             return send_file('db/driving/feedback.csv',
             mimetype='text/csv',attachment_filename='משוב נהיגה.csv',
             as_attachment=True)
+
+        elif request.form.get('options') == 'option_tzevet':
+            return send_file('db/tzevet/feedback.csv',
+            mimetype='text/csv',attachment_filename='משוב צוות.csv',
+            as_attachment=True)

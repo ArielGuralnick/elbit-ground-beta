@@ -1,0 +1,125 @@
+﻿
+{% extends 'layout.html' %}
+{% block content %}
+<section id="title" style="background-color: rgb(244, 248, 248); border-bottom: 3px solid var(--black);" >
+<div>
+  <a href="/"><img class="Logo" src="static/images/logo.png" alt="logo-img"></a>
+  <h1>מלאי מחסן צוות</h1>
+</div>
+</section>
+<body style="background-color: rgb(211, 218, 218);">
+<section id="show_data_errors" dir="rtl" lang="he"><table border="0" class="dataframe table table-hover" id="tzevet_show_warehouse_inventory">
+  <thead>
+    <tr style="text-align: right;">
+      <th>מאמן</th>
+      <th>סוג הפריט</th>
+      <th>דגם</th>
+      <th>כמות במלאי</th>
+      <th>נדרש להשלים \ לרכוש</th>
+      <th>הערות</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>צאלים</td>
+      <td>כבל HDMI</td>
+      <td>DELL</td>
+      <td>10</td>
+      <td>לא</td>
+      <td>jjjjjjjjjjjjjjjjjj</td>
+    </tr>
+    <tr>
+      <td>ניידים</td>
+      <td>פלזמה</td>
+      <td>MICO</td>
+      <td>2</td>
+      <td>לא</td>
+      <td>ג</td>
+    </tr>
+    <tr>
+      <td>צאלים</td>
+      <td>כבל DVI</td>
+      <td>HP</td>
+      <td>1</td>
+      <td>כן</td>
+      <td>בלהההה</td>
+    </tr>
+    <tr>
+      <td>ניידים</td>
+      <td>ממיר אופטי</td>
+      <td>אין</td>
+      <td>3</td>
+      <td>לא</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <td>שיזפון</td>
+      <td>כבל תת ימי</td>
+      <td>APPLE</td>
+      <td>3</td>
+      <td>כן</td>
+      <td>NaN</td>
+    </tr>
+  </tbody>
+</table>
+<br>
+</section>
+<section id="insertError" dir="rtl" lang="he">
+<form action="" method="post">
+    <div class = "row">
+        <div class="col form-group">
+          <label for="">מאמן</label>
+          <select class="form-control" name="type_of_simulator">
+            <option>ניידים</option>
+            <option>שיזפון</option>
+            <option>צאלים</option>
+            <option>נחשונים</option>
+          </select>
+          <br>
+        </div>
+        <div class="col form-group">
+            <label>סוג הפריט</label>
+            <input type="text" name="type_of_item" class="form-control">
+            <br>
+        </div>
+        <div class="col form-group">
+            <label>דגם</label>
+            <input type="text" name="model" class="form-control">
+            <br>
+        </div>
+    </div>
+    <div class = "row">
+        <div class="col form-group">
+            <label>כמות במלאי</label>
+            <input type="number" name="quantity"  class="form-control" min="0">
+            <br>
+        </div>
+        <div class="col form-group">
+            <label >נדרש להשלים \ לרכוש</label>
+            <select class="form-control" name = "needs_to_complete">
+                <option>לא</option>
+                <option>כן</option>
+            </select>
+            <br>
+        </div>
+        <div class="col form-group">
+            <label>הערות</label>
+            <input type="text" name="remarks" class="form-control">
+            <br>
+        </div>
+    </div>
+</section>
+
+<div class="container">
+    <div class="col form-group" style="text-align: center;">
+        <button type="sumbit" class="btn btn-outline-success" name="options" value="option_add">הוספת פריט</button>
+        <button type="sumbit" class="btn btn-outline-danger" name="options" value="option_edit">עריכת פריט</button>
+        <button type="sumbit" class="btn btn-outline-secondary" name="options" value="option_open_csv">פתיחת דוח באקסל</button>
+    </div>
+</div>
+</form>
+<script type="text/javascript">
+    $('#tzevet_show_warehouse_inventory').DataTable();
+</script>
+</body>
+{% endblock %}

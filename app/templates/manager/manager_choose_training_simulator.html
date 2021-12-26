@@ -1,0 +1,44 @@
+<section id="title">
+    <div>
+      <a href="/">
+        <img class="Logo" src="static/images/logo.png" alt="logo-img">
+      </a>
+      <h1>{{ title_simulator }}</h1>
+    </div>
+</section>  
+<div class="second-paragraph">
+  <h2>{{ second_paragraph }} </h2>
+</div>
+
+  {% extends "layout.html" %}
+  {% block content %}
+  <section id="simulators">
+    <form method="POST">
+    <div class="row1-container">
+      <div class="box cyan">
+        <button type="sumbit" name="options" value="option_shotef" class="btn btn-outline-secondary cyanInButoon"><h3>מאמני שוטף</h3></button>
+        <br>
+        <br>
+        <img src="static/images/flaticon/antenna.png" alt="antena">
+        <img src="static/images/flaticon/binocular.png" alt="bincocular">
+        <img src="static/images/flaticon/drone.png" alt="drone">
+      </div>
+  
+      <div class="box orange">
+        <button type="sumbit" name="options" value="option_driving" class="btn btn-outline-secondary orangeInButoon"><h3>נהיגה</h3></button>
+        <br>
+        <br>
+        <img src="static/images/flaticon/driving_simulation.png" alt="driving_simulation">
+      </div>
+  
+      <div class="box green">
+        <button type="sumbit" name="options" value="option_tzevet" class="btn btn-outline-secondary greenInButoon"><h3>צוות</h3></button>
+        <br>
+        <br>
+        <img src="static/images/flaticon/tank.png" alt="tank">
+      </div>
+    </div>
+    </form>
+  </section>
+
+  {% endblock %}

@@ -39,6 +39,12 @@ async def driving_edit_data_errors_Handler(request):
     </select>
   </div>
   <div class="col form-group">
+    <label for="">תפעול התקלה</label>
+    <input type="text" name="fault_operation"class="form-control" placeholder="אנא הכנס תפעול">
+  </div>
+</div>
+<div class="row">
+  <div class="col form-group">
     <label for="">טופל \ לא טופל</label>
     <select class="form-control" name = "situation">
       <option>V</option>
@@ -91,13 +97,14 @@ async def driving_edit_data_errors_Handler(request):
     elif request.method == 'POST':
       if request.form.get('options') == 'option_edit':
         error = int(request.form.get('error'))
+        fault_operation = request.form.get('fault_operation')
         situation = request.form.get('situation')
         name_treat = request.form.get('name_treat')
         time_treatment = request.form.get('time_treatment')
         
         data = pd.read_csv('elbit-ground-beta/app/db/driving/data_errors.csv')
         row_to_edit = data.index[error]
-        data.loc[row_to_edit,['טופל \ לא טופל','שם המטפל','שעת טיפול']] = [situation, name_treat, time_treatment]
+        data.loc[row_to_edit,['תפעול התקלה','טופל \ לא טופל','שם המטפל','שעת טיפול']] = [fault_operation, situation, name_treat, time_treatment]
         with open('elbit-ground-beta/app/db/driving/data_errors.csv', 'w', newline='', encoding='utf-8-sig') as file:
             data.to_csv(file, index=False, na_rep='N/A',header=file.tell()==0, encoding='utf-8-sig')
             flash(f'!התקלה עודכנה בהצלחה', category="success")

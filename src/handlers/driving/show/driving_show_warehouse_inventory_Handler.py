@@ -103,5 +103,5 @@ async def driving_show_warehouse_inventory_Handler(request):
         
         elif request.form.get("options") == 'option_open_csv':
             return send_file('db/driving/warehouse_inventory.csv',
-            mimetype='text/csv',attachment_filename='מחסן מרס.csv',
+            mimetype='text/csv',attachment_filename='מחסן מאמני נהיגה.csv',
             as_attachment=True)

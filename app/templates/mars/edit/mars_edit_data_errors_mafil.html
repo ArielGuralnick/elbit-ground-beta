@@ -41,15 +41,6 @@
 
 <div class="row">
 <div class="col form-group">
-    <label for="">סוג עמדה</label>
-    <select class="form-control" name="type_of_position">
-        <option>מבצעית</option>
-        <option>עמדת מדריך</option>
-        <option>כל הכיתה</option>    
-    </select>
-    <br>
-</div>
-<div class="col form-group">
     <label for="">באיזה מחשב</label>
     <select class="form-control" name="computer" id="exampleFormControlSelect1">
       <option>MGW</option>
@@ -72,11 +63,22 @@
 </div>
 </div>
 
+<script>
+    function fireDeletAlert() {
+        Swal.fire({
+            position: 'center',
+            icon: 'success',
+            title: '!התקלה נמחקה בהצלחה',
+            showConfirmButton: false,
+            timer: 1500
+        })
+    }      
+</script>
 <div class="container">
   <div class="col form-group" style="text-align: center;">
     <form method="POST">
       <button type="sumbit" name="options" value="option_edit" class="btn btn-outline-success">עדכן</button>
-      <button type="sumbit" name="options" value="option_delet" class="btn btn-outline-danger">מחיקת שורה</button>
+      <button type="sumbit" name="options" value="option_delet" class="btn btn-outline-danger" onclick="fireDeletAlert()">מחיקת שורה</button>
     </form>
   </div>
 </div>

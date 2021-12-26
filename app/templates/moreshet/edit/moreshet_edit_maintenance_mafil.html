@@ -42,10 +42,21 @@
         })
     }      
 </script>
+<script>
+    function fireSweetAlert() {
+        Swal.fire({
+            position: 'center',
+            icon: 'success',
+            title: '!הפער עודכן בהצלחה',
+            showConfirmButton: false,
+            timer: 1500
+        })
+    }      
+</script>
 <div class="container">
 <div class="col form-group" style="text-align: center;">
   <form method="POST">
-    <button type="sumbit" name="options" value="option_edit" class="btn btn-outline-success">עדכן</button>
+    <button type="sumbit" name="options" value="option_edit" class="btn btn-outline-success" onclick="fireSweetAlert()">עדכן</button>
     <button type="sumbit" name="options" value="option_delet" class="btn btn-outline-danger" onclick="fireDeletAlert()">מחיקה</button>
   </form>
 </div>

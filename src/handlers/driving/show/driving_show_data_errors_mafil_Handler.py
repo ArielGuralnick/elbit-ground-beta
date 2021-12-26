@@ -41,7 +41,7 @@ $('#driving_show_data_errors_mafil').DataTable();
         if request.form.get("options") == 'option1':
             return redirect(url_for('driving_insert_error'))
         elif request.form.get("options") == 'option2':
-            return redirect(url_for('driving_edit_data_errors_mafil'))
+            return redirect(url_for('driving_edit_data_errors'))
         elif request.form.get("options") == 'option3':
             return send_file('db/driving/data_errors.csv',
             mimetype='text/csv',attachment_filename='דוח תקלות.csv',

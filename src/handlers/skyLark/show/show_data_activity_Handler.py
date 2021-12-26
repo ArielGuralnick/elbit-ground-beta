@@ -72,7 +72,7 @@ async def show_data_activity_Handler(request):
 <div class="container">
 <div class="row">
     <div class="col-sm form-group">
-        <select class="form-control" id="exampleFormControlSelect1" name="position_upload">
+        <select class="form-control" name="position_upload">
             <option>אנא בחר מאמן</option>
             <option>עמדות פרט</option>
             <option>משימה 1</option>

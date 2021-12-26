@@ -1,0 +1,76 @@
+{% extends 'layout.html' %}
+{% block content %}
+<html>
+<section id="title" style="background-color: rgb(244, 248, 248); border-bottom: 3px solid var(--black);" >
+  <div>
+    <a href="/">
+      <img class="Logo" src="static/images/logo.png" alt="logo-img">
+    </a>
+    <h1>הזמנת ימי אימון מאמני צוות</h1>
+  </div>
+</section>
+<body style="background-color: rgb(211, 218, 218); ">
+    <section id="order_training" dir="rtl" lang="he">
+      <form action="" method="post">
+        <div class="row">
+            <div class="col form-group">
+            <label for="">בחר סוג מאמן</label>
+            <select class="form-control" name="type_simulator">
+                <optgroup label="אנא בחר מאמן">
+                    <option>שיזפון</option>
+                    <option>צאלים</option>
+                    <option>נחשונים</option>
+                    <option>נייד</option>
+                </optgroup>
+            </select>
+            <br>
+            </div>
+            <div class="col form-group">
+                <label for="">מספר מכולות</label>
+                <select class="form-control" name="num_of_cell">
+                    <optgroup label="אנא בחר מספר מכולות">
+                        <option>1</option>
+                        <option>2</option>
+                        <option>3</option>
+                        <option>4</option>
+                        <option>5</option>
+                        <option>6</option>
+                        <option>7</option>
+                        <option>8</option>
+                    </optgroup>
+                </select>
+                <br>
+            </div>
+        </div>
+        <div class="row">
+          <div class="col form-group">
+            <label for="" class="labelSettings">תאריך התחלה</label>
+            <input type="date" name="date_start" class="form-control" required>
+            <label for="" class="labelSettings">שעת התחלה</label>
+            <input type="time" name="time_start" class="form-control" min="08:00" max="21:00" value="08:00" required>
+            <span class="validity"></span>
+            <br>
+          </div>
+          <div class="col form-group">
+            <label for="" class="labelSettings">תאריך סיום</label>
+            <input type="date" name="date_end" class="form-control" required>
+            <label for="" class="labelSettings">שעת סיום</label>
+            <input type="time" name="time_end" class="form-control" min="08:00" max="21:00" value="21:00" required>
+            <span class="validity"></span>
+            <br>
+          </div>
+        </div>
+
+        <div style="text-align: center;">
+          <form method="POST" style="height: 500px;">
+            <button type="sumbit" class="btn btn-outline-success">שלח</button>
+          </form>
+          <input type="reset" class="btn btn-outline-danger" value="אתחול">
+          <p></p>
+        </div>
+      </form>
+    </section>
+</body>
+
+</html>
+{% endblock %}
