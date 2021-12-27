@@ -58,13 +58,13 @@ async def driving_show_maintenance_technician_mafil_Handler(request):
               </optgroup>
             </select>
         </div>
-    </div>
-    <div class = "row">
         <div class="col form-group">
           <label for="" class="labelSettings">תאריך</label>
           <input type="date" name="date_upload" class="form-control" min="2021-01-01">
           <br>
         </div>
+    </div>
+    <div class = "row">
         <div class="col form-group">
           <label for="" class="labelSettings">מה הפער</label>
           <textarea class="form-control" name= "disparity"  rows="2" placeholder="אנא הסבר"></textarea>
@@ -76,6 +76,11 @@ async def driving_show_maintenance_technician_mafil_Handler(request):
             <option>V</option>
             <option>X</option>
           </select>
+          <br>
+        </div>
+        <div class="col form-group">
+          <label for="" class="labelSettings">תאריך טיפול</label>
+          <input type="date" name="date_treatment" class="form-control" min="2021-01-01">
           <br>
         </div>
     </div>
@@ -105,12 +110,14 @@ async def driving_show_maintenance_technician_mafil_Handler(request):
             date_upload = request.form.get('date_upload')
             disparity = request.form.get('disparity')
             status = request.form.get('status')
+            date_treatment = request.form.get('date_treatment')
 
             if date_upload == "" or disparity == "" :
                 flash(f'!נא למלא את כל הערכים', category="danger")
             else:
-                field_content = ['מאמן','סוג תא','תאריך','מה הפער','טופל / לא טופל']
-                data_errors = pd.DataFrame([{'מאמן' : type_of_simulator, 'סוג תא' : type_of_cell,'תאריך' : date_upload, 'מה הפער' : disparity, 'טופל / לא טופל':status}], columns=field_content)
+                field_content = ['מאמן','סוג תא','תאריך','מה הפער','טופל / לא טופל','תאריך טיפול']
+                data_errors = pd.DataFrame([{'מאמן' : type_of_simulator, 'סוג תא' : type_of_cell, 'תאריך' : date_upload,
+                'מה הפער' : disparity, 'טופל / לא טופל':status, 'תאריך טיפול': date_treatment}], columns=field_content)
                 with open('elbit-ground-beta/app/db/driving/maintenance.csv', 'a', newline='', encoding='utf-8-sig') as file:
                     data_errors.to_csv(file, index=False, na_rep='N/A',header=file.tell()==0, encoding='utf-8-sig')
                     flash(f'!הפער תועד בהצלחה', category="success")

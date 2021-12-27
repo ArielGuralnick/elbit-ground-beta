@@ -1,6 +1,5 @@
 from flask import render_template, redirect, url_for,flash
 import pandas as pd
-import time
 
 async def show_maintenance_technician_mafil_Handler(request):
 
@@ -17,7 +16,7 @@ async def show_maintenance_technician_mafil_Handler(request):
 </section>
 <body style="background-color: rgb(211, 218, 218);">
 <section id="show_data_errors" dir="rtl" lang="he">''')
-        dphtml += data.to_html(classes = "table table-hover", border=0, index=False)
+        dphtml += data.to_html(table_id="show_maintenance_technician_mafil", classes = "table table-hover", border=0, index=False)
         with open('elbit-ground-beta/app/templates/skyLark/show/show_maintenance_technician_mafil.html','w', encoding='utf-8-sig') as f:
             f.writelines([dphtml + '\n' + r'<br>' + '\n' + r"</form>" + '\n' + r"</section>" + '\n' +
             r'''<section id="insertError" dir="rtl" lang="he">
@@ -33,6 +32,8 @@ async def show_maintenance_technician_mafil_Handler(request):
           <textarea class="form-control" name= "disparity"  rows="2" placeholder="אנא הסבר"></textarea>
           <br>
         </div>
+    </div>
+    <div class = "row">
         <div class="col form-group">
           <label for="">טופל \ לא טופל</label>
           <select class="form-control" name = "status">
@@ -41,21 +42,14 @@ async def show_maintenance_technician_mafil_Handler(request):
           </select>
           <br>
         </div>
+        <div class="col form-group">
+          <label for="" class="labelSettings">תאריך טיפול</label>
+          <input type="date" name="date_treatment" class="form-control" min="2021-01-01">
+          <br>
+        </div>
     </div>
 </section>
 
-<!-- Alert Message after clicking on sumbit.-->
-<script>
-  function fireSweetAlert() {
-    Swal.fire({
-              position: 'center',
-              icon: 'success',
-              title: '!הפער התווסף בהצלחה',
-              showConfirmButton: false,
-              timer: 1500
-            })
-      }      
-</script>
 <div class="container">
   <div class="col form-group" style="text-align: center;">
     <form method="POST">
@@ -64,6 +58,10 @@ async def show_maintenance_technician_mafil_Handler(request):
     </form>
   </div>
 </div>
+
+<script type="text/javascript">
+  $('#show_maintenance_technician_mafil').DataTable();
+</script>
 
 </body>
 {% endblock %}'''])
@@ -75,14 +73,14 @@ async def show_maintenance_technician_mafil_Handler(request):
             date_upload = request.form.get('date_upload')
             disparity = request.form.get('disparity')
             status = request.form.get('status')
+            date_treatment = request.form.get('date_treatment')
 
             if date_upload == "" or disparity == "" :
                 flash(f'!נא למלא את כל הערכים', category="danger")
             else:
-                       
-                time.sleep(1.5)
-                field_content = ['תאריך','מה הפער','טופל / לא טופל']
-                data_errors = pd.DataFrame([{'תאריך' : date_upload, 'מה הפער' : disparity, 'טופל / לא טופל':status}], columns=field_content)
+                field_content = ['תאריך','מה הפער','טופל / לא טופל','תאריך טיפול']
+                data_errors = pd.DataFrame([{'תאריך' : date_upload, 'מה הפער' : disparity,
+                'טופל / לא טופל':status, 'תאריך טיפול': date_treatment}], columns=field_content)
                 with open('elbit-ground-beta/app/db/skyLark/maintenance.csv', 'a', newline='', encoding='utf-8-sig') as file:
                     data_errors.to_csv(file, index=False, na_rep='N/A',header=file.tell()==0, encoding='utf-8-sig')
                     flash(f'!הפער תועד בהצלחה', category="success")

@@ -24,7 +24,7 @@ async def driving_show_data_errors_technician_Handler(request):
 <div class="container">
   <div class="col form-group" style="text-align: center;">
     <form method="POST">
-        <button type="sumbit" class="btn btn-outline-success" name="options" value="option_add">הוספת תקלה לא יודע עוד לאיזה דף להפנות</button>
+        <button type="sumbit" class="btn btn-outline-success" name="options" value="option_add">הוספת תקלה</button>
         <button type="sumbit" class="btn btn-outline-danger" name="options" value="option_edit">עריכת שורה</button>
         <button type="sumbit" class="btn btn-outline-secondary" name="options" value="option_csv">פתיחת דוח באקסל</button>
     </form>
@@ -49,7 +49,8 @@ async def driving_show_data_errors_technician_Handler(request):
         elif request.form.get("options") == 'option_edit':
             return redirect(url_for('driving_edit_data_errors'))
 
-#        elif request.form.get("options") == 'option_add':
+        elif request.form.get("options") == 'option_add':
+            return redirect(url_for('driving_insert_error'))
         
 
         

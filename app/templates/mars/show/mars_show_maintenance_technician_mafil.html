@@ -8,19 +8,33 @@
 </div>
 </section>
 <body style="background-color: rgb(211, 218, 218);">
-<section id="show_data_errors" dir="rtl" lang="he"><table border="0" class="dataframe table table-hover">
+<section id="show_data_errors" dir="rtl" lang="he"><table border="0" class="dataframe table table-hover" id="show_maintenance_technician_mafil">
   <thead>
     <tr style="text-align: right;">
       <th>תאריך</th>
       <th>מה הפער</th>
       <th>טופל / לא טופל</th>
+      <th>תאריך טיפול</th>
     </tr>
   </thead>
   <tbody>
     <tr>
-      <td>2021-11-28</td>
-      <td>לא עובד לעדי מקלדת</td>
+      <td>2021-12-26</td>
+      <td>פער כלשהו עדי</td>
+      <td>V</td>
+      <td>2021-12-27</td>
+    </tr>
+    <tr>
+      <td>2021-12-15</td>
+      <td>במחשב IG בלה בלה</td>
       <td>X</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <td>2021-12-22</td>
+      <td>פער כלשהו במרס</td>
+      <td>V</td>
+      <td>2021-12-27</td>
     </tr>
   </tbody>
 </table>
@@ -40,12 +54,19 @@
           <textarea class="form-control" name= "disparity"  rows="2" placeholder="אנא הסבר"></textarea>
           <br>
         </div>
+    </div>
+    <div class = "row">
         <div class="col form-group">
           <label for="">טופל \ לא טופל</label>
           <select class="form-control" name = "status">
             <option>V</option>
             <option>X</option>
           </select>
+          <br>
+        </div>
+        <div class="col form-group">
+          <label for="" class="labelSettings">תאריך טיפול</label>
+          <input type="date" name="date_treatment" class="form-control" min="2021-01-01">
           <br>
         </div>
     </div>
@@ -59,5 +80,10 @@
     </form>
 </div>
 </div>
+
+<script type="text/javascript">
+  $('#show_maintenance_technician_mafil').DataTable();
+</script> 
+
 </body>
 {% endblock %}

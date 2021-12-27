@@ -41,12 +41,19 @@ async def driving_edit_maintenance_technician_mafil_Handler(request):
   {% endfor %}
 </select>
 </div>
+</div>
+<div class="row">
 <div class="col form-group">
   <label for="">טופל \ לא טופל</label>
   <select class="form-control" name="status">
     <option>V</option>
     <option>X</option>
   </select>
+</div>
+<div class="col form-group">
+  <label for="" class="labelSettings">תאריך טיפול</label>
+  <input type="date" name="date_treatment" class="form-control" min="2021-01-01">
+  <br>
 </div>
 </div>
 </div>
@@ -90,9 +97,11 @@ async def driving_edit_maintenance_technician_mafil_Handler(request):
         simulator = request.form.get('simulator')
         disparity = request.form.get('disparity')
         status = request.form.get('status')
+        date_treatment = request.form.get('date_treatment')
+
         data = pd.read_csv('elbit-ground-beta/app/db/driving/maintenance.csv')
         row_to_edit = data.index[data['מה הפער'] == disparity]
-        data.loc[row_to_edit, ['מאמן','טופל / לא טופל']] = [simulator, status]
+        data.loc[row_to_edit, ['מאמן','טופל / לא טופל','תאריך טיפול']] = [simulator, status, date_treatment]
         with open('elbit-ground-beta/app/db/driving/maintenance.csv', 'w', newline='', encoding='utf-8-sig') as file:
             data.to_csv(file, index=False, na_rep='N/A',header=file.tell()==0, encoding='utf-8-sig')
             flash(f'!הפער עודכן בהצלחה', category="success")

@@ -23,7 +23,7 @@ async def edit_maintenance_technician_mafil_Handler(request):
         f.writelines([dphtml + '\n' + r'''
 <div class="container">
 <div class="row">
-<div class="col-md-3 form-group">
+<div class="col form-group">
 <label for="">בחר פער לעריכה</label>
 <select class="form-control" name="disparity">
   {% for i in data %}
@@ -31,12 +31,17 @@ async def edit_maintenance_technician_mafil_Handler(request):
   {% endfor %}
 </select>
 </div>
-<div class="col-md-3 form-group">
+<div class="col form-group">
   <label for="">טופל \ לא טופל</label>
   <select class="form-control" name="status">
     <option>V</option>
     <option>X</option>
   </select>
+</div>
+<div class="col form-group">
+  <label for="" class="labelSettings">תאריך טיפול</label>
+  <input type="date" name="date_treatment" class="form-control" min="2021-01-01">
+  <br>
 </div>
 </div>
 </div>
@@ -79,9 +84,11 @@ async def edit_maintenance_technician_mafil_Handler(request):
       if request.form.get('options') == 'option_edit':
         disparity = request.form.get('disparity')
         status = request.form.get('status')
+        date_treatment = request.form.get('date_treatment')
+
         data = pd.read_csv('elbit-ground-beta/app/db/skyLark/maintenance.csv')
         row_to_edit = data.index[data['מה הפער'] == disparity]
-        data.loc[row_to_edit, 'טופל / לא טופל'] = status
+        data.loc[row_to_edit, ['טופל / לא טופל','תאריך טיפול']] = [status, date_treatment]
         with open('elbit-ground-beta/app/db/skyLark/maintenance.csv', 'w', newline='', encoding='utf-8-sig') as file:
             data.to_csv(file, index=False, na_rep='N/A',header=file.tell()==0, encoding='utf-8-sig')
             flash(f'!הפער עודכן בהצלחה', category="success")

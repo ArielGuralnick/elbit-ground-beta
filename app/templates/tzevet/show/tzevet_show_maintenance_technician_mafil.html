@@ -16,36 +16,25 @@
       <th>תאריך</th>
       <th>מה הפער</th>
       <th>טופל / לא טופל</th>
+      <th>תאריך טיפול</th>
     </tr>
   </thead>
   <tbody>
     <tr>
       <td>שיזפון</td>
-      <td>106</td>
+      <td>104</td>
       <td>2021-12-26</td>
-      <td>עכבר במעבדה</td>
-      <td>V</td>
+      <td>פער פערי הפערים</td>
+      <td>X</td>
+      <td>NaN</td>
     </tr>
     <tr>
       <td>נייד</td>
-      <td>2</td>
-      <td>2021-12-26</td>
-      <td>עכגרעהקרעקרעקרעקרעקרעקרעקרעקרעקרע4קע</td>
+      <td>3</td>
+      <td>2021-12-27</td>
+      <td>פער בנייד מפוער</td>
       <td>V</td>
-    </tr>
-    <tr>
-      <td>צאלים</td>
-      <td>2</td>
-      <td>2021-12-17</td>
-      <td>חיפש מטמוטן</td>
-      <td>X</td>
-    </tr>
-    <tr>
-      <td>שיזפון</td>
-      <td>102</td>
-      <td>2021-12-07</td>
-      <td>עוד משהו שיזפון</td>
-      <td>X</td>
+      <td>2021-12-27</td>
     </tr>
   </tbody>
 </table>
@@ -95,13 +84,13 @@
                       </optgroup>
             </select>
         </div>
-    </div>
-    <div class = "row">
         <div class="col form-group">
           <label for="" class="labelSettings">תאריך</label>
           <input type="date" name="date_upload" class="form-control" min="2021-01-01">
           <br>
         </div>
+    </div>
+    <div class = "row">
         <div class="col form-group">
           <label for="" class="labelSettings">מה הפער</label>
           <textarea class="form-control" name= "disparity"  rows="2" placeholder="אנא הסבר"></textarea>
@@ -113,6 +102,11 @@
             <option>V</option>
             <option>X</option>
           </select>
+          <br>
+        </div>
+        <div class="col form-group">
+          <label for="" class="labelSettings">תאריך טיפול</label>
+          <input type="date" name="date_treatment" class="form-control" min="2021-01-01">
           <br>
         </div>
     </div>
