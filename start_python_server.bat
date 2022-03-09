@@ -1,0 +1,1 @@
+title app && python %~dp0run.py || pause

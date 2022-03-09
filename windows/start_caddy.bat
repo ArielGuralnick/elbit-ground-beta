@@ -1,0 +1,1 @@
+title caddy && "%~dp0caddy.exe" run --config "%~dp0Caddyfile" || pause
