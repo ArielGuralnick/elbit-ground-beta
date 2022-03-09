@@ -1,8 +1,12 @@
 
 :5000 {
-    basicauth bcrypt {
-        {$ADMIN_USER} {$ADMIN_PASSWORD}
+    basicauth {
+        $ADMIN_USER $ADMIN_PASSWORD
     }
-    reverse_proxy elbit-ground-beta:5000
+    reverse_proxy elbit-ground-beta:5000 {
+        transport http {
+            tls_insecure_skip_verify
+        }
+    }
 }
 

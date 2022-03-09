@@ -44,7 +44,7 @@ services:
       - ./caddy/:/etc/caddy/
     environment:
       - ADMIN_USER=${ADMIN_USER:-admin}
-      - ADMIN_PASSWORD=${ADMIN_PASSWORD:-admin}
+      - ADMIN_PASSWORD=${ADMIN_PASSWORD:-JDJhJDE0JFlHQVI4Vkc3L2drQWNYWU8uN2FESXVRM2Y0MjJxLlBGd3NBWGtFOURaNk9KQklvenNpYjNT}
       - SKYLARK_USER=${SKYLARK_USER:-user}
       - SKYLARK_PASSWORD=${SKYLARK_PASSWORD:-Integ123}
     restart: unless-stopped
