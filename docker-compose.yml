@@ -31,22 +31,17 @@ services:
 
   caddy:
     image: caddy:2.4.2-alpine
+    container_name: caddy
     logging:
       driver: "json-file"
       options:
         max-size: "1m"
         max-file: "2"
-    container_name: caddy
     ports:
       - "5000:5000"
       - "80:5000"
     volumes:
       - ./caddy/:/etc/caddy/
-    environment:
-      - ADMIN_USER=${ADMIN_USER:-admin}
-      - ADMIN_PASSWORD=${ADMIN_PASSWORD:-JDJhJDE0JFlHQVI4Vkc3L2drQWNYWU8uN2FESXVRM2Y0MjJxLlBGd3NBWGtFOURaNk9KQklvenNpYjNT}
-      - SKYLARK_USER=${SKYLARK_USER:-user}
-      - SKYLARK_PASSWORD=${SKYLARK_PASSWORD:-Integ123}
     restart: unless-stopped
     networks:
       - elbit_ground_beta_net
