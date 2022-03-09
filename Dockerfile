@@ -5,7 +5,7 @@ FROM python:3.8.10-alpine
 WORKDIR /app
 
 # Install necessary pkgs
-RUN apk update -y && apk add make automake gcc g++ subversion python3-dev
+RUN apk update && apk add make automake gcc g++ subversion python3-dev
 
 # copy the dependencies file to the working directory
 COPY requirements.txt .
