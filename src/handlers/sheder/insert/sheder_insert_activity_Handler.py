@@ -18,7 +18,7 @@ async def sheder_insert_activity_Handler(request):
         data_activity = pd.DataFrame([{'מאמן': type_of_simulator, 'תאריך העלאה' : date_upload,
         'פעילות עבור' : group_training, 'שם המעלה' : name_updater,'שעת העלאה' : time_upload,
         'שעת הורדה' : time_download}], columns=field_content)
-        with open('elbit-ground-beta/app/db/sheder/data_activity.csv', 'a', newline='', encoding='utf-8-sig') as file:
+        with open('app/db/sheder/data_activity.csv', 'a', newline='', encoding='utf-8-sig') as file:
             data_activity.to_csv(file, index=False, na_rep='N/A',header=file.tell()==0, encoding = "utf-8-sig")
             flash(f'תיעוד האימון נקלט בהצלחה!', category="success")
         return redirect(url_for('sheder_instructor'))

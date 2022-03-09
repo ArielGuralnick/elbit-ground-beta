@@ -13,7 +13,7 @@ def createHTMLPage(simulator: Simulator):
 <body style="background-color: rgb(211, 218, 218);">
 <section id="show_data_errors" dir="rtl" lang="he">
 <form action="" method="post">''')       
-    with open(f'elbit-ground-beta/app/templates/{simulator.englishName}/edit/edit_data_errors_mafil.html','w', encoding='utf-8-sig') as f:
+    with open(f'app/templates/{simulator.englishName}/edit/edit_data_errors_mafil.html','w', encoding='utf-8-sig') as f:
         f.writelines([dphtml + '\n' + r'''
 <div class="col form-group">
 <label>שים לב ! </label>

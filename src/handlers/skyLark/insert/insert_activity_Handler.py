@@ -43,7 +43,7 @@ async def insert_activity_Handler(request):
         data_activity = pd.DataFrame([{'סוג מאמן': position_upload, 'מספר אימון' : number_training, 'תאריך העלאה' : date_upload,
         'פעילות עבור' : group_training, 'שם המעלה' : name_updater,'שעת התחלה' : time_upload,
         'שם המורידה' : name_downloader, 'שעת סיום' : time_download}], columns=field_content)
-        with open('elbit-ground-beta/app/db/skyLark/data_activity.csv', 'a', newline='', encoding='utf-8-sig') as file:
+        with open('app/db/skyLark/data_activity.csv', 'a', newline='', encoding='utf-8-sig') as file:
             data_activity.to_csv(file, index=False, na_rep='N/A',header=file.tell()==0, encoding = "utf-8-sig")
             flash(f'התיעוד נשלח בהצלחה!', category="success")
         return redirect(url_for('skyLark_instructor'))

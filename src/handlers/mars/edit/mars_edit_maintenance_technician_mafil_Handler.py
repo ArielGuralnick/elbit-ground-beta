@@ -4,7 +4,7 @@ import time
 
 async def mars_edit_maintenance_technician_mafil_Handler(request):
     if request.method == 'GET':       
-      data = pd.read_csv('elbit-ground-beta/app/db/mars/maintenance.csv')
+      data = pd.read_csv('app/db/mars/maintenance.csv')
       disparity = data["מה הפער"]
 
       dphtml = (r'''
@@ -19,7 +19,7 @@ async def mars_edit_maintenance_technician_mafil_Handler(request):
 <body style="background-color: rgb(211, 218, 218);">
 <section id="show_data_errors" dir="rtl" lang="he">
 <form action="" method="post">''')       
-      with open('elbit-ground-beta/app/templates/mars/edit/mars_edit_maintenance_mafil.html','w', encoding='utf-8-sig') as f:
+      with open('app/templates/mars/edit/mars_edit_maintenance_mafil.html','w', encoding='utf-8-sig') as f:
         f.writelines([dphtml + '\n' + r'''
 <div class="container">
 <div class="row">
@@ -86,10 +86,10 @@ async def mars_edit_maintenance_technician_mafil_Handler(request):
         status = request.form.get('status')
         date_treatment = request.form.get('date_treatment')
 
-        data = pd.read_csv('elbit-ground-beta/app/db/mars/maintenance.csv')
+        data = pd.read_csv('app/db/mars/maintenance.csv')
         row_to_edit = data.index[data['מה הפער'] == disparity]
         data.loc[row_to_edit, ['טופל / לא טופל','תאריך טיפול']] = [status, date_treatment] 
-        with open('elbit-ground-beta/app/db/mars/maintenance.csv', 'w', newline='', encoding='utf-8-sig') as file:
+        with open('app/db/mars/maintenance.csv', 'w', newline='', encoding='utf-8-sig') as file:
             data.to_csv(file, index=False, na_rep='N/A',header=file.tell()==0, encoding='utf-8-sig')
             flash(f'!הפער עודכן בהצלחה', category="success")
         return redirect(url_for('mars_show_maintenance_technician_mafil'))
@@ -97,11 +97,11 @@ async def mars_edit_maintenance_technician_mafil_Handler(request):
       
       if request.form.get('options') == 'option_delet':
         disparity = request.form.get('disparity')
-        data = pd.read_csv('elbit-ground-beta/app/db/mars/maintenance.csv')
+        data = pd.read_csv('app/db/mars/maintenance.csv')
         row_to_delet = data.index[data['מה הפער'] == disparity]
         data.drop(row_to_delet, inplace=True, axis=0)
       
-        with open('elbit-ground-beta/app/db/mars/maintenance.csv', 'w', newline='', encoding='utf-8-sig') as file:
+        with open('app/db/mars/maintenance.csv', 'w', newline='', encoding='utf-8-sig') as file:
             data.to_csv(file, index=False, na_rep='N/A',header=file.tell()==0, encoding='utf-8-sig')
             flash(f'הפער נמחק בהצלחה!', category="success")
         return redirect(url_for('mars_show_maintenance_technician_mafil'))

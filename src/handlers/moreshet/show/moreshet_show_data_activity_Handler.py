@@ -3,7 +3,7 @@ import pandas as pd
 
 async def moreshet_show_data_activity_Handler(request):
     if request.method == 'GET':       
-        data_activity = pd.read_csv('elbit-ground-beta/app/db/moreshet/data_activity.csv')
+        data_activity = pd.read_csv('app/db/moreshet/data_activity.csv')
         
         dphtml = (r'''
 {% extends 'layout.html' %}
@@ -44,7 +44,7 @@ async def moreshet_show_data_activity_Handler(request):
 </div>
 </div>''')        
         dphtml += data_activity.to_html(table_id="show_activity", classes = "table table-hover", border=0)
-        with open('elbit-ground-beta/app/templates/moreshet/show/moreshet_show_data_activity.html','w', encoding='utf-8-sig') as f:
+        with open('app/templates/moreshet/show/moreshet_show_data_activity.html','w', encoding='utf-8-sig') as f:
             f.writelines([dphtml + '\n' + r'<br>' + '\n' +
             r"</form>" + '\n' + r"</section>" + '\n' + 
             r'<script type="text/javascript">' + '\n' + r"$('#show_activity').DataTable();" + 
@@ -55,7 +55,7 @@ async def moreshet_show_data_activity_Handler(request):
 
     if request.method == 'POST':
         if request.form.get('options') == 'option1':
-            data_activity = pd.read_csv('elbit-ground-beta/app/db/moreshet/data_activity.csv')
+            data_activity = pd.read_csv('app/db/moreshet/data_activity.csv')
             num_of_cell = request.form.get('num_of_cell')
             specific_num_of_cell = data_activity.loc[data_activity['מספר תא'] == num_of_cell]
     
@@ -98,7 +98,7 @@ async def moreshet_show_data_activity_Handler(request):
 </div>
 </div>''')  
             dphtml += specific_num_of_cell .to_html(table_id="show_activity", classes = "table table-hover", border=0)
-            with open('elbit-ground-beta/app/templates/moreshet/show/moreshet_show_data_activity.html','w', encoding='utf-8-sig') as f:
+            with open('app/templates/moreshet/show/moreshet_show_data_activity.html','w', encoding='utf-8-sig') as f:
                 f.writelines([dphtml + '\n' + r'<br>' +
                 r"</form>" + '\n' + r"</section>" + '\n' + 
                 r'<script type="text/javascript">' + '\n' + r"$('#show_activity').DataTable();" + 

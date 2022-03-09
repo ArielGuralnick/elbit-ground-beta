@@ -5,7 +5,7 @@ import time
 
 async def edit_data_errors_mafil_Handler(request):
     if request.method == 'GET':       
-      data = pd.read_csv('elbit-ground-beta/app/db/skyLark/data_errors.csv')
+      data = pd.read_csv('app/db/skyLark/data_errors.csv')
       error = data.index
       
       dphtml = (r'''
@@ -20,7 +20,7 @@ async def edit_data_errors_mafil_Handler(request):
 <body style="background-color: rgb(211, 218, 218);">
 <section id="show_data_errors" dir="rtl" lang="he">
 <form action="" method="post">''')       
-      with open('elbit-ground-beta/app/templates/skyLark/edit/edit_data_errors_mafil.html','w', encoding='utf-8-sig') as f:
+      with open('app/templates/skyLark/edit/edit_data_errors_mafil.html','w', encoding='utf-8-sig') as f:
         f.writelines([dphtml + '\n' + r'''
 <div class="col form-group">
 <label>שים לב ! </label>
@@ -110,10 +110,10 @@ async def edit_data_errors_mafil_Handler(request):
         if type_of_fault == "" or fault_operation == "" :
           flash(f'!נא למלא את כל הערכים', category="danger")
         else:
-          data = pd.read_csv('elbit-ground-beta/app/db/skyLark/data_errors.csv')
+          data = pd.read_csv('app/db/skyLark/data_errors.csv')
           row_to_edit = data.index[error]
           data.loc[row_to_edit,['סוג התקלה','תפעול התקלה','מחשב','טופל/לא טופל']] = [type_of_fault,fault_operation,computer,situation]
-          with open('elbit-ground-beta/app/db/skyLark/data_errors.csv', 'w', newline='', encoding='utf-8-sig') as file:
+          with open('app/db/skyLark/data_errors.csv', 'w', newline='', encoding='utf-8-sig') as file:
               data.to_csv(file, index=False, na_rep='N/A',header=file.tell()==0, encoding='utf-8-sig')
               flash(f'!התקלה עודכנה בהצלחה', category="success")
           return redirect(url_for('show_data_errors_mafil'))
@@ -122,11 +122,11 @@ async def edit_data_errors_mafil_Handler(request):
       if request.form.get('options') == 'option_delet':
         time.sleep(1.5)
         error = int(request.form.get('error'))
-        data = pd.read_csv('elbit-ground-beta/app/db/skyLark/data_errors.csv')
+        data = pd.read_csv('app/db/skyLark/data_errors.csv')
         row_to_delet = data.index[error]
         data.drop(row_to_delet, inplace=True, axis=0)
       
-        with open('elbit-ground-beta/app/db/skyLark/data_errors.csv', 'w', newline='', encoding='utf-8-sig') as file:
+        with open('app/db/skyLark/data_errors.csv', 'w', newline='', encoding='utf-8-sig') as file:
             data.to_csv(file, index=False, na_rep='N/A',header=file.tell()==0, encoding='utf-8-sig')
             flash(f'!התקלה נמחקה בהצלחה', category="success")
         return redirect(url_for('show_data_errors_mafil'))

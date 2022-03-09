@@ -4,7 +4,7 @@ import time
 
 async def mars_edit_work_plan_mafil_Handler(request):
     if request.method == 'GET':       
-      data = pd.read_csv('elbit-ground-beta/app/db/mars/work_plan_mafil.csv')
+      data = pd.read_csv('app/db/mars/work_plan_mafil.csv')
       achievements = data["הישגים נדרשים"]
       
       dphtml = (r'''
@@ -19,7 +19,7 @@ async def mars_edit_work_plan_mafil_Handler(request):
 <body style="background-color: rgb(211, 218, 218);">
 <section id="show_data_errors" dir="rtl" lang="he">
 <form action="" method="post">''')       
-      with open('elbit-ground-beta/app/templates/mars/edit/mars_edit_work_plan_mafil.html','w', encoding='utf-8-sig') as f:
+      with open('app/templates/mars/edit/mars_edit_work_plan_mafil.html','w', encoding='utf-8-sig') as f:
         f.writelines([dphtml + '\n' + r'''
 <div class="container">
 <div class="row">
@@ -80,10 +80,10 @@ async def mars_edit_work_plan_mafil_Handler(request):
       if request.form.get('options') == 'option_edit':
         achievements = request.form.get('achievements')
         status = request.form.get('status')
-        data = pd.read_csv('elbit-ground-beta/app/db/mars/work_plan_mafil.csv')
+        data = pd.read_csv('app/db/mars/work_plan_mafil.csv')
         row_to_edit = data.index[data['הישגים נדרשים'] == achievements]
         data.loc[row_to_edit, 'סטטוס ביצוע'] = status
-        with open('elbit-ground-beta/app/db/mars/work_plan_mafil.csv', 'w', newline='', encoding='utf-8-sig') as file:
+        with open('app/db/mars/work_plan_mafil.csv', 'w', newline='', encoding='utf-8-sig') as file:
             data.to_csv(file, index=False, na_rep='N/A',header=file.tell()==0, encoding='utf-8-sig')
             flash(f'!היעד עודכן בהצלחה', category="success")
         return redirect(url_for('mars_show_work_plan_mafil'))
@@ -91,11 +91,11 @@ async def mars_edit_work_plan_mafil_Handler(request):
       
       if request.form.get('options') == 'option_delet':
         achievements = request.form.get('achievements')
-        data = pd.read_csv('elbit-ground-beta/app/db/mars/work_plan_mafil.csv')
+        data = pd.read_csv('app/db/mars/work_plan_mafil.csv')
         row_to_delet = data.index[data['הישגים נדרשים'] == achievements]
         data.drop(row_to_delet, inplace=True, axis=0)
       
-        with open('elbit-ground-beta/app/db/mars/work_plan_mafil.csv', 'w', newline='', encoding='utf-8-sig') as file:
+        with open('app/db/mars/work_plan_mafil.csv', 'w', newline='', encoding='utf-8-sig') as file:
             data.to_csv(file, index=False, na_rep='N/A',header=file.tell()==0, encoding='utf-8-sig')
             flash(f'!הפער נמחק בהצלחה', category="success")
         return redirect(url_for('mars_show_work_plan_mafil'))

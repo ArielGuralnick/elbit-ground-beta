@@ -4,7 +4,7 @@ import pandas as pd
 async def moreshet_show_data_errors_technician_Handler(request):
     if request.method == 'GET':       
         important_columns = ['תאריך העלאה','מספר תא','סוג התקלה', 'תפעול התקלה', 'סוג עמדה', 'באיזה מחשב','זמן השבתה']
-        data_errors = pd.read_csv('elbit-ground-beta/app/db/moreshet/data_errors.csv')
+        data_errors = pd.read_csv('app/db/moreshet/data_errors.csv')
         
         dphtml = (r'''
 {% extends 'layout.html' %}
@@ -19,7 +19,7 @@ async def moreshet_show_data_errors_technician_Handler(request):
 <section id="show_data_errors" dir="rtl" lang="he">
 <form action="" method="post">''')  
         dphtml += data_errors.to_html(table_id="moreshet_show_data_errors_technician", classes = "table table-hover", border=0, columns=important_columns)
-        with open('elbit-ground-beta/app/templates/moreshet/show/moreshet_show_data_errors_technician.html','w', encoding='utf-8-sig') as f:
+        with open('app/templates/moreshet/show/moreshet_show_data_errors_technician.html','w', encoding='utf-8-sig') as f:
             f.writelines([dphtml + '\n' + r'<br>' +'\n' +
             r'''
 <form method="POST">

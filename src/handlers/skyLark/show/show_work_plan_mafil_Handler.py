@@ -5,7 +5,7 @@ import time
 async def show_work_plan_mafil_Handler(request):
 
     if request.method == 'GET':
-        data = pd.read_csv('elbit-ground-beta/app/db/skyLark/work_plan_mafil.csv')
+        data = pd.read_csv('app/db/skyLark/work_plan_mafil.csv')
         dphtml = (r'''
 {% extends 'layout.html' %}
 {% block content %}
@@ -18,7 +18,7 @@ async def show_work_plan_mafil_Handler(request):
 <body style="background-color: rgb(211, 218, 218);">
 <section id="show_data_errors" dir="rtl" lang="he">''')
         dphtml += data.to_html(classes = "table table-hover", border=0, index=False)
-        with open('elbit-ground-beta/app/templates/skyLark/show/show_work_plan_mafil.html','w', encoding='utf-8-sig') as f:
+        with open('app/templates/skyLark/show/show_work_plan_mafil.html','w', encoding='utf-8-sig') as f:
             f.writelines([dphtml + '\n' + r'<br>'  + '\n' + r'</section>' + '\n' + 
             r'''<section id="insertError" dir="rtl" lang="he">
     <form action="" method="post">
@@ -94,7 +94,7 @@ async def show_work_plan_mafil_Handler(request):
             else:
                 field_content = ['נושא','מטרה','הישגים נדרשים','גורם מבצע','סטטוס ביצוע']
                 data = pd.DataFrame([{'נושא' : subject, 'מטרה' : goal, 'הישגים נדרשים':achievements, 'גורם מבצע': responsible, 'סטטוס ביצוע': status}], columns=field_content)
-                with open('elbit-ground-beta/app/db/skyLark/work_plan_mafil.csv', 'a', newline='', encoding='utf-8-sig') as file:
+                with open('app/db/skyLark/work_plan_mafil.csv', 'a', newline='', encoding='utf-8-sig') as file:
                     data.to_csv(file, index=False, na_rep='null',header=file.tell()==0, encoding='utf-8-sig')
                     flash(f'! השורה התווספה בהצלחה', category="success")
             return redirect(url_for('show_work_plan_mafil'))
