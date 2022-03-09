@@ -4,13 +4,14 @@
 <section id="title" style="background-color: rgb(244, 248, 248); border-bottom: 3px solid var(--black);" >
 <div>
   <a href="/"><img class="Logo" src="static/images/logo.png" alt="logo-img"></a>
-  <h1>מלאי מחסן רוכ"ש</h1>
+  <h1>מלאי מחסן שדר חם</h1>
 </div>
 </section>
 <body style="background-color: rgb(211, 218, 218);">
 <section id="show_data_errors" dir="rtl" lang="he"><table border="0" class="dataframe table table-hover">
   <thead>
     <tr style="text-align: right;">
+      <th>מאמן</th>
       <th>סוג הפריט</th>
       <th>דגם</th>
       <th>כמות במלאי</th>
@@ -20,18 +21,20 @@
   </thead>
   <tbody>
     <tr>
-      <td>מחשב</td>
-      <td>HP</td>
-      <td>3.0</td>
+      <td>נייד 988</td>
+      <td>כרטיס SIM</td>
+      <td>SANDISK</td>
+      <td>3</td>
       <td>כן</td>
-      <td>בק'ב'ק</td>
+      <td>בלההה</td>
     </tr>
     <tr>
-      <td>עכגערכ</td>
-      <td>עכגעכג</td>
-      <td>4.0</td>
+      <td>נייד 987</td>
+      <td>כרטיסיית IN</td>
+      <td>HP</td>
+      <td>65</td>
       <td>כן</td>
-      <td>כעכגעכג</td>
+      <td>כגכק'כק'כק'כק'</td>
     </tr>
   </tbody>
 </table>
@@ -40,6 +43,15 @@
 <section id="insertError" dir="rtl" lang="he">
 <form action="" method="post">
     <div class = "row">
+        <div class="col form-group">
+          <label for="">מאמן</label>
+          <select class="form-control" name="type_of_simulator">
+            <option>נייד 987</option>
+            <option>נייד 988</option>
+            <option>נייד 989</option>
+          </select>
+          <br>
+        </div>
         <div class="col form-group">
             <label>סוג הפריט</label>
             <input type="text" name="type_of_item" class="form-control">
@@ -50,6 +62,8 @@
             <input type="text" name="model" class="form-control">
             <br>
         </div>
+    </div>
+    <div class = "row">
         <div class="col form-group">
             <label>כמות במלאי</label>
             <input type="number" name="quantity"  class="form-control" min="0">

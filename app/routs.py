@@ -112,6 +112,26 @@ from src.handlers.tzevet.edit.tzevet_edit_data_errors_Handler import tzevet_edit
 
 
 
+from src.handlers.sheder.sheder_Handler import sheder_Handler
+#from src.handlers.sheder.insert.sheder_order_training_Handler import sheder_order_training_Handler
+#from src.handlers.sheder.pdf.sheder_pdf_solutions_Handler import sheder_pdf_solutions_Handler
+#from src.handlers.sheder.sheder_instructor_Handler import sheder_instructor_Handler
+from src.handlers.sheder.sheder_technician_Handler import sheder_technician_Handler
+from src.handlers.sheder.sheder_mafil_Handler import sheder_mafil_Handler
+#from src.handlers.sheder.insert.sheder_feedback_Handler import sheder_feedback_Handler
+from src.handlers.sheder.show.sheder_show_maintenance_technician_mafil_Handler import sheder_show_maintenance_technician_mafil_Handler
+from src.handlers.sheder.edit.sheder_edit_maintenance_technician_mafil_Handler import sheder_edit_maintenance_technician_mafil_Handler
+from src.handlers.sheder.show.sheder_show_warehouse_inventory_Handler import sheder_show_warehouse_inventory_Handler
+from src.handlers.sheder.edit.sheder_edit_warehouse_inventory_Handler import sheder_edit_warehouse_inventory_Handler
+from src.handlers.sheder.insert.sheder_insert_error_Handler import sheder_insert_error_Handler
+from src.handlers.sheder.insert.sheder_insert_activity_Handler import sheder_insert_activity_Handler
+from src.handlers.sheder.show.sheder_show_data_activity_Handler import sheder_show_data_activity_Handler
+from src.handlers.sheder.show.sheder_show_data_errors_technician_Handler import sheder_show_data_errors_technician_Handler
+from src.handlers.sheder.show.sheder_show_data_errors_mafil_Handler import sheder_show_data_errors_mafil_Handler
+from src.handlers.sheder.edit.sheder_edit_data_errors_Handler import sheder_edit_data_errors_Handler
+
+
+
 @app.route("/", methods=['GET','POST'])
 def home():
     return render_template("home.html")
@@ -646,3 +666,79 @@ async def tzevet_show_data_errors_technician():
 async def tzevet_edit_data_errors():
     return await tzevet_edit_data_errors_Handler(request)
 
+
+
+
+
+# מאמן שדר חם 
+
+
+# ניתובים לבחירת משתמש, הדרכה, הפעלה ואחזקה
+@app.route("/sheder", methods=['GET','POST'])
+async def sheder():
+    return await sheder_Handler(request)
+
+
+@app.route("/sheder_technician", methods=['GET','POST'])
+async def sheder_technician():
+    return await sheder_technician_Handler(request)
+
+@app.route("/sheder_mafil", methods=['GET','POST'])
+async def sheder_mafil():
+    return await sheder_mafil_Handler(request)
+
+
+
+
+
+@app.route("/sheder_show_data_activity", methods=['GET','POST'])
+async def sheder_show_data_activity():
+    return await sheder_show_data_activity_Handler(request)
+
+# הפערים בין המפעיל לטכנאי
+
+@app.route("/sheder_show_maintenance_technician_mafil", methods=['GET','POST'])
+async def sheder_show_maintenance_technician_mafil():
+    return await sheder_show_maintenance_technician_mafil_Handler(request)
+
+@app.route("/sheder_edit_maintenance_technician_mafil", methods=['GET','POST'])
+async def sheder_edit_maintenance_technician_mafil():
+    return await sheder_edit_maintenance_technician_mafil_Handler(request)
+
+
+# עריכה וצפייה מחסן נהיגה 
+
+@app.route("/sheder_edit_warehouse_inventory", methods=['GET','POST'])
+async def sheder_edit_warehouse_inventory():
+    return await sheder_edit_warehouse_inventory_Handler(request)
+
+@app.route("/sheder_show_warehouse_inventory", methods=['GET','POST'])
+async def sheder_show_warehouse_inventory():
+    return await sheder_show_warehouse_inventory_Handler(request)
+
+
+# הכנסה תקלה ופעילות
+
+@app.route("/sheder_insert_error", methods=['GET','POST'])
+async def sheder_insert_error():
+    return await sheder_insert_error_Handler(request)
+
+@app.route("/sheder_insert_activity", methods=['GET','POST'])
+async def sheder_insert_activity():
+    return await sheder_insert_activity_Handler(request)
+
+
+
+# צפייה בתקלות טכנאי וצפייה ועריכה תקלות מפעיל
+
+@app.route("/sheder_show_data_errors_mafil", methods=['GET','POST'])
+async def sheder_show_data_errors_mafil():
+    return await sheder_show_data_errors_mafil_Handler(request)
+
+@app.route("/sheder_show_data_errors_technician", methods=['GET','POST'])
+async def sheder_show_data_errors_technician():
+    return await sheder_show_data_errors_technician_Handler(request)
+
+@app.route("/sheder_edit_data_errors", methods=['GET','POST'])
+async def sheder_edit_data_errors():
+    return await sheder_edit_data_errors_Handler(request)

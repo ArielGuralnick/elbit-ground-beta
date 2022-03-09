@@ -11,6 +11,7 @@
 <section id="show_data_errors" dir="rtl" lang="he"><table border="0" class="dataframe table table-hover" id="show_maintenance_technician_mafil">
   <thead>
     <tr style="text-align: right;">
+      <th>מאמן</th>
       <th>תאריך</th>
       <th>מה הפער</th>
       <th>טופל / לא טופל</th>
@@ -19,16 +20,18 @@
   </thead>
   <tbody>
     <tr>
-      <td>2021-12-16</td>
-      <td>חסר עכברים</td>
+      <td>נייד 987</td>
+      <td>2021-12-28</td>
+      <td>פער בששדר חם</td>
       <td>V</td>
-      <td>2021-12-27</td>
+      <td>2021-12-28</td>
     </tr>
     <tr>
-      <td>2021-12-22</td>
-      <td>המצלמה במאמן משימה 4 לא מקליטה קול בכל התחקורים</td>
-      <td>V</td>
-      <td>2021-12-29</td>
+      <td>נייד 988</td>
+      <td>2021-12-27</td>
+      <td>כעגע</td>
+      <td>X</td>
+      <td>NaN</td>
     </tr>
   </tbody>
 </table>
@@ -39,17 +42,26 @@
     <form action="" method="post">
     <div class = "row">
         <div class="col form-group">
+          <label for="">מאמן</label>
+          <select class="form-control" name="type_of_simulator">
+            <option>נייד 987</option>
+            <option>נייד 988</option>
+            <option>נייד 989</option>
+          </select>
+          <br>
+        </div>
+        <div class="col form-group">
           <label for="" class="labelSettings">תאריך</label>
           <input type="date" name="date_upload" class="form-control" min="2021-01-01">
           <br>
         </div>
+    </div>
+    <div class = "row">
         <div class="col form-group">
           <label for="" class="labelSettings">מה הפער</label>
           <textarea class="form-control" name= "disparity"  rows="2" placeholder="אנא הסבר"></textarea>
           <br>
         </div>
-    </div>
-    <div class = "row">
         <div class="col form-group">
           <label for="">טופל \ לא טופל</label>
           <select class="form-control" name = "status">
@@ -66,18 +78,17 @@
     </div>
 </section>
 
-<div class="container">
-  <div class="col form-group" style="text-align: center;">
-    <form method="POST">
-        <button type="sumbit" class="btn btn-outline-success" name="options" value="option_add" onclick="fireSweetAlert()">הוספת פער</button>
-        <button type="sumbit" class="btn btn-outline-danger" name="options" value="option_edit">עריכת שורה</button>
-    </form>
-  </div>
-</div>
-
 <script type="text/javascript">
   $('#show_maintenance_technician_mafil').DataTable();
 </script>
 
+<div class="container">
+<div class="col form-group" style="text-align: center;">
+    <form method="POST">
+        <button type="sumbit" class="btn btn-outline-success" name="options" value="option_add">הוספת פער</button>
+        <button type="sumbit" class="btn btn-outline-danger" name="options" value="option_edit">עריכת שורה</button>
+    </form>
+</div>
+</div>
 </body>
 {% endblock %}

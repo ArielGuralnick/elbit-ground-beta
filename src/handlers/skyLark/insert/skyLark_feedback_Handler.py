@@ -73,6 +73,7 @@ async def skyLark_feedback_Handler(request):
         'עד כמה אתה מת עכשיו להיות בתאילנד' : answer_4,
         'עד כמה אתה מת לאכול עכשיו פיצה' : answer_5}], columns=field_content)
         with open('elbit-ground-beta/app/db/skyLark/feedback.csv', 'a', newline='', encoding='utf-8-sig') as file:
+        #with open('C:/Users/E024478/Desktop/ProgrammsInPython/ElbitProj/Git/elbit-ground-beta/app/db/skyLark/feedback.csv', 'a', newline='', encoding='utf-8-sig') as file:
             feedback_information.to_csv(file, index=False, na_rep='N/A',header=file.tell()==0, encoding='utf-8-sig')
             flash(f'המשוב נשלח בהצלחה! תודה', category="success")
         return redirect(url_for('skyLark_instructor'))
