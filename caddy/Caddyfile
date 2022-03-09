@@ -1,0 +1,49 @@
+
+:80 {
+    basicauth / {$ADMIN_USER} {$ADMIN_PASSWORD}
+    proxy / elbit-ground-beta:5000 {
+            transparent
+            websocket
+        }
+
+    errors stderr
+    tls off
+}
+
+
+:5000 {
+    basicauth / {$ADMIN_USER} {$ADMIN_PASSWORD}
+    proxy / elbit-ground-beta:5000 {
+            transparent
+            websocket
+        }
+
+    errors stderr
+    tls off
+}
+
+
+
+
+:80 {
+    basicauth / {$SKYLARK_USER} {$SKYLARK_PASSWORD}
+    proxy / elbit-ground-beta:5000 {
+            transparent
+            websocket
+        }
+
+    errors stderr
+    tls off
+}
+
+:5000 {
+    basicauth / {$SKYLARK_USER} {$SKYLARK_PASSWORD}
+    proxy / elbit-ground-beta:5000 {
+            transparent
+            websocket
+        }
+
+    errors stderr
+    tls off
+}
+

@@ -1,0 +1,55 @@
+version: "3"
+
+networks:
+  elbit_ground_beta_net:
+    driver: bridge
+
+services:
+
+  elbit-ground-beta:
+    image: arielguralnick/elbit-ground-beta:1.0.0
+    container_name: elbit-ground-beta
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "5m"
+        max-file: "3"
+    restart: unless-stopped
+    volumes:
+     - ./elbit-ground-beta:/elbit-ground-beta
+    expose:
+      - "5000"
+    networks:
+      - elbit_ground_beta_net
+    environment:
+      - PYTHONUNBUFFERED=1
+      # - NEXUS_CONTEXT=nexus
+      # - NEXUS_CUSTOM_DEPLOY_ROLE=Deployers
+    labels:
+      org.label-schema.group: "elbit-ground-beta"
+
+
+  caddy:
+    image: caddy:2.4.2-alpine
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "1m"
+        max-file: "2"
+    container_name: caddy
+    ports:
+      - "5000:5000"
+      - "80:5000"
+    volumes:
+      - ./caddy/:/etc/caddy/
+    environment:
+      - ADMIN_USER=${ADMIN_USER:-admin}
+      - ADMIN_PASSWORD=${ADMIN_PASSWORD:-admin}
+      - SKYLARK_USER=${SKYLARK_USER:-user}
+      - SKYLARK_PASSWORD=${SKYLARK_PASSWORD:-Integ123}
+    restart: unless-stopped
+    networks:
+      - elbit_ground_beta_net
+    labels:
+      org.label-schema.group: "elbit-ground-beta"
+
