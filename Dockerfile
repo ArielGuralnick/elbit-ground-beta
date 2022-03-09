@@ -1,5 +1,5 @@
 # set base image (host OS)
-FROM python:3.8.10-slim
+FROM python:3.8.10
 
 # set the working directory in the container
 WORKDIR /app
@@ -14,4 +14,4 @@ RUN pip install -r requirements.txt
 COPY src/ .
 
 # command to run on container start
-CMD [ "ls -la", "&&", "python", "./run.py" ]
+CMD [ "python", "./app/run.py" ]
