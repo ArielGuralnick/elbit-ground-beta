@@ -41,7 +41,7 @@ services:
       - "5000:5000"
       - "80:5000"
     volumes:
-      - ./caddy/:/etc/caddy/
+      - ./linux/:/etc/caddy/
     restart: unless-stopped
     networks:
       - elbit_ground_beta_net

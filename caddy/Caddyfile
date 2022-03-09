@@ -1,8 +1,0 @@
-
-:5000 {
-    basicauth {
-        admin JDJhJDE0JG1oMGFabFNURWNkZjhGdkE1NTJJdk9ubnlOc3pFQ2tFUFl5T21pbDZIVmZjYS9ENmpvSmVX
-    }
-    reverse_proxy elbit-ground-beta:5000 
-}
-
