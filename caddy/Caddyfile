@@ -1,7 +1,7 @@
 
 :5000 {
     basicauth {
-        $ADMIN_USER $ADMIN_PASSWORD
+        {$ADMIN_USER} {$ADMIN_PASSWORD}
     }
     reverse_proxy elbit-ground-beta:5000 {
         transport http {
