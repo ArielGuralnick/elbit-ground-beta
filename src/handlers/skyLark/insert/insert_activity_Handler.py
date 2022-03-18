@@ -1,5 +1,4 @@
 import pandas as pd
-from src.types.Simulator import Simulator
 from flask import render_template, flash, redirect, url_for
 import psycopg2
 

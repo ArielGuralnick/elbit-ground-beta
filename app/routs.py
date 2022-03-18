@@ -563,20 +563,6 @@ async def driving_edit_data_errors():
 
 
 
-# Nir
-
-from src.newHandlers.pages.home_simulator_page import home_simulator_page
-from src.newHandlers.getSimulatorByName import getSimulatorByName
-
-@app.route("/home_simulator_page", methods=['GET', 'POST'])
-async def home_simulator_page():
-    simulatorName = request.args.get('name', default = "", type = str)
-    simulator = getSimulatorByName(simulatorName)
-    return await home_simulator_page(request, simulator)
-
-
-
-
 
 # מאמני צוות
 
