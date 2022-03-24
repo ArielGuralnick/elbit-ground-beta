@@ -2,4 +2,4 @@
   docker:
     web: Dockerfile.flask    caddy: docker/caddy/Dockerfile.alpine
 # run:  # web: python /app/run.py
-run:  web: python /app/run.py  worker:    image: web
+run:  web: python /app/run.py  caddy:    command:      -     image: web
