@@ -1,6 +1,6 @@
 
 
-echo Executing: caddy run --config /etc/caddy/Caddyfile
+echo Executing: caddy run --config Caddyfile
 
-caddy run --config /etc/caddy/Caddyfile
+caddy run --config Caddyfile
 
