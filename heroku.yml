@@ -1,5 +1,5 @@
-build:
+setup:  addons:    - plan: caddy:2.4.2-alpine      as: caddybuild:
   docker:
     web: Dockerfile.flask
 # run:  # web: python /app/run.py
-run:  web: docker-compose up -d
+run:  web: python /app/run.py  worker:    image: web
