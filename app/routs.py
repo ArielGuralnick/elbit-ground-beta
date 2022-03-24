@@ -1,3 +1,4 @@
+from unicodedata import name
 from app import app # importing app variable from app package
 from flask import render_template,request
 
@@ -136,7 +137,7 @@ from flask_login import (LoginManager, current_user, login_required,
                             login_user, logout_user, UserMixin,
                             confirm_login, fresh_login_required)
 
-from flask_security import core.AnonymousUser
+from flask_login import AnonymousUserMixin
 
 print("Setting login vars")
 
@@ -154,18 +155,24 @@ class User(UserMixin):
 
 
 
-class Anonymous(AnonymousUser):
-    name = u"Anonymous"
+class Anonymous(AnonymousUserMixin):
+    def __init__(self):
+        self.username = 'Guest'
 
 
 USERS = {
-    1: User(u"Notch", 1),
-    2: User(u"Steve", 2),
-    3: User(u"Creeper", 3, False),
+    1: User("Notch", 1),
+    2: User("Steve", 2),
+    3: User("Creeper", 3, False),
 }
 
 
-USER_NAMES = dict((u.name, u) for u in USERS.itervalues())
+# USER_NAMES = dict( (u.name, u) for u in USERS.items() )
+USER_NAMES = {
+    USERS[1].name : USERS[1],
+    USERS[2].name : USERS[2],
+    USERS[3].name : USERS[3],
+}
 
 
 
