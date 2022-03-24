@@ -169,8 +169,8 @@ class Config(object):
 
 
 USERS = {
-    1: User("Notch", 1),
-    2: User("Steve", 2),
+    1: User("a", 1, "a"),
+    2: User("b", 2, "b"),
     3: User("Creeper", 3, False),
 }
 
