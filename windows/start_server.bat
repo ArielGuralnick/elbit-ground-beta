@@ -1,0 +1,1 @@
+title caddy && python "%~dp0..\run.py" || pause

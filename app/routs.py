@@ -1,3 +1,5 @@
+import os
+from unicodedata import name
 from app import app # importing app variable from app package
 from flask import render_template,request
 
@@ -131,11 +133,139 @@ from src.handlers.sheder.show.sheder_show_data_errors_mafil_Handler import shede
 from src.handlers.sheder.edit.sheder_edit_data_errors_Handler import sheder_edit_data_errors_Handler
 
 
+from flask import Flask, request, render_template, redirect, url_for, flash
+from flask_login import (LoginManager, current_user, login_required,
+                            login_user, logout_user, UserMixin,
+                            confirm_login, fresh_login_required)
 
-@app.route("/", methods=['GET','POST'])
-def home():
-    return render_template("home.html")
+from flask_login import AnonymousUserMixin
 
+from app.forms import LoginForm
+
+print("Setting login vars")
+
+
+
+class User(UserMixin):
+    def __init__(self, name, id, password, active=True):
+        self.name = name
+        self.id = id
+        self.password = password
+        self.active = active
+
+    def is_active(self):
+        return self.active
+
+
+
+
+class Anonymous(AnonymousUserMixin):
+    def __init__(self):
+        self.username = 'Guest'
+
+
+class Config(object):
+    SECRET_KEY = "dOVljBuSkQ"  # yeah, not actually a secret
+
+
+USERS = {
+    1: User("admin", 1, "ariel"),
+    2: User("sky", 2, "Integ123"),
+    3: User("Creeper", 3, False),
+}
+
+
+# USER_NAMES = dict( (u.name, u) for u in USERS.items() )
+USER_NAMES = {
+    USERS[1].name : USERS[1],
+    USERS[2].name : USERS[2],
+    USERS[3].name : USERS[3],
+}
+
+
+
+
+
+DEBUG = True
+
+
+app.config.from_object(__name__)
+
+login_manager = LoginManager()
+
+login_manager.anonymous_user = Anonymous
+login_manager.login_view = "login"
+login_manager.login_message = ""
+login_manager.refresh_view = "reauth"
+
+
+@login_manager.user_loader
+def load_user(id):
+    return USERS.get(int(id))
+
+
+login_manager.setup_app(app)
+
+
+
+
+
+
+@app.route('/')
+@app.route('/index')
+@fresh_login_required
+def index():
+    user_info = {
+        'name':'User'
+    }
+    return render_template('home.html', user=user_info)
+
+
+@app.route("/login", methods=["GET", "POST"])
+def login():
+    print("Checking login")
+    inrequestForm = "username" in request.form
+    isPostRequest = request.method == "POST"
+    print("inrequestForm:", inrequestForm)
+    print("isPostRequest:", isPostRequest)
+    # form = LoginForm()
+    error = None
+    if request.method == 'POST':
+        formUsername = request.form['username']
+        if formUsername in USER_NAMES:
+            user = USER_NAMES[formUsername]
+            formPassword = request.form['password']
+            if formPassword == user.password:
+                remember = request.form.get("remember", "no") == "yes"
+                if login_user(user, remember=remember):
+                    # flash('login successful')
+                    return redirect(request.args.get("next") or url_for("index"))
+                else:
+                    flash("Sorry, but you could not log in.")
+            else:
+                print("FAILED LOGIN")
+                flash("Invalid username.")
+        else:
+            print("Username is not on the list")
+    return render_template('login.html', error=error)
+
+
+@app.route("/reauth", methods=["GET", "POST"])
+@login_required
+def reauth():
+    if request.method == "POST":
+        confirm_login()
+        flash(u"Reauthenticated.")
+        return redirect(request.args.get("next") or url_for("index"))
+    return render_template("reauth.html")
+
+
+@app.route("/logout")
+@login_required
+def logout():
+    logout_user()
+    flash("Logged out.")
+    return redirect(url_for("index"))
 
 
 # מאמן רוכב שמיים

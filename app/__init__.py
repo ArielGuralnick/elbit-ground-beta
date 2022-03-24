@@ -1,10 +1,13 @@
-import osimport pathlib
+import os
+import pathlib
 
 from flask import Flask
 
 app = Flask(__name__)
 
-rootDir=pathlib.Path().resolve()print("CD into dir:", rootDir)
+
+rootDir=pathlib.Path().resolve()
+print("CD into dir:", rootDir)
 os.chdir(rootDir)
 
 # for safety - we go to terminal, import os, then - os.urandom(12).hex(), and copy the result and paste here.
