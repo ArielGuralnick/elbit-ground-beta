@@ -133,8 +133,10 @@ from src.handlers.sheder.edit.sheder_edit_data_errors_Handler import sheder_edit
 
 from flask import Flask, request, render_template, redirect, url_for, flash
 from flask_login import (LoginManager, current_user, login_required,
-                            login_user, logout_user, UserMixin, AnonymousUser,
+                            login_user, logout_user, UserMixin,
                             confirm_login, fresh_login_required)
+
+from flask_security import core.AnonymousUser
 
 print("Setting login vars")
 
@@ -223,7 +225,13 @@ def reauth():
         return redirect(request.args.get("next") or url_for("index"))
     return render_template("reauth.html")
 
-    
+
+@app.route("/logout")
+@login_required
+def logout():
+    logout_user()
+    flash("Logged out.")
+    return redirect(url_for("index"))
 
 
 # מאמן רוכב שמיים
