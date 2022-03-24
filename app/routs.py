@@ -167,8 +167,6 @@ USER_NAMES = dict((u.name, u) for u in USERS.itervalues())
 
 
 
-app = Flask(__name__)
-
 SECRET_KEY = "dOVljBuSkQ"  # yeah, not actually a secret
 DEBUG = True
 
