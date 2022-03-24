@@ -1,5 +1,10 @@
 
 FROM caddy:2.4.2-alpine
-WORKDIR /
-COPY . .RUN chmod +x start_caddy.shCMD ["start_caddy.sh"]
+
+WORKDIR /
+
+COPY . .
+RUN chmod +x start_caddy.sh
+
+CMD ["start_caddy.sh"]
 
