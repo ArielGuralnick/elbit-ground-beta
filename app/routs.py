@@ -195,7 +195,7 @@ login_manager = LoginManager()
 
 login_manager.anonymous_user = Anonymous
 login_manager.login_view = "login"
-login_manager.login_message = u"Please log in to access this page."
+login_manager.login_message = ""
 login_manager.refresh_view = "reauth"
 
 
@@ -210,14 +210,10 @@ login_manager.setup_app(app)
 
 
 
-@app.route("/", methods=['GET','POST'])
-@fresh_login_required
-def home():
-    return render_template("home.html")
-
 
 @app.route('/')
 @app.route('/index')
+@fresh_login_required
 def index():
     user_info = {
         'name':'User'
@@ -242,7 +238,7 @@ def login():
             if formPassword == user.password:
                 remember = request.form.get("remember", "no") == "yes"
                 if login_user(user, remember=remember):
-                    flash('login successful')
+                    # flash('login successful')
                     return redirect(request.args.get("next") or url_for("index"))
                 else:
                     flash("Sorry, but you could not log in.")
