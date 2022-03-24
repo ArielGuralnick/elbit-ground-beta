@@ -198,6 +198,21 @@ def home():
     return render_template("home.html")
 
 
+@app.route("/login", methods=["GET", "POST"])
+def login():
+    if request.method == "POST" and "username" in request.form:
+        username = request.form["username"]
+        if username in USER_NAMES:
+            remember = request.form.get("remember", "no") == "yes"
+            if login_user(USER_NAMES[username], remember=remember):
+                flash("Logged in!")
+                return redirect(request.args.get("next") or url_for("index"))
+            else:
+                flash("Sorry, but you could not log in.")
+        else:
+            flash(u"Invalid username.")
+    return render_template("login.html")
+
 
 # מאמן רוכב שמיים
 
