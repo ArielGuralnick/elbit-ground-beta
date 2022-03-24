@@ -131,7 +131,29 @@ from src.handlers.sheder.show.sheder_show_data_errors_mafil_Handler import shede
 from src.handlers.sheder.edit.sheder_edit_data_errors_Handler import sheder_edit_data_errors_Handler
 
 
+from flask_login import (LoginManager, current_user, login_required,
+                            login_user, logout_user, UserMixin, AnonymousUser,
+                            confirm_login, fresh_login_required)
+
 print("Setting login vars")
+
+
+
+class User(UserMixin):
+    def __init__(self, name, id, active=True):
+        self.name = name
+        self.id = id
+        self.active = active
+
+    def is_active(self):
+        return self.active
+
+
+
+
+class Anonymous(AnonymousUser):
+    name = u"Anonymous"
+
 
 USERS = {
     1: User(u"Notch", 1),

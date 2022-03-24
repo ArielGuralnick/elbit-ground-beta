@@ -2,25 +2,9 @@ import os
 import pathlib
 
 from flask import Flask, request, render_template, redirect, url_for, flash
-from flask_login import (LoginManager, current_user, login_required,
-                            login_user, logout_user, UserMixin, AnonymousUser,
-                            confirm_login, fresh_login_required)
-
-
-class User(UserMixin):
-    def __init__(self, name, id, active=True):
-        self.name = name
-        self.id = id
-        self.active = active
-
-    def is_active(self):
-        return self.active
 
 
 
-
-class Anonymous(AnonymousUser):
-    name = u"Anonymous"
 
 
 
