@@ -235,17 +235,22 @@ def login():
     # form = LoginForm()
     error = None
     if request.method == 'POST':
-        username = request.form['username']
-        if request.form['username'] == 'admin' and request.form['password'] == 'admin':
-            remember = request.form.get("remember", "no") == "yes"
-            if login_user(USER_NAMES[username], remember=remember):
-                flash('login successful')
-                return redirect(request.args.get("next") or url_for("index"))
+        formUsername = request.form['username']
+        if formUsername in USER_NAMES:
+            user = USER_NAMES[formUsername]
+            formPassword = request.form['password']
+            if formPassword == user.password:
+                remember = request.form.get("remember", "no") == "yes"
+                if login_user(user, remember=remember):
+                    flash('login successful')
+                    return redirect(request.args.get("next") or url_for("index"))
+                else:
+                    flash("Sorry, but you could not log in.")
             else:
-                flash("Sorry, but you could not log in.")
+                print("FAILED LOGIN")
+                flash("Invalid username.")
         else:
-            print("FAILED LOGIN")
-            flash("Invalid username.")
+            print("Username is not on the list")
     return render_template('login.html', error=error)
 
 
