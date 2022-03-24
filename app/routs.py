@@ -214,6 +214,18 @@ def login():
     return render_template("login.html")
 
 
+@app.route("/reauth", methods=["GET", "POST"])
+@login_required
+def reauth():
+    if request.method == "POST":
+        confirm_login()
+        flash(u"Reauthenticated.")
+        return redirect(request.args.get("next") or url_for("index"))
+    return render_template("reauth.html")
+
+    
+
+
 # מאמן רוכב שמיים
 
 # ניתובים לבחירת משתמש, הדרכה, הפעלה ואחזקה
