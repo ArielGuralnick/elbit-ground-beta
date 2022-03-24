@@ -1,5 +1,5 @@
-setup:  addons:    - plan: caddy:2.4.2-alpine      as: caddybuild:
+build:
   docker:
-    web: Dockerfile.flask    caddy: docker/caddy/Dockerfile.alpine
+    web: Dockerfile.flask
 # run:  # web: python /app/run.py
-run:  caddy: ash /start_caddy.sh  web: python /app/run.py
+run:  web: python /app/run.py  image: web
