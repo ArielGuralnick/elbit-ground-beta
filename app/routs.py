@@ -131,6 +131,45 @@ from src.handlers.sheder.show.sheder_show_data_errors_mafil_Handler import shede
 from src.handlers.sheder.edit.sheder_edit_data_errors_Handler import sheder_edit_data_errors_Handler
 
 
+print("Setting login vars")
+
+USERS = {
+    1: User(u"Notch", 1),
+    2: User(u"Steve", 2),
+    3: User(u"Creeper", 3, False),
+}
+
+
+USER_NAMES = dict((u.name, u) for u in USERS.itervalues())
+
+
+
+app = Flask(__name__)
+
+SECRET_KEY = "dOVljBuSkQ"  # yeah, not actually a secret
+DEBUG = True
+
+
+app.config.from_object(__name__)
+
+login_manager = LoginManager()
+
+login_manager.anonymous_user = Anonymous
+login_manager.login_view = "login"
+login_manager.login_message = u"Please log in to access this page."
+login_manager.refresh_view = "reauth"
+
+
+@login_manager.user_loader
+def load_user(id):
+    return USERS.get(int(id))
+
+
+login_manager.setup_app(app)
+
+
+
+
 
 @app.route("/", methods=['GET','POST'])
 def home():
