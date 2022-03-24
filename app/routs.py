@@ -193,6 +193,7 @@ login_manager.setup_app(app)
 
 
 @app.route("/", methods=['GET','POST'])
+@fresh_login_required
 def home():
     return render_template("home.html")
 
