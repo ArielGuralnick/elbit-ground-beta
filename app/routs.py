@@ -140,14 +140,17 @@ from flask_login import (LoginManager, current_user, login_required,
 
 from flask_login import AnonymousUserMixin
 
+from app.forms import LoginForm
+
 print("Setting login vars")
 
 
 
 class User(UserMixin):
-    def __init__(self, name, id, active=True):
+    def __init__(self, name, id, password, active=True):
         self.name = name
         self.id = id
+        self.password = password
         self.active = active
 
     def is_active(self):
@@ -159,6 +162,10 @@ class User(UserMixin):
 class Anonymous(AnonymousUserMixin):
     def __init__(self):
         self.username = 'Guest'
+
+
+class Config(object):
+    SECRET_KEY = "dOVljBuSkQ"  # yeah, not actually a secret
 
 
 USERS = {
@@ -179,7 +186,6 @@ USER_NAMES = {
 
 
 
-SECRET_KEY = "dOVljBuSkQ"  # yeah, not actually a secret
 DEBUG = True
 
 
@@ -210,20 +216,37 @@ def home():
     return render_template("home.html")
 
 
+@app.route('/')
+@app.route('/index')
+def index():
+    user_info = {
+        'name':'User'
+    }
+    return render_template('home.html', user=user_info)
+
+
 @app.route("/login", methods=["GET", "POST"])
 def login():
-    if request.method == "POST" and "username" in request.form:
-        username = request.form["username"]
-        if username in USER_NAMES:
+    print("Checking login")
+    inrequestForm = "username" in request.form
+    isPostRequest = request.method == "POST"
+    print("inrequestForm:", inrequestForm)
+    print("isPostRequest:", isPostRequest)
+    # form = LoginForm()
+    error = None
+    if request.method == 'POST':
+        username = request.form['username']
+        if request.form['username'] == 'admin' and request.form['password'] == 'admin':
             remember = request.form.get("remember", "no") == "yes"
             if login_user(USER_NAMES[username], remember=remember):
-                flash("Logged in!")
+                flash('login successful')
                 return redirect(request.args.get("next") or url_for("index"))
             else:
                 flash("Sorry, but you could not log in.")
         else:
-            flash(u"Invalid username.")
-    return render_template("login.html")
+            print("FAILED LOGIN")
+            flash("Invalid username.")
+    return render_template('login.html', error=error)
 
 
 @app.route("/reauth", methods=["GET", "POST"])
