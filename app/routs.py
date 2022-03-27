@@ -196,7 +196,7 @@ login_manager = LoginManager()
 login_manager.anonymous_user = Anonymous
 login_manager.login_view = "login"
 login_manager.login_message = ""
-login_manager.refresh_view = "reauth"
+#login_manager.refresh_view = "reauth"
 
 
 @login_manager.user_loader
@@ -236,8 +236,8 @@ def login():
             user = USER_NAMES[formUsername]
             formPassword = request.form['password']
             if formPassword == user.password:
-                remember = request.form.get("remember", "no") == "yes"
-                if login_user(user, remember=remember):
+#                remember = request.form.get("remember", "no") == "yes"
+                if login_user(user, remember=True):  # שיניתי מ remeber ל True
                     # flash('login successful')
                     return redirect(request.args.get("next") or url_for("index"))
                 else:
