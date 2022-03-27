@@ -250,7 +250,7 @@ def login():
             print("Username is not on the list")
     return render_template('login.html', error=error)
 
-'''
+
 @app.route("/reauth", methods=["GET", "POST"])
 @login_required
 def reauth():
@@ -259,7 +259,7 @@ def reauth():
         flash(u"Reauthenticated.")
         return redirect(request.args.get("next") or url_for("index"))
     return render_template("reauth.html")
-'''
+
 
 @app.route("/logout")
 @login_required
