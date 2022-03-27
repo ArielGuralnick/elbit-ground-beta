@@ -3,7 +3,7 @@ import pandas as pd
 
 async def tzevet_show_data_activity_Handler(request):
     if request.method == 'GET':       
-        data_activity = pd.read_csv('app/db/tzevet/data_activity.csv')
+        data_activity = pd.read_csv('elbit-ground-beta/app/db/tzevet/data_activity.csv')
         
         dphtml = (r'''
 {% extends 'layout.html' %}
@@ -42,7 +42,7 @@ async def tzevet_show_data_activity_Handler(request):
 </div>
 </div>''')        
         dphtml += data_activity.to_html(table_id="show_activity", classes = "table table-hover", border=0)
-        with open('app/templates/tzevet/show/tzevet_show_data_activity.html','w', encoding='utf-8-sig') as f:
+        with open('elbit-ground-beta/app/templates/tzevet/show/tzevet_show_data_activity.html','w', encoding='utf-8-sig') as f:
             f.writelines([dphtml + '\n' + r'<br>' + '\n' +
             r"</form>" + '\n' + r"</section>" + '\n' + 
             r'<script type="text/javascript">' + '\n' + r"$('#show_activity').DataTable();" + 
@@ -53,7 +53,7 @@ async def tzevet_show_data_activity_Handler(request):
 
     if request.method == 'POST':
         if request.form.get('options') == 'option1':
-            data_activity = pd.read_csv('app/db/tzevet/data_activity.csv')
+            data_activity = pd.read_csv('elbit-ground-beta/app/db/tzevet/data_activity.csv')
             type_of_simulator = request.form.get('type_of_simulator')
             specific_type_of_simulator = data_activity.loc[data_activity['מאמן'] == type_of_simulator]
     
@@ -94,7 +94,7 @@ async def tzevet_show_data_activity_Handler(request):
 </div>
 </div>''')  
             dphtml += specific_type_of_simulator .to_html(table_id="show_activity", classes = "table table-hover", border=0)
-            with open('app/templates/tzevet/show/tzevet_show_data_activity.html','w', encoding='utf-8-sig') as f:
+            with open('elbit-ground-beta/app/templates/tzevet/show/tzevet_show_data_activity.html','w', encoding='utf-8-sig') as f:
                 f.writelines([dphtml + '\n' + r'<br>' +
                 r"</form>" + '\n' + r"</section>" + '\n' + 
                 r'<script type="text/javascript">' + '\n' + r"$('#show_activity').DataTable();" + 

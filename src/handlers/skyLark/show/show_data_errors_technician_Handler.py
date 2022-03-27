@@ -4,7 +4,7 @@ import pandas as pd
 async def show_data_errors_technician_Handler(request):
     if request.method == 'GET':       
         important_columns = ['תאריך','עיתוי התקלה','עמדה','סוג התקלה','תפעול התקלה','זמן השבתה']
-        data_errors = pd.read_csv('app/db/skyLark/data_errors.csv')
+        data_errors = pd.read_csv('elbit-ground-beta/app/db/skyLark/data_errors.csv')
         
         dphtml = (r'''
 {% extends 'layout.html' %}
@@ -19,7 +19,7 @@ async def show_data_errors_technician_Handler(request):
 <section id="show_data_errors" dir="rtl" lang="he">
 <form action="" method="post">''')  
         dphtml += data_errors.to_html(table_id="show_data_errors_technician", classes = "table table-hover", border=0, columns=important_columns)
-        with open('app/templates/skyLark/show/show_data_errors_technician.html','w', encoding='utf-8-sig') as f:
+        with open('elbit-ground-beta/app/templates/skyLark/show/show_data_errors_technician.html','w', encoding='utf-8-sig') as f:
             f.writelines([dphtml + '\n' + r'<br>' +'\n' +
             r'''
 <form method="POST">

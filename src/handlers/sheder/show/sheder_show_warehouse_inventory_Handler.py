@@ -5,7 +5,7 @@ import pandas as pd
 async def sheder_show_warehouse_inventory_Handler(request):
 
     if request.method == 'GET':
-        data = pd.read_csv('app/db/sheder/warehouse_inventory.csv')
+        data = pd.read_csv('elbit-ground-beta/app/db/sheder/warehouse_inventory.csv')
         dphtml = (r'''
 {% extends 'layout.html' %}
 {% block content %}
@@ -18,7 +18,7 @@ async def sheder_show_warehouse_inventory_Handler(request):
 <body style="background-color: rgb(211, 218, 218);">
 <section id="show_data_errors" dir="rtl" lang="he">''')
         dphtml += data.to_html(classes = "table table-hover", border=0, index=False)
-        with open('app/templates/sheder/show/sheder_show_warehouse_inventory.html','w', encoding='utf-8-sig') as f:
+        with open('elbit-ground-beta/app/templates/sheder/show/sheder_show_warehouse_inventory.html','w', encoding='utf-8-sig') as f:
             f.writelines([dphtml + '\n' + r'<br>'  + '\n' + r'</section>' + '\n' + 
             r'''<section id="insertError" dir="rtl" lang="he">
 <form action="" method="post">
@@ -92,7 +92,7 @@ async def sheder_show_warehouse_inventory_Handler(request):
             else:
                 field_content = ['מאמן','סוג הפריט','דגם','כמות במלאי','נדרש להשלים \ לרכוש','הערות']
                 data = pd.DataFrame([{'מאמן' : type_of_simulator,'סוג הפריט' : type_of_item, 'דגם' : model, 'כמות במלאי':quantity, 'נדרש להשלים \ לרכוש': needs_to_complete, 'הערות': remarks}], columns=field_content)
-                with open('app/db/sheder/warehouse_inventory.csv', 'a', newline='', encoding='utf-8-sig') as file:
+                with open('elbit-ground-beta/app/db/sheder/warehouse_inventory.csv', 'a', newline='', encoding='utf-8-sig') as file:
                     data.to_csv(file, index=False, na_rep='null',header=file.tell()==0, encoding='utf-8-sig')
                     flash(f'!הפריט התווסף למלאי', category="success")
             return redirect(url_for('sheder_show_warehouse_inventory'))

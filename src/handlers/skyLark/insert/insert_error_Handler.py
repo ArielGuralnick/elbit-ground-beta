@@ -21,7 +21,7 @@ async def insert_error_Handler(request):
         data_errors = pd.DataFrame([{'תאריך' : date_error, 'שעה' : time_error, 'שם מזהה':name_identifier,
         'עיתוי התקלה': timing_fault, 'עמדה' : position, 'סוג התקלה' : type_of_fault,
         'תפעול התקלה' : fault_operation,'מחשב' : computer, 'טופל/לא טופל' : situation, 'זמן השבתה' : downtime}], columns=field_content)
-        with open('app/db/skyLark/data_errors.csv', 'a', newline='', encoding='utf-8-sig') as file:
+        with open('elbit-ground-beta/app/db/skyLark/data_errors.csv', 'a', newline='', encoding='utf-8-sig') as file:
             data_errors.to_csv(file, index=False, na_rep='null',header=file.tell()==0, encoding='utf-8-sig')
             flash(f'!התקלה נשלחה בהצלחה', category="success")
         return redirect(url_for('skyLark_instructor'))

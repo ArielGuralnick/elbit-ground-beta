@@ -5,7 +5,7 @@ import pandas as pd
 async def driving_show_maintenance_technician_mafil_Handler(request):
 
     if request.method == 'GET':
-        data = pd.read_csv('app/db/driving/maintenance.csv')
+        data = pd.read_csv('elbit-ground-beta/app/db/driving/maintenance.csv')
         dphtml = (r'''
 {% extends 'layout.html' %}
 {% block content %}
@@ -18,7 +18,7 @@ async def driving_show_maintenance_technician_mafil_Handler(request):
 <body style="background-color: rgb(211, 218, 218);">
 <section id="show_data_errors" dir="rtl" lang="he">''')
         dphtml += data.to_html(table_id="show_maintenance_technician_mafil", classes = "table table-hover", border=0, index=False)
-        with open('app/templates/driving/show/driving_show_maintenance_technician_mafil.html','w', encoding='utf-8-sig') as f:
+        with open('elbit-ground-beta/app/templates/driving/show/driving_show_maintenance_technician_mafil.html','w', encoding='utf-8-sig') as f:
             f.writelines([dphtml + '\n' + r'<br>' + '\n' + r"</form>" + '\n' + r"</section>" + '\n' +
             r'''<section id="insertError" dir="rtl" lang="he">
     <form action="" method="post">
@@ -118,7 +118,7 @@ async def driving_show_maintenance_technician_mafil_Handler(request):
                 field_content = ['מאמן','סוג תא','תאריך','מה הפער','טופל / לא טופל','תאריך טיפול']
                 data_errors = pd.DataFrame([{'מאמן' : type_of_simulator, 'סוג תא' : type_of_cell, 'תאריך' : date_upload,
                 'מה הפער' : disparity, 'טופל / לא טופל':status, 'תאריך טיפול': date_treatment}], columns=field_content)
-                with open('app/db/driving/maintenance.csv', 'a', newline='', encoding='utf-8-sig') as file:
+                with open('elbit-ground-beta/app/db/driving/maintenance.csv', 'a', newline='', encoding='utf-8-sig') as file:
                     data_errors.to_csv(file, index=False, na_rep='N/A',header=file.tell()==0, encoding='utf-8-sig')
                     flash(f'!הפער תועד בהצלחה', category="success")
             return redirect(url_for('driving_show_maintenance_technician_mafil'))

@@ -1,7 +1,7 @@
 import os
 from unicodedata import name
 from app import app # importing app variable from app package
-from flask import render_template,request
+
 
 from src.handlers.skyLark.skyLark_Handler import skyLark_Handler
 from src.handlers.skyLark.skyLark_instructor_Handler import skyLark_instructor_Handler
@@ -244,12 +244,13 @@ def login():
                     flash("Sorry, but you could not log in.")
             else:
                 print("FAILED LOGIN")
-                flash("Invalid username.")
+                flash("Your Username or password are incorrect, try again!")
         else:
+            flash("Your Username or password are incorrect, try again!")
             print("Username is not on the list")
     return render_template('login.html', error=error)
 
-
+'''
 @app.route("/reauth", methods=["GET", "POST"])
 @login_required
 def reauth():
@@ -258,7 +259,7 @@ def reauth():
         flash(u"Reauthenticated.")
         return redirect(request.args.get("next") or url_for("index"))
     return render_template("reauth.html")
-
+'''
 
 @app.route("/logout")
 @login_required

@@ -19,7 +19,7 @@ async def moreshet_insert_activity_Handler(request):
         data_activity = pd.DataFrame([{'תאריך העלאה': date_upload, 'סוג אימון' : type_of_training, 'מספר תא' : num_of_cell,
         'שעת התחלה' : time_upload, 'שעת סיום' : time_download,'שם המדריכה' : name_updater,
         'מספר עמדות' : num_of_position, 'מספר מתאמנים' : num_of_practicing}], columns=field_content)
-        with open('app/db/moreshet/data_activity.csv', 'a', newline='', encoding='utf-8-sig') as file:
+        with open('elbit-ground-beta/app/db/moreshet/data_activity.csv', 'a', newline='', encoding='utf-8-sig') as file:
             data_activity.to_csv(file, index=False, na_rep='N/A',header=file.tell()==0, encoding = "utf-8-sig")
             flash(f'תיעוד האימון נקלט בהצלחה!', category="success")
         return redirect(url_for('moreshet_instructor'))
