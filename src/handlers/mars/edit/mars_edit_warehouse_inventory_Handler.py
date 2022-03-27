@@ -4,7 +4,7 @@ import time
 
 async def mars_edit_warehouse_inventory_Handler(request):
     if request.method == 'GET':       
-      data = pd.read_csv('elbit-ground-beta/app/db/mars/warehouse_inventory.csv')
+      data = pd.read_csv('app/db/mars/warehouse_inventory.csv')
       type_of_item = data["סוג הפריט"]
       
       dphtml = (r'''
@@ -19,7 +19,7 @@ async def mars_edit_warehouse_inventory_Handler(request):
 <body style="background-color: rgb(211, 218, 218);">
 <section id="show_data_errors" dir="rtl" lang="he">
 <form action="" method="post">''')       
-      with open('elbit-ground-beta/app/templates/mars/edit/mars_edit_warehouse_inventory.html','w', encoding='utf-8-sig') as f:
+      with open('app/templates/mars/edit/mars_edit_warehouse_inventory.html','w', encoding='utf-8-sig') as f:
         f.writelines([dphtml + '\n' + r'''
 <div class="col form-group">
 <label>שים לב ! </label>
@@ -105,7 +105,7 @@ async def mars_edit_warehouse_inventory_Handler(request):
         data = pd.read_csv('app/db/mars/warehouse_inventory.csv')
         row_to_edit = data.index[data['סוג הפריט'] == type_of_item]
         data.loc[row_to_edit, ['כמות במלאי','נדרש להשלים \ לרכוש','הערות']] = [quantity, needs_to_complete, remarks]
-        with open('elbit-ground-beta/app/db/mars/warehouse_inventory.csv', 'w', newline='', encoding='utf-8-sig') as file:
+        with open('app/db/mars/warehouse_inventory.csv', 'w', newline='', encoding='utf-8-sig') as file:
             data.to_csv(file, index=False, na_rep='N/A',header=file.tell()==0, encoding='utf-8-sig')
             flash(f'!השורה עודכנה בהצלחה', category="success")
         return redirect(url_for('mars_show_warehouse_inventory'))
@@ -113,11 +113,11 @@ async def mars_edit_warehouse_inventory_Handler(request):
       
       if request.form.get('options') == 'option_delet':
         type_of_item = request.form.get('type_of_item')
-        data = pd.read_csv('elbit-ground-beta/app/db/mars/warehouse_inventory.csv')
+        data = pd.read_csv('app/db/mars/warehouse_inventory.csv')
         row_to_delet = data.index[data['סוג הפריט'] == type_of_item]
         data.drop(row_to_delet, inplace=True, axis=0)
       
-        with open('elbit-ground-beta/app/db/mars/warehouse_inventory.csv', 'w', newline='', encoding='utf-8-sig') as file:
+        with open('app/db/mars/warehouse_inventory.csv', 'w', newline='', encoding='utf-8-sig') as file:
             data.to_csv(file, index=False, na_rep='N/A',header=file.tell()==0, encoding='utf-8-sig')
             flash(f'!השורה נמחקה בהצלחה', category="success")
         return redirect(url_for('mars_show_warehouse_inventory'))

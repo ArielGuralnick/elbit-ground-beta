@@ -3,7 +3,7 @@ import pandas as pd
 
 async def mars_show_data_activity_Handler(request):
     if request.method == 'GET':       
-        data_activity = pd.read_csv('elbit-ground-beta/app/db/mars/data_activity.csv')
+        data_activity = pd.read_csv('app/db/mars/data_activity.csv')
         
         dphtml = (r'''
 {% extends 'layout.html' %}
@@ -44,7 +44,7 @@ async def mars_show_data_activity_Handler(request):
 </div>
 </div>''')        
         dphtml += data_activity.to_html(table_id="show_activity", classes = "table table-hover", border=0)
-        with open('elbit-ground-beta/app/templates/mars/show/mars_show_data_activity.html','w', encoding='utf-8-sig') as f:
+        with open('app/templates/mars/show/mars_show_data_activity.html','w', encoding='utf-8-sig') as f:
             f.writelines([dphtml + '\n' + r'<br>' + '\n' +
             r"</form>" + '\n' + r"</section>" + '\n' + 
             r'<script type="text/javascript">' + '\n' + r"$('#show_activity').DataTable();" + 
@@ -55,7 +55,7 @@ async def mars_show_data_activity_Handler(request):
 
     if request.method == 'POST':
         if request.form.get('options') == 'option1':
-            data_activity = pd.read_csv('elbit-ground-beta/app/db/mars/data_activity.csv')
+            data_activity = pd.read_csv('app/db/mars/data_activity.csv')
             type_of_training = request.form.get('type_of_training')
             specific_type_of_training = data_activity.loc[data_activity['סוג אימון'] == type_of_training]
     
@@ -98,7 +98,7 @@ async def mars_show_data_activity_Handler(request):
 </div>
 </div>''')  
             dphtml += specific_type_of_training.to_html(table_id="show_activity", classes = "table table-hover", border=0)
-            with open('elbit-ground-beta/app/templates/mars/show/mars_show_data_activity.html','w', encoding='utf-8-sig') as f:
+            with open('app/templates/mars/show/mars_show_data_activity.html','w', encoding='utf-8-sig') as f:
                 f.writelines([dphtml + '\n' + r'<br>' +
                 r"</form>" + '\n' + r"</section>" + '\n' + 
                 r'<script type="text/javascript">' + '\n' + r"$('#show_activity').DataTable();" + 
