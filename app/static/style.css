@@ -113,11 +113,16 @@ img {
        
         margin: 30px;
         border-radius:60px;
-        width: 17%;
+        width: 23%;
     }
     .btn{
-        width: 110%;
-        
+        width: 120%;
+    }
+    .btn-outline-success{
+        width: 30%;
+    }
+    .btn-outline-danger{
+        width: 30%;
     }
     
   }
