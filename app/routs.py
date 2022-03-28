@@ -184,7 +184,7 @@ class Config(object):
 USERS = {
     1: User("admin", 1, "ariel"),
     2: User("sky", 2, "Integ123"),
-    3: User("Creeper", 3, False),
+    3: User("a", 3, "a"),
 }
 
 
@@ -272,7 +272,6 @@ def reauth():
         flash(u"Reauthenticated.")
         return redirect(request.args.get("next") or url_for("index"))
     return render_template("reauth.html")
-
 
 @app.route("/logout")
 @login_required

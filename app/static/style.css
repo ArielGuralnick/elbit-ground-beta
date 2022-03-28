@@ -105,18 +105,16 @@ img {
     }
     h3{
         font-weight: bold;
-        font-size: 11px;
-        text-align: center;
-        
+        font-size: 11px;  
+        font-family: 'Assistant-ExtraBold', sans-serif;     
     }
-    .box{
-       
+    .box{       
         margin: 30px;
         border-radius:60px;
-        width: 23%;
+        width: 24%;
     }
     .btn{
-        width: 120%;
+        width: 110%;
     }
     .btn-outline-success{
         width: 30%;
