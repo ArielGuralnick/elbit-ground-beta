@@ -23,7 +23,7 @@ async def show_data_errors_technician_Handler(request):
             f.writelines([dphtml + '\n' + r'<br>' +'\n' +
             r'''
 <form method="POST">
-    <button type="sumbit" class="btn btn-outline-secondary">פתיחת דוח באקסל</button>
+    <button type="sumbit" class="btn btn-phone btn-outline-secondary">פתיחת דוח באקסל</button>
 </form>
 </div>   
 </form>

@@ -25,7 +25,7 @@ async def sheder_show_data_errors_mafil_Handler(request):
     <form method="POST">
         <button type="sumbit" class="btn btn-outline-success" name="options" value="option1">הוספת תקלה</button>
         <button type="sumbit" class="btn btn-outline-danger" name="options" value="option2">עריכה</button>
-        <button type="sumbit" class="btn btn-outline-secondary" name="options" value="option3">פתיחת דוח באקסל</button>
+        <button type="sumbit" class="btn btn-phone btn-outline-secondary" name="options" value="option3">פתיחת דוח באקסל</button>
     </form>
 </div>
 </div>

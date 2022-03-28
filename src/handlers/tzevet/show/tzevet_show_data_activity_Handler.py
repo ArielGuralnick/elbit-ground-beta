@@ -36,7 +36,7 @@ async def tzevet_show_data_activity_Handler(request):
     </div>
     <div class='col-md-3 form-group'>
     <form method="POST">
-        <button type="sumbit" name="options" value="option2" class="btn btn-outline-secondary">פתיחת דוח באקסל</button>
+        <button type="sumbit" name="options" value="option2" class="btn btn-phone btn-outline-secondary">פתיחת דוח באקסל</button>
     </form>
     </div>
 </div>
@@ -88,7 +88,7 @@ async def tzevet_show_data_activity_Handler(request):
     </div>
     <div class='col-md-3 form-group'>
     <form method="POST">
-        <button type="sumbit" name="options" value="option2" class="btn btn-outline-secondary">פתיחת דוח באקסל</button>
+        <button type="sumbit" name="options" value="option2" class="btn btn-phone btn-outline-secondary">פתיחת דוח באקסל</button>
     </form>
     </div>
 </div>
