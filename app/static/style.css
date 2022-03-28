@@ -123,8 +123,11 @@ img {
     }
     .btn-outline-danger{
         width: 30%;
+
     }
-    
+    .btn-outline-secondary{
+        width: 30%;
+    }
   }
 
 .cyan {

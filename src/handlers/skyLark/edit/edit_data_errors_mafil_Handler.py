@@ -107,16 +107,14 @@ async def edit_data_errors_mafil_Handler(request):
         fault_operation = request.form.get('fault_operation')
         computer = request.form.get('computer')
         situation = request.form.get('situation')
-        if type_of_fault == "" or fault_operation == "" :
-          flash(f'!נא למלא את כל הערכים', category="danger")
-        else:
-          data = pd.read_csv('app/db/skyLark/data_errors.csv')
-          row_to_edit = data.index[error]
-          data.loc[row_to_edit,['סוג התקלה','תפעול התקלה','מחשב','טופל/לא טופל']] = [type_of_fault,fault_operation,computer,situation]
-          with open('app/db/skyLark/data_errors.csv', 'w', newline='', encoding='utf-8-sig') as file:
-              data.to_csv(file, index=False, na_rep='N/A',header=file.tell()==0, encoding='utf-8-sig')
-              flash(f'!התקלה עודכנה בהצלחה', category="success")
-          return redirect(url_for('show_data_errors_mafil'))
+        
+        data = pd.read_csv('app/db/skyLark/data_errors.csv')
+        row_to_edit = data.index[error]
+        data.loc[row_to_edit,['סוג התקלה','תפעול התקלה','באיזה מחשב','טופל \ לא טופל']] = [type_of_fault,fault_operation,computer,situation]
+        with open('app/db/skyLark/data_errors.csv', 'w', newline='', encoding='utf-8-sig') as file:
+            data.to_csv(file, index=False, na_rep='N/A',header=file.tell()==0, encoding='utf-8-sig')
+            flash(f'!התקלה עודכנה בהצלחה', category="success")
+        return redirect(url_for('show_data_errors_mafil'))
       
       
       if request.form.get('options') == 'option_delet':
@@ -125,7 +123,6 @@ async def edit_data_errors_mafil_Handler(request):
         data = pd.read_csv('app/db/skyLark/data_errors.csv')
         row_to_delet = data.index[error]
         data.drop(row_to_delet, inplace=True, axis=0)
-      
         with open('app/db/skyLark/data_errors.csv', 'w', newline='', encoding='utf-8-sig') as file:
             data.to_csv(file, index=False, na_rep='N/A',header=file.tell()==0, encoding='utf-8-sig')
             flash(f'!התקלה נמחקה בהצלחה', category="success")

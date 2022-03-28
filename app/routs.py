@@ -133,6 +133,19 @@ from src.handlers.sheder.show.sheder_show_data_errors_mafil_Handler import shede
 from src.handlers.sheder.edit.sheder_edit_data_errors_Handler import sheder_edit_data_errors_Handler
 
 
+
+from src.handlers.mini_raam.mini_raam_Handler import mini_raam_Handler
+from src.handlers.mini_raam.insert.mini_raam_feedback_Handler import mini_raam_feedback_Handler
+from src.handlers.mini_raam.show.mini_raam_show_data_errors_technician_Handler import mini_raam_show_data_errors_technician_Handler
+from src.handlers.mini_raam.show.mini_raam_show_maintenance_technician_mafil_Handler import mini_raam_show_maintenance_technician_mafil_Handler
+from src.handlers.mini_raam.edit.mini_raam_edit_maintenance_technician_mafil_Handler import mini_raam_edit_maintenance_technician_mafil_Handler
+from src.handlers.mini_raam.show.mini_raam_show_warehouse_inventory_Handler import mini_raam_show_warehouse_inventory_Handler
+from src.handlers.mini_raam.edit.mini_raam_edit_warehouse_inventory_Handler import mini_raam_edit_warehouse_inventory_Handler
+from src.handlers.mini_raam.edit.mini_raam_edit_data_errors_Handler import mini_raam_edit_data_errors_Handler
+from src.handlers.mini_raam.insert.mini_raam_insert_error_Handler import mini_raam_insert_error_Handler
+
+
+
 from flask import Flask, request, render_template, redirect, url_for, flash
 from flask_login import (LoginManager, current_user, login_required,
                             login_user, logout_user, UserMixin,
@@ -481,12 +494,6 @@ async def mars_show_data_errors_mafil():
 
 @app.route("/mars_edit_data_errors_mafil", methods=['GET','POST'])
 async def mars_edit_data_errors_mafil():
-
-#    customHTML = {}
-#    customHTML["coputerPart"] = r'''
-#    <div>'''
-#    marsSimulator = Simulator("mars", "מרס")
-
     return await mars_edit_data_errors_mafil_Handler(request)
 
 @app.route("/mars_show_data_errors_technician", methods=['GET','POST'])
@@ -859,3 +866,59 @@ async def sheder_show_data_errors_technician():
 @app.route("/sheder_edit_data_errors", methods=['GET','POST'])
 async def sheder_edit_data_errors():
     return await sheder_edit_data_errors_Handler(request)
+
+
+
+
+
+# מאמן מיני רעם
+
+
+@app.route("/mini_raam", methods=['GET','POST'])
+async def mini_raam():
+    return await mini_raam_Handler(request)
+
+
+@app.route("/mini_raam_feedback", methods=['GET','POST'])
+async def mini_raam_feedback():
+    return await mini_raam_feedback_Handler(request)
+
+
+# הפערים בין המפעיל לטכנאי
+
+@app.route("/mini_raam_show_maintenance_technician_mafil", methods=['GET','POST'])
+async def mini_raam_show_maintenance_technician_mafil():
+    return await mini_raam_show_maintenance_technician_mafil_Handler(request)
+
+@app.route("/mini_raam_edit_maintenance_technician_mafil", methods=['GET','POST'])
+async def mini_raam_edit_maintenance_technician_mafil():
+    return await mini_raam_edit_maintenance_technician_mafil_Handler(request)
+
+
+# עריכה וצפייה מחסן מרס
+
+@app.route("/mini_raam_edit_warehouse_inventory", methods=['GET','POST'])
+async def mini_raam_edit_warehouse_inventory():
+    return await mini_raam_edit_warehouse_inventory_Handler(request)
+
+@app.route("/mini_raam_show_warehouse_inventory", methods=['GET','POST'])
+async def mini_raam_show_warehouse_inventory():
+    return await mini_raam_show_warehouse_inventory_Handler(request)
+
+
+# הכנסת תקלה
+
+@app.route("/mini_raam_insert_error", methods=['GET','POST'])
+async def mini_raam_insert_error():
+    return await mini_raam_insert_error_Handler(request)
+
+
+# צפייה בתקלות טכנאי וצפייה ועריכה תקלות מפעיל
+
+@app.route("/mini_raam_edit_data_errors", methods=['GET','POST'])
+async def mini_raam_edit_data_errors():
+    return await mini_raam_edit_data_errors_Handler(request)
+
+@app.route("/mini_raam_show_data_errors_technician", methods=['GET','POST'])
+async def mini_raam_show_data_errors_technician():
+    return await mini_raam_show_data_errors_technician_Handler(request)

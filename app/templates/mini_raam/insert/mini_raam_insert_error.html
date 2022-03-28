@@ -1,0 +1,74 @@
+{% extends 'layout.html' %}
+{% block content %}
+<html>
+<section id="title" style="background-color: rgb(244, 248, 248); border-bottom: 3px solid var(--black);" >
+  <div>
+    <a href="/">
+      <img class="Logo" src="static/images/logo.png" alt="logo-img">
+    </a>
+    <h1>דיווח על תקלה</h1>
+  </div>
+</section>
+
+<body style="background-color: rgb(211, 218, 218); ">
+  <section id="insertError" dir="rtl" lang="he">
+    <form action="" method="post">
+      <div class="row">
+        <div class="col form-group">
+          <label for="" class="labelSettings">תאריך פתיחה</label>
+          <input type="date" name="start_date_error" class="form-control" min="2022-01-01">
+          <br>
+        </div>
+        <div class="col form-group">
+          <label for="">מספר עמדה</label>
+          <input type="text" name="num_of_poisition"class="form-control" placeholder="מספר עמדה">
+          <br>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col form-group">
+            <label for="">סוג התקלה</label>
+            <input type="text" name="type_of_fault"class="form-control" placeholder="פרט">
+            <br>
+        </div>
+        <div class="col form-group">
+            <label for="">תפעול</label>
+            <input type="text" name="fault_operation"class="form-control" placeholder="פרט">
+            <br>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col form-group">
+            <label for="">מחשב</label>
+            <input type="text" name="computer"class="form-control" placeholder="איזה מחשב">
+            <br>
+        </div>
+        <div class="col form-group">
+          <label for="" class="labelSettings">תאריך סגירה</label>
+          <input type="date" name="end_date_error" class="form-control" min="2022-01-01">
+          <br>
+        </div>
+        <div class="col form-group">
+          <label for="">מצב</label>
+          <select class="form-control" name="situation">
+            <option>טופל</option>
+            <option>במעקב</option>
+            <option>לא טופל</option>
+          </select>
+          <br>
+        </div>
+      </div>
+      
+      <div style="text-align: center;">
+        <form method="POST">
+          <button type="sumbit" class="btn btn-outline-success">שלח</button>
+        </form>
+        <input type="reset" class="btn btn-outline-danger" value="אתחול">
+        <p></p>
+      </div>
+    </form>
+  </section>
+</body>
+
+</html>
+{% endblock %}
