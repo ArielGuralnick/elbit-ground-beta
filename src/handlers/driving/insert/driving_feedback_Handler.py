@@ -13,7 +13,8 @@ async def driving_feedback_Handler(request):
     elif request.method == 'POST':
         time.sleep(1.5)
         type_of_simulator = request.form.get('type_of_simulator')
-        
+        remarks = request.form.get('remarks')
+
         if request.form.get("question1") == 'ques1-5':
             answer_1 = "5"
         elif request.form.get("question1") == 'ques1-4':
@@ -68,13 +69,14 @@ async def driving_feedback_Handler(request):
             answer_5 = "2"
         elif request.form.get("question5") == 'ques5-1':
             answer_5 = "1"
-        field_content = ['מאמן','אנא דרג את איכות האימון','לפי דעתך עד כמה המאמן מתאר את המציאות','עד כמה אתה מרגיש בנוח בתפעול המאמן','עד כמה אתה מת עכשיו להיות בתאילנד','עד כמה אתה מת לאכול עכשיו פיצה']
+
+        field_content = ['מאמן','אנא דרג את איכות האימון','עד כמה תפעול במאמן זהה לעמדה המבצעית','באיזה מידה התרגילים תרמו להבנת החומר','באיזה מידה החומר העיוני שנלמד בא לידי ביטוי בתרגול במאמן','באיזה מידה האימון נתן לך כלים לתפקיד המצופה ממך לבצע','הערות']
         feedback_information = pd.DataFrame([{'מאמן' : type_of_simulator,'אנא דרג את איכות האימון' : answer_1,
-        'לפי דעתך עד כמה המאמן מתאר את המציאות' : answer_2,
-        'עד כמה אתה מרגיש בנוח בתפעול המאמן' : answer_3,
-        'עד כמה אתה מת עכשיו להיות בתאילנד' : answer_4,
-        'עד כמה אתה מת לאכול עכשיו פיצה' : answer_5}], columns=field_content)
+        'עד כמה תפעול במאמן זהה לעמדה המבצעית' : answer_2,
+        'באיזה מידה התרגילים תרמו להבנת החומר' : answer_3,
+        'באיזה מידה החומר העיוני שנלמד בא לידי ביטוי בתרגול במאמן' : answer_4,
+        'באיזה מידה האימון נתן לך כלים לתפקיד המצופה ממך לבצע' : answer_5, 'הערות': remarks}], columns=field_content)
         with open('app/db/driving/feedback.csv', 'a', newline='', encoding='utf-8-sig') as file:
             feedback_information.to_csv(file, index=False, na_rep='N/A',header=file.tell()==0, encoding='utf-8-sig')
-            flash(f'המשוב נקלט בהצלחה! תודה', category="success")
+            flash(f'המשוב נשלח בהצלחה! תודה', category="success")
         return redirect(url_for('driving_instructor'))

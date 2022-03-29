@@ -6,7 +6,7 @@
     <a href="/">
       <img class="Logo" src="static/images/logo.png" alt="logo-img">
     </a>
-    <h1 style="padding-left: 19%;">{{ title_simulator }}</h1>
+    <h1 style="padding-left: 13%;">{{ title_simulator }}</h1>
   </div>
 </section>
 
@@ -24,7 +24,7 @@
           </div>
         </div>
         <div class="col form-group">
-          <label for="">לפי דעתך עד כמה המאמן מתאר את המציאות</label>
+          <label for="">עד כמה תפעול במאמן זהה לעמדה המבצעית</label>
           <div class="rating rating2">
             <label>★<input type="radio" name="question2" title="Give 5 stars" value="ques2-5"></label>
             <label>★<input type="radio" name="question2" title="Give 4 stars" value="ques2-4"></label>
@@ -34,7 +34,7 @@
           </div>
         </div>
         <div class="col form-group">
-          <label for="">עד כמה אתה מרגיש בנוח בתפעול המאמן</label>
+          <label for="">באיזה מידה התרגילים תרמו להבנת החומר</label>
           <div class="rating rating2">
             <label>★<input type="radio" name="question3" title="Give 5 stars" value="ques3-5"></label>
             <label>★<input type="radio" name="question3" title="Give 4 stars" value="ques3-4"></label>
@@ -44,7 +44,7 @@
           </div>
         </div>
         <div class="col form-group">
-          <label for="">עד כמה אתה מת עכשיו להיות בתאילנד</label>
+          <label for="">באיזה מידה החומר העיוני שנלמד בא לידי ביטוי בתרגול במאמן</label>
           <div class="rating rating2">
             <label>★<input type="radio" name="question4" title="Give 5 stars" value="ques4-5"></label>
             <label>★<input type="radio" name="question4" title="Give 4 stars" value="ques4-4"></label>
@@ -54,7 +54,7 @@
           </div>
         </div>
         <div class="col form-group">
-          <label for="">עד כמה אתה מת לאכול עכשיו פיצה</label>
+          <label for="">באיזה מידה האימון נתן לך כלים לתפקיד המצופה ממך לבצע</label>
           <div class="rating rating2">
             <label>★<input type="radio" name="question5" title="Give 5 stars" value="ques5-5"></label>
             <label>★<input type="radio" name="question5" title="Give 4 stars" value="ques5-4"></label>
@@ -63,12 +63,22 @@
             <label>★<input type="radio" name="question5" title="Give 1 stars" value="ques5-1"></label>
           </div>
         </div>
+        <br>
+        <br>
+        <div class="row">
+          <div class="col form-group">
+              <label for="">התייחסות חופשית לאימון</label>
+              <input type="text" name="remarks"class="form-control" placeholder="הערות">
+              <br>
+          </div>
+        </div> 
+        <br>
+        <br>
         <div style="text-align: center;">
           <form method="POST">
             <button type="sumbit" class="btn btn-outline-success" onclick="fireSweetAlert()">שלח משוב</button>
           </form>
         </div>
-        
        </form>
     </section>
 

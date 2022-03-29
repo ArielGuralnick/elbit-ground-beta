@@ -12,7 +12,7 @@ async def show_warehouse_inventory_Handler(request):
 <section id="title" style="background-color: rgb(244, 248, 248); border-bottom: 3px solid var(--black);" >
 <div>
   <a href="/"><img class="Logo" src="static/images/logo.png" alt="logo-img"></a>
-  <h1>מלאי מחסן רוכ"ש</h1>
+  <h1>מלאי מחסן</h1>
 </div>
 </section>
 <body style="background-color: rgb(211, 218, 218);">
