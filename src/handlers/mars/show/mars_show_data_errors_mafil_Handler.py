@@ -16,7 +16,7 @@ async def mars_show_data_errors_mafil_Handler(request):
 <body style="background-color: rgb(211, 218, 218);">
 <section id="show_data_errors" dir="rtl" lang="he">
 <form action="" method="post">''')        
-        dphtml += data_errors.to_html(table_id="mars_show_data_errors_mafil", classes = "table table-hover", border=0)
+        dphtml += data_errors.to_html(table_id="show_data_errors_mafil", classes = "table table-hover", border=0)
         with open('app/templates/mars/show/mars_show_data_errors_mafil.html','w', encoding='utf-8-sig') as f:
             f.writelines([dphtml + '\n' + r'<br>'  + '\n' + r"</form>",r"</section>",
             r'''
@@ -30,7 +30,7 @@ async def mars_show_data_errors_mafil_Handler(request):
 </div>
 </div>
 <script type="text/javascript">
-$('#mars_show_data_errors_mafil').DataTable();
+$('#show_data_errors_mafil').DataTable();
 </script>"
 </body>
 {% endblock %}'''])
@@ -44,5 +44,5 @@ $('#mars_show_data_errors_mafil').DataTable();
             return redirect(url_for('mars_edit_data_errors_mafil'))
         elif request.form.get("options") == 'option3':
             return send_file('db/mars/data_errors.csv',
-            mimetype='text/csv',attachment_filename='דוח תקלות.csv',
+            mimetype='text/csv',attachment_filename='דוח תקלות מרס.csv',
             as_attachment=True)

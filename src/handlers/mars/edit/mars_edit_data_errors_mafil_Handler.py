@@ -40,12 +40,12 @@ async def mars_edit_data_errors_mafil_Handler(request):
 </div>
 <div class="col form-group">
     <label for="">סוג התקלה</label>
-    <input type="text" name="type_of_fault"class="form-control" required placeholder="אנא הכנס תקלה">
+    <input type="text" name="type_of_fault"class="form-control" placeholder="אנא הכנס תקלה">
     <br>
 </div>
 <div class="col form-group">
     <label for="">תפעול התקלה</label>
-    <input type="text" name="fault_operation"class="form-control" required placeholder="אנא הכנס תפעול">
+    <input type="text" name="fault_operation"class="form-control" placeholder="אנא הכנס תפעול">
     <br>
 </div>
 </div>
@@ -53,7 +53,7 @@ async def mars_edit_data_errors_mafil_Handler(request):
 <div class="row">
 <div class="col form-group">
     <label for="">באיזה מחשב</label>
-    <select class="form-control" name="computer" id="exampleFormControlSelect1">
+    <select class="form-control" name="computer">
       <option>MGW</option>
       <option>BCNT</option>
       <option>IN1</option>
@@ -74,6 +74,15 @@ async def mars_edit_data_errors_mafil_Handler(request):
 </div>
 </div>
 
+<div class="container">
+  <div class="col form-group" style="text-align: center;">
+    <form method="POST">
+      <button type="sumbit" name="options" value="option_edit" class="btn btn-outline-success">עדכן</button>
+      <button type="sumbit" name="options" value="option_delet" class="btn btn-outline-danger" onclick="fireDeletAlert()">מחיקת שורה</button>
+    </form>
+  </div>
+</div>
+
 <script>
     function fireDeletAlert() {
         Swal.fire({
@@ -85,14 +94,6 @@ async def mars_edit_data_errors_mafil_Handler(request):
         })
     }      
 </script>
-<div class="container">
-  <div class="col form-group" style="text-align: center;">
-    <form method="POST">
-      <button type="sumbit" name="options" value="option_edit" class="btn btn-outline-success">עדכן</button>
-      <button type="sumbit" name="options" value="option_delet" class="btn btn-outline-danger" onclick="fireDeletAlert()">מחיקת שורה</button>
-    </form>
-  </div>
-</div>
 </div>
 </form>
 </section>
