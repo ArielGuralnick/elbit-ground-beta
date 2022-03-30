@@ -11,7 +11,7 @@ async def moreshet_show_data_activity_Handler(request):
 <section id="title" style="background-color: rgb(244, 248, 248); border-bottom: 3px solid var(--black);" >
 <div>
   <a href="/"><img class="Logo" src="static/images/logo.png" alt="logo-img"></a>
-  <h1>דוח פעילות מתקן</h1>
+  <h1>דוח פעילות</h1>
 </div>
 </section>
 <body style="background-color: rgb(211, 218, 218);">
@@ -22,7 +22,7 @@ async def moreshet_show_data_activity_Handler(request):
     <div class="col form-group">
         <label for="">מספר תא</label>
         <select class="form-control" id="" name="num_of_cell">
-            <option>אנא בחר מספר תא</option>
+            <option>אנא בחר מספר חמ"ל</option>
             <option>תא מס' 1</option>
             <option>תא מס' 2</option>
             <option>תא מס' 3</option>
@@ -65,7 +65,7 @@ async def moreshet_show_data_activity_Handler(request):
 <section id="title" style="background-color: rgb(244, 248, 248); border-bottom: 3px solid var(--black);" >
 <div>
   <a href="/"><img class="Logo" src="static/images/logo.png" alt="logo-img"></a>
-  <h1>דוח פעילות מתקן</h1>
+  <h1>דוח פעילות</h1>
 </div>
 </section>
 <body style="background-color: rgb(211, 218, 218);">
@@ -74,9 +74,9 @@ async def moreshet_show_data_activity_Handler(request):
 <div class="container">
 <div class="row">
     <div class="col form-group">
-        <label for="">מספר תא</label>
+        <label for="">מספר חמ"ל</label>
         <select class="form-control" id="" name="num_of_cell">
-            <option>אנא בחר מספר תא</option>
+            <option>אנא בחר מספר חמ"ל</option>
             <option>תא מס' 1</option>
             <option>תא מס' 2</option>
             <option>תא מס' 3</option>

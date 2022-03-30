@@ -13,7 +13,7 @@ async def moreshet_edit_warehouse_inventory_Handler(request):
 <section id="title" style="background-color: rgb(244, 248, 248); border-bottom: 3px solid var(--black);" >
 <div>
   <a href="/"><img class="Logo" src="static/images/logo.png" alt="logo-img"></a>
-  <h1>עריכת מחסן מורשת</h1>
+  <h1>עריכת מחסן</h1>
 </div>
 </section>
 <body style="background-color: rgb(211, 218, 218);">
