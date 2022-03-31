@@ -17,6 +17,9 @@ async def tzevet_show_data_errors_technician_Handler(request):
 <body style="background-color: rgb(211, 218, 218);">
 <section id="show_data_errors" dir="rtl" lang="he">
 <form action="" method="post">''')  
+        index = data_errors.index + 1    # adding 1 to index (start from 1, not 0)
+        for i in index:
+            data_errors.index = index
         dphtml += data_errors.to_html(table_id="tzevet_show_data_errors_technician", classes = "table table-hover", border=0)
         with open('app/templates/tzevet/show/tzevet_show_data_errors_technician.html','w', encoding='utf-8-sig') as f:
             f.writelines([dphtml + '\n' + r'<br>' +'\n' +

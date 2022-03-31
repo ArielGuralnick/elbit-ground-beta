@@ -42,7 +42,10 @@ async def mars_show_data_activity_Handler(request):
     </form>
     </div>
 </div>
-</div>''')        
+</div>''')
+        index = data_activity.index + 1    # adding 1 to index (start from 1, not 0)
+        for i in index:
+            data_activity.index = index        
         dphtml += data_activity.to_html(table_id="show_activity", classes = "table table-hover", border=0)
         with open('app/templates/mars/show/mars_show_data_activity.html','w', encoding='utf-8-sig') as f:
             f.writelines([dphtml + '\n' + r'<br>' + '\n' +
