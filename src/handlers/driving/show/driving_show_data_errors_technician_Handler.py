@@ -52,6 +52,8 @@ async def driving_show_data_errors_technician_Handler(request):
         elif request.form.get("options") == 'option_add':
             return redirect(url_for('driving_insert_error'))
         
+        elif request.form.get("options") == 'option_back':
+            return redirect(url_for('driving_technician'))
 
         
 

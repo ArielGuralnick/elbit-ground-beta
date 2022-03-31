@@ -1,4 +1,4 @@
-from flask import render_template, send_file
+from flask import render_template, send_file, redirect, url_for
 import pandas as pd
 
 async def show_data_errors_technician_Handler(request):
@@ -23,7 +23,8 @@ async def show_data_errors_technician_Handler(request):
             f.writelines([dphtml + '\n' + r'<br>' +'\n' +
             r'''
 <form method="POST">
-    <button type="sumbit" class="btn btn-phone btn-outline-secondary">פתיחת דוח באקסל</button>
+    <button type="sumbit" class="btn btn-phone btn-outline-secondary" name="options" value="option3">פתיחת דוח באקסל</button>
+    <button type="sumbit" class="btn btn-outline-dark btn-phone" name="options" value="option_back">לדשבורד</button>
 </form>
 </div>   
 </form>
@@ -37,7 +38,11 @@ async def show_data_errors_technician_Handler(request):
         return render_template('skyLark/show/show_data_errors_technician.html')
    
     elif request.method == 'POST':
-        return send_file('db/skyLark/data_errors.csv',
-        mimetype='text/csv',attachment_filename='דוח תקלות רוכ"ש.csv',
-        as_attachment=True)
+        if request.form.get("options") == 'option3':
+            return send_file('db/skyLark/data_errors.csv',
+            mimetype='text/csv',attachment_filename='דוח תקלות רוכ"ש.csv',
+            as_attachment=True)
+        if request.form.get("options") == 'option_back':
+            return redirect(url_for('skyLark_technician'))
+
       

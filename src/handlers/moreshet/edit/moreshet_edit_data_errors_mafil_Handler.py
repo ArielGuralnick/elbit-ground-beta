@@ -44,7 +44,7 @@ async def moreshet_edit_data_errors_mafil_Handler(request):
     <br>
 </div>
 <div class="col form-group">
-    <label for="">תפעול התקלה</label>
+    <label for="">תפעול</label>
     <input type="text" name="fault_operation"class="form-control" placeholder="אנא הכנס תפעול">
     <br>
 </div>

@@ -59,6 +59,7 @@ async def mars_show_work_plan_mafil_Handler(request):
     <div class="col form-group" style="text-align: center;">
         <button type="sumbit" class="btn btn-outline-success" name="options" value="option_add">הוספת שורה</button>
         <button type="sumbit" class="btn btn-outline-danger" name="options" value="option_edit">עריכת שורה</button>
+        <button type="sumbit" class="btn btn-outline-dark btn-phone" name="options" value="option_back">לדשבורד</button>
     </div>
 </div>
 </form>
@@ -87,3 +88,6 @@ async def mars_show_work_plan_mafil_Handler(request):
 
         elif request.form.get("options") == 'option_edit':
             return redirect(url_for('mars_edit_work_plan_mafil'))
+
+        elif request.form.get("options") == 'option_back':
+            return redirect(url_for('skyLark_mafil'))

@@ -48,7 +48,7 @@ p{
 h1{
     text-align: center;
     display: inline-block;
-    
+
 }
 
 :root {
@@ -82,48 +82,48 @@ h1{
 
 img {
     float: center;
-    
 }
 
 /* customize to mobile */
 @media (max-width: 500px) { /*"500" the width of window*/
     img{
-      width:110%;
+        width:110%;
+      }
+      .Logo{
+          width: 25%;
+      }
+      h1{
+          text-align: center;   
+          font-size: large;
+        
+      }
+      h3{
+          font-weight: bold;
+          font-size: 11px;  
+          font-family: 'Assistant-ExtraBold', sans-serif;     
+      }
+      .box{       
+          margin: 30px;
+          border-radius:60px;
+          width: 24%;
+      }
+      .btn{
+          width: 110%;
+      }
+      .btn-outline-success{
+          width: 30%;
+      }
+      .btn-outline-danger{
+          width: 30%;
+  
+      }
+      .btn-phone{
+          width: 30%;
+      }
+      h2{
+          font-size: large;
     }
-    .Logo{
-        width: 25%;
-    }
-    h1{
-        text-align: center;   
-        font-size: large;
-    }
-    h3{
-        font-weight: bold;
-        font-size: 11px;  
-        font-family: 'Assistant-ExtraBold', sans-serif;     
-    }
-    .box{       
-        margin: 30px;
-        border-radius:60px;
-        width: 24%;
-    }
-    .btn{
-        width: 110%;
-    }
-    .btn-outline-success{
-        width: 30%;
-    }
-    .btn-outline-danger{
-        width: 30%;
-
-    }
-    .btn-phone{
-        width: 50%;
-    }
-    h2{
-        font-size: large;
-  }
-
+}
 .cyan {
     border-top: 5px solid var(--cyan);
 }

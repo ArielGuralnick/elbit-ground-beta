@@ -99,6 +99,7 @@ async def tzevet_edit_warehouse_inventory_Handler(request):
   <form method="POST">
     <button type="sumbit" name="options" value="option_edit" class="btn btn-outline-success" onclick="fireSweetAlert()">עדכן</button>
     <button type="sumbit" name="options" value="option_delet" class="btn btn-outline-danger" onclick="fireDeletAlert()">מחיקה</button>
+    <button type="sumbit" class="btn btn-outline-dark btn-phone" name="options" value="option_back">לדשבורד</button>
   </form>
 </div>
 </div>'''+ '\n' + r"</div>" + '\n' + r"</form>" + '\n' + r"</section>" + '\n' + r"</body>" + '\n' + r"{% endblock %}"])
@@ -133,4 +134,5 @@ async def tzevet_edit_warehouse_inventory_Handler(request):
             flash(f'!השורה נמחקה בהצלחה', category="success")
         return redirect(url_for('tzevet_show_warehouse_inventory'))
 
-      
+      if request.form.get("options") == 'option_back':
+        return redirect(url_for('tzevet_technician'))

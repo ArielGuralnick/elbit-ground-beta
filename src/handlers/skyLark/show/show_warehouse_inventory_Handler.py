@@ -59,6 +59,7 @@ async def show_warehouse_inventory_Handler(request):
         <button type="sumbit" class="btn btn-outline-success" name="options" value="option_add">הוספת פריט</button>
         <button type="sumbit" class="btn btn-outline-danger" name="options" value="option_edit">עריכת פריט</button>
         <button type="sumbit" class="btn btn-phone btn-outline-secondary" name="options" value="option_open_csv">פתיחת דוח באקסל</button>
+        <button type="sumbit" class="btn btn-outline-dark btn-phone" name="options" value="option_back">לדשבורד</button>
     </div>
 </div>
 </form>
@@ -92,4 +93,7 @@ async def show_warehouse_inventory_Handler(request):
             return send_file('db/skyLark/warehouse_inventory.csv',
             mimetype='text/csv',attachment_filename='מחסן רוכ"ש.csv',
             as_attachment=True)
+
+        elif request.form.get("options") == 'option_back':
+            return redirect(url_for('skyLark_technician'))
         

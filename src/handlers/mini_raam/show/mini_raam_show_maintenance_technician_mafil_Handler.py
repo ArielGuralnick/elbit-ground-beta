@@ -56,6 +56,7 @@ async def mini_raam_show_maintenance_technician_mafil_Handler(request):
     <form method="POST">
         <button type="sumbit" class="btn btn-outline-success" name="options" value="option_add">הוספת פער</button>
         <button type="sumbit" class="btn btn-outline-danger" name="options" value="option_edit">עריכת שורה</button>
+        <button type="sumbit" class="btn btn-outline-dark btn-phone" name="options" value="option_back">לדשבורד</button>
     </form>
 </div>
 </div>
@@ -89,3 +90,7 @@ async def mini_raam_show_maintenance_technician_mafil_Handler(request):
 
         elif request.form.get("options") == 'option_edit':
             return redirect(url_for('mini_raam_edit_maintenance_technician_mafil'))
+
+        elif request.form.get("options") == 'option_back':
+          return redirect(url_for('mini_raam'))
+        

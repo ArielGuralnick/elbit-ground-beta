@@ -69,6 +69,7 @@ async def mars_edit_work_plan_mafil_Handler(request):
   <form method="POST">
     <button type="sumbit" name="options" value="option_edit" class="btn btn-outline-success" onclick="fireSweetAlert()">עדכן</button>
     <button type="sumbit" name="options" value="option_delet" class="btn btn-outline-danger" onclick="fireDeletAlert()">מחיקה</button>
+    <button type="sumbit" class="btn btn-outline-dark btn-phone" name="options" value="option_back">לדשבורד</button>
   </form>
 </div>
 </div>'''+ '\n' + r"</div>" + '\n' + r"</form>" + '\n' + r"</section>" + '\n' + r"</body>" + '\n' + r"{% endblock %}"])
@@ -99,3 +100,6 @@ async def mars_edit_work_plan_mafil_Handler(request):
             data.to_csv(file, index=False, na_rep='N/A',header=file.tell()==0, encoding='utf-8-sig')
             flash(f'!הפער נמחק בהצלחה', category="success")
         return redirect(url_for('mars_show_work_plan_mafil'))
+
+      if request.form.get("options") == 'option_back':
+        return redirect(url_for('mars_mafil'))

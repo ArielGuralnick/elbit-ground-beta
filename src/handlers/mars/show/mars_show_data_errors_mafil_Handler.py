@@ -10,7 +10,7 @@ async def mars_show_data_errors_mafil_Handler(request):
 <section id="title" style="background-color: rgb(244, 248, 248); border-bottom: 3px solid var(--black);" >
 <div>
   <a href="/"><img class="Logo" src="static/images/logo.png" alt="logo-img"></a>
-  <h1>דוח תקלות למפעיל</h1>
+  <h1>דוח תקלות</h1>
 </div>
 </section>
 <body style="background-color: rgb(211, 218, 218);">
@@ -26,6 +26,7 @@ async def mars_show_data_errors_mafil_Handler(request):
         <button type="sumbit" class="btn btn-outline-success" name="options" value="option1">הוספת תקלה</button>
         <button type="sumbit" class="btn btn-outline-danger" name="options" value="option2">עריכה</button>
         <button type="sumbit" class="btn btn-phone btn-outline-secondary" name="options" value="option3">פתיחת דוח באקסל</button>
+        <button type="sumbit" class="btn btn-outline-dark btn-phone" name="options" value="option_back">לדשבורד</button>
     </form>
 </div>
 </div>
@@ -46,3 +47,5 @@ $('#show_data_errors_mafil').DataTable();
             return send_file('db/mars/data_errors.csv',
             mimetype='text/csv',attachment_filename='דוח תקלות מרס.csv',
             as_attachment=True)
+        elif request.form.get("options") == 'option_back':
+            return redirect(url_for('mars_mafil'))

@@ -150,14 +150,8 @@ from flask import Flask, request, render_template, redirect, url_for, flash
 from flask_login import (LoginManager, current_user, login_required,
                             login_user, logout_user, UserMixin,
                             confirm_login, fresh_login_required)
-
 from flask_login import AnonymousUserMixin
-
 from app.forms import LoginForm
-
-print("Setting login vars")
-
-
 
 class User(UserMixin):
     def __init__(self, name, id, password, active=True):
@@ -169,17 +163,11 @@ class User(UserMixin):
     def is_active(self):
         return self.active
 
-
-
-
 class Anonymous(AnonymousUserMixin):
     def __init__(self):
         self.username = 'Guest'
-
-
 class Config(object):
     SECRET_KEY = "dOVljBuSkQ"  # yeah, not actually a secret
-
 
 USERS = {
     1: User("admin", 1, "ariel"),
@@ -195,12 +183,7 @@ USER_NAMES = {
     USERS[3].name : USERS[3],
 }
 
-
-
-
-
 DEBUG = True
-
 
 app.config.from_object(__name__)
 
@@ -216,11 +199,7 @@ login_manager.login_message = ""
 def load_user(id):
     return USERS.get(int(id))
 
-
 login_manager.setup_app(app)
-
-
-
 
 
 
@@ -231,7 +210,7 @@ def index():
     user_info = {
         'name':'User'
     }
-    return render_template('home.html', user=user_info)
+    return render_template('home.html')#, user=user_info)
 
 
 @app.route("/login", methods=["GET", "POST"])
@@ -272,14 +251,14 @@ def reauth():
         flash(u"Reauthenticated.")
         return redirect(request.args.get("next") or url_for("index"))
     return render_template("reauth.html")
-
+'''
 @app.route("/logout")
 @login_required
 def logout():
     logout_user()
     flash("Logged out.")
     return redirect(url_for("index"))
-
+'''
 
 # מאמן רוכב שמיים
 

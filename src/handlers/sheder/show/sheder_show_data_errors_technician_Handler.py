@@ -27,6 +27,7 @@ async def sheder_show_data_errors_technician_Handler(request):
         <button type="sumbit" class="btn btn-outline-success" name="options" value="option_add">הוספת תקלה</button>
         <button type="sumbit" class="btn btn-outline-danger" name="options" value="option_edit">עריכת שורה</button>
         <button type="sumbit" class="btn btn-phone btn-outline-secondary" name="options" value="option_csv">פתיחת דוח באקסל</button>
+        <button type="sumbit" class="btn btn-outline-dark btn-phone" name="options" value="option_back">לדשבורד</button>
     </form>
   </div>
 </div>
@@ -51,7 +52,9 @@ async def sheder_show_data_errors_technician_Handler(request):
 
         elif request.form.get("options") == 'option_add':
             return redirect(url_for('sheder_insert_error'))
-        
+
+        elif request.form.get("options") == 'option_back':
+            return redirect(url_for('sheder_technician'))      
 
         
 

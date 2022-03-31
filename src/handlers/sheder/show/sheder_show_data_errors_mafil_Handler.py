@@ -26,6 +26,7 @@ async def sheder_show_data_errors_mafil_Handler(request):
         <button type="sumbit" class="btn btn-outline-success" name="options" value="option1">הוספת תקלה</button>
         <button type="sumbit" class="btn btn-outline-danger" name="options" value="option2">עריכה</button>
         <button type="sumbit" class="btn btn-phone btn-outline-secondary" name="options" value="option3">פתיחת דוח באקסל</button>
+        <button type="sumbit" class="btn btn-outline-dark btn-phone" name="options" value="option_back">לדשבורד</button>
     </form>
 </div>
 </div>
@@ -46,3 +47,5 @@ $('#sheder_show_data_errors_mafil').DataTable();
             return send_file('db/sheder/data_errors.csv',
             mimetype='text/csv',attachment_filename='דוח תקלות.csv',
             as_attachment=True)
+        elif request.form.get("options") == 'option_back':
+            return redirect(url_for('sheder_mafil'))
