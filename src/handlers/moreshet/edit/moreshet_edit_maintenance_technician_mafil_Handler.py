@@ -13,7 +13,7 @@ async def moreshet_edit_maintenance_technician_mafil_Handler(request):
 <section id="title" style="background-color: rgb(244, 248, 248); border-bottom: 3px solid var(--black);" >
 <div>
   <a href="/"><img class="Logo" src="static/images/logo.png" alt="logo-img"></a>
-  <h1>עריכת פער</h1>
+  <h1 style="margin-left: 15%;">עריכת פער</h1>
 </div>
 </section>
 <body style="background-color: rgb(211, 218, 218);">
@@ -21,6 +21,14 @@ async def moreshet_edit_maintenance_technician_mafil_Handler(request):
 <form action="" method="post">''')       
       with open('app/templates/moreshet/edit/moreshet_edit_maintenance_mafil.html','w', encoding='utf-8-sig') as f:
         f.writelines([dphtml + '\n' + r'''
+<div class="col form-group second-paragraph">
+<label>שים לב ! </label>
+<br>
+<label>למחיקת שורה יש לבחור רק מספר תקלה!</label>
+<br>
+<label>בעריכת שורה יש להכניס את כל הערכים מחדש</label>
+</div>
+<br>
 <div class="container">
 <div class="row">
 <div class="col form-group">
@@ -38,11 +46,13 @@ async def moreshet_edit_maintenance_technician_mafil_Handler(request):
     <option>X</option>
   </select>
 </div>
-<div class="col form-group">
-  <label for="" class="labelSettings">תאריך טיפול</label>
-  <input type="date" name="date_treatment" class="form-control" min="2021-01-01">
-  <br>
 </div>
+<div class="row">
+  <div class="col form-group">
+    <label for="" class="labelSettings">תאריך טיפול</label>
+    <input type="date" name="date_treatment" class="form-control" min="2021-01-01">
+    <br>
+  </div>
 </div>
 </div>
 

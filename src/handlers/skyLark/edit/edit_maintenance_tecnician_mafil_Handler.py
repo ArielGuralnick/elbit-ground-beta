@@ -21,6 +21,14 @@ async def edit_maintenance_technician_mafil_Handler(request):
 <form action="" method="post">''')       
       with open('app/templates/skyLark/edit/edit_maintenance_mafil.html','w', encoding='utf-8-sig') as f:
         f.writelines([dphtml + '\n' + r'''
+<div class="col form-group second-paragraph">
+<label>שים לב ! </label>
+<br>
+<label>למחיקת שורה יש לבחור רק מספר תקלה!</label>
+<br>
+<label>בעריכת שורה יש להכניס את כל הערכים מחדש</label>
+</div>
+<br>
 <div class="container">
 <div class="row">
 <div class="col form-group">
@@ -38,6 +46,8 @@ async def edit_maintenance_technician_mafil_Handler(request):
     <option>X</option>
   </select>
 </div>
+</div>
+<div class="row">
 <div class="col form-group">
   <label for="" class="labelSettings">תאריך טיפול</label>
   <input type="date" name="date_treatment" class="form-control" min="2021-01-01">
