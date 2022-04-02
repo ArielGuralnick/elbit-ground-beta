@@ -122,7 +122,7 @@ img {
       }
       h2{
           font-size: large;
-    }
+        }
 }
 .cyan {
     border-top: 5px solid var(--cyan);

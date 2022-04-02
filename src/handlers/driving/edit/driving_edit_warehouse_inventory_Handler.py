@@ -13,7 +13,7 @@ async def driving_edit_warehouse_inventory_Handler(request):
 <section id="title" style="background-color: rgb(244, 248, 248); border-bottom: 3px solid var(--black);" >
 <div>
   <a href="/"><img class="Logo" src="static/images/logo.png" alt="logo-img"></a>
-  <h1>עריכת מחסן נהיגה</h1>
+  <h1 style="margin-left: 15%;">עריכת מחסן נהיגה</h1>
 </div>
 </section>
 <body style="background-color: rgb(211, 218, 218);">
@@ -21,16 +21,26 @@ async def driving_edit_warehouse_inventory_Handler(request):
 <form action="" method="post">''')       
       with open('app/templates/driving/edit/driving_edit_warehouse_inventory.html','w', encoding='utf-8-sig') as f:
         f.writelines([dphtml + '\n' + r'''
-<div class="col form-group">
+<div class="col form-group second-paragraph">
 <label>שים לב ! </label>
 <br>
-<label>למחיקת שורה יש לבחור רק פריט לעריכה</label>
+<label>למחיקת שורה יש לבחור רק מספר תקלה!</label>
 <br>
 <label>בעריכת שורה יש להכניס את כל הערכים מחדש</label>
 </div>
-
+<br>
 <div class="container">
 <div class="row">
+<div class="col form-group">
+  <label for="">אנא בחר מאמן</label>
+  <select class="form-control" name="simulator">
+    <option>בהל"צ</option>
+    <option>שיזפון</option>
+    <option>צאלים</option>
+    <option>ביסל"ח</option>
+  </select>
+  <br>
+</div>
 <div class="col form-group">
 <label for="">בחר פריט לעריכה</label>
 <select class="form-control" name="type_of_item">
@@ -39,13 +49,15 @@ async def driving_edit_warehouse_inventory_Handler(request):
   {% endfor %}
 </select>
 </div>
+</div>
+<div class="row">
 <div class="col form-group">
     <label>כמות במלאי</label>
     <input type="number" class="form-control" name="quantity">
     <br>
 </div>
 <div class="col form-group">
-    <label >נדרש להשלים \ לרכוש</label>
+    <label >להשלים\לרכוש</label>
     <select class="form-control" name = "needs_to_complete">
         <option>לא</option>
         <option>כן</option>
@@ -60,7 +72,7 @@ async def driving_edit_warehouse_inventory_Handler(request):
     <br>
 </div>
 </div>
-</div>
+
 
 <script>
     function fireDeletAlert() {
@@ -99,13 +111,14 @@ async def driving_edit_warehouse_inventory_Handler(request):
     elif request.method == 'POST':
       time.sleep(1.5)
       if request.form.get('options') == 'option_edit':
+        simulator = request.form.get('simulator')
         type_of_item = request.form.get('type_of_item')
         quantity = request.form.get('quantity')
         needs_to_complete = request.form.get('needs_to_complete')
         remarks = request.form.get('remarks')
         data = pd.read_csv('app/db/driving/warehouse_inventory.csv')
         row_to_edit = data.index[data['סוג הפריט'] == type_of_item]
-        data.loc[row_to_edit, ['כמות במלאי','נדרש להשלים \ לרכוש','הערות']] = [quantity, needs_to_complete, remarks]
+        data.loc[row_to_edit, ['מאמן','כמות במלאי','נדרש להשלים \ לרכוש','הערות']] = [simulator, quantity, needs_to_complete, remarks]
         with open('app/db/driving/warehouse_inventory.csv', 'w', newline='', encoding='utf-8-sig') as file:
             data.to_csv(file, index=False, na_rep='N/A',header=file.tell()==0, encoding='utf-8-sig')
             flash(f'!השורה עודכנה בהצלחה', category="success")
@@ -124,4 +137,4 @@ async def driving_edit_warehouse_inventory_Handler(request):
         return redirect(url_for('driving_show_warehouse_inventory'))
 
       if request.form.get("options") == 'option_back':
-            return redirect(url_for('driving_technician'))
+        return redirect(url_for('driving_technician'))
