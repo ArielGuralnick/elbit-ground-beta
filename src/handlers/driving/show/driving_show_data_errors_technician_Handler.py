@@ -29,7 +29,7 @@ async def driving_show_data_errors_technician_Handler(request):
     <form method="POST">
         <button type="sumbit" class="btn btn-outline-success" name="options" value="option_add">הוספת תקלה</button>
         <button type="sumbit" class="btn btn-outline-danger" name="options" value="option_edit">עריכת שורה</button>
-        <button type="sumbit" class="btn btn-phone btn-outline-secondary" name="options" value="option_csv">פתיחת דוח באקסל</button>
+        <button type="sumbit" class="btn btn-phone btn-outline-secondary" name="options" value="option_csv">דוח אקסל</button>
     </form>
   </div>
 </div>

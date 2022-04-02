@@ -22,14 +22,14 @@ async def mini_raam_edit_data_errors_Handler(request):
 <form action="" method="post">''')       
       with open('app/templates/mini_raam/edit/mini_raam_edit_data_errors.html','w', encoding='utf-8-sig') as f:
         f.writelines([dphtml + '\n' + r'''
-<div class="col form-group">
+<div class="col form-group second-paragraph">
 <label>שים לב ! </label>
 <br>
-<label>למחיקת שורה יש לבחור רק מספר תקלה</label>
+<label>למחיקת שורה יש לבחור רק מספר תקלה!</label>
 <br>
 <label>בעריכת שורה יש להכניס את כל הערכים מחדש</label>
 </div>
-
+<br>
 <div class="row">
   <div class="col form-group">
     <label for="">בחר מספר תקלה</label>

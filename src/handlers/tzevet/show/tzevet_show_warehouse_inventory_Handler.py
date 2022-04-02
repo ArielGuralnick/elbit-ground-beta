@@ -70,7 +70,7 @@ async def tzevet_show_warehouse_inventory_Handler(request):
     <div class="col form-group" style="text-align: center;">
         <button type="sumbit" class="btn btn-outline-success" name="options" value="option_add">הוספת פריט</button>
         <button type="sumbit" class="btn btn-outline-danger" name="options" value="option_edit">עריכת פריט</button>
-        <button type="sumbit" class="btn btn-phone btn-outline-secondary" name="options" value="option_open_csv">פתיחת דוח באקסל</button>
+        <button type="sumbit" class="btn btn-phone btn-outline-secondary" name="options" value="option_open_csv">דוח אקסל</button>
         <button type="sumbit" class="btn btn-outline-dark btn-phone" name="options" value="option_back">לדשבורד</button>
     </div>
 </div>
