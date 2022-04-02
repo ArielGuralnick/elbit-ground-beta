@@ -6,8 +6,10 @@ import time
 async def mini_raam_edit_data_errors_Handler(request):
     if request.method == 'GET':       
       data = pd.read_csv('app/db/mini_raam/data_errors.csv')
+      index = data.index + 1    # adding 1 to index (start from 1, not 0)
+      for i in index:
+        data.index = index 
       error = data.index
-      
       dphtml = (r'''
 {% extends 'layout.html' %}
 {% block content %}
@@ -94,7 +96,7 @@ async def mini_raam_edit_data_errors_Handler(request):
   
     elif request.method == 'POST':
       if request.form.get('options') == 'option_edit':
-        error = int(request.form.get('error'))
+        error = int(request.form.get('error')) -1
         fault_operation = request.form.get('fault_operation')
         end_date_error = request.form.get('end_date_error')
         situation = request.form.get('situation')
@@ -110,7 +112,7 @@ async def mini_raam_edit_data_errors_Handler(request):
       
       if request.form.get('options') == 'option_delet':
         time.sleep(1.5)
-        error = int(request.form.get('error'))
+        error = int(request.form.get('error')) -1
         data = pd.read_csv('app/db/mini_raam/data_errors.csv')
         row_to_delet = data.index[error]
         data.drop(row_to_delet, inplace=True, axis=0)

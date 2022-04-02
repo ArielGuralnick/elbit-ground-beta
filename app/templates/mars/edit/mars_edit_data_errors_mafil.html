@@ -11,13 +11,14 @@
 <section id="show_data_errors" dir="rtl" lang="he">
 <form action="" method="post">
 
-<div class="col form-group">
+<div class="col form-group second-paragraph">
 <label>שים לב ! </label>
 <br>
-<label>למחיקת שורה יש לבחור רק מספר תקלה</label>
+<label>למחיקת שורה יש לבחור רק מספר תקלה!</label>
 <br>
 <label>בעריכת שורה יש להכניס את כל הערכים מחדש</label>
 </div>
+<br>
 <div class="row">
 <div class="col form-group">
   <label for="">בחר מספר תקלה</label>
@@ -29,12 +30,12 @@
 </div>
 <div class="col form-group">
     <label for="">סוג התקלה</label>
-    <input type="text" name="type_of_fault"class="form-control" required placeholder="אנא הכנס תקלה">
+    <input type="text" name="type_of_fault"class="form-control" placeholder="אנא הכנס תקלה">
     <br>
 </div>
 <div class="col form-group">
     <label for="">תפעול התקלה</label>
-    <input type="text" name="fault_operation"class="form-control" required placeholder="אנא הכנס תפעול">
+    <input type="text" name="fault_operation"class="form-control" placeholder="אנא הכנס תפעול">
     <br>
 </div>
 </div>
@@ -42,7 +43,7 @@
 <div class="row">
 <div class="col form-group">
     <label for="">באיזה מחשב</label>
-    <select class="form-control" name="computer" id="exampleFormControlSelect1">
+    <select class="form-control" name="computer">
       <option>MGW</option>
       <option>BCNT</option>
       <option>IN1</option>
@@ -63,6 +64,16 @@
 </div>
 </div>
 
+<div class="container">
+  <div class="col form-group" style="text-align: center;">
+    <form method="POST">
+      <button type="sumbit" name="options" value="option_edit" class="btn btn-outline-success">עדכן</button>
+      <button type="sumbit" name="options" value="option_delet" class="btn btn-outline-danger" onclick="fireDeletAlert()">מחיקת שורה</button>
+      <button type="sumbit" class="btn btn-outline-dark btn-phone" name="options" value="option_back">לדשבורד</button>
+    </form>
+  </div>
+</div>
+
 <script>
     function fireDeletAlert() {
         Swal.fire({
@@ -74,14 +85,6 @@
         })
     }      
 </script>
-<div class="container">
-  <div class="col form-group" style="text-align: center;">
-    <form method="POST">
-      <button type="sumbit" name="options" value="option_edit" class="btn btn-outline-success">עדכן</button>
-      <button type="sumbit" name="options" value="option_delet" class="btn btn-outline-danger" onclick="fireDeletAlert()">מחיקת שורה</button>
-    </form>
-  </div>
-</div>
 </div>
 </form>
 </section>

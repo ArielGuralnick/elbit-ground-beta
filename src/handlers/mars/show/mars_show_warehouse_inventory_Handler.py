@@ -95,4 +95,4 @@ async def mars_show_warehouse_inventory_Handler(request):
             as_attachment=True)
         
         elif request.form.get("options") == 'option_back':
-            return redirect(url_for('skyLark_technician'))
+            return redirect(url_for('mars_technician'))

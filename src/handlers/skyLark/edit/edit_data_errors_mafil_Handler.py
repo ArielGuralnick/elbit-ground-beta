@@ -5,9 +5,10 @@ import time
 
 async def edit_data_errors_mafil_Handler(request):
     if request.method == 'GET':       
-      data = pd.read_csv('app/db/skyLark/data_errors.csv')
+      index = data.index + 1    # adding 1 to index (start from 1, not 0)
+      for i in index:
+        data.index = index 
       error = data.index
-      
       dphtml = (r'''
 {% extends 'layout.html' %}
 {% block content %}
@@ -104,7 +105,7 @@ async def edit_data_errors_mafil_Handler(request):
   
     elif request.method == 'POST':
       if request.form.get('options') == 'option_edit':
-        error = int(request.form.get('error'))
+        error = int(request.form.get('error')) -1
         type_of_fault = request.form.get('type_of_fault')
         fault_operation = request.form.get('fault_operation')
         computer = request.form.get('computer')
@@ -121,7 +122,7 @@ async def edit_data_errors_mafil_Handler(request):
       
       if request.form.get('options') == 'option_delet':
         time.sleep(1.5)
-        error = int(request.form.get('error'))
+        error = int(request.form.get('error')) -1
         data = pd.read_csv('app/db/skyLark/data_errors.csv')
         row_to_delet = data.index[error]
         data.drop(row_to_delet, inplace=True, axis=0)

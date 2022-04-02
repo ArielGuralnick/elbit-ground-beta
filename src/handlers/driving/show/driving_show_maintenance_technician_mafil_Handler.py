@@ -94,7 +94,7 @@ async def driving_show_maintenance_technician_mafil_Handler(request):
 <div class="col form-group" style="text-align: center;">
     <form method="POST">
         <button type="sumbit" class="btn btn-outline-success" name="options" value="option_add">הוספת פער</button>
-        <button type="sumbit" class="btn btn-outline-danger" name="options" value="option_edit">עריכת שורה</button>
+        <button type="sumbit" class="btn btn-outline-danger" name="options" value="option_edit">עריכת שורה</button>      
     </form>
 </div>
 </div>

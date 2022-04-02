@@ -11,7 +11,7 @@ async def driving_show_data_errors_technician_Handler(request):
 <section id="title" style="background-color: rgb(244, 248, 248); border-bottom: 3px solid var(--black);" >
 <div>
   <a href="/"><img class="Logo" src="static/images/logo.png" alt="logo-img"></a>
-  <h1>דוח תקלות לטכנאי</h1>
+  <h1 style="padding-left: 15%;">דוח תקלות לטכנאי</h1>
 </div>
 </section>
 <body style="background-color: rgb(211, 218, 218);">
@@ -30,6 +30,7 @@ async def driving_show_data_errors_technician_Handler(request):
         <button type="sumbit" class="btn btn-outline-success" name="options" value="option_add">הוספת תקלה</button>
         <button type="sumbit" class="btn btn-outline-danger" name="options" value="option_edit">עריכת שורה</button>
         <button type="sumbit" class="btn btn-phone btn-outline-secondary" name="options" value="option_csv">דוח אקסל</button>
+        <button type="sumbit" class="btn btn-outline-dark btn-phone" name="options" value="option_back">לדשבורד</button>
     </form>
   </div>
 </div>
