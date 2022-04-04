@@ -89,3 +89,4 @@ async def mars_show_maintenance_technician_mafil_Handler(request):
 
         elif request.form.get("options") == 'option_edit':
             return redirect(url_for('mars_edit_maintenance_technician_mafil'))
+

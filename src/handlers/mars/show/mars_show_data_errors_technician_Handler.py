@@ -12,7 +12,7 @@ async def mars_show_data_errors_technician_Handler(request):
 <section id="title" style="background-color: rgb(244, 248, 248); border-bottom: 3px solid var(--black);" >
 <div>
   <a href="/"><img class="Logo" src="static/images/logo.png" alt="logo-img"></a>
-  <h1>דוח תקלות לטכנאי</h1>
+  <h1 style="padding-left: 15%;">דוח תקלות לטכנאי</h1>
 </div>
 </section>
 <body style="background-color: rgb(211, 218, 218);">
@@ -27,7 +27,7 @@ async def mars_show_data_errors_technician_Handler(request):
             r'''
 <form method="POST">
     <button type="sumbit" class="btn btn-outline-secondary" name="options" value="option3">דוח אקסל</button>
-    <button type="sumbit" class="btn btn-outline-dark btn-phone" name="options" value="option_back">לדשבורד</button>
+    <button type="sumbit" class="btn btn-outline-dark btn-phone" name="options" value="option_back">לדשבורד</button>   
 </form>
 </div>   
 </form>
@@ -47,4 +47,4 @@ async def mars_show_data_errors_technician_Handler(request):
             as_attachment=True)
     
         elif request.form.get("options") == 'option_back':
-            return redirect(url_for('mars_mafil'))
+            return redirect(url_for('mars_technician'))

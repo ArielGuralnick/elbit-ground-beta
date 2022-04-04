@@ -4,12 +4,12 @@
 <section id="title" style="background-color: rgb(244, 248, 248); border-bottom: 3px solid var(--black);" >
 <div>
   <a href="/"><img class="Logo" src="static/images/logo.png" alt="logo-img"></a>
-  <h1>דוח תקלות למפעיל</h1>
+  <h1>דוח תקלות</h1>
 </div>
 </section>
 <body style="background-color: rgb(211, 218, 218);">
 <section id="show_data_errors" dir="rtl" lang="he">
-<form action="" method="post"><table border="0" class="dataframe table table-hover" id="mars_show_data_errors_mafil">
+<form action="" method="post"><table border="0" class="dataframe table table-hover" id="show_data_errors_mafil">
   <thead>
     <tr style="text-align: right;">
       <th></th>
@@ -28,16 +28,30 @@
   </thead>
   <tbody>
     <tr>
-      <th>0</th>
-      <td>2021-12-05</td>
-      <td>19:31</td>
-      <td>דנה</td>
-      <td>מחולל מס' 4</td>
-      <td>תצוגת חוזי לא תקינה</td>
-      <td>הגדרת עמדת יצוג ואתחול עמדה</td>
-      <td>עמדת מדריך</td>
+      <th>1</th>
+      <td>2022-04-06</td>
+      <td>17:11</td>
+      <td>nj</td>
+      <td>מחולל מס' 1</td>
+      <td>dana`da</td>
+      <td>danana</td>
+      <td>מבצעית</td>
       <td>SVM</td>
-      <td>00:10</td>
+      <td>17:11</td>
+      <td>V</td>
+      <td>אימון</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>2022-04-02</td>
+      <td>17:17</td>
+      <td>Hen</td>
+      <td>מחולל מס' 1</td>
+      <td>חן</td>
+      <td>חן</td>
+      <td>מבצעית</td>
+      <td>IN2</td>
+      <td>21:14</td>
       <td>V</td>
       <td>אימון</td>
     </tr>
@@ -50,12 +64,13 @@
     <form method="POST">
         <button type="sumbit" class="btn btn-outline-success" name="options" value="option1">הוספת תקלה</button>
         <button type="sumbit" class="btn btn-outline-danger" name="options" value="option2">עריכה</button>
-        <button type="sumbit" class="btn btn-outline-secondary" name="options" value="option3">פתיחת דוח באקסל</button>
+        <button type="sumbit" class="btn btn-phone btn-outline-secondary" name="options" value="option3">דוח אקסל</button>
+        <button type="sumbit" class="btn btn-outline-dark btn-phone" name="options" value="option_back">לדשבורד</button>
     </form>
 </div>
 </div>
 <script type="text/javascript">
-$('#mars_show_data_errors_mafil').DataTable();
+$('#show_data_errors_mafil').DataTable();
 </script>"
 </body>
 {% endblock %}

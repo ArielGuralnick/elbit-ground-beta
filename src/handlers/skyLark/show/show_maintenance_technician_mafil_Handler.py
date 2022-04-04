@@ -55,6 +55,7 @@ async def show_maintenance_technician_mafil_Handler(request):
     <form method="POST">
         <button type="sumbit" class="btn btn-outline-success" name="options" value="option_add" onclick="fireSweetAlert()">הוספת פער</button>
         <button type="sumbit" class="btn btn-outline-danger" name="options" value="option_edit">עריכת שורה</button>
+        <button type="sumbit" class="btn btn-outline-dark btn-phone" name="options" value="option_back">לדשבורד</button>
     </form>
   </div>
 </div>
@@ -88,5 +89,8 @@ async def show_maintenance_technician_mafil_Handler(request):
 
         elif request.form.get("options") == 'option_edit':
             return redirect(url_for('edit_maintenance_technician_mafil'))
+          
+        elif request.form.get("options") == 'option_back':
+            return redirect(url_for('skyLark_technician'))
 
         
