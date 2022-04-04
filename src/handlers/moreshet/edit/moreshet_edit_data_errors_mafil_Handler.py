@@ -4,7 +4,8 @@ from pandas.core.indexes.base import Index
 import time
 
 async def moreshet_edit_data_errors_mafil_Handler(request):
-    if request.method == 'GET':       
+    if request.method == 'GET':   
+      data = pd.read_csv('app/db/moreshet/data_errors.csv')    
       index = data.index + 1    # adding 1 to index (start from 1, not 0)
       for i in index:
         data.index = index 
