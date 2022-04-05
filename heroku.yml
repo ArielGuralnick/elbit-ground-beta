@@ -1,4 +1,9 @@
-build:
+
+
+
+build:
   docker:
-    web: Dockerfile.flask
-run:  web: python /app/run.py
+    web: Dockerfile.flask
+
+run:
+  web: python /app/run.py

@@ -1,0 +1,6 @@
+amazon:
+  service: S3
+  access_key_id: <%= ENV['AKIAVZH4SBSY3NWSMQHG'] %>
+  secret_access_key: <%= ENV['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'] %>
+  region: <%= ENV['eu-west-1'] %>
+  bucket: <%= ENV['bucketeer-6a878c84-4c94-43bf-9c1c-7ef1bdebdc5c'] %>
