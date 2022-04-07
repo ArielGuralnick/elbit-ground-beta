@@ -1,7 +1,8 @@
 import os
 from unicodedata import name
 from app import app # importing app variable from app package
-
+import boto3
+import json
 
 from src.handlers.skyLark.skyLark_Handler import skyLark_Handler
 from src.handlers.skyLark.skyLark_instructor_Handler import skyLark_instructor_Handler
@@ -92,6 +93,9 @@ from src.handlers.driving.show.driving_show_data_activity_Handler import driving
 from src.handlers.driving.show.driving_show_data_errors_technician_Handler import driving_show_data_errors_technician_Handler
 from src.handlers.driving.show.driving_show_data_errors_mafil_Handler import driving_show_data_errors_mafil_Handler
 from src.handlers.driving.edit.driving_edit_data_errors_Handler import driving_edit_data_errors_Handler
+from src.handlers.driving.show.driving_show_tasks_mafil_Handler import driving_show_tasks_mafil_Handler
+from src.handlers.driving.edit.driving_edit_tasks_mafil_Handler import driving_edit_tasks_mafil_Handler
+
 
 
 from src.handlers.tzevet.tzevet_Handler import tzevet_Handler
@@ -111,7 +115,8 @@ from src.handlers.tzevet.show.tzevet_show_data_activity_Handler import tzevet_sh
 from src.handlers.tzevet.show.tzevet_show_data_errors_technician_Handler import tzevet_show_data_errors_technician_Handler
 from src.handlers.tzevet.show.tzevet_show_data_errors_mafil_Handler import tzevet_show_data_errors_mafil_Handler
 from src.handlers.tzevet.edit.tzevet_edit_data_errors_Handler import tzevet_edit_data_errors_Handler
-
+from src.handlers.tzevet.show.tzevet_show_tasks_mafil_Handler import tzevet_show_tasks_mafil_Handler
+from src.handlers.tzevet.edit.tzevet_edit_tasks_mafil_Handler import tzevet_edit_tasks_mafil_Handler
 
 
 from src.handlers.sheder.sheder_Handler import sheder_Handler
@@ -152,6 +157,33 @@ from flask_login import (LoginManager, current_user, login_required,
                             confirm_login, fresh_login_required)
 from flask_login import AnonymousUserMixin
 from app.forms import LoginForm
+
+
+@app.route('/sign_s3/')
+def sign_s3():
+  S3_BUCKET = os.environ.get('S3_BUCKET')
+
+  file_name = request.args.get('file_name')
+  file_type = request.args.get('file_type')
+
+  s3 = boto3.client('s3')
+
+  presigned_post = s3.generate_presigned_post(
+    Bucket = S3_BUCKET,
+    Key = file_name,
+    Fields = {"acl": "public-read", "Content-Type": file_type},
+    Conditions = [
+      {"acl": "public-read"},
+      {"Content-Type": file_type}
+    ],
+    ExpiresIn = 3600
+  )
+
+  return json.dumps({
+    'data': presigned_post,
+    'url': 'https://%s.s3.amazonaws.com/%s' % (S3_BUCKET, file_name)
+  })
+
 
 class User(UserMixin):
     def __init__(self, name, id, password, active=True):
@@ -678,6 +710,16 @@ async def driving_edit_data_errors():
     return await driving_edit_data_errors_Handler(request)
 
 
+# הצגה ועריכה משימות למפעיל
+@app.route("/driving_show_tasks_mafil", methods=['GET','POST'])
+async def driving_show_tasks_mafil():
+    return await driving_show_tasks_mafil_Handler(request)
+
+@app.route("/driving_edit_tasks_mafil", methods=['GET','POST'])
+async def driving_edit_tasks_mafil():
+    return await driving_edit_tasks_mafil_Handler(request)
+
+
 
 
 # מאמני צוות
@@ -769,6 +811,14 @@ async def tzevet_edit_data_errors():
     return await tzevet_edit_data_errors_Handler(request)
 
 
+# הצגה ועריכה משימות למפעיל
+@app.route("/tzevet_show_tasks_mafil", methods=['GET','POST'])
+async def tzevet_show_tasks_mafil():
+    return await tzevet_show_tasks_mafil_Handler(request)
+
+@app.route("/tzevet_edit_tasks_mafil", methods=['GET','POST'])
+async def tzevet_edit_tasks_mafil():
+    return await tzevet_edit_tasks_mafil_Handler(request)
 
 
 

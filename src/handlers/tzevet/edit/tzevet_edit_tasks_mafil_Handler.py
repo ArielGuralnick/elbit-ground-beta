@@ -2,9 +2,9 @@ from flask import render_template, flash, redirect, url_for
 import pandas as pd
 import time
 
-async def edit_work_plan_mafil_Handler(request):
+async def tzevet_edit_tasks_mafil_Handler(request):
     if request.method == 'GET':       
-      data = pd.read_csv('app/db/skyLark/work_plan_mafil.csv')
+      data = pd.read_csv('app/db/tzevet/tasks.csv')
       achievements = data["הישגים נדרשים"]
       
       dphtml = (r'''
@@ -13,33 +13,36 @@ async def edit_work_plan_mafil_Handler(request):
 <section id="title" style="background-color: rgb(244, 248, 248); border-bottom: 3px solid var(--black);" >
 <div>
   <a href="/"><img class="Logo" src="static/images/logo.png" alt="logo-img"></a>
-  <h1 style="margin-left: 15%;">עריכת תוכנית שנתית</h1>
+  <h1 style="margin-left: 15%;">עריכת משימות</h1>
 </div>
 </section>
 <body style="background-color: rgb(211, 218, 218);">
 <section id="show_data_errors" dir="rtl" lang="he">
 <form action="" method="post">''')       
-      with open('app/templates/skyLark/edit/edit_work_plan_mafil.html','w', encoding='utf-8-sig') as f:
+      with open('app/templates/tzevet/edit/tzevet_edit_tasks_mafil.html','w', encoding='utf-8-sig') as f:
         f.writelines([dphtml + '\n' + r'''
 <div class="container">
-<div class="row">
-<div class="col-md-3 form-group">
-<label for="">בחר הישג נדרש לעריכה</label>
-<select class="form-control" name="achievements">
-  {% for i in data %}
-    <option>{{ i }}</option>
-  {% endfor %}
-</select>
-</div>
-<div class="col-md-3 form-group">
-  <label for="">סטטוס ביצוע</label>
-  <select class="form-control" name="status">
-    <option>לא בוצע</option>
-    <option>בהרצה</option>
-    <option>בוצע</option>
-  </select>
-</div>
-</div>
+    <div class="col form-group">
+    <label for="">בחר הישג נדרש לעריכה</label>
+    <select class="form-control" name="achievements">
+        {% for i in data %}
+            <option>{{ i }}</option>
+        {% endfor %}
+    </select>
+    </div>
+    <div class="col form-group">
+    <label for="">סטטוס ביצוע</label>
+    <select class="form-control" name="status">
+        <option>לא בוצע</option>
+        <option>בהרצה</option>
+        <option>בוצע</option>
+    </select>
+    </div>
+    <div class="col form-group">
+          <label for="" class="labelSettings">תאריך לביצוע</label>
+          <input type="date" name="date" class="form-control" min="2022-01-01">
+          <br>
+    </div>
 </div>
 
 <script>
@@ -75,32 +78,33 @@ async def edit_work_plan_mafil_Handler(request):
 </div>
 </div>'''+ '\n' + r"</div>" + '\n' + r"</form>" + '\n' + r"</section>" + '\n' + r"</body>" + '\n' + r"{% endblock %}"])
         f.close()
-      return render_template('skyLark/edit/edit_work_plan_mafil.html', data = achievements)
+      return render_template('tzevet/edit/tzevet_edit_tasks_mafil.html', data = achievements)
   
     elif request.method == 'POST':
       time.sleep(1.5)
       if request.form.get('options') == 'option_edit':
         achievements = request.form.get('achievements')
         status = request.form.get('status')
-        data = pd.read_csv('app/db/skyLark/work_plan_mafil.csv')
+        date = request.form.get('date')
+        data = pd.read_csv('app/db/tzevet/tasks.csv')
         row_to_edit = data.index[data['הישגים נדרשים'] == achievements]
-        data.loc[row_to_edit, 'סטטוס ביצוע'] = status
-        with open('app/db/skyLark/work_plan_mafil.csv', 'w', newline='', encoding='utf-8-sig') as file:
+        data.loc[row_to_edit,['סטטוס ביצוע','תאריך לביצוע']] = [status,date]
+        with open('app/db/tzevet/tasks.csv', 'w', newline='', encoding='utf-8-sig') as file:
             data.to_csv(file, index=False, na_rep='N/A',header=file.tell()==0, encoding='utf-8-sig')
-            flash(f'!היעד עודכן בהצלחה', category="success")
-        return redirect(url_for('show_work_plan_mafil'))
+            flash(f'!המשימה עודכנה בהצלחה', category="success")
+        return redirect(url_for('tzevet_show_tasks_mafil'))
       
       
       if request.form.get('options') == 'option_delet':
         achievements = request.form.get('achievements')
-        data = pd.read_csv('app/db/skyLark/work_plan_mafil.csv')
+        data = pd.read_csv('app/db/tzevet/tasks.csv')
         row_to_delet = data.index[data['הישגים נדרשים'] == achievements]
         data.drop(row_to_delet, inplace=True, axis=0)
       
-        with open('app/db/skyLark/work_plan_mafil.csv', 'w', newline='', encoding='utf-8-sig') as file:
+        with open('app/db/tzevet/tasks.csv', 'w', newline='', encoding='utf-8-sig') as file:
             data.to_csv(file, index=False, na_rep='N/A',header=file.tell()==0, encoding='utf-8-sig')
-            flash(f'!היעד נמחק בהצלחה', category="success")
-        return redirect(url_for('show_work_plan_mafil'))
+            flash(f'!המשימה נמחקה בהצלחה', category="success")
+        return redirect(url_for('tzevet_show_tasks_mafil'))
 
       if request.form.get("options") == 'option_back':
-        return redirect(url_for('skyLark_mafil'))
+        return redirect(url_for('tzevet_mafil'))

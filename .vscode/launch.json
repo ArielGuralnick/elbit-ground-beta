@@ -5,12 +5,27 @@
     "version": "0.2.0",
     "configurations": [
         {
+            "type": "aws-sam",
+            "request": "direct-invoke",
+            "name": "elbit-ground-beta:app/routs.skyLark_pdf_solutions (python3.8)",
+            "invokeTarget": {
+                "target": "code",
+                "projectRoot": "${workspaceFolder}/",
+                "lambdaHandler": "app/routs.skyLark_pdf_solutions"
+            },
+            "lambda": {
+                "runtime": "python3.8",
+                "payload": {},
+                "environmentVariables": {}
+            }
+        },
+        {
             "name": "Python: Current File",
             "type": "python",
             "request": "launch",
             "program": "${workspaceFolder}\\run.py",
             "console": "integratedTerminal",
-            "justMyCode": true,
+            "justMyCode": true
         }
     ]
 }
