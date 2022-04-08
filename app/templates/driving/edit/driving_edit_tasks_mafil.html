@@ -12,7 +12,7 @@
 <form action="" method="post">
 
 <div class="container">
-    <div class="col-md-3 form-group">
+    <div class="col form-group">
     <label for="">בחר הישג נדרש לעריכה</label>
     <select class="form-control" name="achievements">
         {% for i in data %}
@@ -20,7 +20,7 @@
         {% endfor %}
     </select>
     </div>
-    <div class="col-md-3 form-group">
+    <div class="col form-group">
     <label for="">סטטוס ביצוע</label>
     <select class="form-control" name="status">
         <option>לא בוצע</option>
@@ -40,7 +40,7 @@
         Swal.fire({
             position: 'center',
             icon: 'success',
-            title: '!היעד נמחק בהצלחה',
+            title: '!המשימה נמחקה בהצלחה',
             showConfirmButton: false,
             timer: 1500
         })
@@ -51,7 +51,7 @@
         Swal.fire({
             position: 'center',
             icon: 'success',
-            title: '!היעד עודכן בהצלחה',
+            title: '!המשימה עודכנה בהצלחה',
             showConfirmButton: false,
             timer: 1500
         })

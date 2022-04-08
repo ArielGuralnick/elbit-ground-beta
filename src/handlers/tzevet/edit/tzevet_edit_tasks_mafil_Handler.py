@@ -50,7 +50,7 @@ async def tzevet_edit_tasks_mafil_Handler(request):
         Swal.fire({
             position: 'center',
             icon: 'success',
-            title: '!היעד נמחק בהצלחה',
+            title: '!המשימה נמחקה בהצלחה',
             showConfirmButton: false,
             timer: 1500
         })
@@ -61,7 +61,7 @@ async def tzevet_edit_tasks_mafil_Handler(request):
         Swal.fire({
             position: 'center',
             icon: 'success',
-            title: '!היעד עודכן בהצלחה',
+            title: '!המשימה עודכנה בהצלחה',
             showConfirmButton: false,
             timer: 1500
         })

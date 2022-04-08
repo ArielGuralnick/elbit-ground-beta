@@ -38,7 +38,7 @@ async def driving_edit_tasks_mafil_Handler(request):
         <option>בוצע</option>
     </select>
     </div>
-    <div class="col form-group">ה
+    <div class="col form-group">
           <label for="" class="labelSettings">תאריך לביצוע</label>
           <input type="date" name="date" class="form-control" min="2022-01-01">
           <br>
@@ -50,7 +50,7 @@ async def driving_edit_tasks_mafil_Handler(request):
         Swal.fire({
             position: 'center',
             icon: 'success',
-            title: '!היעד נמחק בהצלחה',
+            title: '!המשימה נמחקה בהצלחה',
             showConfirmButton: false,
             timer: 1500
         })
@@ -61,7 +61,7 @@ async def driving_edit_tasks_mafil_Handler(request):
         Swal.fire({
             position: 'center',
             icon: 'success',
-            title: '!היעד עודכן בהצלחה',
+            title: '!המשימה עודכנה בהצלחה',
             showConfirmButton: false,
             timer: 1500
         })

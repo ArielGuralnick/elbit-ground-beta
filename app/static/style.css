@@ -51,6 +51,12 @@ h1{
 
 }
 
+.table{
+    display: block;
+    overflow-x: auto;
+    white-space: nowrap;
+}
+
 :root {
     --red: hsl(0, 78%, 62%);
     --black: hsl(0, 58%, 4%);
