@@ -149,7 +149,15 @@ from src.handlers.mini_raam.edit.mini_raam_edit_warehouse_inventory_Handler impo
 from src.handlers.mini_raam.edit.mini_raam_edit_data_errors_Handler import mini_raam_edit_data_errors_Handler
 from src.handlers.mini_raam.insert.mini_raam_insert_error_Handler import mini_raam_insert_error_Handler
 
-
+from src.handlers.raam.raam_Handler import raam_Handler
+from src.handlers.raam.insert.raam_feedback_Handler import raam_feedback_Handler
+from src.handlers.raam.show.raam_show_data_errors_technician_Handler import raam_show_data_errors_technician_Handler
+from src.handlers.raam.show.raam_show_maintenance_technician_mafil_Handler import raam_show_maintenance_technician_mafil_Handler
+from src.handlers.raam.edit.raam_edit_maintenance_technician_mafil_Handler import raam_edit_maintenance_technician_mafil_Handler
+from src.handlers.raam.show.raam_show_warehouse_inventory_Handler import raam_show_warehouse_inventory_Handler
+from src.handlers.raam.edit.raam_edit_warehouse_inventory_Handler import raam_edit_warehouse_inventory_Handler
+from src.handlers.raam.edit.raam_edit_data_errors_Handler import raam_edit_data_errors_Handler
+from src.handlers.raam.insert.raam_insert_error_Handler import raam_insert_error_Handler
 
 from flask import Flask, request, render_template, redirect, url_for, flash
 from flask_login import (LoginManager, current_user, login_required,
@@ -932,6 +940,60 @@ async def mini_raam_edit_warehouse_inventory():
 @app.route("/mini_raam_show_warehouse_inventory", methods=['GET','POST'])
 async def mini_raam_show_warehouse_inventory():
     return await mini_raam_show_warehouse_inventory_Handler(request)
+
+  
+  
+# מאמן רעם
+
+
+@app.route("/raam", methods=['GET','POST'])
+async def raam():
+    return await raam_Handler(request)
+
+
+@app.route("/raam_feedback", methods=['GET','POST'])
+async def raam_feedback():
+    return await raam_feedback_Handler(request)
+
+
+# הפערים בין המפעיל לטכנאי
+
+@app.route("/raam_show_maintenance_technician_mafil", methods=['GET','POST'])
+async def raam_show_maintenance_technician_mafil():
+    return await raam_show_maintenance_technician_mafil_Handler(request)
+
+@app.route("/raam_edit_maintenance_technician_mafil", methods=['GET','POST'])
+async def raam_edit_maintenance_technician_mafil():
+    return await raam_edit_maintenance_technician_mafil_Handler(request)
+
+
+# עריכה וצפייה מחסן מרס
+
+@app.route("/raam_edit_warehouse_inventory", methods=['GET','POST'])
+async def raam_edit_warehouse_inventory():
+    return await raam_edit_warehouse_inventory_Handler(request)
+
+@app.route("/raam_show_warehouse_inventory", methods=['GET','POST'])
+async def raam_show_warehouse_inventory():
+    return await raam_show_warehouse_inventory_Handler(request)
+
+
+# הכנסת תקלה
+
+@app.route("/raam_insert_error", methods=['GET','POST'])
+async def raam_insert_error():
+    return await raam_insert_error_Handler(request)
+
+
+# צפייה בתקלות טכנאי וצפייה ועריכה תקלות מפעיל
+
+@app.route("/raam_edit_data_errors", methods=['GET','POST'])
+async def raam_edit_data_errors():
+    return await raam_edit_data_errors_Handler(request)
+
+@app.route("/raam_show_data_errors_technician", methods=['GET','POST'])
+async def raam_show_data_errors_technician():
+    return await raam_show_data_errors_technician_Handler(request)
 
 
 # הכנסת תקלה
