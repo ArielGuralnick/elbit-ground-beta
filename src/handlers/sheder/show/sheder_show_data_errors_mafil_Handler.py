@@ -19,7 +19,7 @@ async def sheder_show_data_errors_mafil_Handler(request):
         index = data_errors.index + 1    # adding 1 to index (start from 1, not 0)
         for i in index:
             data_errors.index = index
-        dphtml += data_errors.to_html(table_id="sheder_show_data_errors_mafil", classes = "table table-hover", border=0)
+        dphtml += data_errors.to_html(table_id="sheder_show_data_errors_mafil", classes = "table table-see-all-errors table-hover", border=0)
         with open('app/templates/sheder/show/sheder_show_data_errors_mafil.html','w', encoding='utf-8-sig') as f:
             f.writelines([dphtml + '\n' + r'<br>'  + '\n' + r"</form>",r"</section>",
             r'''

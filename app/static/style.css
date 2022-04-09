@@ -51,7 +51,7 @@ h1{
 
 }
 
-.table{
+.table-see-all-errors{
     display: block;
     overflow-x: auto;
     white-space: nowrap;
@@ -128,6 +128,11 @@ img {
       }
       h2{
           font-size: large;
+        }
+    .table{
+        display: block;
+        overflow-x: auto;
+        white-space: nowrap;
         }
 }
 .cyan {
