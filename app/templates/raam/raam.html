@@ -6,7 +6,7 @@
     <a href="/">
       <img class="Logo" src="static/images/logo.png" alt="logo-img">
     </a>
-    <h1 style="padding-left: 19%;">{{ title_simulator }}</h1>
+    <h1 style="padding-left: 15%;">{{ title_simulator }}</h1>
   </div>
 </section>  
   <div class="second-paragraph">
@@ -17,9 +17,9 @@
 <section id="whichUser">
     <div class="row1-container">
       <div class="box green">
-        <a href="/raam_show_data_errors_technician" class="btn btn-outline-secondary greenInButoon"><h3>דוח תקלות</h3></a>
+        <a href="/raam_insert_error" class="btn btn-outline-secondary greenInButoon "><h3>דיווח תקלה</h3></a>
         <p></p>
-        <img src="static/images/flaticon/system.png" alt="system">
+        <img src="static/images/flaticon/emergency.png" alt="emergency">
       </div>
   
       <div class="box pink">
@@ -41,7 +41,14 @@
         <p></p>
         <img src="static/images/flaticon/feedback.png" alt="feedback">
       </div>
+
+      <div class="box black">
+        <a href="/raam_show_data_errors_technician" class="btn btn-outline-secondary blackInButoon"><h3>דוח תקלות</h3></a>
+        <p></p>
+        <img src="static/images/flaticon/system.png" alt="system">
+      </div>
     </div>
+    
 </section>
 
 {% endblock %}
