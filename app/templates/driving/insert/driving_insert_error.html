@@ -72,10 +72,18 @@
             <label for="">סוג התקלה</label>
             <select class="form-control" name="type_of_fault">
               <optgroup label = "בלה בלה">
-                <option>בלה בלה בלה</option>
-                <option>נלהצרא</option>
-                <option>עכגעגכעגדעכע</option>
-                <option>עגכעכגעכעקר</option>
+                <option>אין קשר רדיו בין המתאמן למדריכה</option>
+                <option>תוכנת העץ כוחות לא מופיעה / עולה לא ממורכזת בעת טעינת התרחיש, בתצוגת התלת מימד מופיעה המפה ללא טנק המתאמן.</option>
+                <option>במהלך טעינת תרחיש, תלת מימד עולה אך ורק במסך המדריך, בו מופיעה תמונה מרחפת מעל פני הקרקע</option>
+                <option>תוכנת IOS נתקעה / קרסה</option>
+                <option>מנוע SIMENG נתקע / קרס</option>
+                <option>בעת הזנת סיסמא במסך הפתיחה של ה-IOS, עולה הודעת שגיאה או אפליקציה נתקעת</option>
+                <option>טנק "שוקע" באדמה.(Queryserver)</option>
+                <option>טנק לא עובר את הילוך שני</option>
+                <option>אין תמונה באחד האפיסקופים. (אפיסקופ נראה כבוי).</option>
+                <option>המתאמן אינו מצליח להעביר הילוכים בבורר כיווני הנסיעה</option>
+                <option>בלם החנייה אינו משתחרר במחשב אך משתחרר בתא פיזית</option>
+                <option>פלטפורמה לא עולה / תקועה</option>
               </optgroup>
             </select>
             <br>
@@ -84,10 +92,18 @@
             <label for="">תפעול</label>
             <select class="form-control" name = "fault_operation" placeholder="אנא בחר מהרשימת תפעול תקלות">
               <optgroup label = "בלה בלה">
-                <option>בלה בלה בלה</option>
-                <option>נלהצרא</option>
-                <option>עכגעגכעגדעכע</option>
-                <option>עגכעכגעכעקר</option>
+                <option>העברת מתג הקשר בג'נטקס ל"אחורי קבוע"</option>
+                <option>החלפת ג'נטקס/פתיל לב ובדיקה האם הבעיה בג'נטקס או בגורם אחר</option>
+                <option>האימון עלה בצורה שאינה תקינה, יש לצאת מהאימון ולהיכנס מחדש לתרחיש הרצוי</option>
+                <option>כניסה מחדש לאימון ולאחר מכן RUN IOS</option>
+                <option>יש לגשת לשולחן העבודה וללחוץ על האייקון הירוק "RUN IOS".</option>
+                <option>יש לגשת לשולחן העבודה במחשב SIMENG וללחוץ על האייקון הירוק "Run Simeng".</option>
+                <option>הדבר נפוץ בעת העלאת מערכת לראשונה בבוקר, למחשב IOS SERVER לוקח זמן לעלות. ניסיון כניסה מוקדמת מדי תקפיץ לנו הודעת שגיאה</option>
+                <option>תחילה יש לנסות לגרור את הטנק אל עבר נקודה אחרת במפת הדו מימד - לאחר מכן לגשת למחשב SIMENG ולאתחל את תוכנת ה QUERYSERVER המסומנת בגלובוס עם חץ כתום, על שולחן העבודה. לאחר מכן הכנסת מס' הבסנ"ת הרצוי ע"פ מה שרשום בקונסולה.</option>
+                <option>כניסה מחדש לתרחיש</option>
+                <option>וידוא נורה ירוקה, במידה ולא - קריאה למפעיל</option>
+                <option>הורדת פלטפורמה ע"י לחיצה על שחרור פלטפורמה או כפתור ה STOP בתוכנת ה IOS בלבד</option>
+                <option>ריענון פריסקופטים</option>
               </optgroup>
             </select>
             <br>
@@ -95,14 +111,15 @@
         <div class="col form-group">
           <label for="">באיזה מחשב</label>
           <select class="form-control" name="computer">
-            <option>כגהגכ</option>
-            <option>הכהכג</option>
-            <option>רקכ43כע</option>
-            <option>כעכגע543</option>
-            <option>כגעגע</option>
-            <option>עכגע34ר</option>
-            <option>הנגכה34</option>
-            <option>הכג</option>
+            <option>ios client</option>
+            <option>simEngine</option>
+            <option>DC</option>
+            <option>iosServer</option>
+            <option>IG 1</option>
+            <option>IG 2</option>
+            <option>IG 3</option>
+            <option>MFD</option>
+            <option>Voip</option>
           </select>
           <br>
         </div>
