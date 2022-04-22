@@ -18,3 +18,8 @@ async def manager_choose_training_simulator_Handler(request):
             return send_file('db/manager/tzevet_order_training.csv',
             mimetype='text/csv',attachment_filename='דוח הזמנת ימי אימון מאמני צוות.csv',
             as_attachment=True)
+
+        elif request.form.get('options') == 'option_sheder':
+            return send_file('db/manager/sheder_order_training.csv',
+            mimetype='text/csv',attachment_filename='דוח הזמנת ימי אימון מאמני שדר חם.csv',
+            as_attachment=True)
