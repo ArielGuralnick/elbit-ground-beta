@@ -277,6 +277,7 @@ def login():
             else:
                 print("FAILED LOGIN")
                 flash(f'Your Username or password are incorrect, try again!', 'error')
+                
         else:
             flash(f'Your Username or password are incorrect, try again!', 'error')
             print("Username is not on the list")
