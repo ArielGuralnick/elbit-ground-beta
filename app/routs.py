@@ -276,21 +276,21 @@ def login():
                     flash("Sorry, but you could not log in.")
             else:
                 print("FAILED LOGIN")
-                flash("Your Username or password are incorrect, try again!")
+                flash(f'Your Username or password are incorrect, try again!', 'error')
         else:
-            flash("Your Username or password are incorrect, try again!")
+            flash(f'Your Username or password are incorrect, try again!', 'error')
             print("Username is not on the list")
     return render_template('login.html', error=error)
 
 
-@app.route("/reauth", methods=["GET", "POST"])
+'''@app.route("/reauth", methods=["GET", "POST"])
 @login_required
 def reauth():
     if request.method == "POST":
         confirm_login()
         flash(u"Reauthenticated.")
         return redirect(request.args.get("next") or url_for("index"))
-    return render_template("reauth.html")
+    return render_template("reauth.html")'''
 '''
 @app.route("/logout")
 @login_required

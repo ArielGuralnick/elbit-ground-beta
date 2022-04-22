@@ -7,6 +7,66 @@
         {
             "type": "aws-sam",
             "request": "direct-invoke",
+            "name": "elbit-ground-beta:app/routs.skyLark_instructor (python3.8)",
+            "invokeTarget": {
+                "target": "code",
+                "projectRoot": "${workspaceFolder}/",
+                "lambdaHandler": "app/routs.skyLark_instructor"
+            },
+            "lambda": {
+                "runtime": "python3.8",
+                "payload": {},
+                "environmentVariables": {}
+            }
+        },
+        {
+            "type": "aws-sam",
+            "request": "direct-invoke",
+            "name": "elbit-ground-beta:app/routs.skyLark (python3.8)",
+            "invokeTarget": {
+                "target": "code",
+                "projectRoot": "${workspaceFolder}/",
+                "lambdaHandler": "app/routs.skyLark"
+            },
+            "lambda": {
+                "runtime": "python3.8",
+                "payload": {},
+                "environmentVariables": {}
+            }
+        },
+        {
+            "type": "aws-sam",
+            "request": "direct-invoke",
+            "name": "elbit-ground-beta:app/routs.skyLark (python3.8)",
+            "invokeTarget": {
+                "target": "code",
+                "projectRoot": "${workspaceFolder}/",
+                "lambdaHandler": "app/routs.skyLark"
+            },
+            "lambda": {
+                "runtime": "python3.8",
+                "payload": {},
+                "environmentVariables": {}
+            }
+        },
+        {
+            "type": "aws-sam",
+            "request": "direct-invoke",
+            "name": "elbit-ground-beta:app/routs.reauth (python3.8)",
+            "invokeTarget": {
+                "target": "code",
+                "projectRoot": "${workspaceFolder}/",
+                "lambdaHandler": "app/routs.reauth"
+            },
+            "lambda": {
+                "runtime": "python3.8",
+                "payload": {},
+                "environmentVariables": {}
+            }
+        },
+        {
+            "type": "aws-sam",
+            "request": "direct-invoke",
             "name": "elbit-ground-beta:app/routs.skyLark_pdf_solutions (python3.8)",
             "invokeTarget": {
                 "target": "code",
