@@ -29,3 +29,18 @@ async def manager_feedbacks_Handler(request):
             return send_file('db/tzevet/feedback.csv',
             mimetype='text/csv',attachment_filename='משוב צוות.csv',
             as_attachment=True)
+        
+        elif request.form.get('options') == 'option_sheder':
+            return send_file('db/sheder/feedback.csv',
+            mimetype='text/csv',attachment_filename='משוב שדר חם.csv',
+            as_attachment=True)
+
+        elif request.form.get('options') == 'option_raam':
+            return send_file('db/raam/feedback.csv',
+            mimetype='text/csv',attachment_filename='משוב רעם.csv',
+            as_attachment=True)
+
+        elif request.form.get('options') == 'option_mini_raam':
+            return send_file('db/mini_raam/feedback.csv',
+            mimetype='text/csv',attachment_filename='משוב מיני רעם.csv',
+            as_attachment=True)
