@@ -21,8 +21,6 @@ if None in [bucketeer_aws_access_key_id, bucketeer_aws_secret_access_key, bucket
     sys.exit(1)
 
 
-
-
 download_target_path = os.getcwd()
 
 session = boto3.Session(
