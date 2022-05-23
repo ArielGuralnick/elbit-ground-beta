@@ -6,12 +6,14 @@ from botocore.exceptions import NoCredentialsError
 
 print("Loading upload_files.py")
 
+bucketeer_aws_bucket_name = os.environ.get('AWS_BUCKET_NAME', None)
 bucketeer_aws_access_key_id = os.environ.get('AWS_ACCESS_KEY_ID', None)
 bucketeer_aws_secret_access_key = os.environ.get('AWS_SECRET_ACCESS_KEY', None)
 
 
-if None in [bucketeer_aws_access_key_id, bucketeer_aws_secret_access_key]:
+if None in [bucketeer_aws_bucket_name, bucketeer_aws_access_key_id, bucketeer_aws_secret_access_key]:
     print("")
+    print("env.AWS_BUCKET_NAME="    , bucketeer_aws_bucket_name)
     print("env.AWS_ACCESS_KEY_ID="    , bucketeer_aws_access_key_id)
     print("env.AWS_SECRET_ACCESS_KEY=", bucketeer_aws_secret_access_key)
     print("")
@@ -33,10 +35,10 @@ s3_client = boto3.client("s3", aws_access_key_id=bucketeer_aws_access_key_id,
                         aws_secret_access_key=bucketeer_aws_secret_access_key)
 
 
-def upload_to_aws(local_file, bucket, s3_file):
+def upload_to_aws(local_file, s3_file):
     print(f"Uploading file: {local_file}")
     try:
-        s3_client.upload_file(local_file, bucket, s3_file)
+        s3_client.upload_file(local_file, bucketeer_aws_bucket_name, s3_file)
         print("Upload Successful")
         return True
     except FileNotFoundError:
@@ -47,7 +49,7 @@ def upload_to_aws(local_file, bucket, s3_file):
         return False
 
 
-uploaded = upload_to_aws('local_file', 'bucket_name', 's3_file_name')
+uploaded = upload_to_aws('local_file', 's3_file_name')
 
 
 print("")
