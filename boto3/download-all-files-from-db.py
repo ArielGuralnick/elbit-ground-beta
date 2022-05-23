@@ -4,22 +4,18 @@ import os
 import sys
 import git
 
+
 bucketeer_aws_bucket_name = "bucketeer-6a878c84-4c94-43bf-9c1c-7ef1bdebdc5c"
-bucketeer_aws_access_key_id = os.environ.get('BUCKETEER_AWS_ACCESS_KEY_ID', None)
-bucketeer_aws_secret_access_key = os.environ.get('BUCKETEER_AWS_SECRET_ACCESS_KEY', None)
-bucketeer_aws_bucket_region_name = os.environ.get('BUCKETEER_AWS_REGION', None)
-
-os.environ['AWS_ACCESS_KEY_ID'] = bucketeer_aws_access_key_id
-os.environ['AWS_SECRET_ACCESS_KEY'] = bucketeer_aws_secret_access_key
-os.environ['AWS_BUCKET_REGION_NAME'] = bucketeer_aws_bucket_region_name
-
+bucketeer_aws_access_key_id = os.environ.get('AWS_ACCESS_KEY_ID', None)
+bucketeer_aws_secret_access_key = os.environ.get('AWS_SECRET_ACCESS_KEY', None)
+bucketeer_aws_bucket_region_name = os.environ.get('AWS_BUCKET_REGION_NAME', None)
 
 
 if None in [bucketeer_aws_access_key_id, bucketeer_aws_secret_access_key, bucketeer_aws_bucket_region_name]:
     print("")
-    print("env.BUCKETEER_AWS_ACCESS_KEY_ID="    , bucketeer_aws_access_key_id)
-    print("env.BUCKETEER_AWS_SECRET_ACCESS_KEY=", bucketeer_aws_secret_access_key)
-    print("env.BUCKETEER_AWS_REGION="           , bucketeer_aws_bucket_region_name)
+    print("env.AWS_ACCESS_KEY_ID="    , bucketeer_aws_access_key_id)
+    print("env.AWS_SECRET_ACCESS_KEY=", bucketeer_aws_secret_access_key)
+    print("env.AWS_REGION="           , bucketeer_aws_bucket_region_name)
     print("")
     print("Error - One or more of required vars is None!")
     print("")
@@ -104,7 +100,7 @@ for prefix in result.search('CommonPrefixes'):
     print(prefix.get('Prefix'))
 
 print("")
-print("Downloading all files")
+print(f"Downloading all files to: {download_target_path}")
 for prefix in result.search('CommonPrefixes'):
     dir_to_download = prefix.get('Prefix')
     print(f"Downloading: {dir_to_download}")
