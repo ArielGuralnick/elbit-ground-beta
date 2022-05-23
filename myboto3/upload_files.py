@@ -3,7 +3,7 @@ import boto3
 import os
 import sys
 
-print("upload_files.py")
+print("Loading upload_files.py")
 
 bucketeer_aws_bucket_name = os.environ.get('AWS_BUCKET_NAME', None)
 bucketeer_aws_access_key_id = os.environ.get('AWS_ACCESS_KEY_ID', None)
