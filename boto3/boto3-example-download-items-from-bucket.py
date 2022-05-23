@@ -17,8 +17,9 @@ session = boto3.Session(
 print("Getting resource to s3 bucket")
 s3 = session.resource('s3')
 
-print(f"Getting bucket: '{bucket_name}'")
-my_bucket = s3.Bucket(bucket_name)
+# Create an S3 access object
+print(f"Getting client connection to: bucket: '{bucket_name}'")
+my_bucket = s3.client(bucket_name)
 
 print("All items in bucket:")
 for i in my_bucket.objects.all():
