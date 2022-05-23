@@ -1,11 +1,12 @@
 from app import app
 import os
-import sys
-import boto3
 
 
 print("Reading env: 'PORT' for listening port assign")
 listen_port = os.getenv('PORT', 47382)
+
+# Download all files from DB
+
 
 if __name__ == "__main__":
     # app.run(debug=True, host="127.0.0.1", port=listen_port)  # <- 127.0.0.1 == Access only from localhost
