@@ -2,13 +2,7 @@
 import boto3
 import os
 import sys
-import git
 
-
-def get_git_root(path):
-    git_repo = git.Repo(path, search_parent_directories=True)
-    git_root = git_repo.git.rev_parse("--show-toplevel")
-    return git_root
 
 def download_dir(prefix, local, bucket, client):
     """
@@ -68,12 +62,7 @@ def download_all_files_from_db():
         print("Aborting..")
         sys.exit(1)
 
-    git_root = get_git_root(__file__)
-    if not git_root:
-        print(f"Error - Failed getting 'git_root_dir' from path: {__file__}\nAborting..")
-        sys.exit(1)
-
-    download_target_path = os.path.join(git_root, 'app', 'db')
+    download_target_path = os.path.join('/', 'app', 'db')
 
     session = boto3.Session(
              aws_access_key_id=bucketeer_aws_access_key_id,
