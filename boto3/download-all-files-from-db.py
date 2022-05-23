@@ -4,11 +4,14 @@ import os
 import sys
 import git
 
-bucketeer_aws_bucket_name = os.environ.get('BUCKETEER_BUCKET_NAME', "bucketeer-6a878c84-4c94-43bf-9c1c-7ef1bdebdc5c")
+bucketeer_aws_bucket_name = "bucketeer-6a878c84-4c94-43bf-9c1c-7ef1bdebdc5c"
 bucketeer_aws_access_key_id = os.environ.get('BUCKETEER_AWS_ACCESS_KEY_ID', None)
 bucketeer_aws_secret_access_key = os.environ.get('BUCKETEER_AWS_SECRET_ACCESS_KEY', None)
 bucketeer_aws_bucket_region_name = os.environ.get('BUCKETEER_AWS_REGION', None)
 
+os.environ['AWS_ACCESS_KEY_ID'] = bucketeer_aws_access_key_id
+os.environ['AWS_SECRET_ACCESS_KEY'] = bucketeer_aws_secret_access_key
+os.environ['AWS_BUCKET_REGION_NAME'] = bucketeer_aws_bucket_region_name
 
 
 
