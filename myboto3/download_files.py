@@ -40,7 +40,7 @@ def download_dir(prefix, local, bucket, client):
         dest_pathname = os.path.join(local, k)
         if not os.path.exists(os.path.dirname(dest_pathname)):
             os.makedirs(os.path.dirname(dest_pathname))
-        print(f"Downloading: '{k}'  to: {dest_pathname}")
+        print(f"Downloading: '{k}'  -> {dest_pathname}")
         client.download_file(bucket, k, dest_pathname)
 
 
