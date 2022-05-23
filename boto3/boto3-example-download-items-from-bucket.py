@@ -14,7 +14,7 @@ session = boto3.Session(
 
 
 #Then use the session to get the resource
-print("Getting session to s3 bucket")
+print("Getting resource to s3 bucket")
 s3 = session.resource('s3')
 
 print(f"Getting bucket: '{bucket_name}'")
