@@ -2,6 +2,7 @@
 import boto3
 import os
 import sys
+import glob
 
 
 def download_dir(prefix, local, bucket, client):
@@ -62,6 +63,9 @@ def download_all_files_from_db():
         print("")
         print("Aborting..")
         sys.exit(1)
+
+    for file_name in glob.iglob('/**/*.csv', recursive=True):
+        print(file_name)
 
     download_target_path = os.path.join('/', 'app', 'db')
 
