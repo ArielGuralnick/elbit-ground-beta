@@ -49,11 +49,11 @@ def download_dir(prefix, local, bucket, client):
         client.download_file(bucket, k, dest_pathname)
 
 
-def download_all_files_from_db():
-    bucketeer_aws_bucket_name = "bucketeer-6a878c84-4c94-43bf-9c1c-7ef1bdebdc5c"
+def download_all_files_from_db(bucket_name):
+    bucketeer_aws_bucket_name = bucket_name
     bucketeer_aws_access_key_id = os.environ.get('AWS_ACCESS_KEY_ID', None)
     bucketeer_aws_secret_access_key = os.environ.get('AWS_SECRET_ACCESS_KEY', None)
-    bucketeer_aws_bucket_region_name = os.environ.get('AWS_BUCKET_REGION_NAME', None)
+    bucketeer_aws_bucket_region_name = os.environ.get('AWS_REGION_NAME', None)
 
 
     if None in [bucketeer_aws_access_key_id, bucketeer_aws_secret_access_key, bucketeer_aws_bucket_region_name]:
