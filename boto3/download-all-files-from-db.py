@@ -33,6 +33,7 @@ git_root = get_git_root(__file__)
 if not git_root:
     print(f"Error - Failed getting 'git_root_dir' from path: {__file__}\nAborting..")
     sys.exit(1)
+    
 download_target_path = os.path.join(git_root, 'app', 'db')
 
 session = boto3.Session(
