@@ -10,6 +10,8 @@ bucketeer_aws_secret_access_key = os.environ.get('BUCKETEER_AWS_SECRET_ACCESS_KE
 bucketeer_aws_bucket_region_name = os.environ.get('BUCKETEER_AWS_REGION', None)
 
 
+
+
 if None in [bucketeer_aws_access_key_id, bucketeer_aws_secret_access_key, bucketeer_aws_bucket_region_name]:
     print("")
     print("env.BUCKETEER_AWS_ACCESS_KEY_ID="    , bucketeer_aws_access_key_id)
