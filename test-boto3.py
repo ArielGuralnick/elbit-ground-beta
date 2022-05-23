@@ -1,9 +1,11 @@
 
 import boto3
+import os
 
 bucket_name = "bucketeer-6a878c84-4c94-43bf-9c1c-7ef1bdebdc5c"
-aws_access_key_id = 'AKIAVZH4SBSYVURVA65X'
-aws_secret_access_key = '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'
+
+aws_access_key_id = os.environ.get('AWS_ACCESS_KEY_ID', None)
+aws_secret_access_key = os.environ.get('AWS_SECRET_ACCESS_KEY', None)
 
 session = boto3.Session(
          aws_access_key_id=aws_access_key_id,
