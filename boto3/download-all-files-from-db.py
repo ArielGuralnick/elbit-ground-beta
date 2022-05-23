@@ -2,6 +2,7 @@
 import boto3
 import os
 import sys
+import git
 
 bucketeer_aws_bucket_name = os.environ.get('BUCKETEER_BUCKET_NAME', "bucketeer-6a878c84-4c94-43bf-9c1c-7ef1bdebdc5c")
 bucketeer_aws_access_key_id = os.environ.get('BUCKETEER_AWS_ACCESS_KEY_ID', None)
@@ -21,7 +22,14 @@ if None in [bucketeer_aws_access_key_id, bucketeer_aws_secret_access_key, bucket
     sys.exit(1)
 
 
-download_target_path = os.getcwd()
+def get_git_root(path):
+    git_repo = git.Repo(path, search_parent_directories=True)
+    git_root = git_repo.git.rev_parse("--show-toplevel")
+    return git_root
+
+
+
+download_target_path = get_git_root(__file__)
 
 session = boto3.Session(
          bucketeer_aws_access_key_id=bucketeer_aws_access_key_id,
