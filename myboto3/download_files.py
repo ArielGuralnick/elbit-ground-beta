@@ -2,7 +2,6 @@
 import boto3
 import os
 import sys
-import glob
 
 
 def download_dir(prefix, local, bucket, client):
@@ -64,10 +63,8 @@ def download_all_files_from_db():
         print("Aborting..")
         sys.exit(1)
 
-    for file_name in glob.iglob('/**/*.csv', recursive=True):
-        print(file_name)
-    sys.stdout.flush()
-    download_target_path = os.path.join('/', 'app', 'db')
+    this_file_dir = os.path.dirname(os.path.realpath(__file__))
+    download_target_path = os.path.join(this_file_dir, '..', 'app', 'db')
 
     session = boto3.Session(
              aws_access_key_id=bucketeer_aws_access_key_id,
@@ -76,9 +73,6 @@ def download_all_files_from_db():
 
     print("Getting session to s3 bucket")
     s3 = session.resource('s3')
-
-    print(f"Getting bucket: '{bucketeer_aws_bucket_name}'")
-    my_bucket = s3.Bucket(bucketeer_aws_bucket_name)
 
     # Create an S3 access object
     print(f"Getting client connection to s3")
