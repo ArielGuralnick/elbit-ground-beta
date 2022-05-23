@@ -30,7 +30,7 @@ session = boto3.Session(
 
 
 # Create an S3 access object
-print(f"Getting client connection to s3")
+print(f"Getting client connection to s3 for upload object")
 s3_client = boto3.client("s3", aws_access_key_id=bucketeer_aws_access_key_id,
                         aws_secret_access_key=bucketeer_aws_secret_access_key)
 
