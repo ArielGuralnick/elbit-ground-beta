@@ -35,10 +35,10 @@ s3_client = boto3.client("s3", aws_access_key_id=bucketeer_aws_access_key_id,
                         aws_secret_access_key=bucketeer_aws_secret_access_key)
 
 
-def upload_to_aws(local_file, s3_file):
-    print(f"Uploading file: {local_file}")
+def upload_to_s3_bucket(local_file, bucket_dest_file_path):
+    print(f"Uploading file: '{local_file}'  -> {bucket_dest_file_path}")
     try:
-        s3_client.upload_file(local_file, bucketeer_aws_bucket_name, s3_file)
+        s3_client.upload_file(local_file, bucketeer_aws_bucket_name, bucket_dest_file_path)
         print("Upload Successful")
         return True
     except FileNotFoundError:
@@ -49,11 +49,5 @@ def upload_to_aws(local_file, s3_file):
         return False
 
 
-uploaded = upload_to_aws(r"C:\David\git\elbit-ground-beta\app\db\driving\data_activity.csv", 'driving/data_activity.csv')
-
-
-
-print("")
-
-print("Finished")
+# uploaded = upload_to_s3_bucket(r"C:\David\git\elbit-ground-beta\app\db\driving\data_activity.csv", 'driving/data_activity.csv')
 
