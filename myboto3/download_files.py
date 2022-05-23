@@ -66,7 +66,7 @@ def download_all_files_from_db():
 
     for file_name in glob.iglob('/**/*.csv', recursive=True):
         print(file_name)
-
+    sys.stdout.flush()
     download_target_path = os.path.join('/', 'app', 'db')
 
     session = boto3.Session(
