@@ -3,17 +3,17 @@ import boto3
 import os
 import sys
 
-aws_bucket_name = os.environ.get('AWS_BUCKET_NAME', "bucketeer-6a878c84-4c94-43bf-9c1c-7ef1bdebdc5c")
-aws_access_key_id = os.environ.get('AWS_ACCESS_KEY_ID', None)
-aws_secret_access_key = os.environ.get('AWS_SECRET_ACCESS_KEY', None)
-aws_bucket_region_name = os.environ.get('AWS_BUCKET_REGION_NAME', None)
+bucketeer_aws_bucket_name = os.environ.get('BUCKETEER_BUCKET_NAME', "bucketeer-6a878c84-4c94-43bf-9c1c-7ef1bdebdc5c")
+bucketeer_aws_access_key_id = os.environ.get('BUCKETEER_AWS_ACCESS_KEY_ID', None)
+bucketeer_aws_secret_access_key = os.environ.get('BUCKETEER_AWS_SECRET_ACCESS_KEY', None)
+bucketeer_aws_bucket_region_name = os.environ.get('BUCKETEER_AWS_REGION', None)
 
 
-if None in [aws_access_key_id, aws_secret_access_key, aws_bucket_region_name]:
+if None in [bucketeer_aws_access_key_id, bucketeer_aws_secret_access_key, bucketeer_aws_bucket_region_name]:
     print("")
-    print("aws_access_key_id=", aws_access_key_id)
-    print("aws_secret_access_key=", aws_secret_access_key)
-    print("aws_bucket_region_name=", aws_bucket_region_name)
+    print("bucketeer_aws_access_key_id=", bucketeer_aws_access_key_id)
+    print("bucketeer_aws_secret_access_key=", bucketeer_aws_secret_access_key)
+    print("bucketeer_aws_bucket_region_name=", bucketeer_aws_bucket_region_name)
     print("Error - One or more of required vars is None!")
     print("Aborting..")
     sys.exit(1)
@@ -24,15 +24,15 @@ if None in [aws_access_key_id, aws_secret_access_key, aws_bucket_region_name]:
 download_target_path = os.getcwd()
 
 session = boto3.Session(
-         aws_access_key_id=aws_access_key_id,
-         aws_secret_access_key=aws_secret_access_key)
+         bucketeer_aws_access_key_id=bucketeer_aws_access_key_id,
+         bucketeer_aws_secret_access_key=bucketeer_aws_secret_access_key)
 
 
 print("Getting session to s3 bucket")
 s3 = session.resource('s3')
 
-print(f"Getting bucket: '{aws_bucket_name}'")
-my_bucket = s3.Bucket(aws_bucket_name)
+print(f"Getting bucket: '{bucketeer_aws_bucket_name}'")
+my_bucket = s3.Bucket(bucketeer_aws_bucket_name)
 
 # Create an S3 access object
 print(f"Getting client connection to s3")
@@ -81,7 +81,7 @@ def download_dir(prefix, local, bucket, client=s3_client):
 
 print("List all files to download")
 paginator = s3_client.get_paginator('list_objects')
-result = paginator.paginate(Bucket=aws_bucket_name, Delimiter='/')
+result = paginator.paginate(Bucket=bucketeer_aws_bucket_name, Delimiter='/')
 for prefix in result.search('CommonPrefixes'):
     print(prefix.get('Prefix'))
 
@@ -90,7 +90,7 @@ print("Downloading all files")
 for prefix in result.search('CommonPrefixes'):
     dir_to_download = prefix.get('Prefix')
     print(f"Downloading: {dir_to_download}")
-    download_dir(dir_to_download, download_target_path, aws_bucket_name, s3_client)
+    download_dir(dir_to_download, download_target_path, bucketeer_aws_bucket_name, s3_client)
 
 print("Finished")
 
