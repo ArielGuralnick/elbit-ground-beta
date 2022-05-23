@@ -49,7 +49,8 @@ def upload_to_aws(local_file, s3_file):
         return False
 
 
-uploaded = upload_to_aws('local_file', 's3_file_name')
+uploaded = upload_to_aws(r"C:\David\git\elbit-ground-beta\app\db\driving\data_activity.csv", 'driving/data_activity.csv')
+
 
 
 print("")
