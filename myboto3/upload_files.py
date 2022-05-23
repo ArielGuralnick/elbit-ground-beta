@@ -47,6 +47,7 @@ def upload_to_s3_bucket(local_file, bucket_dest_file_path):
     except NoCredentialsError:
         print("Credentials not available")
         return False
+    sys.stdout.flush()
 
 
 # uploaded = upload_to_s3_bucket(r"C:\David\git\elbit-ground-beta\app\db\driving\data_activity.csv", 'driving/data_activity.csv')
