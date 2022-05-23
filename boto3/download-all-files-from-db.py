@@ -1,12 +1,23 @@
 
 import boto3
 import os
+import sys
 
 aws_bucket_name = os.environ.get('AWS_BUCKET_NAME', "bucketeer-6a878c84-4c94-43bf-9c1c-7ef1bdebdc5c")
-
 aws_access_key_id = os.environ.get('AWS_ACCESS_KEY_ID', None)
 aws_secret_access_key = os.environ.get('AWS_SECRET_ACCESS_KEY', None)
 aws_bucket_region_name = os.environ.get('AWS_BUCKET_REGION_NAME', None)
+
+
+if None in [aws_access_key_id, aws_secret_access_key, aws_bucket_region_name]:
+    print("")
+    print("aws_access_key_id=", aws_access_key_id)
+    print("aws_secret_access_key=", aws_secret_access_key)
+    print("aws_bucket_region_name=", aws_bucket_region_name)
+    print("Error - One or more of required vars is None!")
+    print("Aborting..")
+    sys.exit(1)
+
 
 
 
