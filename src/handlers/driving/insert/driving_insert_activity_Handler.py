@@ -1,3 +1,4 @@
+import os
 import pandas as pd
 from flask import render_template, flash, redirect, url_for
 from myboto3 import upload_files
@@ -19,6 +20,8 @@ async def driving_insert_activity_Handler(request):
         data_activity = pd.DataFrame([{'מאמן': type_of_simulator, 'סוג תא' : type_of_cell, 'תאריך העלאה' : date_upload,
         'פעילות עבור' : group_training, 'שם המעלה' : name_updater,'שעת העלאה' : time_upload,
         'שעת הורדה' : time_download}], columns=field_content)
+        current_cd_path = os.getcwd()
+        print("CD=", current_cd_path)
         with open('app/db/driving/data_activity.csv', 'a', newline='', encoding='utf-8-sig') as file:
             data_activity.to_csv(file, index=False, na_rep='N/A',header=file.tell()==0, encoding = "utf-8-sig")
             flash(f'תיעוד האימון נקלט בהצלחה!', category="success")
