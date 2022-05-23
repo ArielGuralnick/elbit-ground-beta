@@ -29,16 +29,14 @@ session = boto3.Session(
 
 # Create an S3 access object
 print(f"Getting client connection to s3")
-s3_client = boto3.client("s3")
+s3_client = boto3.client("s3", aws_access_key_id=bucketeer_aws_access_key_id,
+                        aws_secret_access_key=bucketeer_aws_secret_access_key)
 
 
 def upload_to_aws(local_file, bucket, s3_file):
-    s3 = boto3.client('s3', aws_access_key_id=bucketeer_aws_access_key_id,
-                      aws_secret_access_key=bucketeer_aws_secret_access_key)
-
+    print(f"Uploading file: {local_file}")
     try:
-        print(f"Uploading file: {local_file}")
-        s3.upload_file(local_file, bucket, s3_file)
+        s3_client.upload_file(local_file, bucket, s3_file)
         print("Upload Successful")
         return True
     except FileNotFoundError:
