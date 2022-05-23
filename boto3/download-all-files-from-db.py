@@ -11,10 +11,12 @@ bucketeer_aws_bucket_region_name = os.environ.get('BUCKETEER_AWS_REGION', None)
 
 if None in [bucketeer_aws_access_key_id, bucketeer_aws_secret_access_key, bucketeer_aws_bucket_region_name]:
     print("")
-    print("bucketeer_aws_access_key_id=", bucketeer_aws_access_key_id)
-    print("bucketeer_aws_secret_access_key=", bucketeer_aws_secret_access_key)
-    print("bucketeer_aws_bucket_region_name=", bucketeer_aws_bucket_region_name)
+    print("env.BUCKETEER_AWS_ACCESS_KEY_ID=", bucketeer_aws_access_key_id)
+    print("env.BUCKETEER_AWS_SECRET_ACCESS_KEY=", bucketeer_aws_secret_access_key)
+    print("env.BUCKETEER_AWS_REGION=", bucketeer_aws_bucket_region_name)
+    print("")
     print("Error - One or more of required vars is None!")
+    print("")
     print("Aborting..")
     sys.exit(1)
 
