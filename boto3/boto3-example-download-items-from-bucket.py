@@ -18,11 +18,12 @@ print("Getting resource to s3 bucket")
 s3 = session.resource('s3')
 
 # Create an S3 access object
-print(f"Getting client connection to: bucket: '{bucket_name}'")
-my_bucket = s3.client(bucket_name)
+print(f"Getting client connection to s3")
+my_bucket = s3.client("s3")
 
-print("All items in bucket:")
-for i in my_bucket.objects.all():
-    print(i)
+print("Downloading file")
+s3.download_file(
+    Bucket=bucket_name, Key="train.csv", Filename="data/downloaded_from_s3.csv"
+)
 
 
