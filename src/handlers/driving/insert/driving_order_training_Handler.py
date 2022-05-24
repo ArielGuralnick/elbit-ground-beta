@@ -1,5 +1,7 @@
 from flask import render_template, flash,redirect,url_for
 import pandas as pd
+from myboto3 import upload_files
+import os, sys
 
 async def driving_order_training_Handler(request):
     counter_long_skylark = 0
@@ -26,4 +28,8 @@ async def driving_order_training_Handler(request):
         with open('app/db/manager/driving_order_training.csv', 'a', newline='', encoding='utf-8-sig') as file:
             data.to_csv(file, index=False, na_rep='N/A',header=file.tell()==0, encoding='utf-8-sig')
             flash(f'!הבקשה נקלטה בהצלחה', category="success")
+        
+        src_upload_file_path = "app/db/driving/driving_order_training.csv"
+        bucket_dest_file_path = src_upload_file_path.replace('/app/db/', '').replace('app/db/', '')
+        upload_files.upload_to_s3_bucket(src_upload_file_path, bucket_dest_file_path)
         return redirect(url_for('driving_order_training'))

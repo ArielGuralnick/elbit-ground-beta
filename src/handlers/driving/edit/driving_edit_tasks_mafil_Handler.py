@@ -1,6 +1,8 @@
 from flask import render_template, flash, redirect, url_for
 import pandas as pd
 import time
+from myboto3 import upload_files
+import os, sys
 
 async def driving_edit_tasks_mafil_Handler(request):
     if request.method == 'GET':       
@@ -89,9 +91,16 @@ async def driving_edit_tasks_mafil_Handler(request):
         data = pd.read_csv('app/db/driving/tasks.csv')
         row_to_edit = data.index[data['הישגים נדרשים'] == achievements]
         data.loc[row_to_edit,['סטטוס ביצוע','תאריך לביצוע']] = [status,date]
+        current_cd_path = os.getcwd()
+        print("CD=", current_cd_path)
+        sys.stdout.flush()
         with open('app/db/driving/tasks.csv', 'w', newline='', encoding='utf-8-sig') as file:
             data.to_csv(file, index=False, na_rep='N/A',header=file.tell()==0, encoding='utf-8-sig')
             flash(f'!המשימה עודכנה בהצלחה', category="success")
+        
+        src_upload_file_path = "app/db/driving/tasks.csv"
+        bucket_dest_file_path = src_upload_file_path.replace('/app/db/', '').replace('app/db/', '')
+        upload_files.upload_to_s3_bucket(src_upload_file_path, bucket_dest_file_path)
         return redirect(url_for('driving_show_tasks_mafil'))
       
       
@@ -100,10 +109,16 @@ async def driving_edit_tasks_mafil_Handler(request):
         data = pd.read_csv('app/db/driving/tasks.csv')
         row_to_delet = data.index[data['הישגים נדרשים'] == achievements]
         data.drop(row_to_delet, inplace=True, axis=0)
-      
+        current_cd_path = os.getcwd()
+        print("CD=", current_cd_path)
+        sys.stdout.flush()
         with open('app/db/driving/tasks.csv', 'w', newline='', encoding='utf-8-sig') as file:
             data.to_csv(file, index=False, na_rep='N/A',header=file.tell()==0, encoding='utf-8-sig')
             flash(f'!המשימה נמחקה בהצלחה', category="success")
+        
+        src_upload_file_path = "app/db/driving/tasks.csv"
+        bucket_dest_file_path = src_upload_file_path.replace('/app/db/', '').replace('app/db/', '')
+        upload_files.upload_to_s3_bucket(src_upload_file_path, bucket_dest_file_path)
         return redirect(url_for('driving_show_tasks_mafil'))
 
       if request.form.get("options") == 'option_back':
