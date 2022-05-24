@@ -75,7 +75,7 @@ async def driving_show_data_activity_Handler(request):
 <div class="container">
 <div class="row">
     <div class="col form-group">
-        <label for="">סוג מאמן</label>
+        <label for="">סוג מאמן </label>
         <select class="form-control" name="type_of_simulator">
             <option>שיזפון</option>
             <option>בהל"צ</option>
