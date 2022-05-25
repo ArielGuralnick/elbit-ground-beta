@@ -59,7 +59,7 @@ async def mars_edit_maintenance_technician_mafil_Handler(request):
 </div>
 
 <script>
-    function fireDeletAlert() {
+    function fireDeletAlert()  {
         Swal.fire({
             position: 'center',
             icon: 'success',
