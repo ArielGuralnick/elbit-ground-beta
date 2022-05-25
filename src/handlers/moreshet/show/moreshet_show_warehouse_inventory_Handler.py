@@ -1,5 +1,7 @@
 from flask import render_template, flash, redirect, url_for, send_file
 import pandas as pd
+from myboto3 import upload_files
+import os, sys
 
 
 async def moreshet_show_warehouse_inventory_Handler(request):
@@ -81,9 +83,16 @@ async def moreshet_show_warehouse_inventory_Handler(request):
             else:
                 field_content = ['סוג הפריט','דגם','כמות במלאי','נדרש להשלים \ לרכוש','הערות']
                 data = pd.DataFrame([{'סוג הפריט' : type_of_item, 'דגם' : model, 'כמות במלאי':quantity, 'נדרש להשלים \ לרכוש': needs_to_complete, 'הערות': remarks}], columns=field_content)
+                current_cd_path = os.getcwd()
+                print("CD=", current_cd_path)
+                sys.stdout.flush()
                 with open('app/db/moreshet/warehouse_inventory.csv', 'a', newline='', encoding='utf-8-sig') as file:
                     data.to_csv(file, index=False, na_rep='null',header=file.tell()==0, encoding='utf-8-sig')
                     flash(f'!הפריט התווסף למלאי', category="success")
+            
+            src_upload_file_path = "app/db/moreshet/warehouse_inventory.csv"
+            bucket_dest_file_path = src_upload_file_path.replace('/app/db/', '').replace('app/db/', '')
+            upload_files.upload_to_s3_bucket(src_upload_file_path, bucket_dest_file_path)
             return redirect(url_for('moreshet_show_warehouse_inventory'))
 
         elif request.form.get("options") == 'option_edit':

@@ -1,6 +1,7 @@
 from flask import render_template, redirect, url_for,flash
 import pandas as pd
-
+from myboto3 import upload_files
+import os, sys
 
 async def sheder_show_maintenance_technician_mafil_Handler(request):
 
@@ -94,6 +95,10 @@ async def sheder_show_maintenance_technician_mafil_Handler(request):
                 with open('app/db/sheder/maintenance.csv', 'a', newline='', encoding='utf-8-sig') as file:
                     data_errors.to_csv(file, index=False, na_rep='N/A',header=file.tell()==0, encoding='utf-8-sig')
                     flash(f'!הפער תועד בהצלחה', category="success")
+            
+            src_upload_file_path = "app/db/sheder/maintenance.csv"
+            bucket_dest_file_path = src_upload_file_path.replace('/app/db/', '').replace('app/db/', '')
+            upload_files.upload_to_s3_bucket(src_upload_file_path, bucket_dest_file_path)
             return redirect(url_for('sheder_show_maintenance_technician_mafil'))
 
         elif request.form.get("options") == 'option_edit':

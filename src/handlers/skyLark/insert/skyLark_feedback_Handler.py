@@ -1,6 +1,8 @@
 import pandas as pd
 from flask import render_template, flash, redirect, url_for
 import time
+from myboto3 import upload_files
+import os, sys
 
 async def skyLark_feedback_Handler(request):
     answer_1 = None
@@ -75,7 +77,14 @@ async def skyLark_feedback_Handler(request):
         'באיזה מידה התרגילים תרמו להבנת החומר' : answer_3,
         'באיזה מידה החומר העיוני שנלמד בא לידי ביטוי בתרגול במאמן' : answer_4,
         'באיזה מידה האימון נתן לך כלים לתפקיד המצופה ממך לבצע' : answer_5, 'הערות': remarks}], columns=field_content)
+        current_cd_path = os.getcwd()
+        print("CD=", current_cd_path)
+        sys.stdout.flush()
         with open('app/db/skyLark/feedback.csv', 'a', newline='', encoding='utf-8-sig') as file:
             feedback_information.to_csv(file, index=False, na_rep='N/A',header=file.tell()==0, encoding='utf-8-sig')
             flash(f'המשוב נשלח בהצלחה! תודה', category="success")
+        
+        src_upload_file_path = "app/db/skyLark/feedback.csv"
+        bucket_dest_file_path = src_upload_file_path.replace('/app/db/', '').replace('app/db/', '')
+        upload_files.upload_to_s3_bucket(src_upload_file_path, bucket_dest_file_path)
         return redirect(url_for('skyLark_instructor'))

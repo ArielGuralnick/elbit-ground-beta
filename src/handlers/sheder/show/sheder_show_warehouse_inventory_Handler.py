@@ -1,6 +1,7 @@
 from flask import render_template, flash, redirect, url_for, send_file
 import pandas as pd
-
+from myboto3 import upload_files
+import os, sys
 
 async def sheder_show_warehouse_inventory_Handler(request):
 
@@ -96,6 +97,10 @@ async def sheder_show_warehouse_inventory_Handler(request):
                 with open('app/db/sheder/warehouse_inventory.csv', 'a', newline='', encoding='utf-8-sig') as file:
                     data.to_csv(file, index=False, na_rep='null',header=file.tell()==0, encoding='utf-8-sig')
                     flash(f'!הפריט התווסף למלאי', category="success")
+            
+            src_upload_file_path = "app/db/sheder/sheder.csv"
+            bucket_dest_file_path = src_upload_file_path.replace('/app/db/', '').replace('app/db/', '')
+            upload_files.upload_to_s3_bucket(src_upload_file_path, bucket_dest_file_path)
             return redirect(url_for('sheder_show_warehouse_inventory'))
 
         elif request.form.get("options") == 'option_edit':

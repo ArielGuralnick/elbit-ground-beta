@@ -7,6 +7,36 @@
         {
             "type": "aws-sam",
             "request": "direct-invoke",
+            "name": "elbit-ground-beta:src/handlers/skyLark/show/show_work_plan_mafil_Handler.show_work_plan_mafil_Handler (python3.6)",
+            "invokeTarget": {
+                "target": "code",
+                "projectRoot": "${workspaceFolder}/",
+                "lambdaHandler": "src/handlers/skyLark/show/show_work_plan_mafil_Handler.show_work_plan_mafil_Handler"
+            },
+            "lambda": {
+                "runtime": "python3.6",
+                "payload": {},
+                "environmentVariables": {}
+            }
+        },
+        {
+            "type": "aws-sam",
+            "request": "direct-invoke",
+            "name": "elbit-ground-beta:src/handlers/mars/insert/mars_insert_error_Handler.mars_insert_error_Handler (python3.6)",
+            "invokeTarget": {
+                "target": "code",
+                "projectRoot": "${workspaceFolder}/",
+                "lambdaHandler": "src/handlers/mars/insert/mars_insert_error_Handler.mars_insert_error_Handler"
+            },
+            "lambda": {
+                "runtime": "python3.6",
+                "payload": {},
+                "environmentVariables": {}
+            }
+        },
+        {
+            "type": "aws-sam",
+            "request": "direct-invoke",
             "name": "elbit-ground-beta:app/routs.skyLark_instructor (python3.8)",
             "invokeTarget": {
                 "target": "code",

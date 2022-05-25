@@ -1,6 +1,7 @@
 import pandas as pd
 from flask import render_template, flash, redirect, url_for
-
+from myboto3 import upload_files
+import os, sys
 
 async def sheder_insert_error_Handler(request):
     if request.method == 'GET':
@@ -26,7 +27,14 @@ async def sheder_insert_error_Handler(request):
         'שעה' : time_error, 'שם מזהה' : name_identifier,'סוג התקלה' : type_of_fault,
         'תפעול התקלה' : fault_operation, 'באיזה מחשב' : computer, 'חומרה \ תוכנה': hardware_or_system,
         'עיתוי התקלה': timing_fault, 'זמן השבתה': time_download, 'טופל \ לא טופל' : situation, 'שם המטפל': name_treat, 'שעת טיפול' : time_treatment}], columns=field_content)
+        current_cd_path = os.getcwd()
+        print("CD=", current_cd_path)
+        sys.stdout.flush()
         with open('app/db/sheder/data_errors.csv', 'a', newline='', encoding='utf-8-sig') as file:
             data_activity.to_csv(file, index=False, na_rep='N/A',header=file.tell()==0, encoding = "utf-8-sig")
             flash(f'!התקלה נקלטה בהצלחה', category="success")
+        
+        src_upload_file_path = "app/db/sheder/data_errors.csv"
+        bucket_dest_file_path = src_upload_file_path.replace('/app/db/', '').replace('app/db/', '')
+        upload_files.upload_to_s3_bucket(src_upload_file_path, bucket_dest_file_path)
         return redirect(url_for('sheder_mafil'))

@@ -1,6 +1,7 @@
 from flask import render_template, flash, url_for, redirect 
 import pandas as pd
-
+from myboto3 import upload_files
+import os, sys
 
 async def mini_raam_insert_error_Handler(request):
     if request.method == 'GET':
@@ -17,7 +18,14 @@ async def mini_raam_insert_error_Handler(request):
         field_content = ['תאריך זיהוי', 'מספר עמדה', 'סוג התקלה', 'תפעול', 'מחשב', 'תאריך טיפול', 'מצב']
         data_errors = pd.DataFrame([{'תאריך זיהוי' : start_date_error, 'מספר עמדה' : num_of_poisition,
         'סוג התקלה' : type_of_fault, 'תפעול' : fault_operation,'מחשב' : computer, 'תאריך טיפול' : end_date_error, 'מצב' : situation}], columns=field_content)
+        current_cd_path = os.getcwd()
+        print("CD=", current_cd_path)
+        sys.stdout.flush()
         with open('app/db/mini_raam/data_errors.csv', 'a', newline='', encoding='utf-8-sig') as file:
             data_errors.to_csv(file, index=False, na_rep='null',header=file.tell()==0, encoding='utf-8-sig')
             flash(f'!התקלה נשלחה בהצלחה', category="success")
+        
+        src_upload_file_path = "app/db/mini_raam/data_errors.csv"
+        bucket_dest_file_path = src_upload_file_path.replace('/app/db/', '').replace('app/db/', '')
+        upload_files.upload_to_s3_bucket(src_upload_file_path, bucket_dest_file_path)
         return redirect(url_for('mini_raam'))

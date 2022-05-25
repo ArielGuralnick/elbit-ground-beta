@@ -1,6 +1,8 @@
 from flask import render_template, flash, redirect, url_for
 import pandas as pd
 import time
+from myboto3 import upload_files
+import os, sys
 
 async def tzevet_edit_warehouse_inventory_Handler(request):
     if request.method == 'GET':       
@@ -119,9 +121,16 @@ async def tzevet_edit_warehouse_inventory_Handler(request):
         data = pd.read_csv('app/db/tzevet/warehouse_inventory.csv')
         row_to_edit = data.index[data['סוג הפריט'] == type_of_item]
         data.loc[row_to_edit, ['מאמן','כמות במלאי','נדרש להשלים \ לרכוש','הערות']] = [simulator, quantity, needs_to_complete, remarks]
+        current_cd_path = os.getcwd()
+        print("CD=", current_cd_path)
+        sys.stdout.flush()
         with open('app/db/tzevet/warehouse_inventory.csv', 'w', newline='', encoding='utf-8-sig') as file:
             data.to_csv(file, index=False, na_rep='N/A',header=file.tell()==0, encoding='utf-8-sig')
             flash(f'!השורה עודכנה בהצלחה', category="success")
+        
+        src_upload_file_path = "app/db/tzevet/warehouse_inventory.csv"
+        bucket_dest_file_path = src_upload_file_path.replace('/app/db/', '').replace('app/db/', '')
+        upload_files.upload_to_s3_bucket(src_upload_file_path, bucket_dest_file_path)
         return redirect(url_for('tzevet_show_warehouse_inventory'))
       
       
@@ -130,10 +139,16 @@ async def tzevet_edit_warehouse_inventory_Handler(request):
         data = pd.read_csv('app/db/tzevet/warehouse_inventory.csv')
         row_to_delet = data.index[data['סוג הפריט'] == type_of_item]
         data.drop(row_to_delet, inplace=True, axis=0)
-      
+        current_cd_path = os.getcwd()
+        print("CD=", current_cd_path)
+        sys.stdout.flush()
         with open('app/db/tzevet/warehouse_inventory.csv', 'w', newline='', encoding='utf-8-sig') as file:
             data.to_csv(file, index=False, na_rep='N/A',header=file.tell()==0, encoding='utf-8-sig')
             flash(f'!השורה נמחקה בהצלחה', category="success")
+        
+        src_upload_file_path = "app/db/tzevet/warehouse_inventory.csv"
+        bucket_dest_file_path = src_upload_file_path.replace('/app/db/', '').replace('app/db/', '')
+        upload_files.upload_to_s3_bucket(src_upload_file_path, bucket_dest_file_path)
         return redirect(url_for('tzevet_show_warehouse_inventory'))
 
       if request.form.get("options") == 'option_back':

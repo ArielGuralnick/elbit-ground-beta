@@ -1,6 +1,8 @@
 from flask import render_template, flash, redirect, url_for
 import pandas as pd
 import time
+from myboto3 import upload_files
+import os, sys
 
 async def edit_maintenance_technician_mafil_Handler(request):
     if request.method == 'GET':       
@@ -99,9 +101,16 @@ async def edit_maintenance_technician_mafil_Handler(request):
         data = pd.read_csv('app/db/skyLark/maintenance.csv')
         row_to_edit = data.index[data['מה הפער'] == disparity]
         data.loc[row_to_edit, ['טופל / לא טופל','תאריך טיפול']] = [status, date_treatment]
+        current_cd_path = os.getcwd()
+        print("CD=", current_cd_path)
+        sys.stdout.flush()
         with open('app/db/skyLark/maintenance.csv', 'w', newline='', encoding='utf-8-sig') as file:
             data.to_csv(file, index=False, na_rep='N/A',header=file.tell()==0, encoding='utf-8-sig')
             flash(f'!הפער עודכן בהצלחה', category="success")
+        
+        src_upload_file_path = "app/db/skyLark/maintenance.csv"
+        bucket_dest_file_path = src_upload_file_path.replace('/app/db/', '').replace('app/db/', '')
+        upload_files.upload_to_s3_bucket(src_upload_file_path, bucket_dest_file_path)
         return redirect(url_for('show_maintenance_technician_mafil'))
       
       
@@ -110,9 +119,15 @@ async def edit_maintenance_technician_mafil_Handler(request):
         data = pd.read_csv('app/db/skyLark/maintenance.csv')
         row_to_delet = data.index[data['מה הפער'] == disparity]
         data.drop(row_to_delet, inplace=True, axis=0)
-      
+        current_cd_path = os.getcwd()
+        print("CD=", current_cd_path)
+        sys.stdout.flush()
         with open('app/db/skyLark/maintenance.csv', 'w', newline='', encoding='utf-8-sig') as file:
             data.to_csv(file, index=False, na_rep='N/A',header=file.tell()==0, encoding='utf-8-sig')
             flash(f'הפער נמחק בהצלחה!', category="success")
+        
+        src_upload_file_path = "app/db/skyLark/maintenance.csv"
+        bucket_dest_file_path = src_upload_file_path.replace('/app/db/', '').replace('app/db/', '')
+        upload_files.upload_to_s3_bucket(src_upload_file_path, bucket_dest_file_path)
         return redirect(url_for('show_maintenance_technician_mafil'))
         

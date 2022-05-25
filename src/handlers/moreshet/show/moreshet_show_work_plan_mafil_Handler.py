@@ -1,5 +1,7 @@
 from flask import render_template, flash, redirect, url_for
 import pandas as pd
+from myboto3 import upload_files
+import os, sys
 
 
 async def moreshet_show_work_plan_mafil_Handler(request):
@@ -80,9 +82,16 @@ async def moreshet_show_work_plan_mafil_Handler(request):
             else:
                 field_content = ['נושא','מטרה','הישגים נדרשים','גורם מבצע','סטטוס ביצוע']
                 data = pd.DataFrame([{'נושא' : subject, 'מטרה' : goal, 'הישגים נדרשים':achievements, 'גורם מבצע': responsible, 'סטטוס ביצוע': status}], columns=field_content)
+                current_cd_path = os.getcwd()
+                print("CD=", current_cd_path)
+                sys.stdout.flush()
                 with open('app/db/moreshet/work_plan_mafil.csv', 'a', newline='', encoding='utf-8-sig') as file:
                     data.to_csv(file, index=False, na_rep='null',header=file.tell()==0, encoding='utf-8-sig')
                     flash(f'! השורה התווספה בהצלחה', category="success")
+            
+            src_upload_file_path = "app/db/moreshet/work_plan_mafil.csv"
+            bucket_dest_file_path = src_upload_file_path.replace('/app/db/', '').replace('app/db/', '')
+            upload_files.upload_to_s3_bucket(src_upload_file_path, bucket_dest_file_path)
             return redirect(url_for('moreshet_show_work_plan_mafil'))
 
         elif request.form.get("options") == 'option_edit':
