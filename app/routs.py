@@ -212,7 +212,7 @@ class Config(object):
 USERS = {
     1: User("admin", 1, "ariel"),
     2: User("sky", 2, "Integ123"),
-    3: User("a", 3, "a"),
+    
 }
 
 
