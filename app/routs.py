@@ -220,7 +220,6 @@ USERS = {
 USER_NAMES = {
     USERS[1].name : USERS[1],
     USERS[2].name : USERS[2],
-    USERS[3].name : USERS[3],
 }
 
 DEBUG = True
